@@ -1,5 +1,8 @@
 # Maincode UI
 
+[] - test component with svgs
+[] - setup components with ionic dependency
+
 > Add image as heading
 
 > A collection of freely available React.js UI components by Maincode!
