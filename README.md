@@ -3,7 +3,7 @@
 > Add image as heading
 
 > A collection of freely available React.js UI components by Maincode!
-> For a demo on the components, see our [examples pages]().
+> For a demo on the components, see our [examples pages](https://maincode-org.github.io/maincode-ui/).
 
 [![NPM](https://img.shields.io/npm/v/maincode-ui.svg)](https://www.npmjs.com/package/maincode-ui) [![JavaScript Style Guide](https://img.shields.io/badge/code_style-standard-brightgreen.svg)](https://standardjs.com)
 
