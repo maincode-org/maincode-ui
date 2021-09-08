@@ -2,7 +2,6 @@
 
 [] - test component with svgs
 [] - setup components with ionic dependency
-[] - render readme.md in the docs
 
 > Add image as heading
 
