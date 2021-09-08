@@ -1,4 +1,5 @@
 # Maincode UI
+
 > Add image as heading
 
 > A collection of freely available React.js UI components by Maincode!
@@ -35,6 +36,7 @@ What folders do what..
 Which CSS file does what..
 
 ### Testing
+
 .. How to run tests, what to cover in tests
 
 ## License
