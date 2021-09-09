@@ -1,6 +1,5 @@
 # Maincode UI
 
-[] - test component with svgs
 [] - setup components with ionic dependency
 
 > Add image as heading
