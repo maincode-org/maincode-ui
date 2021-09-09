@@ -16,7 +16,7 @@ pids
 *.pid.lock
 .idea
 */.idea
-documentation-app/build
+*/build
 dist
 node_modules
 */node_modules
