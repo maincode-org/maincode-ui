@@ -2,23 +2,7 @@ import { IonContent, IonIcon, IonItem, IonLabel, IonList, IonListHeader, IonMenu
 import { useLocation } from 'react-router-dom';
 import './Menu.css';
 
-import { heartOutline, heartSharp } from 'ionicons/icons';
-
-interface AppPage {
-  url: string;
-  iosIcon: string;
-  mdIcon: string;
-  title: string;
-}
-
-const appPages: AppPage[] = [
-  {
-    title: 'Getting Started',
-    url: '/page/GettingStarted',
-    iosIcon: heartOutline,
-    mdIcon: heartSharp,
-  },
-];
+import { components } from '../types/structure';
 
 const Menu: React.FC = () => {
   const location = useLocation();
@@ -29,22 +13,23 @@ const Menu: React.FC = () => {
         <IonList id='inbox-list'>
           <IonListHeader>Maincode UI Documentation</IonListHeader>
           <IonNote>
-            <a href='https://maincode.dk'>maincode.dk</a>
+            By <a href='https://maincode.dk'>maincode.dk</a>
           </IonNote>
-          {appPages.map((appPage, index) => {
-            return (
-              <IonMenuToggle key={index} autoHide={false}>
-                <IonItem className={location.pathname === appPage.url ? 'selected' : ''} routerLink={appPage.url} routerDirection='none' lines='none' detail={false}>
-                  <IonIcon slot='start' ios={appPage.iosIcon} md={appPage.mdIcon} />
-                  <IonLabel>{appPage.title}</IonLabel>
-                </IonItem>
-              </IonMenuToggle>
-            );
-          })}
+
+          {components.map((c, index) => makeMenuEntry(index, c.url, c.iosIcon, c.mdIcon, c.title, location.pathname))}
         </IonList>
       </IonContent>
     </IonMenu>
   );
 };
+
+const makeMenuEntry = (key: string | number, url: string, iosIcon: string, mdIcon: string, title: string, locationPath: string): JSX.Element => (
+  <IonMenuToggle key={key} autoHide={false}>
+    <IonItem className={locationPath === url ? 'selected' : ''} routerLink={url} routerDirection='none' lines='none' detail={false}>
+      <IonIcon slot='start' ios={iosIcon} md={mdIcon} />
+      <IonLabel>{title}</IonLabel>
+    </IonItem>
+  </IonMenuToggle>
+);
 
 export default Menu;

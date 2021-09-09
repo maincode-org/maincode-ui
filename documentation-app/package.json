@@ -1,7 +1,10 @@
 {
   "name": "documentation-app",
+  "description": "The Maincode UI Documentation and demo page!",
   "version": "0.0.1",
   "private": true,
+  "homepage": "https://maincode-org.github.io/maincode-ui/",
+  "repository": "https://github.com/maincode-org/maincode-ui",
   "dependencies": {
     "@capacitor/app": "1.0.3",
     "@capacitor/core": "3.2.2",
@@ -68,6 +71,5 @@
     "@types/react-dom": "^16.9.10",
     "@types/react-router": "^5.1.11",
     "@types/react-router-dom": "^5.1.7"
-  },
-  "description": "An Ionic project"
+  }
 }
