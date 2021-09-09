@@ -25,7 +25,7 @@ const Menu: React.FC = () => {
 
 const makeMenuEntry = (key: string | number, url: string, iosIcon: string, mdIcon: string, title: string, locationPath: string): JSX.Element => (
   <IonMenuToggle key={key} autoHide={false}>
-    <IonItem className={locationPath === url ? 'selected' : ''} routerLink={url} routerDirection='none' lines='none' detail={false}>
+    <IonItem className={locationPath === `/maincode-ui${url}` ? 'selected' : ''} routerLink={`/maincode-ui${url}`} routerDirection='none' lines='none' detail={false}>
       <IonIcon slot='start' ios={iosIcon} md={mdIcon} />
       <IonLabel>{title}</IonLabel>
     </IonItem>

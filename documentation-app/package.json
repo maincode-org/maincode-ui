@@ -14,6 +14,7 @@
     "@ionic/react": "^5.5.0",
     "@ionic/react-router": "^5.5.0",
     "ionicons": "^5.4.0",
+    "maincode-ui": "file:..",
     "react": "^17.0.1",
     "react-dom": "^17.0.1",
     "react-router": "^5.2.0",
@@ -32,12 +33,11 @@
     "workbox-range-requests": "^5.1.4",
     "workbox-routing": "^5.1.4",
     "workbox-strategies": "^5.1.4",
-    "workbox-streams": "^5.1.4",
-    "maincode-ui": "file:.."
+    "workbox-streams": "^5.1.4"
   },
   "scripts": {
     "start": "react-scripts start",
-    "build": "react-scripts build",
+    "build": "react-scripts build && shx cp build/index.html build/404.html",
     "fix": "npx prettier --write . && npx eslint \"src/**/*.{ts,tsx}\" --fix",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
@@ -70,6 +70,7 @@
     "@types/react": "^16.14.3",
     "@types/react-dom": "^16.9.10",
     "@types/react-router": "^5.1.11",
-    "@types/react-router-dom": "^5.1.7"
+    "@types/react-router-dom": "^5.1.7",
+    "shx": "^0.3.3"
   }
 }
