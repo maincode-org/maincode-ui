@@ -1,6 +1,5 @@
 import { IonButtons, IonContent, IonHeader, IonMenuButton, IonPage, IonTitle, IonToolbar } from '@ionic/react';
 import { useParams } from 'react-router';
-import ExploreContainer from '../components/ExploreContainer';
 import './Page.css';
 
 const Page: React.FC = () => {
@@ -23,7 +22,14 @@ const Page: React.FC = () => {
             <IonTitle size='large'>{name}</IonTitle>
           </IonToolbar>
         </IonHeader>
-        <ExploreContainer name={name} />
+
+        <section className='p-2'>
+          <h2>Lets put the intro description here</h2>
+          <h2>Lets put the usage / demo's here</h2>
+          <h2>Lets put the children of this page here</h2>
+          <h2>Lets put the prop descriptions here</h2>
+          <h2>Lets put the style descriptions here</h2>
+        </section>
       </IonContent>
     </IonPage>
   );
