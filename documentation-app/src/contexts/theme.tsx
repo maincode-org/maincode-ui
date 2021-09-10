@@ -1,19 +1,24 @@
 import React, { createContext, useEffect, useState } from 'react';
 
-type IThemeContext = { themeName: string; toggleTheme: () => void };
+export enum EThemeModes {
+  'light' = 'light',
+  'dark' = 'dark',
+}
+
+type IThemeContext = { themeName: EThemeModes; toggleTheme: () => void };
 
 const ThemeContext = createContext<IThemeContext | null>(null);
 
 const ThemeProvider: React.FC = ({ children }) => {
-  const [themeName, setThemeName] = useState('light');
+  const [themeName, setThemeName] = useState(EThemeModes.dark);
 
   useEffect(() => {
-    const isDark = localStorage.getItem('themeName') === 'dark';
-    if (isDark) setThemeName('dark');
+    const isDark = localStorage.getItem('themeName') === EThemeModes.light;
+    if (isDark) setThemeName(EThemeModes.dark);
   }, []);
 
   const toggleTheme = () => {
-    const name = themeName === 'dark' ? 'light' : 'dark';
+    const name = themeName === EThemeModes.dark ? EThemeModes.light : EThemeModes.dark;
     localStorage.setItem('themeName', name);
     setThemeName(name);
   };
