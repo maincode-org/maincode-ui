@@ -1,4 +1,5 @@
 import { IonButtons, IonContent, IonHeader, IonIcon, IonMenuButton, IonPage, IonTitle, IonToolbar } from '@ionic/react';
+import { DocumentationSection, ExampleComponent } from 'maincode-ui';
 import { useContext } from 'react';
 import { EThemeModes, ThemeContext } from '../contexts/theme';
 import { logoGithub, moonOutline, moonSharp, sunnyOutline, sunnySharp } from 'ionicons/icons';
@@ -6,10 +7,9 @@ import { logoGithub, moonOutline, moonSharp, sunnyOutline, sunnySharp } from 'io
 import { useParams } from 'react-router';
 
 import { componentsMap } from '../types/structure';
-import { ExampleComponent } from 'maincode-ui';
 import './Page.css';
 
-const Page: React.FC = () => {
+const Page: React.FC = ({ children }) => {
   const { name } = useParams<{ name: string }>();
   const theme = useContext(ThemeContext);
   const isDarkMode = theme?.themeName === EThemeModes.dark;
@@ -39,15 +39,9 @@ const Page: React.FC = () => {
             <IonTitle size='large'>{name}</IonTitle>
           </IonToolbar>
         </IonHeader>
-
-        <section className='px-1'>
-          <h3>Lets put the intro description here</h3>
-          <h2>Lets put the usage / demo's here</h2>
-          <ExampleComponent text='Component!' />
-          <h2>Lets put the children of this page here</h2>
-          <h2>Lets put the prop descriptions here</h2>
-          <h2>Lets put the style descriptions here</h2>
-        </section>
+        <DocumentationSection>
+          <ExampleComponent text='Example' />
+        </DocumentationSection>
       </IonContent>
     </IonPage>
   );

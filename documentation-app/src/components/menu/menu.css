@@ -2,6 +2,18 @@ ion-menu ion-content {
   --background: var(--ion-item-background, var(--ion-background-color, #fff));
 }
 
+.menu-upper {
+  min-height: 80%;
+}
+
+.menu-lower {
+  height: 20%;
+}
+
+#menu-component-list {
+  overflow-y: scroll;
+}
+
 ion-menu.md ion-content {
   --padding-start: 8px;
   --padding-end: 8px;
