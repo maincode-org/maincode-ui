@@ -33,9 +33,7 @@ import { useContext, useEffect } from 'react';
 const App: React.FC = () => {
   const themeName = useContext(ThemeContext)?.themeName;
 
-  useEffect(() => {
-    document.body.classList.toggle(themeName ?? 'light', true);
-  }, [themeName]);
+  useEffect(() => {}, [themeName]);
 
   return (
     <IonApp className={themeName}>

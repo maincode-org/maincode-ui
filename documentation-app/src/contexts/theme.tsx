@@ -10,16 +10,19 @@ type IThemeContext = { themeName: EThemeModes; toggleTheme: () => void };
 const ThemeContext = createContext<IThemeContext | null>(null);
 
 const ThemeProvider: React.FC = ({ children }) => {
-  const [themeName, setThemeName] = useState(EThemeModes.dark);
+  const [themeName, setThemeName] = useState(EThemeModes.light);
 
   useEffect(() => {
     const isDark = localStorage.getItem('themeName') === EThemeModes.light;
     if (isDark) setThemeName(EThemeModes.dark);
+    document.body.classList.toggle(isDark ? EThemeModes.dark : EThemeModes.light, true);
   }, []);
 
   const toggleTheme = () => {
     const name = themeName === EThemeModes.dark ? EThemeModes.light : EThemeModes.dark;
     localStorage.setItem('themeName', name);
+    document.body.classList.toggle(EThemeModes.light);
+    document.body.classList.toggle(EThemeModes.dark);
     setThemeName(name);
   };
 
