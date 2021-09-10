@@ -14,7 +14,7 @@ export const ExampleComponent: React.FC<Props> = ({ text }: Props) => {
       Example Component: {text}
       {drawing}
       <img src={png} height={200} width={200} alt='test' />
-      <IonButton color='secondary'>Start</IonButton>
+      <IonButton className='ion-float-end'>Primary Color</IonButton>
     </div>
   );
 };

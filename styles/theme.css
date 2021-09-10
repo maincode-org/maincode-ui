@@ -142,14 +142,14 @@ body.dark {
   --ion-card-background: #2a2f4c;
 
   /** Colors */
-  --ion-color-primary: #fb8500;
-  --ion-color-primary-contrast: #fcfcfc;
+  --ion-color-primary: #dd7500;
+  --ion-color-primary-contrast: #f5f5f5;
   --ion-color-primary-shade: #dd7500;
   --ion-color-primary-tint: #fb911a;
 
-  --ion-color-secondary: #ffb703;
+  --ion-color-secondary: #fb8500;
   --ion-color-secondary-rgb: 255, 183, 3;
-  --ion-color-secondary-contrast: #555;
+  --ion-color-secondary-contrast: #fcfcfc;
   --ion-color-secondary-shade: #e0a103;
   --ion-color-secondary-tint: #ffbe1c;
 
