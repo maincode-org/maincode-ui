@@ -32,6 +32,25 @@ h6 {
   color: rgba(20, 20, 20, 0.9);
 }
 
+/** Light and dark color schemes **/
+.light {
+  --color-bg: #fcfcfc;
+  --color-bg-alt: #fff;
+  --color-fg: #555;
+  --color-fg-alt: #444;
+  --color-primary: var(--ion-color-primary);
+  --shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+}
+
+.dark {
+  --color-bg: #23283e;
+  --color-bg-alt: #2a2f4c;
+  --color-fg: #bdbddd;
+  --color-fg-alt: #cdcdff;
+  --color-primary: #90a0d9;
+  --shadow: rgba(0, 0, 0, 0.16) 0px 10px 36px 0px, rgba(0, 0, 0, 0.06) 0px 0px 0px 1px;
+}
+
 /** Ionic CSS Variables **/
 :root {
   /** Fonts */

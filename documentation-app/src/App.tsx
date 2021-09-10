@@ -3,6 +3,7 @@ import { IonReactRouter } from '@ionic/react-router';
 import { Redirect, Route } from 'react-router-dom';
 import Menu from './components/Menu';
 import Page from './pages/Page';
+import { ThemeContext } from './contexts/theme';
 
 /* Core CSS required for Ionic components to work properly */
 import '@ionic/react/css/core.css';
@@ -27,10 +28,13 @@ import './theme/variables.css';
 import 'maincode-ui/dist/index.css';
 import 'maincode-ui/styles/generics.css';
 import 'maincode-ui/styles/theme.css';
+import { useContext } from 'react';
 
 const App: React.FC = () => {
+  const themeName = useContext(ThemeContext)?.themeName;
+
   return (
-    <IonApp>
+    <IonApp className={themeName}>
       <IonReactRouter>
         <IonSplitPane contentId='main'>
           <Menu />
