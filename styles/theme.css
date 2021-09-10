@@ -57,7 +57,7 @@ h6 {
   /** Fonts */
   --ion-font-family: 'Tomorrow';
   --ion-text-color: #555;
-  --ion-background-color: #faf5f5;
+  --ion-background-color: radial-gradient(circle, #fff 0%, #faf5f5 85%);
 
   --ion-item-background: #fff;
   --ion-toolbar-background: #fff;
@@ -133,8 +133,7 @@ h6 {
  * -------------------------------------------
 */
 body.dark {
-  --ion-background-color: #23283e;
-
+  --ion-background-color: radial-gradient(circle, #2a2f4c 0%, #23283e 85%);
   --ion-text-color: #bdbddd;
   --ion-item-background: #2a2f4c;
   --ion-toolbar-background: #2a2f4c;
@@ -208,7 +207,7 @@ body.dark {
  * -------------------------------------------
 */
 .ios body.dark {
-  --ion-background-color: #23283e;
+  --ion-background-color: radial-gradient(circle, #2a2f4c 0%, #23283e 85%);
 
   --ion-text-color: #bdbddd;
   --ion-item-background: #2a2f4c;
@@ -248,7 +247,7 @@ body.dark {
      * -------------------------------------------
      */
 .md body.dark {
-  --ion-background-color: #23283e;
+  --ion-background-color: radial-gradient(circle, #2a2f4c 0%, #23283e 85%);
 
   --ion-text-color: #bdbddd;
   --ion-item-background: #2a2f4c;
