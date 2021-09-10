@@ -56,8 +56,8 @@ h6 {
 :root {
   /** Fonts */
   --ion-font-family: 'Tomorrow';
-  --ion-background-color: #fcfcfc;
   --ion-text-color: #555;
+  --ion-background-color: #f5f0f0;
 
   --ion-item-background: #fff;
   --ion-toolbar-background: #fff;
