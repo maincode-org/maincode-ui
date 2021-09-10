@@ -30,6 +30,10 @@ class Example extends Component {
 }
 ```
 
+#### Dark theme
+
+- theming, add .dark or .light to a selector to specify styling.
+
 ## Development & contribution
 
 ### Library structure

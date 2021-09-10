@@ -1047,9 +1047,29 @@
   letter-spacing: 0.5rem;
 }
 
+.color-fg {
+  color: var(--color-fg);
+}
+
+.color-fg-alt {
+  color: var(--color-fg-alt);
+}
+
+.color-bg {
+  color: var(--color-bg);
+}
+
+.color-bg-alt {
+  color: var(--color-bg-alt);
+}
+
 .bg-cover-blur::part(background) {
   background-size: cover !important;
   filter: blur(1px);
+}
+
+.pointer {
+  cursor: pointer;
 }
 
 .glass-bg {

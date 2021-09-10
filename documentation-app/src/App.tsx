@@ -24,7 +24,7 @@ import '@ionic/react/css/display.css';
 /* Theme variables */
 import './theme/variables.css';
 
-/** Maincode dependencies */
+/** Maincode dependencies. */
 import 'maincode-ui/dist/index.css';
 import 'maincode-ui/styles/generics.css';
 import 'maincode-ui/styles/theme.css';

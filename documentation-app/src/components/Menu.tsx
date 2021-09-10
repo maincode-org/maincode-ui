@@ -10,12 +10,16 @@ const Menu: React.FC = () => {
   return (
     <IonMenu contentId='main' type='overlay'>
       <IonContent>
-        <IonList id='inbox-list'>
+        <IonList className='menu-list'>
           <IonListHeader>Maincode UI Documentation</IonListHeader>
-          <IonNote>
+          <IonNote className='pb-15'>
             By <a href='https://maincode.dk'>maincode.dk</a>
           </IonNote>
+          {components.map((c, index) => makeMenuEntry(index, c.url, c.iosIcon, c.mdIcon, c.title, location.pathname))}
+        </IonList>
 
+        <IonList className='menu-list'>
+          <IonListHeader className='pb-15'>Components</IonListHeader>
           {components.map((c, index) => makeMenuEntry(index, c.url, c.iosIcon, c.mdIcon, c.title, location.pathname))}
         </IonList>
       </IonContent>
