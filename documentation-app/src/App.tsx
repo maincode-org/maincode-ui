@@ -28,10 +28,14 @@ import './theme/variables.css';
 import 'maincode-ui/dist/index.css';
 import 'maincode-ui/styles/generics.css';
 import 'maincode-ui/styles/theme.css';
-import { useContext } from 'react';
+import { useContext, useEffect } from 'react';
 
 const App: React.FC = () => {
   const themeName = useContext(ThemeContext)?.themeName;
+
+  useEffect(() => {
+    document.body.classList.toggle(themeName ?? 'light', true);
+  }, [themeName]);
 
   return (
     <IonApp className={themeName}>
