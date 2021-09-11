@@ -17,7 +17,7 @@ const DocumentationSection: React.FC<IDocSection> = ({ children }) => {
       <h3>Lets put the children of this page here</h3>
       {children}
       <h3>Lets put the prop descriptions here</h3>
-      <h3>Lets put the style descriptions here</h3>
+      <h3 className='vh-full'>Lets put the style descriptions here</h3>
     </section>
   );
 };

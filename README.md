@@ -17,6 +17,8 @@ npm install --save maincode-ui
 
 ## Usage
 
+Made to be used with Ionic Framework!
+
 ```tsx
 import React, { Component } from 'react';
 
@@ -30,9 +32,14 @@ class Example extends Component {
 }
 ```
 
-#### Dark theme
+#### Theming
+
+** Dark theme **
 
 - theming, add .dark or .light to a selector to specify styling.
+
+** Styling the scrollbar **
+https://github.com/ionic-team/ionic-framework/issues/17685#issuecomment-587633556
 
 ## Development & contribution
 

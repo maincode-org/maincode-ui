@@ -30,35 +30,42 @@ h5,
 h6 {
   white-space: pre-line;
 }
+
 /** Light and dark color schemes **/
 
 .light {
-  --color-bg: #fcfcfc;
-  --color-bg-alt: #fff;
   --color-fg: #555;
   --color-fg-alt: #444;
+
   --shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
   --color-glass: rgba(255, 255, 255, 0.8);
   --border-glass: rgba(209, 213, 219, 0.4);
+
+  --scroll-color: rgba(85, 85, 85, 0.6);
+  --scroll-color-hover: rgba(85, 85, 85, 0.5);
+  --scroll-color-active: rgba(85, 85, 85, 0.7);
 }
 
 .dark {
-  --color-bg: #23283e;
-  --color-bg-alt: #2a2f4c;
   --color-fg: #bdbddd;
   --color-fg-alt: #cdcdff;
   --shadow: rgba(0, 0, 0, 0.16) 0px 10px 36px 0px, rgba(0, 0, 0, 0.06) 0px 0px 0px 1px;
   --color-glass: rgba(42, 47, 76, 0.8);
   --border-glass: rgba(42, 47, 767, 0.2);
+
+  --scroll-color: rgba(189, 189, 221, 0.6);
+  --scroll-color-hover: rgba(189, 189, 221, 0.7);
+  --scroll-color-active: rgba(189, 189, 221, 0.5);
 }
 
 /** Ionic CSS Variables ------------------------ **/
 :root {
   /** Fonts */
   --ion-font-family: 'Tomorrow';
-  --ion-text-color: #555;
-  --ion-background-color: radial-gradient(circle, #fff 0%, #faf5f5 85%);
 
+  --ion-text-color: #555;
+
+  --ion-background-color: radial-gradient(circle, #fff 0%, #faf5f5 85%);
   --ion-item-background: #fff;
   --ion-toolbar-background: #fff;
   --ion-tab-bar-background: #fff;
@@ -125,6 +132,7 @@ h6 {
   --ion-color-light-contrast-rgb: 0, 0, 0;
   --ion-color-light-shade: #d7d8da;
   --ion-color-light-tint: #f5f6f9;
+
   --card-shadow: 0px 3px 3px -2px rgb(0 0 0 / 20%), 0px 3px 4px 0px rgb(0 0 0 / 14%), 0px 1px 8px 0px rgb(0 0 0 / 12%);
 }
 

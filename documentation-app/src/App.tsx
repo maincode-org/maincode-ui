@@ -3,7 +3,7 @@ import { IonReactRouter } from '@ionic/react-router';
 import { Redirect, Route } from 'react-router-dom';
 import Menu from './components/menu/Menu';
 import Page from './pages/Page';
-import { ThemeContext } from './contexts/theme';
+import { EThemeModes, ThemeContext } from './contexts/theme';
 
 /* Core CSS required for Ionic components to work properly */
 import '@ionic/react/css/core.css';
@@ -29,11 +29,14 @@ import 'maincode-ui/dist/index.css';
 import 'maincode-ui/styles/generics.css';
 import 'maincode-ui/styles/theme.css';
 import { useContext, useEffect } from 'react';
+import { styleScrollbars } from 'maincode-ui';
 
 const App: React.FC = () => {
   const themeName = useContext(ThemeContext)?.themeName;
 
-  useEffect(() => {}, [themeName]);
+  useEffect(() => {
+    setTimeout(() => styleScrollbars(), 20);
+  }, [themeName]);
 
   return (
     <IonApp className={themeName}>

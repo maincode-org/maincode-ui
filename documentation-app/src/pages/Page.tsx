@@ -1,6 +1,6 @@
 import { IonButtons, IonContent, IonHeader, IonIcon, IonMenuButton, IonPage, IonTitle, IonToolbar } from '@ionic/react';
 import { DocumentationSection, ExampleComponent } from 'maincode-ui';
-import { useContext } from 'react';
+import { useContext, useEffect } from 'react';
 import { EThemeModes, ThemeContext } from '../contexts/theme';
 import { logoGithub, moonOutline, moonSharp, sunnyOutline, sunnySharp } from 'ionicons/icons';
 
@@ -13,6 +13,12 @@ const Page: React.FC = ({ children }) => {
   const { name } = useParams<{ name: string }>();
   const theme = useContext(ThemeContext);
   const isDarkMode = theme?.themeName === EThemeModes.dark;
+
+  useEffect(() => {
+    // TODO The page seems to rerender twice when navigating - and this causes an ugly transition
+    // when the page has been scrolled down. It flashes the content, scrollbar and doesnt scroll up (?)
+    console.log('page component rerendered', name);
+  });
 
   return (
     <IonPage>
