@@ -19,7 +19,7 @@ type IStyleDetail = {};
 
 export const components: IComponentDocumentation[] = [
   {
-    url: '?p=Overview',
+    url: '/Overview',
     title: 'Overview',
     iosIcon: heartOutline,
     mdIcon: heartSharp,
@@ -28,7 +28,7 @@ export const components: IComponentDocumentation[] = [
     props: [],
   },
   {
-    url: '?p=QuickStart',
+    url: '/QuickStart',
     title: 'Quickstart',
     iosIcon: rocketOutline,
     mdIcon: rocketSharp,
@@ -37,7 +37,7 @@ export const components: IComponentDocumentation[] = [
     props: [],
   },
   {
-    url: '?p=Theming',
+    url: '/Theming',
     title: 'Theming',
     iosIcon: colorPaletteOutline,
     mdIcon: colorPaletteSharp,
@@ -46,7 +46,7 @@ export const components: IComponentDocumentation[] = [
     props: [],
   },
   {
-    url: '?p=DarkMode',
+    url: '/DarkMode',
     title: 'Dark Mode',
     iosIcon: contrastOutline,
     mdIcon: contrastSharp,
@@ -55,7 +55,7 @@ export const components: IComponentDocumentation[] = [
     props: [],
   },
   {
-    url: '?p=Contributing',
+    url: '/Contributing',
     title: 'Contributing',
     iosIcon: gitMergeOutline,
     mdIcon: gitMergeSharp,
@@ -64,6 +64,3 @@ export const components: IComponentDocumentation[] = [
     props: [],
   },
 ];
-
-export const componentsMap = new Map<string, IComponentDocumentation>();
-components.forEach((c) => componentsMap.set(c.url, c));

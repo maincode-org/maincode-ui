@@ -5,7 +5,7 @@ export enum EThemeModes {
   'dark' = 'dark',
 }
 
-type IThemeContext = { themeName: EThemeModes; toggleTheme: () => void };
+export type IThemeContext = { themeName: EThemeModes; toggleTheme: () => void };
 
 const ThemeContext = createContext<IThemeContext | null>(null);
 
