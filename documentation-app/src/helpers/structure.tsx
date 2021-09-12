@@ -19,7 +19,7 @@ type IStyleDetail = {};
 
 export const components: IComponentDocumentation[] = [
   {
-    url: '/Overview',
+    url: '?p=Overview',
     title: 'Overview',
     iosIcon: heartOutline,
     mdIcon: heartSharp,
@@ -28,7 +28,7 @@ export const components: IComponentDocumentation[] = [
     props: [],
   },
   {
-    url: '/QuickStart',
+    url: '?p=QuickStart',
     title: 'Quickstart',
     iosIcon: rocketOutline,
     mdIcon: rocketSharp,
@@ -37,7 +37,7 @@ export const components: IComponentDocumentation[] = [
     props: [],
   },
   {
-    url: '/Theming',
+    url: '?p=Theming',
     title: 'Theming',
     iosIcon: colorPaletteOutline,
     mdIcon: colorPaletteSharp,
@@ -46,7 +46,7 @@ export const components: IComponentDocumentation[] = [
     props: [],
   },
   {
-    url: '/DarkMode',
+    url: '?p=DarkMode',
     title: 'Dark Mode',
     iosIcon: contrastOutline,
     mdIcon: contrastSharp,
@@ -55,7 +55,7 @@ export const components: IComponentDocumentation[] = [
     props: [],
   },
   {
-    url: '/Contributing',
+    url: '?p=Contributing',
     title: 'Contributing',
     iosIcon: gitMergeOutline,
     mdIcon: gitMergeSharp,

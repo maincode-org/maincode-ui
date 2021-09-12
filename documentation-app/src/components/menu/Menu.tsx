@@ -1,9 +1,10 @@
 import { IonContent, IonIcon, IonItem, IonLabel, IonList, IonListHeader, IonMenu, IonMenuToggle, IonNote } from '@ionic/react';
-import { useLocation } from 'react-router-dom';
+import { Route, useLocation } from 'react-router-dom';
 import './menu.css';
 
 import robot from '../../assets/maincode-robot.png';
-import { components } from '../../types/structure';
+import { components } from '../../helpers/structure';
+import Page from '../../pages/Page';
 
 const Menu: React.FC = () => {
   const location = useLocation();
@@ -44,3 +45,11 @@ const makeMenuEntry = (key: string | number, url: string, iosIcon: string, mdIco
 );
 
 export default Menu;
+
+export const menuRoutes: JSX.Element = (
+  <>
+    {components.map((c) => (
+      <Route path={`/maincode-ui/${c.url}`}></Route>
+    ))}
+  </>
+);

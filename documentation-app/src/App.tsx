@@ -1,9 +1,8 @@
 import { IonApp, IonRouterOutlet, IonSplitPane } from '@ionic/react';
 import { IonReactRouter } from '@ionic/react-router';
 import { Redirect, Route } from 'react-router-dom';
-import Menu from './components/menu/Menu';
-import Page from './pages/Page';
-import { EThemeModes, ThemeContext } from './contexts/theme';
+import Menu, { menuRoutes } from './components/menu/Menu';
+import { ThemeContext } from './contexts/theme';
 
 /* Core CSS required for Ionic components to work properly */
 import '@ionic/react/css/core.css';
@@ -30,6 +29,7 @@ import 'maincode-ui/styles/generics.css';
 import 'maincode-ui/styles/theme.css';
 import { useContext, useEffect } from 'react';
 import { styleScrollbars } from 'maincode-ui';
+import Page from './pages/Page';
 
 const App: React.FC = () => {
   const themeName = useContext(ThemeContext)?.themeName;
@@ -50,9 +50,7 @@ const App: React.FC = () => {
             <Route path='/maincode-ui/' exact={true}>
               <Redirect to='/maincode-ui/Overview' />
             </Route>
-            <Route path='/maincode-ui/:name' exact={true}>
-              <Page />
-            </Route>
+            <Route path='/maincode-ui/' component={Page} />
           </IonRouterOutlet>
         </IonSplitPane>
       </IonReactRouter>
