@@ -1,10 +1,13 @@
 import { heartOutline, heartSharp, colorPaletteOutline, colorPaletteSharp, contrastOutline, contrastSharp, gitMergeOutline, gitMergeSharp, rocketOutline, rocketSharp } from 'ionicons/icons';
 
-export type IDocumentationPage = {
+export type IDocumentationPage = IDocumentationPageContent & {
   url: string;
   title: string;
-  iosIcon: string;
-  mdIcon: string;
+  iosIcon?: string;
+  mdIcon?: string;
+};
+
+export type IDocumentationPageContent = {
   description?: JSX.Element;
   examples?: IComponentUsage[];
   customContent?: JSX.Element;
@@ -15,9 +18,17 @@ export type IDocumentationPage = {
 
 type IComponentUsage = {};
 
-type IPropertyDetail = {};
+type IPropertyDetail = {
+  propTitle: string;
+  description: string;
+  attribute: string;
+  type: string;
+};
 
-type IStyleDetail = {};
+type IStyleDetail = {
+  name: string;
+  description: string;
+};
 
 export const documentationPages: IDocumentationPage[] = [
   {

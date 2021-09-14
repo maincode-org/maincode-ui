@@ -17,13 +17,11 @@ const Menu: React.FC = () => {
             <IonNote className='pb-15'>
               By <a href='https://maincode.dk'>maincode.dk</a>
             </IonNote>
-            {documentationPages.map((c, index) => makeMenuEntry(index, c.url, c.iosIcon, c.mdIcon, c.title, location.pathname))}
+            {documentationPages.map((c, index) => makeMenuEntry(index, c.url, c.title, location.pathname, c.iosIcon, c.mdIcon))}
           </IonList>
 
           <IonList className='menu-list'>
             <IonListHeader className='pb-15'>Components</IonListHeader>
-            {documentationPages.map((c, index) => makeMenuEntry(index, c.url, c.iosIcon, c.mdIcon, c.title, location.pathname))}
-            {documentationPages.map((c, index) => makeMenuEntry(index, c.url, c.iosIcon, c.mdIcon, c.title, location.pathname))}
           </IonList>
         </div>
         <div className='menu-lower flex justify-center'>
@@ -34,7 +32,7 @@ const Menu: React.FC = () => {
   );
 };
 
-const makeMenuEntry = (key: string | number, url: string, iosIcon: string, mdIcon: string, title: string, locationPath: string): JSX.Element => (
+const makeMenuEntry = (key: string | number, url: string, title: string, locationPath: string, iosIcon?: string, mdIcon?: string): JSX.Element => (
   <IonMenuToggle key={key} autoHide={false}>
     <IonItem className={locationPath === `/maincode-ui${url}` ? 'selected' : ''} routerLink={`/maincode-ui${url}`} routerDirection='none' lines='none' detail={false}>
       <IonIcon slot='start' ios={iosIcon} md={mdIcon} />
