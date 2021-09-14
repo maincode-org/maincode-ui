@@ -51,7 +51,8 @@ th {
   --scroll-color-hover: rgba(85, 85, 85, 0.5);
   --scroll-color-active: rgba(85, 85, 85, 0.7);
 
-  --ion-background-color: radial-gradient(circle, #fff 0%, #faf5f5 85%);
+  --ion-background-color: #faf5f5;
+  /** Gradient version (lacks support): --ion-background-color: radial-gradient(circle, #fff 0%, #faf5f5 85%); */
   --ion-item-background: #fff;
   --ion-toolbar-background: #fff;
   --ion-tab-bar-background: #fff;
@@ -141,13 +142,14 @@ body.dark, .ios body.dark, .md body.dark {
   --scroll-color-hover: rgba(189, 189, 221, 0.7);
   --scroll-color-active: rgba(189, 189, 221, 0.5);
 
-  --ion-background-color: radial-gradient(circle, #2a2f4c 0%, #23283e 85%);
-  --ion-item-background: #2a2f4c;
-  --ion-toolbar-background: #2a2f4c;
-  --ion-tab-bar-background: #2a2f4c;
-  --ion-card-background: #2a2f4c;
+  /** Gradient version (lacks support): --ion-background-color: radial-gradient(circle, #2a2f4c 0%, #23283e 85%); */
+  --ion-background-color: #23283e;
+ --ion-item-background: #2a2f4c;
+ --ion-toolbar-background: #2a2f4c;
+ --ion-tab-bar-background: #2a2f4c;
+ --ion-card-background: #2a2f4c;
 
-  /** Colors */
+ /** Colors */
   --ion-color-primary: #dd7500 !important;
   --ion-color-primary-contrast: #f5f5f5;
   --ion-color-primary-shade: #dd7500;

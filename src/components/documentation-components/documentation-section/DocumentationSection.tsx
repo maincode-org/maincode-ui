@@ -38,22 +38,19 @@ const DocumentationSection: React.FC<IProps> = ({ className = '', props, descrip
       {children}
       <br />
       <br />
-      {props && (
-        <div className='flex flex-col'>
-          {props.map((p, i) => (
-            <Table
-              key={i}
-              title={p.propTitle}
-              properties={[
-                { label: 'Description', value: p.description },
-                { label: 'Attribute', value: p.attribute },
-                { label: 'Type', value: p.type },
-                { label: 'Default', value: p.default },
-              ]}
-            />
-          ))}
-        </div>
-      )}
+      {props &&
+        props.map((p, i) => (
+          <Table
+            key={i}
+            title={p.propTitle}
+            properties={[
+              { label: 'Description', value: p.description },
+              { label: 'Attribute', value: `<code>${p.attribute}</code>` },
+              { label: 'Type', value: `<code>${p.type}</code>` },
+              { label: 'Default', value: `<code>${p.default}</code>` },
+            ]}
+          />
+        ))}
       <h3>Lets put the style descriptions here</h3>
     </section>
   );

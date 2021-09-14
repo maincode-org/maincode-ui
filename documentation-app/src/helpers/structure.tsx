@@ -16,7 +16,7 @@ export const documentationPages: IDocumentationPage[] = [
     mdIcon: heartSharp,
     description: <p>This is the overview description</p>,
     examples: [],
-    props: [{ propTitle: 'animated', description: 'If true, the alert will animate', attribute: 'animated', type: 'boolean', default: 'true' }],
+    props: [{ propTitle: 'Animated', description: `If <code>true</code>, the alert will animate`, attribute: 'animated', type: 'boolean', default: 'true' }],
   },
   {
     url: '/QuickStart',
