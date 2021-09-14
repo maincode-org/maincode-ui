@@ -2,6 +2,7 @@ import React from 'react';
 import drawing from './Drawing';
 import DocumentationSection, { IDocumentationPageContent, IPropertyDetail, IStyleDetail, IComponentUsage } from './components/documentation-components/documentation-section/DocumentationSection';
 import { styleScrollbars } from './helpers/style-scrollbar';
+import CodeArea, { ECodeType } from './components/code-area/CodeArea';
 
 import png from 'assets/cropped-robot.png'; // Path to img must not be relative "./".
 import { IonButton } from '@ionic/react';
@@ -22,4 +23,4 @@ export const ExampleComponent: React.FC<Props> = ({ text }: Props) => {
   );
 };
 
-export { DocumentationSection, styleScrollbars, IDocumentationPageContent, IPropertyDetail, IStyleDetail, IComponentUsage };
+export { DocumentationSection, CodeArea, styleScrollbars, IDocumentationPageContent, IPropertyDetail, IStyleDetail, IComponentUsage, ECodeType };

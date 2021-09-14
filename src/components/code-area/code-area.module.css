@@ -1,0 +1,7 @@
+.javascript {
+  background: var(--ion-color-tertiary);
+}
+
+.terminal {
+  background: var(--ion-color-danger-contrast);
+}
