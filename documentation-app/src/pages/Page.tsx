@@ -1,5 +1,5 @@
 import { IonButtons, IonContent, IonHeader, IonIcon, IonMenuButton, IonPage, IonTitle, IonToolbar } from '@ionic/react';
-import { Route, useLocation } from 'react-router-dom';
+import { Route } from 'react-router-dom';
 import { DocumentationSection, ExampleComponent } from 'maincode-ui';
 import { useContext } from 'react';
 import { EThemeModes, IThemeContext, ThemeContext } from '../contexts/theme';
@@ -13,8 +13,8 @@ const Page: React.FC = ({ children }) => {
   return (
     <IonPage>
       <IonContent fullscreen>
-        {components.map((c) => (
-          <Route path={`/maincode-ui${c.url}`} render={() => makeContent(c, theme)} />
+        {components.map((c, i) => (
+          <Route key={i} path={`/maincode-ui${c.url}`} render={() => makeContent(c, theme)} />
         ))}
       </IonContent>
     </IonPage>

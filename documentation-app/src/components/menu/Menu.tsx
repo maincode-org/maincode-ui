@@ -4,7 +4,6 @@ import './menu.css';
 
 import robot from '../../assets/maincode-robot.png';
 import { components } from '../../helpers/structure';
-import Page from '../../pages/Page';
 
 const Menu: React.FC = () => {
   const location = useLocation();
@@ -48,8 +47,8 @@ export default Menu;
 
 export const menuRoutes: JSX.Element = (
   <>
-    {components.map((c) => (
-      <Route path={`/maincode-ui/${c.url}`}></Route>
+    {components.map((c, i) => (
+      <Route key={i} path={`/maincode-ui/${c.url}`} />
     ))}
   </>
 );
