@@ -34,7 +34,7 @@ const App: React.FC = () => {
   const themeName = useContext(ThemeContext)?.themeName;
 
   useEffect(() => {
-    setTimeout(() => styleScrollbars(), 20);
+    setTimeout(() => styleScrollbars(), 100);
   }, [themeName]);
 
   return (

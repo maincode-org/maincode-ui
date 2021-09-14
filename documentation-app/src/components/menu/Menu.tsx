@@ -3,7 +3,7 @@ import { Route, useLocation } from 'react-router-dom';
 import './menu.css';
 
 import robot from '../../assets/maincode-robot.png';
-import { components } from '../../helpers/structure';
+import { documentationPages } from '../../helpers/structure';
 
 const Menu: React.FC = () => {
   const location = useLocation();
@@ -17,13 +17,13 @@ const Menu: React.FC = () => {
             <IonNote className='pb-15'>
               By <a href='https://maincode.dk'>maincode.dk</a>
             </IonNote>
-            {components.map((c, index) => makeMenuEntry(index, c.url, c.iosIcon, c.mdIcon, c.title, location.pathname))}
+            {documentationPages.map((c, index) => makeMenuEntry(index, c.url, c.iosIcon, c.mdIcon, c.title, location.pathname))}
           </IonList>
 
           <IonList className='menu-list'>
             <IonListHeader className='pb-15'>Components</IonListHeader>
-            {components.map((c, index) => makeMenuEntry(index, c.url, c.iosIcon, c.mdIcon, c.title, location.pathname))}
-            {components.map((c, index) => makeMenuEntry(index, c.url, c.iosIcon, c.mdIcon, c.title, location.pathname))}
+            {documentationPages.map((c, index) => makeMenuEntry(index, c.url, c.iosIcon, c.mdIcon, c.title, location.pathname))}
+            {documentationPages.map((c, index) => makeMenuEntry(index, c.url, c.iosIcon, c.mdIcon, c.title, location.pathname))}
           </IonList>
         </div>
         <div className='menu-lower flex justify-center'>
@@ -47,7 +47,7 @@ export default Menu;
 
 export const menuRoutes: JSX.Element = (
   <>
-    {components.map((c, i) => (
+    {documentationPages.map((c, i) => (
       <Route key={i} path={`/maincode-ui/${c.url}`} />
     ))}
   </>

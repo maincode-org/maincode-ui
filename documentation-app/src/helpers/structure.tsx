@@ -1,14 +1,16 @@
 import { heartOutline, heartSharp, colorPaletteOutline, colorPaletteSharp, contrastOutline, contrastSharp, gitMergeOutline, gitMergeSharp, rocketOutline, rocketSharp } from 'ionicons/icons';
 
-export type IComponentDocumentation = {
+export type IDocumentationPage = {
   url: string;
   title: string;
   iosIcon: string;
   mdIcon: string;
-  description: JSX.Element;
-  examples: IComponentUsage[];
-  props: IPropertyDetail[];
+  description?: JSX.Element;
+  examples?: IComponentUsage[];
+  customContent?: JSX.Element;
+  props?: IPropertyDetail[];
   styles?: IStyleDetail[];
+  outro?: JSX.Element;
 };
 
 type IComponentUsage = {};
@@ -17,7 +19,7 @@ type IPropertyDetail = {};
 
 type IStyleDetail = {};
 
-export const components: IComponentDocumentation[] = [
+export const documentationPages: IDocumentationPage[] = [
   {
     url: '/Overview',
     title: 'Overview',
