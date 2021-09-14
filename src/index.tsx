@@ -1,6 +1,6 @@
 import React from 'react';
 import drawing from './Drawing';
-import DocumentationSection from './components/documentation-components/documentation-section/DocumentationSection';
+import DocumentationSection, { IDocumentationPageContent, IPropertyDetail, IStyleDetail, IComponentUsage } from './components/documentation-components/documentation-section/DocumentationSection';
 import { styleScrollbars } from './helpers/style-scrollbar';
 
 import png from 'assets/cropped-robot.png'; // Path to img must not be relative "./".
@@ -22,4 +22,4 @@ export const ExampleComponent: React.FC<Props> = ({ text }: Props) => {
   );
 };
 
-export { DocumentationSection, styleScrollbars };
+export { DocumentationSection, styleScrollbars, IDocumentationPageContent, IPropertyDetail, IStyleDetail, IComponentUsage };

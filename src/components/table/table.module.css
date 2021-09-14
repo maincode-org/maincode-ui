@@ -1,0 +1,23 @@
+.table code {
+  background-color: var(--ion-background-color);
+  padding: 3px 6px;
+  border-radius: 6px;
+}
+
+.table {
+  border-radius: 8px;
+  border-collapse: separate;
+}
+
+.table thead td:first-child { border-top-left-radius: 8px; border-right: none; }
+.table thead td:last-child { border-top-right-radius: 8px; border-left: none; }
+.table tbody tr:last-child td:first-child { border-bottom-left-radius: 8px; }
+.table tbody tr:last-child td:last-child { border-bottom-right-radius: 8px; }
+
+.left {
+  width: 20%;
+}
+
+.right {
+  width: 80%;
+}

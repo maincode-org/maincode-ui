@@ -1,25 +1,58 @@
 import React from 'react';
-import { IExampleDocumentation, IPropertyDocumentation, IStyleDocumentation } from '../documentation-types';
+import Table from '../../table/Table';
 
-type IDocSection = {
-  className?: string;
+export type IDocumentationPageContent = {
   description?: JSX.Element;
-  examples?: IExampleDocumentation[];
-  props?: IPropertyDocumentation[];
-  styles?: IStyleDocumentation[];
+  examples?: IComponentUsage[];
+  customContent?: JSX.Element;
+  props?: IPropertyDetail[];
+  styles?: IStyleDetail[];
+  outro?: JSX.Element;
 };
 
-const DocumentationSection: React.FC<IDocSection> = ({ className = '', description, children }) => {
+export type IComponentUsage = number;
+
+export type IPropertyDetail = {
+  propTitle: string;
+  description: string;
+  attribute: string;
+  type: string;
+  default: string;
+};
+
+export type IStyleDetail = {
+  name: string;
+  description: string;
+};
+
+type IProps = IDocumentationPageContent & {
+  className?: string;
+};
+
+const DocumentationSection: React.FC<IProps> = ({ className = '', props, description, children }) => {
   return (
     <section className={`${className} px-1`}>
       {description && description}
       <h3 className='theme-bg'>Lets put the usage / demos here</h3>
       <h3>Lets put the children of this page here</h3>
       {children}
-      <h3>Lets put the prop descriptions here</h3>
-      <h3 className='vh-full'>Lets put the style descriptions here</h3>
+      <br />
+      <br />
+      {props &&
+        props.map((p, i) => (
+          <Table
+            key={i}
+            title={p.propTitle}
+            properties={[
+              { label: 'Description', value: p.description },
+              { label: 'Attribute', value: `<code>${p.attribute}</code>` },
+              { label: 'Type', value: `<code>${p.type}</code>` },
+              { label: 'Default', value: `<code>${p.default}</code>` },
+            ]}
+          />
+        ))}
+      <h3>Lets put the style descriptions here</h3>
     </section>
   );
 };
-
 export default DocumentationSection;

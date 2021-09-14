@@ -1,23 +1,12 @@
 import { heartOutline, heartSharp, colorPaletteOutline, colorPaletteSharp, contrastOutline, contrastSharp, gitMergeOutline, gitMergeSharp, rocketOutline, rocketSharp } from 'ionicons/icons';
+import { IDocumentationPageContent } from 'maincode-ui';
 
-export type IDocumentationPage = {
+export type IDocumentationPage = IDocumentationPageContent & {
   url: string;
   title: string;
-  iosIcon: string;
-  mdIcon: string;
-  description?: JSX.Element;
-  examples?: IComponentUsage[];
-  customContent?: JSX.Element;
-  props?: IPropertyDetail[];
-  styles?: IStyleDetail[];
-  outro?: JSX.Element;
+  iosIcon?: string;
+  mdIcon?: string;
 };
-
-type IComponentUsage = {};
-
-type IPropertyDetail = {};
-
-type IStyleDetail = {};
 
 export const documentationPages: IDocumentationPage[] = [
   {
@@ -25,16 +14,16 @@ export const documentationPages: IDocumentationPage[] = [
     title: 'Overview',
     iosIcon: heartOutline,
     mdIcon: heartSharp,
-    description: <p>This is the description</p>,
+    description: <p>This is the overview description</p>,
     examples: [],
-    props: [],
+    props: [{ propTitle: 'Animated', description: `If <code>true</code>, the alert will animate`, attribute: 'animated', type: 'boolean', default: 'true' }],
   },
   {
     url: '/QuickStart',
     title: 'Quickstart',
     iosIcon: rocketOutline,
     mdIcon: rocketSharp,
-    description: <p>This is the description</p>,
+    description: <p>This is the quickstart description</p>,
     examples: [],
     props: [],
   },
@@ -43,7 +32,7 @@ export const documentationPages: IDocumentationPage[] = [
     title: 'Theming',
     iosIcon: colorPaletteOutline,
     mdIcon: colorPaletteSharp,
-    description: <p>This is the description</p>,
+    description: <p>This is the theming description</p>,
     examples: [],
     props: [],
   },
@@ -52,7 +41,7 @@ export const documentationPages: IDocumentationPage[] = [
     title: 'Dark Mode',
     iosIcon: contrastOutline,
     mdIcon: contrastSharp,
-    description: <p>This is the description</p>,
+    description: <p>This is the dark mode description</p>,
     examples: [],
     props: [],
   },
@@ -61,7 +50,7 @@ export const documentationPages: IDocumentationPage[] = [
     title: 'Contributing',
     iosIcon: gitMergeOutline,
     mdIcon: gitMergeSharp,
-    description: <p>This is the description</p>,
+    description: <p>This is the contributions description</p>,
     examples: [],
     props: [],
   },

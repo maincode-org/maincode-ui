@@ -22,6 +22,7 @@ import '@ionic/react/css/flex-utils.css';
 import '@ionic/react/css/display.css';
 
 /** Maincode dependencies. */
+import 'maincode-ui/dist/index.css';
 import 'maincode-ui/styles/generics.css';
 import 'maincode-ui/styles/theme.css';
 import { styleScrollbars } from 'maincode-ui';
@@ -43,7 +44,6 @@ const App: React.FC = () => {
             <Route path='/' exact={true}>
               <Redirect to='/maincode-ui/Overview' />
             </Route>
-
             <Route path='/maincode-ui/' component={Page} />
           </IonRouterOutlet>
         </IonSplitPane>
