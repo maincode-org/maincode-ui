@@ -2,8 +2,8 @@ import React from 'react';
 import { LiveProvider, LiveEditor, LiveError, LivePreview } from 'react-live';
 import { IonButton } from '@ionic/react';
 
-export const ExampleButton: React.FC = () => {
-  return <IonButton className='ion-float-end'>Example button!</IonButton>;
+export const ExampleButton: React.FC<{ text: string }> = ({ text }) => {
+  return <IonButton className='ion-float-end'>{text}</IonButton>;
 };
 
 type IProps = {
@@ -11,7 +11,7 @@ type IProps = {
 };
 
 const LiveCodeEditor: React.FC<IProps> = ({ className }) => {
-  const code = `<ExampleButton/>`;
+  const code = `<ExampleButton text="test"/>`;
   const scope = { ExampleButton };
 
   return (
