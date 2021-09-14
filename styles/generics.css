@@ -1092,6 +1092,10 @@
   background-color: var(--ion-item-background);
 }
 
+.select-none {
+  user-select: none;
+}
+
 .rounded {
   border-radius: 12px;
 }

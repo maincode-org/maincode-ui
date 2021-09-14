@@ -5,6 +5,7 @@ import { styleScrollbars } from './helpers/style-scrollbar';
 
 import png from 'assets/cropped-robot.png'; // Path to img must not be relative "./".
 import { IonButton } from '@ionic/react';
+import LiveCodeEditor from './components/live-code-editor/LiveCodeEditor';
 
 interface Props {
   text: string;
@@ -18,6 +19,7 @@ export const ExampleComponent: React.FC<Props> = ({ text }: Props) => {
       {drawing}
       <img src={png} height={200} width={200} alt='test' />
       <IonButton className='ion-float-end'>Primary Color</IonButton>
+      <LiveCodeEditor />
     </div>
   );
 };
