@@ -16,7 +16,7 @@
   src: url('https://plus.excalidraw.com/Cascadia.woff2');
 }
 
-body {
+body, th {
   font-family: 'Tomorrow', sans-serif;
 }
 
@@ -27,7 +27,8 @@ h2,
 h3,
 h4,
 h5,
-h6 {
+h6,
+th {
   white-space: pre-line;
 }
 

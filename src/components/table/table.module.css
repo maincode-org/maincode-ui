@@ -1,0 +1,11 @@
+.left {
+  width: 20%;
+}
+
+.right {
+  width: 80%;
+}
+
+.border {
+  border: 1px solid var(--border-glass);
+}
