@@ -1080,6 +1080,18 @@
   border: var(--border-glass);
 }
 
+.theme-border {
+  border: 1px solid var(--border-color)
+}
+
+.theme-bg {
+  background-color: var(--ion-background-color);
+}
+
+.theme-item-bg {
+  background-color: var(--ion-item-background);
+}
+
 .rounded {
   border-radius: 12px;
 }
@@ -1098,6 +1110,10 @@
 
 ion-button::part(native) {
   letter-spacing: 0.15rem;
+}
+
+.theme-shadow {
+  box-shadow: var(--shadow);
 }
 
 .card-shadow {
