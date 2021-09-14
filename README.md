@@ -43,6 +43,8 @@ https://github.com/ionic-team/ionic-framework/issues/17685#issuecomment-58763355
 
 ## Development & contribution
 
+
+npm run dev-init
 ### Library structure
 
 What folders do what..
