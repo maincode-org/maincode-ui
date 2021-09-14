@@ -31,7 +31,7 @@ const Page: React.FC = ({ children }) => {
 
 const makeContent = (c: IDocumentationPage): React.ReactNode => (
   <>
-    <DocumentationSection description={<h3>Lets put the intro description here</h3>}>
+    <DocumentationSection description={<h3>{c.description}</h3>}>
       <ExampleComponent text={c?.title ?? ''} />
     </DocumentationSection>
   </>
