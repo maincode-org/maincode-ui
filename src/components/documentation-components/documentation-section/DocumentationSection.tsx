@@ -13,7 +13,7 @@ const DocumentationSection: React.FC<IDocSection> = ({ className = '', descripti
   return (
     <section className={`${className} px-1`}>
       {description && description}
-      <h3>Lets put the usage / demos here</h3>
+      <h3 className='theme-bg'>Lets put the usage / demos here</h3>
       <h3>Lets put the children of this page here</h3>
       {children}
       <h3>Lets put the prop descriptions here</h3>

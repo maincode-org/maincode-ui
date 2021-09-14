@@ -13,6 +13,7 @@ interface Props {
 export const ExampleComponent: React.FC<Props> = ({ text }: Props) => {
   return (
     <div className={`glass-bg shadow-xl rounded`}>
+      <p className='theme-border theme-bg'>Hej</p>
       Example Component: {text}
       {drawing}
       <img src={png} height={200} width={200} alt='test' />
