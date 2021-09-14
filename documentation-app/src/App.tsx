@@ -1,3 +1,4 @@
+import { useContext, useEffect } from 'react';
 import { IonApp, IonRouterOutlet, IonSplitPane } from '@ionic/react';
 import { IonReactRouter } from '@ionic/react-router';
 import { Redirect, Route } from 'react-router-dom';
@@ -26,7 +27,6 @@ import './theme/variables.css';
 /** Maincode dependencies. */
 import 'maincode-ui/styles/generics.css';
 import 'maincode-ui/styles/theme.css';
-import { useContext, useEffect } from 'react';
 import { styleScrollbars } from 'maincode-ui';
 import Page from './pages/Page';
 
@@ -46,9 +46,7 @@ const App: React.FC = () => {
             <Route path='/' exact={true}>
               <Redirect to='/maincode-ui/Overview' />
             </Route>
-            <Route path='/maincode-ui/' exact={true}>
-              <Redirect to='/maincode-ui/Overview' />
-            </Route>
+
             <Route path='/maincode-ui/' component={Page} />
           </IonRouterOutlet>
         </IonSplitPane>
@@ -56,5 +54,4 @@ const App: React.FC = () => {
     </IonApp>
   );
 };
-
 export default App;
