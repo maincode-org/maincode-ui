@@ -34,8 +34,8 @@ const makeContent = (c: IComponentDocumentation, theme: IThemeContext | null): R
             <IonIcon
               className='mr-1 pointer'
               onClick={theme?.toggleTheme}
-              ios={theme?.themeName === EThemeModes.dark ? moonOutline : sunnyOutline}
-              md={theme?.themeName === EThemeModes.dark ? moonSharp : sunnySharp}
+              ios={theme?.themeName === EThemeModes.light ? moonOutline : sunnyOutline}
+              md={theme?.themeName === EThemeModes.light ? moonSharp : sunnySharp}
             />
             <a href='https://github.com/maincode-org/maincode-ui' className='color-fg'>
               <IonIcon className='pointer' ios={logoGithub} md={logoGithub} />
