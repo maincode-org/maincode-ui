@@ -73,6 +73,7 @@
     "@types/react-dom": "^16.9.10",
     "@types/react-router": "^5.1.11",
     "@types/react-router-dom": "^5.1.7",
+    "prettier": "^2.0.4",
     "shx": "^0.3.3"
   }
 }
