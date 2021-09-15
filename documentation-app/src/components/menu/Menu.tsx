@@ -22,6 +22,7 @@ const Menu: React.FC = () => {
 
           <IonList className='menu-list'>
             <IonListHeader className='pb-15 select-none'>Components</IonListHeader>
+            {componentPages.map((c, index) => makeMenuEntry(index, c.url, c.title, location.pathname, c.iosIcon, c.mdIcon))}
           </IonList>
         </div>
         <div className='menu-lower flex justify-center'>
