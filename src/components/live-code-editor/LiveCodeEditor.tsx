@@ -6,10 +6,10 @@ type IProps = {
   className?: string;
   code?: string;
   scope?: { [key: string]: any };
-  noInline: boolean;
+  noInline?: boolean;
 };
 
-const LiveCodeEditor: React.FC<IProps> = ({ className = '', code, scope, noInline }) => {
+const LiveCodeEditor: React.FC<IProps> = ({ className = '', code, scope, noInline = false }) => {
   const [color, setColor] = useState('red');
   useEffect(() => {
     setColor('blue');
