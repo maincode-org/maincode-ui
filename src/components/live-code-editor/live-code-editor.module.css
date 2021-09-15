@@ -3,6 +3,8 @@
   overflow: hidden;
   margin-bottom: 20px;
 }
+.liveEditor pre {
+}
 
 .liveWrapper {
   display: flex;
@@ -45,7 +47,6 @@
   white-space: pre-wrap;
   text-align: left;
   font-size: 0.9em;
-  font-family: 'Source Code Pro', monospace;
 }
 
 .copyButton {
