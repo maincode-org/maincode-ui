@@ -1,6 +1,6 @@
 import { IonContent, IonPage } from '@ionic/react';
 import { Redirect, Route } from 'react-router-dom';
-import { DocumentationSection, ExampleComponent } from 'maincode-ui';
+import { DocumentationSection, ExampleComponent, LiveEditExample } from 'maincode-ui';
 import { useState, useRef } from 'react';
 import styles from './page.module.css';
 import { documentationPages, IDocumentationPage } from '../helpers/structure';
@@ -15,7 +15,7 @@ const Page: React.FC = ({ children }) => {
   return (
     <IonPage>
       <Route path='/maincode-ui/' exact={true} render={() => <Redirect to='/maincode-ui/Overview' />} />
-      <Header title={pageTitle} githubURL='https://github.com/maincode-org/maincode-ui' />
+      <Header className='select-none' title={pageTitle} githubURL='https://github.com/maincode-org/maincode-ui' />
       <IonContent ref={ionContentRef} className={styles.ionContent} fullscreen>
         {documentationPages.map((c, i) => (
           <Route
@@ -28,6 +28,8 @@ const Page: React.FC = ({ children }) => {
             }}
           />
         ))}
+
+        <LiveEditExample />
       </IonContent>
     </IonPage>
   );

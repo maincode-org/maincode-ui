@@ -1,0 +1,60 @@
+.liveProvider {
+  border-radius: 8px;
+  overflow: hidden;
+  margin-bottom: 20px;
+}
+
+.liveWrapper {
+  display: flex;
+  flex-direction: row;
+  justify-content: stretch;
+  align-items: stretch;
+  box-shadow: 1px 1px 20px rgba(20, 20, 20, 0.27);
+}
+
+.liveEditor {
+  height: 350px;
+  max-height: 350px;
+  overflow: auto;
+}
+
+.liveEditor * > textarea:focus {
+  outline: none;
+}
+
+.column {
+  flex-basis: 50%;
+  width: 50%;
+  max-width: 50%;
+}
+
+.livePreview {
+  position: relative;
+  padding: 0.5rem;
+  background: white;
+  color: black;
+  height: auto;
+  overflow: hidden;
+}
+
+.liveError {
+  display: block;
+  padding: 8px;
+  background: var(--ion-color-danger);
+  color: var(--ion-color-danger-contrast);
+  white-space: pre-wrap;
+  text-align: left;
+  font-size: 0.9em;
+  font-family: 'Source Code Pro', monospace;
+}
+
+@media (max-width: 600px) {
+  .liveWrapper {
+    flex-direction: column;
+  }
+  .column {
+    flex-basis: auto;
+    width: 100%;
+    max-width: 100%;
+  }
+}

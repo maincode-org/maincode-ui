@@ -9,10 +9,20 @@
   border-collapse: separate;
 }
 
-.table thead td:first-child { border-top-left-radius: 8px; border-right: none; }
-.table thead td:last-child { border-top-right-radius: 8px; border-left: none; }
-.table tbody tr:last-child td:first-child { border-bottom-left-radius: 8px; }
-.table tbody tr:last-child td:last-child { border-bottom-right-radius: 8px; }
+.table thead td:first-child {
+  border-top-left-radius: 8px;
+  border-right: none;
+}
+.table thead td:last-child {
+  border-top-right-radius: 8px;
+  border-left: none;
+}
+.table tbody tr:last-child td:first-child {
+  border-bottom-left-radius: 8px;
+}
+.table tbody tr:last-child td:last-child {
+  border-bottom-right-radius: 8px;
+}
 
 .left {
   width: 20%;

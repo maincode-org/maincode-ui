@@ -1,10 +1,11 @@
 import React from 'react';
 import drawing from './Drawing';
-import DocumentationSection, { IDocumentationPageContent, IPropertyDetail, IStyleDetail, IComponentUsage } from './components/documentation-components/documentation-section/DocumentationSection';
+import DocumentationSection, { IComponentUsage, IDocumentationPageContent, IPropertyDetail, IStyleDetail } from './components/documentation-components/documentation-section/DocumentationSection';
 import { styleScrollbars } from './helpers/style-scrollbar';
 
 import png from 'assets/cropped-robot.png'; // Path to img must not be relative "./".
 import { IonButton } from '@ionic/react';
+import LiveCodeEditor from './components/live-code-editor/LiveCodeEditor';
 
 interface Props {
   text: string;
@@ -21,5 +22,7 @@ export const ExampleComponent: React.FC<Props> = ({ text }: Props) => {
     </div>
   );
 };
+
+export const LiveEditExample: React.FC = () => <LiveCodeEditor code={`<IonButton className='ion-float-end'>Primary Color</IonButton>`} scope={{ IonButton }} />;
 
 export { DocumentationSection, styleScrollbars, IDocumentationPageContent, IPropertyDetail, IStyleDetail, IComponentUsage };

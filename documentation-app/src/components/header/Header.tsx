@@ -7,12 +7,13 @@ import styles from './header.module.css';
 type IProps = {
   title?: string;
   githubURL?: string;
+  className?: string;
 };
 
-const Header: React.FC<IProps> = ({ title, githubURL }) => {
+const Header: React.FC<IProps> = ({ title, githubURL, className }) => {
   const theme = useContext(ThemeContext);
   return (
-    <IonHeader className={`${styles.header}`}>
+    <IonHeader className={`${styles.header} ${className}`}>
       <IonToolbar className='flex flex-col'>
         <IonButtons slot='start'>
           <IonMenuButton />
