@@ -6,7 +6,7 @@ import styles from './page.module.css';
 import { documentationPages, IDocumentationPage } from '../helpers/structure';
 import Header from '../components/header/Header';
 
-const Page: React.FC = ({ children }) => {
+const Page: React.FC = () => {
   const [pageTitle, setPageTitle] = useState('');
 
   const ionContentRef = useRef<HTMLIonContentElement>(null);
@@ -36,7 +36,6 @@ const Page: React.FC = ({ children }) => {
 const makeContent = (c: IDocumentationPage): React.ReactNode => (
   <>
     <DocumentationSection className='px-2 pb-1' description={c.description} props={c.props} styles={c.styles} customContent={c.customContent}>
-      <ExampleComponent text={c?.title ?? ''} />
       <LiveEditExample />
     </DocumentationSection>
   </>
