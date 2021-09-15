@@ -15,7 +15,7 @@ import {
   flowerSharp,
 } from 'ionicons/icons';
 import { IDocumentationPageContent } from 'maincode-ui';
-import { ExampleComponent, CodeArea, ECodeType } from 'maincode-ui';
+import { ExampleComponent, CopyArea } from 'maincode-ui';
 
 export type IDocumentationPage = IDocumentationPageContent & {
   url: string;
@@ -45,24 +45,7 @@ export const documentationPages: IDocumentationPage[] = [
     iosIcon: rocketOutline,
     mdIcon: rocketSharp,
     description: <p>This is the Quickstart description</p>,
-    customContent: (
-      <div>
-        <CodeArea
-          type={ECodeType.JAVASCRIPT}
-          code={`import React, { Component } from 'react';
-
-import MyComponent from 'maincode-ui';
-import 'maincode-ui/dist/index.css';
-
-class Example extends Component {
-  render() {
-    return <MyComponent />;
-  }
-}`}
-        />
-        <CodeArea type={ECodeType.CONSOLE} code='npm install maincode-ui' />
-      </div>
-    ),
+    customContent: <CopyArea command='npm i -D maincode-ui' />,
   },
   {
     url: '/Theming',
