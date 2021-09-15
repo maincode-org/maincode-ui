@@ -28,8 +28,6 @@ const Page: React.FC = ({ children }) => {
             }}
           />
         ))}
-
-        <LiveEditExample />
       </IonContent>
     </IonPage>
   );
@@ -39,6 +37,7 @@ const makeContent = (c: IDocumentationPage): React.ReactNode => (
   <>
     <DocumentationSection description={<h3>{c.description}</h3>} props={c.props}>
       <ExampleComponent text={c?.title ?? ''} />
+      <LiveEditExample />
     </DocumentationSection>
   </>
 );
