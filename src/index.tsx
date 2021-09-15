@@ -5,10 +5,9 @@ import { styleScrollbars } from './helpers/style-scrollbar';
 import CopyArea from './components/copy-area/CopyArea';
 
 import png from 'assets/cropped-robot.png'; // Path to img must not be relative "./".
-import { IonButton, IonIcon } from '@ionic/react';
+import { IonButton } from '@ionic/react';
 import LiveCodeEditor from './components/live-code-editor/LiveCodeEditor';
 import { LiveEditor, LiveError, LivePreview, LiveProvider } from 'react-live';
-import styles from './components/live-code-editor/live-code-editor.module.css';
 
 interface Props {
   text: string;
@@ -32,11 +31,13 @@ const jsxExample = `
 </h3>
 `.trim();
 
-<LiveProvider code={code}>
-  <LiveEditor />
-  <LiveError />
-  <LivePreview />
-</LiveProvider>;
-export const LiveEditExample: React.FC = () => <LiveCodeEditor noInline={false} code={jsxExample} scope={{ IonButton }} />;
+export const LiveEditExample = (
+  <LiveProvider code={jsxExample}>
+    <LiveEditor />
+    <LiveError />
+    <LivePreview />
+  </LiveProvider>
+);
+export const LiveEditExample2: React.FC = () => <LiveCodeEditor noInline={false} code={jsxExample} scope={{ IonButton }} />;
 
 export { DocumentationSection, CopyArea, styleScrollbars, IDocumentationPageContent, IPropertyDetail, IStyleDetail, IComponentUsage };
