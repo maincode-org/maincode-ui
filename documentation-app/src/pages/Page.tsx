@@ -1,6 +1,6 @@
 import { IonContent, IonPage } from '@ionic/react';
 import { Redirect, Route } from 'react-router-dom';
-import { DocumentationSection, ExampleComponent, LiveEditExample } from 'maincode-ui';
+import { DocumentationSection, LiveEditExample, ExampleComponent } from 'maincode-ui';
 import { useState, useRef } from 'react';
 import styles from './page.module.css';
 import { documentationPages, IDocumentationPage } from '../helpers/structure';
@@ -35,7 +35,7 @@ const Page: React.FC = ({ children }) => {
 
 const makeContent = (c: IDocumentationPage): React.ReactNode => (
   <>
-    <DocumentationSection description={<h3>{c.description}</h3>} props={c.props}>
+    <DocumentationSection className='px-2 pb-1' description={c.description} props={c.props} styles={c.styles} customContent={c.customContent}>
       <ExampleComponent text={c?.title ?? ''} />
       <LiveEditExample />
     </DocumentationSection>
