@@ -1,4 +1,5 @@
-export const styleScrollbars = async () => {
+/** Script for Ion Content scrollbar styling. */
+export const styleScrollbars = async (): Promise<void> => {
   const content = document.querySelectorAll('ion-content');
 
   content.forEach((c) => {

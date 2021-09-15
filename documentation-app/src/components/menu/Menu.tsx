@@ -13,20 +13,19 @@ const Menu: React.FC = () => {
       <IonContent>
         <div className='menu-upper'>
           <IonList className='menu-list'>
-            <IonListHeader>Maincode UI Documentation</IonListHeader>
-            <IonNote className='pb-15'>
+            <IonListHeader className='select-none'>Maincode UI Documentation</IonListHeader>
+            <IonNote className='pb-15 select-none'>
               By <a href='https://maincode.dk'>maincode.dk</a>
             </IonNote>
             {documentationPages.map((c, index) => makeMenuEntry(index, c.url, c.title, location.pathname, c.iosIcon, c.mdIcon))}
           </IonList>
 
           <IonList className='menu-list'>
-            <IonListHeader className='pb-15'>Components</IonListHeader>
-            {componentPages.map((c, index) => makeMenuEntry(index, c.url, c.title, location.pathname, c.iosIcon, c.mdIcon))}
+            <IonListHeader className='pb-15 select-none'>Components</IonListHeader>
           </IonList>
         </div>
         <div className='menu-lower flex justify-center'>
-          <img className='h-full' src={robot} alt='Maincode Robot' />
+          <img className='h-full select-none' src={robot} alt='Maincode Robot' />
         </div>
       </IonContent>
     </IonMenu>
