@@ -2,7 +2,7 @@ import React from 'react';
 import drawing from './Drawing';
 import DocumentationSection, { IComponentUsage, IDocumentationPageContent, IPropertyDetail, IStyleDetail } from './components/documentation-components/documentation-section/DocumentationSection';
 import { styleScrollbars } from './helpers/style-scrollbar';
-import CopyArea from './components/code-area/CopyArea';
+import CopyArea from './components/copy-area/CopyArea';
 
 import png from 'assets/cropped-robot.png'; // Path to img must not be relative "./".
 import { IonButton } from '@ionic/react';
