@@ -2,17 +2,25 @@ import React from 'react';
 import styles from './copy-area.module.css';
 import { clipboardOutline, clipboardSharp } from 'ionicons/icons';
 import { IonIcon } from '@ionic/react';
-import Tippy from '@tippyjs/react';
-import 'tippy.js/dist/tippy.css'; // optional
+import { Tooltip } from 'react-tippy';
+import 'react-tippy/dist/tippy.css';
 
 type IProps = {
   command: string;
+  theme: 'dark' | 'light';
 };
 
-const CopyArea: React.FC<IProps> = ({ command }) => {
+const CopyArea: React.FC<IProps> = ({ command, theme }) => {
+  let tooltipText = 'Copy to clipboard';
+
+  const onClickHandler = () => {
+    navigator.clipboard.writeText(command);
+    tooltipText = 'Copied';
+  };
+
   return (
-    <Tippy content={<span>Copy to clipboard</span>}>
-      <div className={`${styles.container} flex flex-row justify-between items-center glass-bg w-full rounded p-15 text-left pointer`} onClick={() => navigator.clipboard.writeText(command)}>
+    <Tooltip theme={theme} title={tooltipText} position='top-end'>
+      <div className={`${styles.container} flex flex-row justify-between items-center glass-bg w-full rounded p-15 text-left pointer`} onClick={onClickHandler}>
         <code>
           <span className={`${styles.dollarSign} mr-1 select-none`}>$</span>
           {command}
@@ -21,7 +29,7 @@ const CopyArea: React.FC<IProps> = ({ command }) => {
           <IonIcon className='w-full h-full' ios={clipboardOutline} md={clipboardSharp} />
         </button>
       </div>
-    </Tippy>
+    </Tooltip>
   );
 };
 export default CopyArea;

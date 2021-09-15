@@ -36,16 +36,12 @@ const DocumentationSection: React.FC<IProps> = ({ className = '', customContent,
       {examples && <h3 className='theme-bg'>Usage / demos</h3>}
       {children}
       {customContent && customContent}
-      <br />
-      <br />
       {props?.[0] && (
         <div>
           <h2>Props</h2>
           {renderProps(props)}
         </div>
       )}
-      <br />
-      <br />
       {styles?.[0] && (
         <div>
           <h2>Custom CSS properties</h2>

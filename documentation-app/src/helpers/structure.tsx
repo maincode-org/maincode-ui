@@ -15,7 +15,8 @@ import {
   flowerSharp,
 } from 'ionicons/icons';
 import { IDocumentationPageContent } from 'maincode-ui';
-import { ExampleComponent, CopyArea } from 'maincode-ui';
+import { ExampleComponent } from 'maincode-ui';
+import QuickStartContent from '../components/quick-start-content/QuickStartContent';
 
 export type IDocumentationPage = IDocumentationPageContent & {
   url: string;
@@ -45,7 +46,7 @@ export const documentationPages: IDocumentationPage[] = [
     iosIcon: rocketOutline,
     mdIcon: rocketSharp,
     description: <p>This is the Quickstart description</p>,
-    customContent: <CopyArea command='npm i -D maincode-ui' />,
+    customContent: <QuickStartContent />,
   },
   {
     url: '/Theming',
