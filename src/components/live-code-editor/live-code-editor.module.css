@@ -3,7 +3,10 @@
   overflow: hidden;
   margin-bottom: 20px;
 }
-.liveEditor pre {
+
+/** Must keep - or the live editor wont have spaces */
+.liveEditor pre span {
+  white-space: pre-wrap;
 }
 
 .liveWrapper {

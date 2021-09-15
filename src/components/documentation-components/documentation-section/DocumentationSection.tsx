@@ -1,5 +1,6 @@
 import React from 'react';
 import Table from '../../table/Table';
+import { LiveEditExample } from '../../../index';
 
 export type IDocumentationPageContent = {
   description?: JSX.Element;
@@ -48,6 +49,7 @@ const DocumentationSection: React.FC<IProps> = ({ className = '', customContent,
           {renderStyles(styles)}
         </div>
       )}
+      <LiveEditExample />
     </section>
   );
 };

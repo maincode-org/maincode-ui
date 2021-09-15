@@ -7,7 +7,6 @@ import CopyArea from './components/copy-area/CopyArea';
 import png from 'assets/cropped-robot.png'; // Path to img must not be relative "./".
 import { IonButton } from '@ionic/react';
 import LiveCodeEditor from './components/live-code-editor/LiveCodeEditor';
-import { LiveEditor, LiveError, LivePreview, LiveProvider } from 'react-live';
 
 interface Props {
   text: string;
@@ -31,13 +30,6 @@ const jsxExample = `
 </h3>
 `.trim();
 
-export const LiveEditExample = (
-  <LiveProvider code={jsxExample}>
-    <LiveEditor />
-    <LiveError />
-    <LivePreview />
-  </LiveProvider>
-);
-export const LiveEditExample2: React.FC = () => <LiveCodeEditor noInline={false} code={jsxExample} scope={{ IonButton }} />;
+export const LiveEditExample: React.FC = () => <LiveCodeEditor noInline={false} code={jsxExample} scope={{ IonButton }} />;
 
 export { DocumentationSection, CopyArea, styleScrollbars, IDocumentationPageContent, IPropertyDetail, IStyleDetail, IComponentUsage };
