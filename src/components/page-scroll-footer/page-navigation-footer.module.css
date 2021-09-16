@@ -1,0 +1,26 @@
+.container {
+  border-top: 1px ridge var(--border-color);
+}
+
+.anchor, .label {
+  text-decoration: none;
+  transition: all 0.2s ease-in;
+}
+
+.anchor:hover {
+  color: var(--ion-color-secondary);
+}
+
+.anchor:hover > .label{
+  opacity: 1;
+}
+
+.anchor:hover > .label, .anchor:hover {
+  letter-spacing: 0.1rem;
+}
+
+.label {
+  font-size: 0.8rem;
+  opacity: 0.8;
+  color: var(--ion-text-color);
+}

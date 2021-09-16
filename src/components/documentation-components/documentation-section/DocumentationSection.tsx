@@ -1,5 +1,6 @@
 import React from 'react';
 import Table from '../../table/Table';
+import PagePaginationFooter, { IFooterNav } from '../../page-scroll-footer/PagePaginationFooter';
 
 export type IDocumentationPageContent = {
   description?: JSX.Element;
@@ -8,6 +9,8 @@ export type IDocumentationPageContent = {
   props?: IPropertyDetail[];
   styles?: IStyleDetail[];
   outro?: JSX.Element;
+  prevNav?: IFooterNav;
+  nextNav?: IFooterNav;
 };
 
 export type IComponentUsage = number;
@@ -29,10 +32,16 @@ type IProps = IDocumentationPageContent & {
   className?: string;
 };
 
-const DocumentationSection: React.FC<IProps> = ({ className = '', customContent, props, styles, description, examples, children }) => {
+const DocumentationSection: React.FC<IProps> = ({ className = '', customContent, props, styles, description, examples, prevNav, nextNav, children }) => {
   return (
     <section className={`${className}`}>
-      {description && description}
+      {description && (
+        <div>
+          {description}
+          <br />
+          <br />
+        </div>
+      )}
       {examples && <h3 className='theme-bg'>Usage / demos</h3>}
       {children}
       {customContent && customContent}
@@ -43,11 +52,12 @@ const DocumentationSection: React.FC<IProps> = ({ className = '', customContent,
         </div>
       )}
       {styles?.[0] && (
-        <div>
+        <div className='mb-2'>
           <h2>Custom CSS properties</h2>
           {renderStyles(styles)}
         </div>
       )}
+      {(prevNav || nextNav) && <PagePaginationFooter prev={prevNav} next={nextNav} />}
     </section>
   );
 };
