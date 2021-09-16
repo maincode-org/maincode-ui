@@ -48,71 +48,27 @@ const LiveCodeEditor: React.FC<IProps> = ({ className = '', code = '', enablePre
 export default LiveCodeEditor;
 
 const jsxExample = `
-<div>
-  <h3>
-    Hello World! this is one very very long line of code, which <strong>will</strong> break down correctly!
-  </h3>
-  <h3>
-    Hello World!
-  </h3>
-    <h3>
-    Hello World!
-  </h3>
-    <h3>
-    Hello World!
-  </h3>  <h3>
-    Hello World!
-  </h3>
-    <h3>
-    Hello World!
-  </h3>  <h3>
-    Hello World!
-  </h3>
-    <h3>
-    Hello World!
-  </h3>
-    <h3>
-    Hello World!
-  </h3>
-    <h3>
-    Hello World!
-  </h3>  <h3>
-    Hello World!
-  </h3>
-    <h3>
-    Hello World!
-  </h3>
-    <h3>
-    Hello World!
-  </h3>
-    <h3>
-    Hello World!
-  </h3>
-    <h3>
-    Hello World!
-  </h3>
-    <h3>
-    Hello World!
-  </h3>
-    <h3>
-    Hello World!
-  </h3>
-    <h3>
-    Hello World!
-  </h3>
-    <h3>
-    Hello World!
-  </h3>
-    <h3>
-    Hello World!
-  </h3>
-    <h3>
-    Hello World!
-  </h3>
+const Wrapper = ({ children }) => (
+  <div style={{
+    background: 'papayawhip',
+    width: '100%',
+    padding: '2rem'
+  }}>
+    {children}
+  </div>
+)
 
+const Title = () => (
+  <h3 style={{ color: 'palevioletred' }}>
+    Hello World!
+  </h3>
+)
 
-
-</div>
+render(
+  <Wrapper>
+    <Title />
+  </Wrapper>
+)
 `;
 
-export const LiveEditExample: React.FC = () => <LiveCodeEditor enablePreview={true} noInline={false} code={jsxExample} scope={{ IonButton }} />;
+export const LiveEditExample: React.FC = () => <LiveCodeEditor enablePreview={true} noInline={true} code={jsxExample} scope={{ IonButton }} />;
