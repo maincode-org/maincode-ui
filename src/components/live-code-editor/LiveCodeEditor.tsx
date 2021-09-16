@@ -115,4 +115,4 @@ const jsxExample = `
 </div>
 `;
 
-export const LiveEditExample: React.FC = () => <LiveCodeEditor enablePreview={false} noInline={false} code={jsxExample} scope={{ IonButton }} />;
+export const LiveEditExample: React.FC = () => <LiveCodeEditor enablePreview={true} noInline={false} code={jsxExample} scope={{ IonButton }} />;
