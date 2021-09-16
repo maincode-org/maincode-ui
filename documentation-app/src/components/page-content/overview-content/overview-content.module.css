@@ -1,0 +1,11 @@
+.card {
+  max-width: 15vw;
+}
+
+.title {
+  color: var(--ion-text-color);
+}
+
+.teaserText {
+  color: var(--ion-text-color);
+}

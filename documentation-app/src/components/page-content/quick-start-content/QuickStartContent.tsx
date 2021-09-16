@@ -9,7 +9,7 @@ const QuickStartContent = () => {
       <br />
       <br />
       <InfoArea
-        info={`Her er et info area. Der kan stå meget tekst, og der kan stå lidt tekst. Der også kan gives code tags med. <code>Så ser det sådan her ud.</code>. Jeg tester lige a <a href='/aksdjka'>hej</a>`}
+        info={`Her er et info area. Der kan stå meget tekst, og der kan stå lidt tekst. Der også kan gives code tags med. <code>Så ser det sådan her ud.</code> Jeg tester lige a tag <a href='/aksdjka'>hej</a>.`}
       />
       <h3>Import CSS </h3>
       <p>The library uses three different CSS files to make everything look good. </p>
