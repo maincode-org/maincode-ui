@@ -15,7 +15,7 @@ import {
   flowerSharp,
 } from 'ionicons/icons';
 
-import { IDocumentationPageContent, LiveEditExample, ExampleComponent } from 'maincode-ui';
+import { IDocumentationPageContent, LiveEditExample } from 'maincode-ui';
 import QuickStartContent from '../components/quick-start-content/QuickStartContent';
 
 export type IDocumentationPage = IDocumentationPageContent & {
@@ -32,7 +32,6 @@ export const documentationPages: IDocumentationPage[] = [
     iosIcon: heartOutline,
     mdIcon: heartSharp,
     description: <p>This is the overview description</p>,
-    customContent: <ExampleComponent text='Title' />,
     examples: [],
     props: [{ propTitle: 'Animated', description: `If <code>true</code>, the alert will animate`, attribute: 'animated', type: 'boolean', default: 'true' }],
     styles: [

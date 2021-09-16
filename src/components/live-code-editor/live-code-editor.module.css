@@ -10,7 +10,7 @@
 }
 
 .liveWrapper {
-  height: 350px;
+  min-height: 150px;
   max-height: 350px;
 
   display: flex;
@@ -38,27 +38,23 @@
   max-width: 50%;
 }
 
-.livePreview {
-  position: relative;
-  height: auto;
-
-  padding: 0.5rem 0.5rem 0.5rem 1rem;
-
+.rightWrapper {
   border-left: 1px dashed var(--border-color) !important;
   border-top-right-radius: 8px;
   border-bottom-right-radius: 8px;
+  padding: 0.5rem 0.5rem 0.5rem 1rem;
+  overflow-y: scroll;
+}
+
+.livePreview {
+  position: relative;
+  height: auto;
 
   overflow: hidden;
   overflow-y: auto;
 }
 
 .liveError {
-  display: block;
-  padding: 8px;
-
-  background: var(--ion-color-danger);
-  color: var(--ion-color-danger-contrast);
-
   white-space: pre-wrap;
 
   text-align: left;
@@ -66,6 +62,8 @@
 }
 
 .copyButton {
+  color: var(--ion-text-color);
+
   width: 2rem;
   height: 2rem;
 
