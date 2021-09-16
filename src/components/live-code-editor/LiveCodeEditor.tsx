@@ -11,30 +11,29 @@ type IProps = {
   noInline?: boolean;
 };
 
-const LiveCodeEditor: React.FC<IProps> = ({ className = '', code, scope, noInline = false }) => {
+const LiveCodeEditor: React.FC<IProps> = ({ className = '', code = '', scope, noInline = false }) => {
+  const [currentCode, setCurrentCode] = useState(code?.trim());
   const [copyIcon, setCopyIcon] = useState(clipboardOutline);
 
-  const onCopyClick = () => {
-    if (!code) return;
-    navigator.clipboard.writeText(code);
-    setCopyIcon(checkmarkOutline);
+  const padCode = (code: string): string => `${code}\n`;
 
-    setTimeout(() => {
-      setCopyIcon(clipboardOutline);
-    }, 5000);
+  const onCopyClick = () => {
+    navigator.clipboard.writeText(currentCode);
+    setCopyIcon(checkmarkOutline);
+    setTimeout(() => setCopyIcon(clipboardOutline), 5000);
   };
 
   return (
-    <LiveProvider className={`${className} theme-item-bg ${styles.liveProvider}`} code={code} scope={scope} noInline={noInline}>
-      <div className={styles.liveWrapper}>
-        <button onClick={() => onCopyClick()}>
-          <IonIcon ios={copyIcon} md={copyIcon} />
-        </button>
-        <div className={`${styles.liveEditor} ${styles.column}`}>
-          <LiveEditor />
+    <LiveProvider className={`${className} ${styles.liveProvider}`} code={currentCode} scope={scope} noInline={noInline}>
+      <div className={`${styles.liveWrapper} theme-shadow theme-border`}>
+        <div className={`${styles.liveEditor} ${styles.column} theme-item-bg`}>
+          <button onClick={onCopyClick} title='Copy code!' className={`${styles.copyButton} theme-item-bg theme-border rounded-sm`}>
+            <IonIcon title='Copy code!' ios={copyIcon} md={copyIcon} />
+          </button>
+          <LiveEditor onChange={(val) => setCurrentCode(val)} code={padCode(currentCode)} />
           <LiveError className={styles.liveError} />
         </div>
-        <LivePreview className={`${styles.livePreview} ${styles.column}`} />
+        <LivePreview className={`${styles.livePreview} ${styles.column} theme-bg `} />
       </div>
     </LiveProvider>
   );

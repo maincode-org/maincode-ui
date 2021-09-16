@@ -25,10 +25,21 @@ export const ExampleComponent: React.FC<Props> = ({ text }: Props) => {
 };
 
 const jsxExample = `
-<h3>
-  Hello World!
-</h3>
-`.trim();
+<div>
+  <h3>
+    Hello World! this is one very very long line of code, which <strong>will</strong> break down correctly!
+  </h3>
+  <h3>
+    Hello World!
+  </h3>
+  <h3>
+    Hello World!
+  </h3>
+  <h3>
+    Hello World!
+  </h3>
+</div>
+`;
 
 export const LiveEditExample: React.FC = () => <LiveCodeEditor noInline={false} code={jsxExample} scope={{ IonButton }} />;
 

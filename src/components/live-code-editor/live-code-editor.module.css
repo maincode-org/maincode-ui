@@ -1,26 +1,31 @@
-.liveProvider {
-  border-radius: 8px;
-  overflow: hidden;
-  margin-bottom: 20px;
-}
-
 /** Must keep - or the live editor wont have spaces */
 .liveEditor pre span {
   white-space: pre-wrap;
 }
 
+.liveProvider {
+  border-radius: 8px;
+  margin-bottom: 20px;
+  overflow: hidden;
+}
+
 .liveWrapper {
+  height: 350px;
+  max-height: 350px;
+
   display: flex;
   flex-direction: row;
   justify-content: stretch;
   align-items: stretch;
-  box-shadow: 1px 1px 20px rgba(20, 20, 20, 0.27);
+
+  border-radius: 8px;
 }
 
 .liveEditor {
-  height: 350px;
-  max-height: 350px;
   overflow: auto;
+  position: relative;
+  border-top-left-radius: 8px;
+  border-bottom-left-radius: 8px;
 }
 
 .liveEditor * > textarea:focus {
@@ -35,19 +40,27 @@
 
 .livePreview {
   position: relative;
-  padding: 0.5rem;
-  background: white;
-  color: black;
   height: auto;
+
+  padding: 0.5rem 0.5rem 0.5rem 1rem;
+
+  border-left: 1px dashed var(--border-color) !important;
+  border-top-right-radius: 8px;
+  border-bottom-right-radius: 8px;
+
   overflow: hidden;
+  overflow-y: auto;
 }
 
 .liveError {
   display: block;
   padding: 8px;
+
   background: var(--ion-color-danger);
   color: var(--ion-color-danger-contrast);
+
   white-space: pre-wrap;
+
   text-align: left;
   font-size: 0.9em;
 }
@@ -55,6 +68,19 @@
 .copyButton {
   width: 2rem;
   height: 2rem;
+
+  position: absolute;
+  top: 0.5rem;
+  right: 0.5rem;
+  z-index: 999999;
+
+  cursor: pointer;
+  transition: 0.1s all ease-in;
+}
+
+.copyButton:hover {
+  border: 1px dashed var(--border-color);
+  box-shadow: var(--shadow);
 }
 
 @media (max-width: 600px) {

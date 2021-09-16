@@ -1,6 +1,6 @@
 import { IonContent, IonPage } from '@ionic/react';
 import { Redirect, Route } from 'react-router-dom';
-import { DocumentationSection, LiveEditExample } from 'maincode-ui';
+import { DocumentationSection } from 'maincode-ui';
 import { useState, useRef } from 'react';
 import styles from './page.module.css';
 import { componentPages, documentationPages, IDocumentationPage } from '../helpers/structure';
