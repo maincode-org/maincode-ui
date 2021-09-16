@@ -9,7 +9,7 @@ type IProps = {
 
 const InfoArea: React.FC<IProps> = ({ className = '', info }) => {
   return (
-    <div className={`${className} ${styles.container} rounded p-2`}>
+    <div className={`${className} ${styles.container} rounded-md p-1`}>
       <p>{parse(info)}</p>
     </div>
   );

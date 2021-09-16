@@ -26,7 +26,7 @@ const CopyArea: React.FC<IProps> = ({ command }) => {
 
   return (
     <Tippy className='tippy' hideOnClick={false} content={tooltipText} placement='top'>
-      <div className={`${styles.container} flex flex-row justify-between items-center glass-bg w-full rounded p-15 text-left pointer`} onClick={onClickHandler}>
+      <div className={`${styles.container} flex flex-row justify-between items-center glass-bg w-full rounded p-1 text-left pointer`} onClick={onClickHandler}>
         <code>
           <span className={`${styles.dollarSign} mr-1 select-none`}>$</span>
           {command}
