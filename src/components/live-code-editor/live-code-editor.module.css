@@ -11,7 +11,7 @@
 
 .liveWrapper {
   min-height: 150px;
-  max-height: 350px;
+  max-height: 80vh;
 
   display: flex;
   flex-direction: row;
@@ -19,6 +19,7 @@
   align-items: stretch;
 
   border-radius: 8px;
+  overflow-y: auto;
 }
 
 .liveEditor {
@@ -39,11 +40,11 @@
 }
 
 .rightWrapper {
-  border-left: 1px dashed var(--border-color) !important;
+  border-left: 1px dashed var(--border-color);
   border-top-right-radius: 8px;
   border-bottom-right-radius: 8px;
   padding: 0.5rem 0.5rem 0.5rem 1rem;
-  overflow-y: scroll;
+  overflow-y: auto;
 }
 
 .livePreview {
@@ -84,10 +85,24 @@
 @media (max-width: 600px) {
   .liveWrapper {
     flex-direction: column;
+    min-height: 250px;
   }
   .column {
     flex-basis: auto;
     width: 100%;
     max-width: 100%;
+    height: 100%;
+  }
+  .liveEditor {
+    border-radius: 0;
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
+  }
+  .rightWrapper {
+    border-radius: 0;
+    border-bottom-left-radius: 8px;
+    border-bottom-right-radius: 8px;
+    border-left: none;
+    border-top: 1px dashed var(--border-color);
   }
 }

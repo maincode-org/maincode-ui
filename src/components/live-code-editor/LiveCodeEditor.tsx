@@ -26,8 +26,8 @@ const LiveCodeEditor: React.FC<IProps> = ({ className = '', code = '', enablePre
 
   return (
     <LiveProvider onError={() => console.log('error')} disabled={!enablePreview} className={`${className} ${styles.liveProvider}`} code={currentCode} scope={scope} noInline={noInline}>
-      <div className={`${styles.liveWrapper} theme-shadow theme-border`}>
-        <div className={`${styles.liveEditor} ${enablePreview ? styles.column : 'w-full'} theme-item-bg`}>
+      <div className={`${styles.liveWrapper} theme-shadow theme-item-bg theme-border`}>
+        <div className={`${styles.liveEditor} ${enablePreview ? styles.column : 'w-full h-full'} theme-item-bg`}>
           <button onClick={onCopyClick} title='Copy code!' className={`${styles.copyButton} theme-item-bg theme-border rounded-sm`}>
             <IonIcon title='Copy code!' ios={copyIcon} md={copyIcon} />
           </button>
@@ -55,7 +55,64 @@ const jsxExample = `
   <h3>
     Hello World!
   </h3>
+    <h3>
+    Hello World!
+  </h3>
+    <h3>
+    Hello World!
+  </h3>  <h3>
+    Hello World!
+  </h3>
+    <h3>
+    Hello World!
+  </h3>  <h3>
+    Hello World!
+  </h3>
+    <h3>
+    Hello World!
+  </h3>
+    <h3>
+    Hello World!
+  </h3>
+    <h3>
+    Hello World!
+  </h3>  <h3>
+    Hello World!
+  </h3>
+    <h3>
+    Hello World!
+  </h3>
+    <h3>
+    Hello World!
+  </h3>
+    <h3>
+    Hello World!
+  </h3>
+    <h3>
+    Hello World!
+  </h3>
+    <h3>
+    Hello World!
+  </h3>
+    <h3>
+    Hello World!
+  </h3>
+    <h3>
+    Hello World!
+  </h3>
+    <h3>
+    Hello World!
+  </h3>
+    <h3>
+    Hello World!
+  </h3>
+    <h3>
+    Hello World!
+  </h3>
+
+
+
 </div>
 `;
 
-export const LiveEditExample: React.FC = () => <LiveCodeEditor enablePreview={true} noInline={false} code={jsxExample} scope={{ IonButton }} />;
+export const LiveEditExample: React.FC = () => <LiveCodeEditor enablePreview={false} noInline={false} code={jsxExample} scope={{ IonButton }} />;
