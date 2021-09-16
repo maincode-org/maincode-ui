@@ -2,7 +2,8 @@
   border-top: 1px ridge var(--border-color);
 }
 
-.anchor, .label {
+.anchor,
+.label {
   text-decoration: none;
   transition: all 0.2s ease-in;
 }
@@ -11,11 +12,12 @@
   color: var(--ion-color-secondary);
 }
 
-.anchor:hover > .label{
+.anchor:hover > .label {
   opacity: 1;
 }
 
-.anchor:hover > .label, .anchor:hover {
+.anchor:hover > .label,
+.anchor:hover {
   letter-spacing: 0.1rem;
 }
 

@@ -1,7 +1,7 @@
 import { heartOutline, heartSharp, colorPaletteOutline, colorPaletteSharp, contrastOutline, contrastSharp, gitMergeOutline, gitMergeSharp, rocketOutline, rocketSharp } from 'ionicons/icons';
-import { IDocumentationPageContent } from 'maincode-ui';
-import { ExampleComponent } from 'maincode-ui';
-import QuickStartContent from '../components/page-content/quick-start-content/QuickStartContent';
+
+import { IDocumentationPageContent, LiveEditExample } from 'maincode-ui';
+import QuickStartContent from '../components/quick-start-content/QuickStartContent';
 import OverviewContent from '../components/page-content/overview-content/OverviewContent';
 
 export type IPreview = {
@@ -12,7 +12,6 @@ export type IPreview = {
 export type IDocumentationPage = IDocumentationPageContent & {
   url: string;
   title: string;
-  preview?: IPreview;
   iosIcon?: string;
   mdIcon?: string;
 };
@@ -42,7 +41,7 @@ export const documentationPages: IDocumentationPage[] = [
         To get started you need to install the node package <code>maincode-ui</code>
       </p>
     ),
-    customContent: <QuickStartContent />,
+    customContent: QuickStartContent,
   },
   {
     url: '/Theming',
