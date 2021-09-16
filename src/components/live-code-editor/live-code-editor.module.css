@@ -4,6 +4,11 @@
   margin-bottom: 20px;
 }
 
+/** Must keep - or the live editor wont have spaces */
+.liveEditor pre span {
+  white-space: pre-wrap;
+}
+
 .liveWrapper {
   display: flex;
   flex-direction: row;
@@ -45,7 +50,6 @@
   white-space: pre-wrap;
   text-align: left;
   font-size: 0.9em;
-  font-family: 'Source Code Pro', monospace;
 }
 
 .copyButton {
