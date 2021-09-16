@@ -1,6 +1,6 @@
 import styles from './overview-content.module.css';
 import { IDocumentationPage } from '../../../helpers/structure';
-import { IonCard, IonCardContent, IonCardHeader, IonCardTitle } from '@ionic/react';
+import { IonCard, IonCardContent, IonCardHeader, IonCardTitle, IonGrid, IonRow, IonCol } from '@ionic/react';
 import React from 'react';
 
 type IProps = {
@@ -8,16 +8,21 @@ type IProps = {
 };
 
 const OverviewContent: React.FC<IProps> = ({ componentPages }) => (
-  <div className='flex flex-row'>
-    {componentPages.map((c, i) => (
-      <IonCard key={i} className={styles.card}>
-        <IonCardHeader>
-          <img className={styles.image} alt={c.title + 'image'} src='https://i.picsum.photos/id/12/500/500.jpg?hmac=eDPFWf-MrW9y-NrkWpEFk3Ogo9qpZ985kimtQNMNm94' />
-          <IonCardTitle className={styles.title}>{c.title}</IonCardTitle>
-        </IonCardHeader>
-        <IonCardContent className={styles.teaserText}>{c.preview?.description}</IonCardContent>
-      </IonCard>
-    ))}
-  </div>
+  <IonGrid>
+    <IonRow>
+      {[...componentPages, ...componentPages].map((c, i) => (
+        <IonCol key={i} className='mb-1' size='12' size-md='6' size-lg='6' size-xl='4'>
+          <IonCard key={i} className={`${styles.card} theme-border shadow-lg`}>
+            <IonCardHeader className={styles.cardHeader}>
+              {c.preview?.picture && !c.preview?.element && <div className={`${styles.image} ${styles.previewArea}`} style={{ backgroundImage: `url('${c.preview.picture}')` }} />}
+              {c.preview?.element && <div className={`${styles.previewArea} ${styles.previewElement} theme-bg`}>{c.preview.element}</div>}
+              <IonCardTitle className={styles.title}>{c.title}</IonCardTitle>
+            </IonCardHeader>
+            <IonCardContent className={styles.teaserText}>{c.preview?.description}</IonCardContent>
+          </IonCard>
+        </IonCol>
+      ))}
+    </IonRow>
+  </IonGrid>
 );
 export default OverviewContent;

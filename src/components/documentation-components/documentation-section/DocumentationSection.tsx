@@ -1,4 +1,5 @@
 import React from 'react';
+import stylesheet from './documentation-section.module.css';
 import Table from '../../table/Table';
 import PagePaginationFooter, { IFooterNav } from '../../page-pagination-footer/PagePaginationFooter';
 
@@ -34,31 +35,33 @@ type IProps = IDocumentationPageContent & {
 
 const DocumentationSection: React.FC<IProps> = ({ className = '', customContent, props, styles, description, examples, prevNav, nextNav, children }) => {
   return (
-    <section className={`${className} h-full`}>
-      {description && (
-        <div>
-          {description}
-          <br />
-          <br />
-        </div>
-      )}
-      {examples && <h3 className='theme-bg'>Usage / demos</h3>}
-      {children}
-      {customContent && customContent}
-      {props?.[0] && (
-        <div>
-          <h2>Props</h2>
-          {renderProps(props)}
-        </div>
-      )}
-      {styles?.[0] && (
-        <div className='mb-2'>
-          <h2>Custom CSS properties</h2>
-          {renderStyles(styles)}
-        </div>
-      )}
-      {(prevNav || nextNav) && <PagePaginationFooter prev={prevNav} next={nextNav} />}
-    </section>
+    <div className={stylesheet.wrapper}>
+      <section className={`${className}`}>
+        {description && (
+          <div>
+            {description}
+            <br />
+            <br />
+          </div>
+        )}
+        {examples && <h3 className='theme-bg'>Usage / demos</h3>}
+        {children}
+        {customContent && customContent}
+        {props?.[0] && (
+          <div>
+            <h2>Props</h2>
+            {renderProps(props)}
+          </div>
+        )}
+        {styles?.[0] && (
+          <div className='mb-2'>
+            <h2>Custom CSS properties</h2>
+            {renderStyles(styles)}
+          </div>
+        )}
+      </section>
+      {(prevNav || nextNav) && <PagePaginationFooter className='px-2' prev={prevNav} next={nextNav} />}
+    </div>
   );
 };
 export default DocumentationSection;

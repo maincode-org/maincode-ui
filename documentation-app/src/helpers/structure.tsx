@@ -3,9 +3,11 @@ import { heartOutline, heartSharp, colorPaletteOutline, colorPaletteSharp, contr
 import { IDocumentationPageContent } from 'maincode-ui';
 import QuickStartContent from '../components/page-content/quick-start-content/QuickStartContent';
 import OverviewContent from '../components/page-content/overview-content/OverviewContent';
+import { IonButton } from '@ionic/react';
 
 export type IPreview = {
-  picture: string;
+  picture?: string;
+  element?: JSX.Element;
   description: string;
 };
 
@@ -22,13 +24,25 @@ export const componentPages: IDocumentationPage[] = [
     url: '/Component1',
     title: 'Component 1',
     description: <p>This is a description for component 1</p>,
-    preview: { picture: '', description: 'This is a teaser for component 1' },
+    preview: { picture: 'https://i.picsum.photos/id/12/1000/1000.jpg?hmac=rd7CBVhclToSFt6oDC9OPLQiV4x08Geesh3ONi36e8c', description: 'This is a teaser for component 1' },
   },
   {
     url: '/Component2',
     title: 'Component 2',
     description: <p>This is a description for component 2</p>,
-    preview: { picture: '', description: 'This is a teaser for component 2. They got a hang of a long text right? Is this really how they made it? I had to put max-width on the card container.' },
+    preview: {
+      picture: 'https://i.picsum.photos/id/12/1000/1000.jpg?hmac=rd7CBVhclToSFt6oDC9OPLQiV4x08Geesh3ONi36e8c',
+      description: 'This is a teaser for component 2. They got a hang of a long text right? Is this really how they made it? I had to put max-width on the card container.',
+    },
+  },
+  {
+    url: '/Component3',
+    title: 'Component 3',
+    description: <p>This is a description for component 2</p>,
+    preview: {
+      element: <IonButton onClick={() => alert('Mark er noob')}>Mark tester mig</IonButton>,
+      description: 'This is a teaser for component 2. They got a hang of a long text right? Is this really how they made it? I had to put max-width on the card container.',
+    },
   },
 ];
 

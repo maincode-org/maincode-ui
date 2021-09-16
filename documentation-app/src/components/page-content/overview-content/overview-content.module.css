@@ -1,9 +1,31 @@
 .card {
-  max-width: 15vw;
+  height: 100%;
+  padding: 0;
+}
+
+.cardHeader {
+  padding: 0;
+}
+
+.image {
+  background-size: cover;
+}
+
+.previewArea {
+  border-bottom: 1px solid var(--border-color);
+  height: 300px;
+  width: 100%;
+}
+
+.previewElement {
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .title {
   color: var(--ion-text-color);
+  padding: 1rem;
 }
 
 .teaserText {
