@@ -50,8 +50,8 @@ export default LiveCodeEditor;
 const jsxExample = `
 const Wrapper = ({ children }) => (
   <div style={{
-    background: 'papayawhip',
-    width: '100%',
+    background: 'rgba(100, 100, 100, 0.1)',
+    width: '90%',
     padding: '2rem'
   }}>
     {children}
@@ -69,6 +69,7 @@ render(
     <Title />
   </Wrapper>
 )
+
 `;
 
 export const LiveEditExample: React.FC = () => <LiveCodeEditor enablePreview={true} noInline={true} code={jsxExample} scope={{ IonButton }} />;
