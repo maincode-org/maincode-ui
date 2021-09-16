@@ -45,7 +45,11 @@ export const documentationPages: IDocumentationPage[] = [
     title: 'Quickstart',
     iosIcon: rocketOutline,
     mdIcon: rocketSharp,
-    description: <p>This is the Quickstart description</p>,
+    description: (
+      <p>
+        To get started you need to install the node package <code>maincode-ui</code>
+      </p>
+    ),
     customContent: <QuickStartContent />,
   },
   {
@@ -81,15 +85,11 @@ export const componentPages: IDocumentationPage[] = [
   {
     url: '/Component1',
     title: 'Component1',
-    iosIcon: barbellOutline,
-    mdIcon: barbellSharp,
     description: <p>This is a description for component 1</p>,
   },
   {
     url: '/Component2',
     title: 'Component2',
-    iosIcon: flowerOutline,
-    mdIcon: flowerSharp,
     description: <p>This is a description for component 2</p>,
   },
 ];
