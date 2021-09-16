@@ -24,6 +24,12 @@ export const ExampleComponent: React.FC<Props> = ({ text }: Props) => {
   );
 };
 
-export const LiveEditExample: React.FC = () => <LiveCodeEditor code={`<IonButton className='ion-float-end'>Primary Color</IonButton>`} scope={{ IonButton }} />;
+const jsxExample = `
+<h3>
+  Hello World!
+</h3>
+`.trim();
+
+export const LiveEditExample: React.FC = () => <LiveCodeEditor noInline={false} code={jsxExample} scope={{ IonButton }} />;
 
 export { DocumentationSection, CopyArea, styleScrollbars, IDocumentationPageContent, IPropertyDetail, IStyleDetail, IComponentUsage };
