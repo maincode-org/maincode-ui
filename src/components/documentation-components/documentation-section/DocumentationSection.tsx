@@ -1,6 +1,6 @@
 import React from 'react';
 import Table from '../../table/Table';
-import PagePaginationFooter, { IFooterNav } from '../../page-scroll-footer/PagePaginationFooter';
+import PagePaginationFooter, { IFooterNav } from '../../page-pagination-footer/PagePaginationFooter';
 
 export type IDocumentationPageContent = {
   description?: JSX.Element;
@@ -34,7 +34,7 @@ type IProps = IDocumentationPageContent & {
 
 const DocumentationSection: React.FC<IProps> = ({ className = '', customContent, props, styles, description, examples, prevNav, nextNav, children }) => {
   return (
-    <section className={`${className}`}>
+    <section className={`${className} h-full`}>
       {description && (
         <div>
           {description}

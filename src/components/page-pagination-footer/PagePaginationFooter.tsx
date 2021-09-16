@@ -14,7 +14,7 @@ type IProps = {
 
 const PagePaginationFooter: React.FC<IProps> = ({ className = '', prev, next }) => {
   return (
-    <div className={`${className} ${styles.container} flex justify-between`}>
+    <div className={`${className} ${styles.container} flex justify-between mt-1`}>
       <div className='flex flex-col'>
         {prev && prev.title && (
           <a className={styles.anchor} href={prev.URL}>
