@@ -34,7 +34,7 @@ export const documentationPages: IDocumentationPage[] = [
         To get started you need to install the node package <code>maincode-ui</code>
       </p>
     ),
-    customContent: <QuickStartContent />,
+    customContent: QuickStartContent,
   },
   {
     url: '/Theming',

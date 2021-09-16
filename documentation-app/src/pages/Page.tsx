@@ -1,6 +1,6 @@
 import { IonContent, IonPage } from '@ionic/react';
 import { Redirect, Route } from 'react-router-dom';
-import { DocumentationSection, LiveEditExample, IFooterNav } from 'maincode-ui';
+import { DocumentationSection, IFooterNav } from 'maincode-ui';
 import { useState, useRef } from 'react';
 import styles from './page.module.css';
 import { componentPages, documentationPages, IDocumentationPage } from '../helpers/structure';
@@ -35,9 +35,7 @@ const Page: React.FC = () => {
 
 const makeContent = (c: IDocumentationPage, prevNav?: IFooterNav, nextNav?: IFooterNav): React.ReactNode => (
   <>
-    <DocumentationSection className='px-2' description={c.description} props={c.props} styles={c.styles} customContent={c.customContent} prevNav={prevNav} nextNav={nextNav}>
-      {LiveEditExample}
-    </DocumentationSection>
+    <DocumentationSection className='px-2' description={c.description} props={c.props} styles={c.styles} customContent={c.customContent} prevNav={prevNav} nextNav={nextNav} />
   </>
 );
 export default Page;
