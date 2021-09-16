@@ -1,14 +1,50 @@
 import { heartOutline, heartSharp, colorPaletteOutline, colorPaletteSharp, contrastOutline, contrastSharp, gitMergeOutline, gitMergeSharp, rocketOutline, rocketSharp } from 'ionicons/icons';
 
 import { IDocumentationPageContent } from 'maincode-ui';
-import QuickStartContent from '../components/quick-start-content/QuickStartContent';
+import QuickStartContent from '../components/page-content/quick-start-content/QuickStartContent';
+import OverviewContent from '../components/page-content/overview-content/OverviewContent';
+import { IonButton } from '@ionic/react';
+
+export type IPreview = {
+  picture?: string;
+  element?: JSX.Element;
+  description: string;
+};
 
 export type IDocumentationPage = IDocumentationPageContent & {
   url: string;
   title: string;
+  preview?: IPreview;
   iosIcon?: string;
   mdIcon?: string;
 };
+
+export const componentPages: IDocumentationPage[] = [
+  {
+    url: '/Component1',
+    title: 'Component 1',
+    description: <p>This is a description for component 1</p>,
+    preview: { picture: 'https://i.picsum.photos/id/12/1000/1000.jpg?hmac=rd7CBVhclToSFt6oDC9OPLQiV4x08Geesh3ONi36e8c', description: 'This is a teaser for component 1' },
+  },
+  {
+    url: '/Component2',
+    title: 'Component 2',
+    description: <p>This is a description for component 2</p>,
+    preview: {
+      picture: 'https://i.picsum.photos/id/12/1000/1000.jpg?hmac=rd7CBVhclToSFt6oDC9OPLQiV4x08Geesh3ONi36e8c',
+      description: 'This is a teaser for component 2. They got a hang of a long text right? Is this really how they made it? I had to put max-width on the card container.',
+    },
+  },
+  {
+    url: '/Component3',
+    title: 'Component 3',
+    description: <p>This is a description for component 2</p>,
+    preview: {
+      element: <IonButton onClick={() => alert('Mark er noob')}>Mark tester mig</IonButton>,
+      description: 'This is a teaser for component 2. They got a hang of a long text right? Is this really how they made it? I had to put max-width on the card container.',
+    },
+  },
+];
 
 export const documentationPages: IDocumentationPage[] = [
   {
@@ -17,6 +53,7 @@ export const documentationPages: IDocumentationPage[] = [
     iosIcon: heartOutline,
     mdIcon: heartSharp,
     description: <p>This is the overview description</p>,
+    customContent: <OverviewContent componentPages={componentPages} />,
     examples: [],
     props: [{ propTitle: 'Animated', description: `If <code>true</code>, the alert will animate`, attribute: 'animated', type: 'boolean', default: 'true' }],
     styles: [
@@ -62,19 +99,5 @@ export const documentationPages: IDocumentationPage[] = [
     description: <p>This is the contributions description</p>,
     examples: [],
     props: [],
-  },
-];
-
-export const componentPages: IDocumentationPage[] = [
-  {
-    url: '/Component1',
-    title: 'Component1',
-    description: <p>This is a description for component 1</p>,
-    customContent: <p>Component goes here</p>,
-  },
-  {
-    url: '/Component2',
-    title: 'Component2',
-    description: <p>This is a description for component 2</p>,
   },
 ];
