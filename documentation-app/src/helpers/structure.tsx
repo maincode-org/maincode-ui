@@ -36,8 +36,8 @@ export const documentationPages: IDocumentationPage[] = [
     examples: [],
     props: [{ propTitle: 'Animated', description: `If <code>true</code>, the alert will animate`, attribute: 'animated', type: 'boolean', default: 'true' }],
     styles: [
-      { className: 'glass-bg', description: 'This is a glass effect on the background' },
-      { className: 'theme-border', description: 'Border matching the theme' },
+      { className: `<code>glass-bg</code>`, description: 'This is a glass effect on the background' },
+      { className: `<code>theme-border</code>`, description: 'Border matching the theme' },
     ],
   },
   {
