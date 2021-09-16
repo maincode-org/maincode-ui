@@ -34,8 +34,6 @@ const Page: React.FC = () => {
 };
 
 const makeContent = (c: IDocumentationPage, prevNav?: IFooterNav, nextNav?: IFooterNav): React.ReactNode => (
-  <>
-    <DocumentationSection className='px-2' description={c.description} props={c.props} styles={c.styles} customContent={c.customContent} prevNav={prevNav} nextNav={nextNav} />
-  </>
+  <DocumentationSection className='px-2' description={c.description} props={c.props} styles={c.styles} customContent={c.customContent} prevNav={prevNav} nextNav={nextNav} />
 );
 export default Page;

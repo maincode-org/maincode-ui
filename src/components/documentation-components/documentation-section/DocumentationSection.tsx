@@ -1,5 +1,4 @@
 import React from 'react';
-import { IonFooter, IonToolbar, IonTitle } from '@ionic/react';
 import Table from '../../table/Table';
 import PagePaginationFooter, { IFooterNav } from '../../page-pagination-footer/PagePaginationFooter';
 
@@ -59,12 +58,6 @@ const DocumentationSection: React.FC<IProps> = ({ className = '', customContent,
         </div>
       )}
       {(prevNav || nextNav) && <PagePaginationFooter prev={prevNav} next={nextNav} />}
-
-      <IonFooter>
-        <IonToolbar>
-          <IonTitle>Footer</IonTitle>
-        </IonToolbar>
-      </IonFooter>
     </section>
   );
 };
