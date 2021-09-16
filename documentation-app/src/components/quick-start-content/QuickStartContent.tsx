@@ -1,4 +1,4 @@
-import { CopyArea } from 'maincode-ui';
+import { CopyArea, InfoArea } from 'maincode-ui';
 
 const QuickStartContent = () => {
   return (
@@ -8,6 +8,7 @@ const QuickStartContent = () => {
       <CopyArea command='yarn add maincode-ui' />
       <br />
       <br />
+      <InfoArea info={`Her er et info area. Der kan stå meget tekst, og der kan stå lidt tekst. Der også kan gives code tags med. <code>Så ser det sådan her ud.</code>`} />
       <h3>Import CSS </h3>
       <p>The library uses three different CSS files to make everything look good. </p>
       <p>- index.css which has some awesome styling???</p>

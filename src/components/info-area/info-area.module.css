@@ -1,0 +1,10 @@
+.container {
+  background: var(--ion-item-background);
+  border-left: 12px solid var(--ion-color-secondary);
+}
+
+code {
+  background-color: var(--ion-background-color);
+  padding: 3px 6px;
+  border-radius: 6px;
+}

@@ -4,6 +4,7 @@ import DocumentationSection, { IComponentUsage, IDocumentationPageContent, IProp
 import { styleScrollbars } from './helpers/style-scrollbar';
 import CopyArea from './components/copy-area/CopyArea';
 import PagePaginationFooter, { IFooterNav } from './components/page-scroll-footer/PagePaginationFooter';
+import InfoArea from './components/info-area/InfoArea';
 
 import png from 'assets/cropped-robot.png'; // Path to img must not be relative "./".
 import { IonButton } from '@ionic/react';
@@ -32,4 +33,4 @@ const jsxExample = `
 
 export const LiveEditExample: React.FC = () => <LiveCodeEditor noInline={false} code={jsxExample} scope={{ IonButton }} />;
 export { PagePaginationFooter, IFooterNav };
-export { DocumentationSection, CopyArea, styleScrollbars, IDocumentationPageContent, IPropertyDetail, IStyleDetail, IComponentUsage };
+export { styleScrollbars, DocumentationSection, CopyArea, InfoArea, IDocumentationPageContent, IPropertyDetail, IStyleDetail, IComponentUsage };
