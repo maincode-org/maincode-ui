@@ -14,8 +14,8 @@ import {
   flowerOutline,
   flowerSharp,
 } from 'ionicons/icons';
-import { IDocumentationPageContent } from 'maincode-ui';
-import { ExampleComponent } from 'maincode-ui';
+
+import { IDocumentationPageContent, LiveEditExample, ExampleComponent } from 'maincode-ui';
 import QuickStartContent from '../components/quick-start-content/QuickStartContent';
 
 export type IDocumentationPage = IDocumentationPageContent & {
@@ -84,6 +84,7 @@ export const componentPages: IDocumentationPage[] = [
     iosIcon: barbellOutline,
     mdIcon: barbellSharp,
     description: <p>This is a description for component 1</p>,
+    customContent: <LiveEditExample />,
   },
   {
     url: '/Component2',
