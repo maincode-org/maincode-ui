@@ -2,17 +2,21 @@ import React, { useState } from 'react';
 import { LiveProvider, LiveEditor, LiveError, LivePreview } from 'react-live';
 import styles from './live-code-editor.module.css';
 import { clipboardOutline, checkmarkOutline } from 'ionicons/icons';
-import { IonButton, IonIcon } from '@ionic/react';
+import { IonIcon } from '@ionic/react';
+
+import darkTheme from 'prism-react-renderer/themes/oceanicNext';
+import lightTheme from 'prism-react-renderer/themes/github';
 
 type IProps = {
   code?: string;
   enablePreview?: boolean;
   scope?: { [key: string]: any };
   noInline?: boolean;
+  isDarkMode: boolean;
   className?: string;
 };
 
-const LiveCodeEditor: React.FC<IProps> = ({ className = '', code = '', enablePreview = true, scope, noInline = false }) => {
+const LiveCodeEditor: React.FC<IProps> = ({ className = '', code = '', enablePreview = true, scope, isDarkMode, noInline = false }) => {
   const [currentCode, setCurrentCode] = useState(code?.trim());
   const [copyIcon, setCopyIcon] = useState(clipboardOutline);
 
@@ -24,8 +28,18 @@ const LiveCodeEditor: React.FC<IProps> = ({ className = '', code = '', enablePre
     setTimeout(() => setCopyIcon(clipboardOutline), 5000);
   };
 
+  const activeTheme = isDarkMode ? darkTheme : lightTheme;
+
   return (
-    <LiveProvider onError={() => console.log('error')} disabled={!enablePreview} className={`${className} ${styles.liveProvider}`} code={currentCode} scope={scope} noInline={noInline}>
+    <LiveProvider
+      theme={{ ...activeTheme, plain: { color: activeTheme.plain.color, backgroundColor: 'transparent' } }}
+      onError={() => console.log('error')}
+      disabled={!enablePreview}
+      className={`${className} ${styles.liveProvider}`}
+      code={currentCode}
+      scope={scope}
+      noInline={noInline}
+    >
       <div className={`${styles.liveWrapper} theme-shadow theme-item-bg theme-border`}>
         <div className={`${styles.liveEditor} ${enablePreview ? styles.column : 'w-full h-full'} theme-item-bg`}>
           <button onClick={onCopyClick} title='Copy code!' className={`${styles.copyButton} theme-item-bg theme-border rounded-sm`}>
@@ -47,7 +61,7 @@ const LiveCodeEditor: React.FC<IProps> = ({ className = '', code = '', enablePre
 };
 export default LiveCodeEditor;
 
-const jsxExample = `
+export const jsxExample = `
 const Wrapper = ({ children }) => (
   <div style={{
     background: 'rgba(100, 100, 100, 0.1)',
@@ -69,7 +83,4 @@ render(
     <Title />
   </Wrapper>
 )
-
 `;
-
-export const LiveEditExample: React.FC = () => <LiveCodeEditor enablePreview={true} noInline={true} code={jsxExample} scope={{ IonButton }} />;
