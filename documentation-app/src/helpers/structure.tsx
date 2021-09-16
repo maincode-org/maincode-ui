@@ -1,6 +1,6 @@
 import { heartOutline, heartSharp, colorPaletteOutline, colorPaletteSharp, contrastOutline, contrastSharp, gitMergeOutline, gitMergeSharp, rocketOutline, rocketSharp } from 'ionicons/icons';
 
-import { IDocumentationPageContent, LiveEditExample } from 'maincode-ui';
+import { IDocumentationPageContent } from 'maincode-ui';
 import QuickStartContent from '../components/quick-start-content/QuickStartContent';
 
 export type IDocumentationPage = IDocumentationPageContent & {
@@ -70,7 +70,7 @@ export const componentPages: IDocumentationPage[] = [
     url: '/Component1',
     title: 'Component1',
     description: <p>This is a description for component 1</p>,
-    customContent: <LiveEditExample />,
+    customContent: <p>Component goes here</p>,
   },
   {
     url: '/Component2',
