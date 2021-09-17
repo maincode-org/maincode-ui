@@ -33,7 +33,6 @@ const LiveCodeEditor: React.FC<IProps> = ({ className = '', code = '', enablePre
   return (
     <LiveProvider
       theme={{ ...activeTheme, plain: { color: activeTheme.plain.color, backgroundColor: 'transparent' } }}
-      onError={() => console.log('error')}
       disabled={!enablePreview}
       className={`${className} ${styles.liveProvider}`}
       code={currentCode}

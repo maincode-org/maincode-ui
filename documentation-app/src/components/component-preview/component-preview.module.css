@@ -11,11 +11,15 @@
   padding: 0;
 }
 
-.descriptionArea, .image, .openIcon {
+.descriptionArea,
+.image,
+.openIcon {
   transition: opacity 0.25s ease-in-out;
 }
 
-.card:hover .descriptionArea, .card:hover .image, .card:hover .openIcon {
+.card:hover .descriptionArea,
+.card:hover .image,
+.card:hover .openIcon {
   opacity: 0.5;
 }
 
@@ -28,7 +32,8 @@
   cursor: pointer;
 }
 
-.descriptionArea {}
+.descriptionArea {
+}
 
 .previewArea {
   border-bottom: 1px solid var(--border-color);

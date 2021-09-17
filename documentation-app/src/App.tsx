@@ -26,7 +26,8 @@ import 'maincode-ui/dist/index.css';
 import 'maincode-ui/styles/generics.css';
 import 'maincode-ui/styles/theme.css';
 import { styleScrollbars } from 'maincode-ui';
-import Page from './pages/Page';
+import PageRoutesContent from './pages/PageRoutesContent';
+import { urlPrefix } from './structure/structure';
 
 const App: React.FC = () => {
   const themeName = useContext(ThemeContext)?.themeName;
@@ -42,9 +43,9 @@ const App: React.FC = () => {
           <Menu />
           <IonRouterOutlet id='main'>
             <Route path='/' exact={true}>
-              <Redirect to='/maincode-ui/Overview' />
+              <Redirect to={`${urlPrefix}/Overview`} />
             </Route>
-            <Route path='/maincode-ui/' component={Page} />
+            <Route path={`${urlPrefix}/`} component={PageRoutesContent} />
           </IonRouterOutlet>
         </IonSplitPane>
       </IonReactRouter>

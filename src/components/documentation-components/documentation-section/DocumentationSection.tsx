@@ -13,6 +13,7 @@ export type IDocumentationPageContent = {
   outro?: JSX.Element;
   prevNav?: IFooterNav;
   nextNav?: IFooterNav;
+  urlPrefix?: string;
 };
 
 export type IComponentUsage = {
@@ -38,7 +39,7 @@ type IProps = IDocumentationPageContent & {
   className?: string;
 };
 
-const DocumentationSection: React.FC<IProps> = ({ onContentLoad, className = '', customContent, props, styles, description, examples, prevNav, nextNav, children }) => {
+const DocumentationSection: React.FC<IProps> = ({ onContentLoad, className = '', customContent, props, styles, description, examples, prevNav, nextNav, urlPrefix, children }) => {
   useEffect(() => {
     onContentLoad?.();
   }, [onContentLoad]);
@@ -69,7 +70,7 @@ const DocumentationSection: React.FC<IProps> = ({ onContentLoad, className = '',
           </div>
         )}
       </section>
-      {(prevNav || nextNav) && <PagePaginationFooter className='px-2' prev={prevNav} next={nextNav} />}
+      {(prevNav || nextNav) && <PagePaginationFooter className='px-2' prev={prevNav} next={nextNav} urlPrefix={urlPrefix} />}
     </div>
   );
 };
