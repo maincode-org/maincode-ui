@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import stylesheet from './documentation-section.module.css';
-import Table from '../../table/Table';
-import PagePaginationFooter, { IFooterNav } from '../../page-pagination-footer/PagePaginationFooter';
+import Table from '../../layout-components/table/Table';
+import PaginationFooter, { IFooterNav } from '../../page-components/pagination-footer/PaginationFooter';
 
 export type IDocumentationPageContent = {
   description?: JSX.Element;
@@ -70,7 +70,7 @@ const DocumentationSection: React.FC<IProps> = ({ onContentLoad, className = '',
           </div>
         )}
       </section>
-      {(prevNav || nextNav) && <PagePaginationFooter className='px-2' prev={prevNav} next={nextNav} urlPrefix={urlPrefix} />}
+      {(prevNav || nextNav) && <PaginationFooter className='px-2' prev={prevNav} next={nextNav} urlPrefix={urlPrefix} />}
     </div>
   );
 };
