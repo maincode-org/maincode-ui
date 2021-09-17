@@ -2,9 +2,21 @@
   --ion-grid-padding: 0;
 }
 
+.link {
+  text-decoration: none;
+}
+
 .card {
   height: 100%;
   padding: 0;
+}
+
+.descriptionArea, .image, .openIcon {
+  transition: opacity 0.25s ease-in-out;
+}
+
+.card:hover .descriptionArea, .card:hover .image, .card:hover .openIcon {
+  opacity: 0.5;
 }
 
 .cardHeader {
@@ -13,7 +25,10 @@
 
 .image {
   background-size: cover;
+  cursor: pointer;
 }
+
+.descriptionArea {}
 
 .previewArea {
   border-bottom: 1px solid var(--border-color);
@@ -25,6 +40,12 @@
   display: flex;
   justify-content: center;
   align-items: center;
+}
+
+.openIcon {
+  opacity: 0;
+  position: absolute;
+  right: 10px;
 }
 
 .title {
