@@ -14,7 +14,6 @@ type IProps = {
 };
 
 const PagePaginationFooter: React.FC<IProps> = ({ className = '', prev, next, urlPrefix = '' }) => {
-  console.log(urlPrefix);
   return (
     <div className={`${className} ${styles.container} flex justify-between mt-1`}>
       <div className='flex flex-col'>
