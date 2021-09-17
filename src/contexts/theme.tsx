@@ -1,5 +1,5 @@
 import React, { createContext, useEffect, useState } from 'react';
-import { styleScrollbars } from 'maincode-ui';
+import { styleScrollbars } from '../utilities/style-scrollbar';
 
 export enum EThemeModes {
   'light' = 'light',

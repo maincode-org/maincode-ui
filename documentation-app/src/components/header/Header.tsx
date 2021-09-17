@@ -1,6 +1,6 @@
 import { useContext } from 'react';
 import { IonButtons, IonHeader, IonIcon, IonMenuButton, IonTitle, IonToolbar } from '@ionic/react';
-import { EThemeModes, ThemeContext } from '../../contexts/theme';
+import { EThemeModes, ThemeContext } from 'maincode-ui';
 import { logoGithub, moonOutline, moonSharp, sunnyOutline, sunnySharp } from 'ionicons/icons';
 import styles from './header.module.css';
 

@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom';
 import App from './App';
 import * as serviceWorkerRegistration from './utils/serviceWorkerRegistration';
 import reportWebVitals from './utils/reportWebVitals';
-import { ThemeProvider } from './contexts/theme';
+import { ThemeProvider } from 'maincode-ui';
 
 ReactDOM.render(
   <React.StrictMode>

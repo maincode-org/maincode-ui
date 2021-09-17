@@ -4,8 +4,9 @@ import LiveCodeEditor, { jsxExample } from './components/code-components/live-co
 import CopyArea from './components/code-components/copy-area/CopyArea';
 import PaginationFooter, { IFooterNav } from './components/page-components/pagination-footer/PaginationFooter';
 import InfoArea from './components/basic-components/info-area/InfoArea';
+import { EThemeModes, IThemeContext, ThemeContext, ThemeProvider } from './contexts/theme';
 
-export type { IDocumentationPageContent, IPropertyDetail, IStyleDetail, IComponentUsage, IFooterNav };
+export type { IDocumentationPageContent, IPropertyDetail, IStyleDetail, IComponentUsage, IFooterNav, IThemeContext };
 
 export { PaginationFooter };
-export { styleScrollbars, jsxExample, LiveCodeEditor, DocumentationSection, CopyArea, InfoArea };
+export { styleScrollbars, jsxExample, LiveCodeEditor, DocumentationSection, CopyArea, InfoArea, ThemeContext, EThemeModes, ThemeProvider };
