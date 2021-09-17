@@ -1,21 +1,15 @@
 {
-  "short_name": "Ionic App",
-  "name": "My Ionic App",
+  "name": "Maincode UI",
+  "short_name": "Maincode UI",
+  "description": "Maincode UI is a UI library built on top of Ionic Framework",
+  "start_url": "/maincode-ui/Overview",
+  "background_color": "#ffffff",
+  "display": "standalone",
   "icons": [
     {
-      "src": "assets/icon/favicon.png",
+      "src": "assets/maincode-robot.png",
       "sizes": "64x64 32x32 24x24 16x16",
       "type": "image/x-icon"
-    },
-    {
-      "src": "assets/icon/icon.png",
-      "type": "image/png",
-      "sizes": "512x512",
-      "purpose": "maskable"
     }
-  ],
-  "start_url": ".",
-  "display": "standalone",
-  "theme_color": "#ffffff",
-  "background_color": "#ffffff"
+  ]
 }
