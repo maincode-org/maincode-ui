@@ -1,3 +1,3 @@
-import { IDocumentationPageContent } from '../../../../../src';
+import { IDocumentationPageContent } from 'maincode-ui';
 
 export const liveEditorDocumentation: IDocumentationPageContent = {};
