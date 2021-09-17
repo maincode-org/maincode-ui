@@ -1,0 +1,23 @@
+.copyButton {
+  color: var(--ion-text-color);
+
+  width: 2rem;
+  height: 2rem;
+
+  position: absolute;
+  top: 0.5rem;
+  right: 0.5rem;
+  z-index: 999999;
+
+  cursor: pointer;
+  transition: 0.1s all ease-in;
+}
+
+.copyButton:hover {
+  border: 1px dashed var(--border-color);
+  box-shadow: var(--card-shadow);
+}
+
+.icon {
+  pointer-events: none;
+}
