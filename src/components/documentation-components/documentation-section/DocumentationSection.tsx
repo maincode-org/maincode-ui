@@ -1,10 +1,11 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import stylesheet from './documentation-section.module.css';
 import Table from '../../table/Table';
 import PagePaginationFooter, { IFooterNav } from '../../page-pagination-footer/PagePaginationFooter';
 
 export type IDocumentationPageContent = {
   description?: JSX.Element;
+  onContentLoad?: () => void;
   examples?: IComponentUsage[];
   customContent?: JSX.Element;
   props?: IPropertyDetail[];
@@ -14,7 +15,11 @@ export type IDocumentationPageContent = {
   nextNav?: IFooterNav;
 };
 
-export type IComponentUsage = number;
+export type IComponentUsage = {
+  title: string;
+  example: JSX.Element;
+  previewEnabled?: boolean;
+};
 
 export type IPropertyDetail = {
   propTitle: string;
@@ -33,7 +38,11 @@ type IProps = IDocumentationPageContent & {
   className?: string;
 };
 
-const DocumentationSection: React.FC<IProps> = ({ className = '', customContent, props, styles, description, examples, prevNav, nextNav, children }) => {
+const DocumentationSection: React.FC<IProps> = ({ onContentLoad, className = '', customContent, props, styles, description, examples, prevNav, nextNav, children }) => {
+  useEffect(() => {
+    onContentLoad?.();
+  }, [onContentLoad]);
+
   return (
     <div className={stylesheet.wrapper}>
       <section className={`${className}`}>
