@@ -8,7 +8,7 @@ const QuickStartContent: JSX.Element = (
     <br />
     <br />
     <InfoArea
-      info={`Her er et info area. Der kan stå meget tekst, og der kan stå lidt tekst. Der også kan gives code tags med. <code>Så ser det sådan her ud.</code>. Jeg tester lige a <a href='https://maincode.dk'>hej</a>`}
+      info={`Her er et info area. Der kan stå meget tekst, og der kan stå lidt tekst. Der også kan gives code tags med. <code>Så ser det sådan her ud.</code> Jeg tester lige a <a href='https://maincode.dk'>a-tag</a>.`}
     />
     <h3>Import CSS </h3>
     <p>The library uses three different CSS files to make everything look good. </p>

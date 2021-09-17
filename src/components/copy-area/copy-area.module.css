@@ -3,7 +3,7 @@
 }
 
 .dollarSign {
-  color: pink;
+  color: var(--ion-color-primary);
 }
 
 .copyButton {

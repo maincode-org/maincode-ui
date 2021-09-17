@@ -2,8 +2,8 @@ import { heartOutline, heartSharp, colorPaletteOutline, colorPaletteSharp, contr
 
 import { IDocumentationPageContent } from 'maincode-ui';
 import QuickStartContent from '../components/page-content/quick-start-content/QuickStartContent';
-import OverviewContent from '../components/page-content/overview-content/OverviewContent';
 import { IonButton } from '@ionic/react';
+import { makeOverviewContent } from '../components/page-content/overview-content/OverviewContent';
 
 export type IPreview = {
   picture?: string;
@@ -53,7 +53,7 @@ export const documentationPages: IDocumentationPage[] = [
     iosIcon: heartOutline,
     mdIcon: heartSharp,
     description: <p>This is the overview description</p>,
-    customContent: <OverviewContent componentPages={componentPages} />,
+    customContent: makeOverviewContent(componentPages),
     examples: [],
     props: [{ propTitle: 'Animated', description: `If <code>true</code>, the alert will animate`, attribute: 'animated', type: 'boolean', default: 'true' }],
     styles: [
