@@ -1,5 +1,5 @@
 import styles from './component-preview.module.css';
-import { IDocumentationPage } from '../../structure/structure';
+import { IDocumentationPage, urlPrefix } from '../../structure/structure';
 import { IonCard, IonCardContent, IonCardHeader, IonCardTitle, IonGrid, IonRow, IonCol, IonIcon } from '@ionic/react';
 import { openOutline, openSharp } from 'ionicons/icons';
 import { Link } from 'react-router-dom';
@@ -16,13 +16,13 @@ const ComponentPreview: React.FC<IProps> = ({ componentPages }) => (
           <IonCard key={i} className={`${styles.card} theme-border shadow-lg`}>
             <IonCardHeader className={styles.cardHeader}>
               {c.preview?.picture && !c.preview?.element && (
-                <Link to={c.url}>
+                <Link to={`${urlPrefix}${c.url}`}>
                   <div className={`${styles.image} ${styles.previewArea}`} style={{ backgroundImage: `url('${c.preview.picture}')` }} />
                 </Link>
               )}
               {c.preview?.element && <div className={`${styles.previewArea} ${styles.previewElement} theme-bg`}>{c.preview.element}</div>}
             </IonCardHeader>
-            <Link className={styles.link} to={c.url}>
+            <Link className={styles.link} to={`${urlPrefix}${c.url}`}>
               <div className={styles.descriptionArea}>
                 <IonCardTitle className={styles.title}>
                   {c.title}

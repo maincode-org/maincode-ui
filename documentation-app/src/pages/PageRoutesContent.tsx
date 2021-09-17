@@ -3,7 +3,7 @@ import { IonContent, IonPage } from '@ionic/react';
 import { Redirect, Route } from 'react-router-dom';
 import { DocumentationSection, IFooterNav } from 'maincode-ui';
 
-import { componentPages, documentationPages, IDocumentationPage } from '../structure/structure';
+import { componentPages, documentationPages, IDocumentationPage, urlPrefix } from '../structure/structure';
 import styles from './page-routes-content.module.css';
 import Header from '../components/header/Header';
 
@@ -20,7 +20,7 @@ const PageRoutesContent: React.FC = () => {
 
   return (
     <IonPage>
-      <Route path='/maincode-ui/' exact={true} render={() => <Redirect to='/maincode-ui/Overview' />} />
+      <Route path={`${urlPrefix}/`} exact={true} render={() => <Redirect to='/maincode-ui/Overview' />} />
       <Header className='select-none' title={pageTitle} githubURL='https://github.com/maincode-org/maincode-ui' />
       <IonContent ref={ionContentRef} className={styles.ionContent} fullscreen>
         {routes}
@@ -57,6 +57,7 @@ const makeContent = (c: IDocumentationPage, scrollToTop: () => void, prevNav?: I
     customContent={c.customContent}
     prevNav={prevNav}
     nextNav={nextNav}
+    urlPrefix={urlPrefix}
   />
 );
 export default PageRoutesContent;

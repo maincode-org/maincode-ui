@@ -5,6 +5,8 @@ import { IonButton } from '@ionic/react';
 import QuickStartContent from '../pages/guide-pages/quick-start-page/documentation-page';
 import { makeOverviewContent } from '../pages/guide-pages/overview-page/documentation-page';
 
+export const urlPrefix = '/maincode-ui'; // Accounts for the prefix in hosting paths, such as github.io/maincode-ui/.
+
 export type IPreview = {
   picture?: string;
   element?: JSX.Element;
