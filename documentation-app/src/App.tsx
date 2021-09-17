@@ -1,9 +1,10 @@
-import { useContext, useEffect } from 'react';
+import { useContext } from 'react';
 import { IonApp, IonRouterOutlet, IonSplitPane } from '@ionic/react';
 import { IonReactRouter } from '@ionic/react-router';
 import { Redirect, Route } from 'react-router-dom';
 import Menu from './components/menu/Menu';
-import { ThemeContext } from './contexts/theme';
+import PageRoutesContent from './pages/PageRoutesContent';
+import { urlPrefix } from './structure/structure';
 
 /* Core CSS required for Ionic components to work properly */
 import '@ionic/react/css/core.css';
@@ -25,16 +26,10 @@ import '@ionic/react/css/display.css';
 import 'maincode-ui/dist/index.css';
 import 'maincode-ui/styles/generics.css';
 import 'maincode-ui/styles/theme.css';
-import { styleScrollbars } from 'maincode-ui';
-import PageRoutesContent from './pages/PageRoutesContent';
-import { urlPrefix } from './structure/structure';
+import { ThemeContext } from 'maincode-ui';
 
 const App: React.FC = () => {
   const themeName = useContext(ThemeContext)?.themeName;
-
-  useEffect(() => {
-    setTimeout(() => styleScrollbars(), 200);
-  }, [themeName]);
 
   return (
     <IonApp className={themeName}>

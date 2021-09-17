@@ -5,9 +5,9 @@ import CopyArea from './components/code-components/copy-area/CopyArea';
 import CopyButton from './components/code-components/copy-button/CopyButton';
 import PaginationFooter, { IFooterNav } from './components/page-components/pagination-footer/PaginationFooter';
 import InfoArea from './components/basic-components/info-area/InfoArea';
+import { EThemeModes, IThemeContext, ThemeContext, ThemeProvider } from './contexts/theme';
 
-export type { IDocumentationPageContent, IPropertyDetail, IStyleDetail, IComponentUsage, IFooterNav };
+export type { IDocumentationPageContent, IPropertyDetail, IStyleDetail, IComponentUsage, IFooterNav, IThemeContext };
 
-export { PaginationFooter };
-export { CopyButton };
-export { styleScrollbars, jsxExample, LiveCodeEditor, DocumentationSection, CopyArea, InfoArea };
+export { PaginationFooter, CopyButton };
+export { styleScrollbars, jsxExample, LiveCodeEditor, DocumentationSection, CopyArea, InfoArea, ThemeContext, EThemeModes, ThemeProvider };
