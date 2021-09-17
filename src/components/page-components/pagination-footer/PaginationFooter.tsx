@@ -1,5 +1,5 @@
 import React from 'react';
-import styles from './page-navigation-footer.module.css';
+import styles from './pagination-footer.module.css';
 
 export type IFooterNav = {
   title: string;
@@ -13,7 +13,7 @@ type IProps = {
   urlPrefix?: string;
 };
 
-const PagePaginationFooter: React.FC<IProps> = ({ className = '', prev, next, urlPrefix = '' }) => {
+const PaginationFooter: React.FC<IProps> = ({ className = '', prev, next, urlPrefix = '' }) => {
   return (
     <div className={`${className} ${styles.container} flex justify-between mt-1`}>
       <div className='flex flex-col'>
@@ -35,4 +35,4 @@ const PagePaginationFooter: React.FC<IProps> = ({ className = '', prev, next, ur
     </div>
   );
 };
-export default PagePaginationFooter;
+export default PaginationFooter;
