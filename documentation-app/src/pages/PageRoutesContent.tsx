@@ -3,11 +3,11 @@ import { IonContent, IonPage } from '@ionic/react';
 import { Redirect, Route } from 'react-router-dom';
 import { DocumentationSection, IFooterNav } from 'maincode-ui';
 
-import { componentPages, documentationPages, IDocumentationPage } from '../helpers/structure';
-import styles from './page.module.css';
+import { componentPages, documentationPages, IDocumentationPage } from '../structure/structure';
+import styles from './page-routes-content.module.css';
 import Header from '../components/header/Header';
 
-const Page: React.FC = () => {
+const PageRoutesContent: React.FC = () => {
   const [pageTitle, setPageTitle] = useState('');
   const [routes, setRoutes] = useState<JSX.Element>();
   const ionContentRef = useRef<HTMLIonContentElement>(null);
@@ -59,4 +59,4 @@ const makeContent = (c: IDocumentationPage, scrollToTop: () => void, prevNav?: I
     nextNav={nextNav}
   />
 );
-export default Page;
+export default PageRoutesContent;

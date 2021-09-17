@@ -1,5 +1,5 @@
 import styles from './component-preview.module.css';
-import { IDocumentationPage } from '../../helpers/structure';
+import { IDocumentationPage } from '../../structure/structure';
 import { IonCard, IonCardContent, IonCardHeader, IonCardTitle, IonGrid, IonRow, IonCol } from '@ionic/react';
 
 type IProps = {

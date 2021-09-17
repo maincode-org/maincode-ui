@@ -1,6 +1,6 @@
 import { CopyArea, InfoArea } from 'maincode-ui';
 
-const QuickStartContent: JSX.Element = (
+const DocumentationPage: JSX.Element = (
   <>
     <CopyArea command='npm i --save maincode-ui' />
     <p>or</p>
@@ -28,4 +28,4 @@ const QuickStartContent: JSX.Element = (
     <br />
   </>
 );
-export default QuickStartContent;
+export default DocumentationPage;

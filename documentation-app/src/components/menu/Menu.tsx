@@ -3,7 +3,7 @@ import { Route, useLocation } from 'react-router-dom';
 import './menu.css';
 
 import robot from '../../assets/maincode-robot.png';
-import { documentationPages, componentPages } from '../../helpers/structure';
+import { documentationPages, componentPages } from '../../structure/structure';
 
 const Menu: React.FC = () => {
   const location = useLocation();

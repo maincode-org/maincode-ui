@@ -1,9 +1,9 @@
-import { heartOutline, heartSharp, colorPaletteOutline, colorPaletteSharp, contrastOutline, contrastSharp, gitMergeOutline, gitMergeSharp, rocketOutline, rocketSharp } from 'ionicons/icons';
-
 import { IDocumentationPageContent } from 'maincode-ui';
-import QuickStartContent from '../components/page-content/quick-start-content/QuickStartContent';
+import { heartOutline, heartSharp, colorPaletteOutline, colorPaletteSharp, contrastOutline, contrastSharp, gitMergeOutline, gitMergeSharp, rocketOutline, rocketSharp } from 'ionicons/icons';
 import { IonButton } from '@ionic/react';
-import { makeOverviewContent } from '../components/page-content/overview-content/OverviewContent';
+
+import QuickStartContent from '../pages/guide-pages/quick-start-page/documentation-page';
+import { makeOverviewContent } from '../pages/guide-pages/overview-page/documentation-page';
 
 export type IPreview = {
   picture?: string;
