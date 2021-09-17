@@ -1,11 +1,12 @@
 /** Script for Ion Content scrollbar styling. */
 export const styleScrollbars = async (): Promise<void> => {
-  const content = document.querySelectorAll('ion-content');
+  setTimeout(() => {
+    const content = document.querySelectorAll('ion-content');
 
-  content.forEach((c) => {
-    const styles = document.createElement('style');
+    content.forEach((c) => {
+      const styles = document.createElement('style');
 
-    styles.textContent = `
+      styles.textContent = `
         ::-webkit-scrollbar {
           width: auto;
           max-width: 8px;
@@ -34,6 +35,7 @@ export const styleScrollbars = async (): Promise<void> => {
         }
     `;
 
-    c?.shadowRoot?.appendChild(styles);
-  });
+      c?.shadowRoot?.appendChild(styles);
+    });
+  }, 200);
 };

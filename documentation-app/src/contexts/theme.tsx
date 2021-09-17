@@ -1,4 +1,5 @@
 import React, { createContext, useEffect, useState } from 'react';
+import { styleScrollbars } from 'maincode-ui';
 
 export enum EThemeModes {
   'light' = 'light',
@@ -17,6 +18,7 @@ const ThemeProvider: React.FC = ({ children }) => {
   useEffect(() => {
     if (isDark()) setThemeName(EThemeModes.dark);
     document.body.classList.toggle(isDark() ? EThemeModes.dark : EThemeModes.light, true);
+    styleScrollbars();
   }, []);
 
   const toggleTheme = () => {
@@ -25,6 +27,7 @@ const ThemeProvider: React.FC = ({ children }) => {
     document.body.classList.toggle(EThemeModes.light);
     document.body.classList.toggle(EThemeModes.dark);
     setThemeName(name);
+    styleScrollbars();
   };
 
   return <ThemeContext.Provider value={{ themeName, toggleTheme }}>{children}</ThemeContext.Provider>;

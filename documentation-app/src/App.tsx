@@ -25,16 +25,11 @@ import '@ionic/react/css/display.css';
 import 'maincode-ui/dist/index.css';
 import 'maincode-ui/styles/generics.css';
 import 'maincode-ui/styles/theme.css';
-import { styleScrollbars } from 'maincode-ui';
 import PageRoutesContent from './pages/PageRoutesContent';
 import { urlPrefix } from './structure/structure';
 
 const App: React.FC = () => {
   const themeName = useContext(ThemeContext)?.themeName;
-
-  useEffect(() => {
-    setTimeout(() => styleScrollbars(), 200);
-  }, [themeName]);
 
   return (
     <IonApp className={themeName}>
