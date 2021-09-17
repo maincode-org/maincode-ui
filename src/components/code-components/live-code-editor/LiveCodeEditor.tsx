@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { LiveProvider, LiveEditor, LiveError, LivePreview } from 'react-live';
 import styles from './live-code-editor.module.css';
 import darkTheme from 'prism-react-renderer/themes/oceanicNext';
-import lightTheme from 'prism-react-renderer/themes/github';
+import lightTheme from 'prism-react-renderer/themes/nightOwlLight';
 import CopyButton from '../copy-button/CopyButton';
 
 type IProps = {
