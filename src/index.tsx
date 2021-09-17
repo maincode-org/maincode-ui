@@ -5,6 +5,7 @@ import CopyArea from './components/copy-area/CopyArea';
 import PagePaginationFooter, { IFooterNav } from './components/page-pagination-footer/PagePaginationFooter';
 import InfoArea from './components/info-area/InfoArea';
 
-export type { IFooterNav, IDocumentationPageContent, IPropertyDetail, IStyleDetail, IComponentUsage };
+export type { IDocumentationPageContent, IPropertyDetail, IStyleDetail, IComponentUsage, IFooterNav };
+
 export { PagePaginationFooter };
 export { styleScrollbars, jsxExample, LiveCodeEditor, DocumentationSection, CopyArea, InfoArea };
