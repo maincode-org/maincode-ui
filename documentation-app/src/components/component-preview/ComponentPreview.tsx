@@ -11,7 +11,7 @@ type IProps = {
 const ComponentPreview: React.FC<IProps> = ({ componentPages }) => (
   <IonGrid className={styles.grid}>
     <IonRow>
-      {[...componentPages, ...componentPages].map((c, i) => (
+      {[...componentPages].map((c, i) => (
         <IonCol key={i} className='mb-1' size='12' size-md='6' size-lg='6' size-xl='4'>
           <IonCard key={i} className={`${styles.card} theme-border shadow-lg`}>
             <IonCardHeader className={styles.cardHeader}>

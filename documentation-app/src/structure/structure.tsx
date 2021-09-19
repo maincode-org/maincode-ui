@@ -24,9 +24,14 @@ export const componentPages: IDocumentationPage[] = [
   {
     url: '/Component1',
     title: 'Component 1',
+    preview: { picture: 'https://i.picsum.photos/id/12/1000/1000.jpg?hmac=rd7CBVhclToSFt6oDC9OPLQiV4x08Geesh3ONi36e8c', description: 'This is a teaser for component 1' },
     description: <p>This is a description for component 1</p>,
     customContent: <LiveCodeEditor code={jsxExample} isDarkMode={true} noInline={true} />,
-    preview: { picture: 'https://i.picsum.photos/id/12/1000/1000.jpg?hmac=rd7CBVhclToSFt6oDC9OPLQiV4x08Geesh3ONi36e8c', description: 'This is a teaser for component 1' },
+    props: [{ propTitle: 'Animated', description: `If <code>true</code>, the alert will animate`, attribute: 'animated', type: 'boolean', default: 'true' }],
+    styles: [
+      { className: `<code>glass-bg</code>`, description: 'This is a glass effect on the background' },
+      { className: `<code>theme-border</code>`, description: 'Border matching the theme' },
+    ],
   },
   {
     url: '/Component2',
@@ -56,12 +61,6 @@ export const documentationPages: IDocumentationPage[] = [
     mdIcon: heartSharp,
     description: <p>This is the overview description</p>,
     customContent: makeOverviewContent(componentPages),
-    examples: [],
-    props: [{ propTitle: 'Animated', description: `If <code>true</code>, the alert will animate`, attribute: 'animated', type: 'boolean', default: 'true' }],
-    styles: [
-      { className: `<code>glass-bg</code>`, description: 'This is a glass effect on the background' },
-      { className: `<code>theme-border</code>`, description: 'Border matching the theme' },
-    ],
   },
   {
     url: '/QuickStart',
