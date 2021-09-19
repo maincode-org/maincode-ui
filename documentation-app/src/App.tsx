@@ -4,7 +4,7 @@ import { IonReactRouter } from '@ionic/react-router';
 import { Redirect, Route } from 'react-router-dom';
 import Menu from './components/menu/Menu';
 import PageRoutesContent from './pages/PageRoutesContent';
-import { urlPrefix } from './structure/structure';
+import { urlPrefix } from './structure/assembly';
 
 /* Core CSS required for Ionic components to work properly */
 import '@ionic/react/css/core.css';

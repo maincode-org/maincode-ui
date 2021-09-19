@@ -3,7 +3,7 @@ import { IonContent, IonPage } from '@ionic/react';
 import { Redirect, Route } from 'react-router-dom';
 import { DocumentationSection, IFooterNav } from 'maincode-ui';
 
-import { componentPages, documentationPages, IDocumentationPage, urlPrefix } from 'structure/structure';
+import { componentPages, documentationPages, IDocumentationPage, urlPrefix } from 'structure/assembly';
 import styles from './page-routes-content.module.css';
 import Header from '../components/header/Header';
 

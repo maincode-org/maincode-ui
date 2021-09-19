@@ -1,15 +1,15 @@
-import { IDocumentationPageContent, LiveCodeEditor, jsxExample } from 'maincode-ui';
+import { IDocumentationPageContent, LiveCodeEditor, jsxExample, CopyArea } from 'maincode-ui';
 import { heartOutline, heartSharp, colorPaletteOutline, colorPaletteSharp, contrastOutline, contrastSharp, gitMergeOutline, gitMergeSharp, rocketOutline, rocketSharp } from 'ionicons/icons';
 import { IonButton } from '@ionic/react';
 
 import QuickStartContent from '../pages/guide-pages/quick-start-page/documentation-page';
 import { makeOverviewContent } from '../pages/guide-pages/overview-page/documentation-page';
+
 export const urlPrefix = '/maincode-ui'; // Accounts for the prefix in hosting paths, such as github.io/maincode-ui/.
 
 export type IPreview = {
   picture?: string;
   element?: JSX.Element;
-  description: string;
 };
 
 export type IDocumentationPage = IDocumentationPageContent & {
@@ -20,13 +20,18 @@ export type IDocumentationPage = IDocumentationPageContent & {
   mdIcon?: string;
 };
 
+export type IComponentCategoryPages = {
+  title: string;
+  icon?: string;
+  pages: IDocumentationPage[];
+};
+
 export const componentPages: IDocumentationPage[] = [
   {
-    url: '/Component1',
-    title: 'Component 1',
-    preview: { picture: 'https://i.picsum.photos/id/12/1000/1000.jpg?hmac=rd7CBVhclToSFt6oDC9OPLQiV4x08Geesh3ONi36e8c', description: 'This is a teaser for component 1' },
-    description: <p>This is a description for component 1</p>,
-    customContent: <LiveCodeEditor code={jsxExample} isDarkMode={true} noInline={true} />,
+    url: '/copy-area',
+    title: 'Copy Area',
+    preview: { element: <CopyArea command={'npm install maincode-ui'} /> },
+    description: <p>Displays single commands with controls for seamless clipboard copying</p>,
     props: [{ propTitle: 'Animated', description: `If <code>true</code>, the alert will animate`, attribute: 'animated', type: 'boolean', default: 'true' }],
     styles: [
       { className: `<code>glass-bg</code>`, description: 'This is a glass effect on the background' },
@@ -36,19 +41,18 @@ export const componentPages: IDocumentationPage[] = [
   {
     url: '/Component2',
     title: 'Component 2',
-    description: <p>This is a description for component 2</p>,
+    description: <p>This is a teaser for component 2. They got a hang of a long text right? Is this really how they made it? I had to put max-width on the card container.</p>,
     preview: {
       picture: 'https://i.picsum.photos/id/12/1000/1000.jpg?hmac=rd7CBVhclToSFt6oDC9OPLQiV4x08Geesh3ONi36e8c',
-      description: 'This is a teaser for component 2. They got a hang of a long text right? Is this really how they made it? I had to put max-width on the card container.',
     },
+    customContent: <LiveCodeEditor code={jsxExample} isDarkMode={true} noInline={true} />,
   },
   {
     url: '/Component3',
     title: 'Component 3',
-    description: <p>This is a description for component 2</p>,
+    description: <p>This is a teaser for component 2. They got a hang of a long text right? Is this really how they made it? I had to put max-width on the card container.</p>,
     preview: {
       element: <IonButton onClick={() => alert('Mark er noob')}>Mark tester mig</IonButton>,
-      description: 'This is a teaser for component 2. They got a hang of a long text right? Is this really how they made it? I had to put max-width on the card container.',
     },
   },
 ];
