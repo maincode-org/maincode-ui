@@ -1,9 +1,11 @@
-import { IonContent, IonIcon, IonItem, IonLabel, IonList, IonListHeader, IonMenu, IonMenuToggle, IonNote } from '@ionic/react';
 import { Route, useLocation } from 'react-router-dom';
+import { IonContent, IonIcon, IonItem, IonLabel, IonList, IonListHeader, IonMenu, IonMenuToggle, IonNote } from '@ionic/react';
+import { chevronForwardOutline } from 'ionicons/icons';
+import robot from 'assets/maincode-robot.png';
 import './menu.css';
 
-import robot from '../../assets/maincode-robot.png';
-import { documentationPages, componentPages } from '../../structure/assembly';
+import { allComponentCategoryPages, allPages } from 'structure/assembly';
+import { guidePages } from 'structure/guides';
 
 const Menu: React.FC = () => {
   const location = useLocation();
@@ -17,13 +19,16 @@ const Menu: React.FC = () => {
             <IonNote className='pb-15 select-none'>
               By <a href='https://maincode.dk'>maincode.dk</a>
             </IonNote>
-            {documentationPages.map((c, index) => makeMenuEntry(index, c.url, c.title, location.pathname, c.iosIcon, c.mdIcon))}
+            {guidePages.map((c, index) => makeMenuEntry(index, c.url, c.title, location.pathname, c.iosIcon, c.mdIcon))}
           </IonList>
 
-          <IonList className='menu-list'>
-            <IonListHeader className='pb-15 select-none'>Components</IonListHeader>
-            {componentPages.map((c, index) => makeMenuEntry(index, c.url, c.title, location.pathname, c.iosIcon, c.mdIcon))}
-          </IonList>
+          {allComponentCategoryPages.map((p, index) => (
+            <IonList key={index} className='menu-list'>
+              <IonListHeader className='pb-15 select-none'>{p.title}</IonListHeader>
+
+              {p.pages.map((c, index) => makeMenuEntry(index, c.url, c.title, location.pathname, chevronForwardOutline, chevronForwardOutline))}
+            </IonList>
+          ))}
         </div>
         <div className='menu-lower flex justify-center'>
           <img className='h-full select-none' src={robot} alt='Maincode Robot' />
@@ -46,10 +51,7 @@ export default Menu;
 
 export const menuRoutes: JSX.Element = (
   <>
-    {documentationPages.map((c, i) => (
-      <Route key={i} path={`/maincode-ui/${c.url}`} />
-    ))}
-    {componentPages.map((c, i) => (
+    {allPages.map((c, i) => (
       <Route key={i} path={`/maincode-ui/${c.url}`} />
     ))}
   </>
