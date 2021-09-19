@@ -3,7 +3,7 @@ import { IonContent, IonPage } from '@ionic/react';
 import { Redirect, Route } from 'react-router-dom';
 import { DocumentationSection, IFooterNav } from 'maincode-ui';
 
-import { componentPages, documentationPages, IDocumentationPage, urlPrefix } from 'structure/assembly';
+import { allPages, IDocumentationPage, urlPrefix } from 'structure/assembly';
 import styles from './page-routes-content.module.css';
 import Header from '../components/header/Header';
 
@@ -32,7 +32,7 @@ const PageRoutesContent: React.FC = () => {
 const makeRoutes = (setPageTitle: (value: React.SetStateAction<string>) => void, scrollToTop: () => void): JSX.Element => {
   return (
     <>
-      {[...documentationPages, ...componentPages].map((c, i, elements) => (
+      {allPages.map((c, i, elements) => (
         <Route
           key={i}
           path={`/maincode-ui${c.url}`}

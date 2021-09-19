@@ -22,12 +22,6 @@ th {
   font-family: 'Tomorrow', sans-serif;
 }
 
-code {
-  font-family: 'Tomorrow', sans-serif;
-  letter-spacing: 0.06rem;
-  line-height: 2rem;
-}
-
 p,
 span,
 h1,
@@ -38,6 +32,13 @@ h5,
 h6,
 th {
   white-space: pre-line;
+}
+
+code {
+  font-family: 'Tomorrow', sans-serif;
+  letter-spacing: 0.06rem;
+  line-height: 2rem;
+  color: var(--ion-text-color);
 }
 
 /** Ionic CSS Variables ------------------------ **/
