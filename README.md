@@ -43,18 +43,16 @@ For usage on all components, please see the <a href="https://maincode-org.github
 > **!Note** that the stylesheets need only be imported once for each app, not for every component.
 
 ```tsx
-import React, { Component } from 'react';
+import React from 'react';
+import { CopyArea } from 'maincode-ui';
 
-import MyComponent from 'maincode-ui';
-
-/** Maincode UI stylesheets */
+/** Maincode UI stylesheets. */
 import 'maincode-ui/dist/index.css'; // All the component specific styles.
-import 'maincode-ui/dist/theme.css'; // The default theme variables. See the "themes" section for customization.
-import 'maincode-ui/dist/generics.css'; // A subset of tailwind classes (eg. "text-white"), and a few custom classes.
-import '...'; // Optional -
+import 'maincode-ui/styles/theme.css'; // The default theme variables. See the "themes" section for customization.
+import 'maincode-ui/styles/generics.css'; // A subset of tailwind classes (eg. "text-white"), and a few custom classes.
 
-const Example: React.FC = () => {
-  return <MyComponent />;
+const ExampleApp: React.FC = () => {
+  return <CopyArea command={'npm install maincode-ui'} />;
 };
 ```
 
