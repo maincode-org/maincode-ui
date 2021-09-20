@@ -58,13 +58,25 @@ const ExampleApp: React.FC = () => {
 
 ### Theming
 
-#### Dark mode
+The `maincode-ui/styles/theme.css` file provides a base theme. To customize the theme you can overwrite relevant CSS variables. We generally use the **Ionic theme** variable names, with a few **Maincode UI** additions.
+
+To do this, create a new `theme.css` file, and apply assign values to the CSS variables described in the Ionic documentation [here.](https://ionicframework.com/docs/theming/color-generator)
+
+Besides the Ionic variables, we also provide the following Maincode UI specific variables:
+
+### Dark mode
 
 - theming, add .dark or .light to a selector to specify styling.
 
-**Styling the scrollbar..**
+### Styling the scrollbar
 
-https://github.com/ionic-team/ionic-framework/issues/17685#issuecomment-587633556
+It is normally difficult to apply scrollbar styles to Ionic applications [(see their issue)](https://github.com/ionic-team/ionic-framework/issues/17685).
+
+We provide a helper to style the scrollbar from the following set of css theme variables:
+
+...
+
+We automatically call this helper on dark mode context changes, allowing for separate dark mode scrollbar styling.
 
 ## Development & contribution
 
