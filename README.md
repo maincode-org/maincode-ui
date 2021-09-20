@@ -20,41 +20,63 @@
 
 ---
 
-## Install
+**Maincode UI** strives to deliver quickly integrated components to supplement **Ionic** or **other React.js** applications. It is..
+
+- **Not a complete UI library**. ... .
+- **Simplistic but customizable**. ... .
+- **A Ionic extension**. ... .
+
+## Getting Started
+
+<a href="https://maincode-org.github.io/maincode-ui/QuickStart" target="_blank">Read the Getting Started tutorial</a> or follow the steps below:
+
+### ⏳ Installation
 
 ```bash
 npm install --save maincode-ui
 ```
 
-## Usage
+### 🎉 Usage
 
-Made to be used with Ionic Framework!
+For usage on all components, please see the <a href="https://maincode-org.github.io/maincode-ui/Overview">complete component documentation.</a>
+
+> **!Note** that the stylesheets need only be imported once for each app, not for every component.
 
 ```tsx
 import React, { Component } from 'react';
 
 import MyComponent from 'maincode-ui';
-import 'maincode-ui/dist/index.css';
 
-class Example extends Component {
-  render() {
-    return <MyComponent />;
-  }
-}
+/** Maincode UI stylesheets */
+import 'maincode-ui/dist/index.css'; // All the component specific styles.
+import 'maincode-ui/dist/theme.css'; // The default theme variables. See the "themes" section for customization.
+import 'maincode-ui/dist/generics.css'; // A subset of tailwind classes (eg. "text-white"), and a few custom classes.
+import '...'; // Optional -
+
+const Example: React.FC = () => {
+  return <MyComponent />;
+};
 ```
 
-#### Theming
+### Theming
 
-** Dark theme **
+#### Dark mode
 
 - theming, add .dark or .light to a selector to specify styling.
 
-** Styling the scrollbar **
+**Styling the scrollbar..**
+
 https://github.com/ionic-team/ionic-framework/issues/17685#issuecomment-587633556
 
 ## Development & contribution
 
-npm run dev-init
+...
+
+### Getting started
+
+```bash
+npm install ...
+```
 
 ### Library structure
 
