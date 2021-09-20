@@ -5,7 +5,7 @@
 </p>
 
 <h3 align="center">A collection of freely available React.js UI components by Maincode!</h3>
-<p align="center">Build mobile first as a batteries included extension of Ionic Framework Apps.</p>
+<p align="center">Build mobile first as a batteries included extension for Ionic Framework apps.</p>
 <p align="center"><a href="https://maincode-org.github.io/maincode-ui/"><strong>></strong> View demo and documentation page</a></p>
 <br />
 
@@ -17,6 +17,8 @@
     <img src="https://img.shields.io/npm/dm/maincode-ui.svg" alt="Monthly download on NPM" />
   </a>
 </p>
+
+---
 
 ## Install
 
