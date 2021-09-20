@@ -1,10 +1,10 @@
 <p align="center">
   <a href="https://strapi.io">
-    <img src="./assets/MaincodeUITitle_Filled.png" width="318px" alt="Maincode UI logo" />
+    <img src="./assets/MaincodeUITitle_Filled.png" width="581" alt="Maincode UI logo" />
   </a>
 </p>
-<h1 align="center">Maincode UI</h1>
-<h3 align="center">A collection of open source React.js UI components by Maincode!</h3>
+
+<h3 align="center">A collection of freely available React.js UI components by Maincode!</h3>
 <p align="center">Build mobile first as a batteries included extension of Ionic Framework Apps.</p>
 <p align="center"><a href="https://maincode-org.github.io/maincode-ui/"><strong>></strong> View demo and documentation page</a></p>
 <br />
