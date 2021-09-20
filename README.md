@@ -1,13 +1,22 @@
-# Maincode UI
+<p align="center">
+  <a href="https://strapi.io">
+    <img src="./assets/MaincodeUITitle_Filled.png" width="318px" alt="Maincode UI logo" />
+  </a>
+</p>
+<h1 align="center">Maincode UI</h1>
+<h3 align="center">A collection of open source React.js UI components by Maincode!</h3>
+<p align="center">Build mobile first as a batteries included extension of Ionic Framework Apps.</p>
+<p align="center"><a href="https://maincode-org.github.io/maincode-ui/"><strong>></strong> View demo and documentation page</a></p>
+<br />
 
-[] - setup components with ionic dependency
-
-> Add image as heading
-
-> A collection of freely available React.js UI components by Maincode!
-> For a demo on the components, see our [examples pages](https://maincode-org.github.io/maincode-ui/).
-
-[![NPM](https://img.shields.io/npm/v/maincode-ui.svg)](https://www.npmjs.com/package/maincode-ui) [![JavaScript Style Guide](https://img.shields.io/badge/code_style-standard-brightgreen.svg)](https://standardjs.com)
+<p align="center">
+  <a href="https://www.npmjs.org/package/strapi">
+    <img src="https://img.shields.io/npm/v/maincode-ui/latest.svg" alt="NPM Version" />
+  </a>
+  <a href="https://www.npmjs.org/package/strapi">
+    <img src="https://img.shields.io/npm/dm/maincode-ui.svg" alt="Monthly download on NPM" />
+  </a>
+</p>
 
 ## Install
 
