@@ -20,7 +20,7 @@
 
 ---
 
-**Maincode UI** strives to deliver quickly integrated components to supplement **Ionic** or **other React.js**
+**Maincode UI** strives to deliver quickly integratable components to supplement **Ionic** or **other React.js**
 applications. It is..
 
 - **Simplistic but customizable**. The components are high level and include several sub-components. It trades some
@@ -70,22 +70,50 @@ const ExampleApp: React.FC = () => {
 The `maincode-ui/styles/theme.css` file provides a base theme. To customize the theme you can overwrite relevant CSS
 variables. We generally use the **Ionic theme** variable names, with a few **Maincode UI** additions.
 
-To do this, create a new `theme.css` file, and apply assign values to the CSS variables described in the Ionic
+To do this, create a new `theme.css` file, and assign values to the CSS variables described in the Ionic
 documentation [here.](https://ionicframework.com/docs/theming/color-generator)
 
+Besides the Ionic variables, we also provide the Maincode UI specific variables described in our [theming documentation](https://maincode-org.github.io/maincode-ui/Theming).
+
+FOR WEBSITE: -------------
 Besides the Ionic variables, we also provide the following Maincode UI specific variables:
 
-> `--text-color-alt` which
+> `--text-color-alt` which modifies alternative texts such as sub-headers, which deviate from the --ion-text-color.
 >
-> `--color-glass`
+> `--border-color` which modifies the border color set on Maincode UI components.
 >
-> `--border-color`
+> `--color-glass` which modifies the coloring of elements with the glassy background effects.
 >
-> `--border-glass`
+> `--border-glass` which modifies the supplementary border color for elements with the glassy background effect.
 >
-> `--shadow`
+> `--shadow` which modifies the theme-shadow. This is used on selective Maincode UI elements.
 >
-> `--card-shadow`
+> `--card-shadow` which modifies the custom card shadow. This is used on Maincode UI cards only.
+
+#### Styling the scrollbar
+
+It is normally difficult to apply scrollbar styles to Ionic applications [(see their issue)](https://github.com/ionic-team/ionic-framework/issues/17685).
+
+We provide a helper to style the scrollbar. It can be used after the app is mounted:
+
+```tsx
+import React, { useEffect } from 'react';
+import styleScrollbar from 'maincode-ui';
+
+const App: React.FC = () => {
+  useEffect(() => {
+    styleScrollbar();
+  }, []);
+
+  return <p>Some app</p>;
+};
+```
+
+The look of the scrollbar can be modified in your `theme.css` file through the following set of CSS theme variables:
+
+...
+
+We automatically call this helper on dark mode context changes, allowing for separate dark mode scrollbar styling.
 
 ### Dark mode
 
@@ -116,16 +144,23 @@ buttons for dark mode, or adapting components dynamically based on theme changes
 
 ... example ...
 
-### Styling the scrollbar
+### Styling system
 
-It is normally difficult to apply scrollbar styles to Ionic
-applications [(see their issue)](https://github.com/ionic-team/ionic-framework/issues/17685).
+Maincode UI offer a lot of styling through pre-defined classnames.
 
-We provide a helper to style the scrollbar from the following set of css theme variables:
+- This is entirely inspired by Tailwind CSS and can be seen as a less advanced subset of Tailwind.
 
+- It can be exchanged for tailwind CSS if you want additional classnames or smart functionality such as purging.
+
+- In case you use Tailwind, you don't have to import our generics.
+
+> **!Note** that some specific classes, like `glass-bg` will be missing. We will split up Tailwind overwrites and our additions in the future. More information about this issue will follow.
+
+Here is an example of how to utilize the generic classes when styling and layouting your app!
+
+```jsx
 ...
-
-We automatically call this helper on dark mode context changes, allowing for separate dark mode scrollbar styling.
+```
 
 ## Development & contribution
 
