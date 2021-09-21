@@ -2,6 +2,7 @@ import { colorPaletteOutline, colorPaletteSharp, contrastOutline, contrastSharp,
 import { makeOverviewContent } from '../pages/guide-pages/overview-page/documentation-page';
 import QuickStartContent from '../pages/guide-pages/quick-start-page/documentation-page';
 import ThemingContent from '../pages/guide-pages/theming-page/documentation-page';
+import DarkModeContent from '../pages/guide-pages/dark-mode-page/documentation-page';
 import { IDocumentationPage } from './assembly';
 import { basicComponentPages } from './basic-components';
 
@@ -11,7 +12,7 @@ export const guidePages: IDocumentationPage[] = [
     title: 'Overview',
     iosIcon: heartOutline,
     mdIcon: heartSharp,
-    description: <p>This is the overview description</p>,
+    description: <p>This is the overview intro description</p>,
     customContent: makeOverviewContent(basicComponentPages.pages),
   },
   {
@@ -39,7 +40,8 @@ export const guidePages: IDocumentationPage[] = [
     title: 'Dark Mode',
     iosIcon: contrastOutline,
     mdIcon: contrastSharp,
-    description: <p>This is the dark mode description</p>,
+    description: <p>This is the dark mode intro description</p>,
+    customContent: DarkModeContent,
   },
   {
     url: '/Contributing',
