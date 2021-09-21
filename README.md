@@ -22,9 +22,11 @@
 
 **Maincode UI** strives to deliver quickly integrated components to supplement **Ionic** or **other React.js** applications. It is..
 
-- **Simplistic but customizable**. The components are high level and include several sub-components. It trades some customization for less development time.
-- **Not a complete UI library**. For a complete collection of lower level components, please see the Ionic Framework component library. Your Maincode UI theming will automatically theme any Ionic component!
-- **An Ionic extension**. It provides utilities for some things which are usually difficult in Ionic Apps, such as our dark mode context and scrollbar styling helper.
+- **Simplistic but customizable**. The components are high level and include several sub-components. It trades some customization for less development time. We gradually expand our use-case support.
+
+- **Not a complete UI library**. For a complete collection of lower level components, please see the Ionic Framework [component library](https://ionicframework.com/docs/components). Your **Maincode UI** theming will automatically theme any Ionic component!
+
+- **An Ionic extension**. It provides utilities for some things which are usually difficult in Ionic apps, such as our **dark mode context** and **scrollbar styling** helper.
 
 ## Getting Started
 
