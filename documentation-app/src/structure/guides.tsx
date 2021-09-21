@@ -1,6 +1,7 @@
 import { colorPaletteOutline, colorPaletteSharp, contrastOutline, contrastSharp, gitMergeOutline, gitMergeSharp, heartOutline, heartSharp, rocketOutline, rocketSharp } from 'ionicons/icons';
 import { makeOverviewContent } from '../pages/guide-pages/overview-page/documentation-page';
 import QuickStartContent from '../pages/guide-pages/quick-start-page/documentation-page';
+import ThemingContent from '../pages/guide-pages/theming-page/documentation-page';
 import { IDocumentationPage } from './assembly';
 import { basicComponentPages } from './basic-components';
 
@@ -30,7 +31,8 @@ export const guidePages: IDocumentationPage[] = [
     title: 'Theming',
     iosIcon: colorPaletteOutline,
     mdIcon: colorPaletteSharp,
-    description: <p>This is the theming description</p>,
+    description: <p>This is the theming intro description</p>,
+    customContent: ThemingContent,
   },
   {
     url: '/DarkMode',

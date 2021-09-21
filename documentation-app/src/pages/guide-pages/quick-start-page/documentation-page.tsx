@@ -1,4 +1,10 @@
 import { CopyArea, InfoArea } from 'maincode-ui';
+import { LiveCodeEditor } from 'maincode-ui';
+
+const cssImportExample = `/** Maincode UI stylesheets. */
+import 'maincode-ui/dist/index.css'; // All the component specific styles.
+import 'maincode-ui/styles/theme.css'; // The default theme variables. See the "themes" section for customization.
+import 'maincode-ui/styles/generics.css'; // A subset of tailwind classes (eg. "text-white"), and a few custom classes.`;
 
 const DocumentationPage: JSX.Element = (
   <>
@@ -12,18 +18,15 @@ const DocumentationPage: JSX.Element = (
     />
     <h3>Import CSS </h3>
     <p>The library uses three different CSS files to make everything look good. </p>
-    <p>- index.css which has some awesome styling???</p>
-    <p>- theme.css which themes the Maincode UI components.</p>
-    <p>- generics.css which includes generic styling across the Maincode UI components.</p>
+    <p>- index.css which is the specific styles for all components.</p>
+    <p>- theme.css which is the default theme variables.</p>
+    <p>{`- generics.css a subset of tailwind-like generic classes (e.g. "text-white"), and a few custom classes.`}</p>
     <br />
     <br />
     <h3>Usage example</h3>
-    <p>Use the component - the three CSS lines</p>
+    <LiveCodeEditor isDarkMode={true} enablePreview={false} code={cssImportExample} />
     <br />
-    <br />
-    <h3>Styling of scroll-bar</h3>
-    <p>Additionally the library provides a way to style the scrollbar of your application. </p>
-    <p>An example of how to utilize this function is shown below. </p>
+    <InfoArea info='Note that the stylesheets need only be imported once for each app, not for every component' />
     <br />
     <br />
   </>
