@@ -18,21 +18,21 @@ export const basicComponentPages: IComponentCategoryPages = {
       ],
     },
     {
-      url: '/Component2',
-      title: 'Component 2',
-      description: <p>This is a teaser for component 2. They got a hang of a long text right? Is this really how they made it? I had to put max-width on the card container.</p>,
-      preview: {
-        picture: 'https://i.picsum.photos/id/12/1000/1000.jpg?hmac=rd7CBVhclToSFt6oDC9OPLQiV4x08Geesh3ONi36e8c',
-      },
-      customContent: <LiveCodeEditor code={jsxExample} isDarkMode={false} noInline={true} />,
-    },
-    {
-      url: '/LiveCodeEditor',
-      title: localStorage.getItem('themeName') ?? '',
-      description: <p>Live Edit component code to play around with the Maincode UI component with instant feedback. </p>,
+      url: '/live-code-editor',
+      title: 'Live Code Editor',
+      description: <p>Play around with the Maincode UI components and get instant feedback. </p>,
       preview: {
         element: <LiveCodeEditorPreview />,
         elementPaddingClass: 'p-0',
+      },
+      customContent: <LiveCodeEditor code={jsxExample} isDarkMode={true} noInline={true} />,
+    },
+    {
+      url: '/Component3',
+      title: 'Component 3',
+      description: <p>This is a teaser for component 2. They got a hang of a long text right? Is this really how they made it? I had to put max-width on the card container.</p>,
+      preview: {
+        picture: 'https://i.picsum.photos/id/12/1000/1000.jpg?hmac=rd7CBVhclToSFt6oDC9OPLQiV4x08Geesh3ONi36e8c',
       },
     },
   ],
