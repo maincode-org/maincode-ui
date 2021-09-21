@@ -66,9 +66,43 @@ To do this, create a new `theme.css` file, and apply assign values to the CSS va
 
 Besides the Ionic variables, we also provide the following Maincode UI specific variables:
 
+> `--text-color-alt` which
+>
+> `--color-glass`
+>
+> `--border-color`
+>
+> `--border-glass`
+>
+> `--shadow`
+>
+> `--card-shadow`
+
 ### Dark mode
 
-- theming, add .dark or .light to a selector to specify styling.
+Enabling dark mode.. (use context on app). TBA
+
+You can customize your dark mode theme by setting values for any CSS variable in your custom theme file.
+
+The variables must be on the `body.dark` element, and also apply for `.md body.dark` and `.ios body.dark` elements. The reason is that darkmode is set as a classname on the `body` element with values `"light"` or `"dark""`.
+
+```css
+body.dark,
+.ios body.dark,
+.md body.dark {
+  --ion-text-color: #bdbddd;
+  --ion-color-primary: #dd7500 !important;
+  ...;
+}
+```
+
+This approach lets you use any variable, like `--ion-text-color` in your app, and have it automatically adapt to dark mode.
+
+#### Setting and reading Dark Mode manually
+
+The provided theme context allows you to toggle and read the state of the app theme. This is useful when making "toggle" buttons for dark mode, or adapting components dynamically based on theme changes.
+
+... example ...
 
 ### Styling the scrollbar
 
