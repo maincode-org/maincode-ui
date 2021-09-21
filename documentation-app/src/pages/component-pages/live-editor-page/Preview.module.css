@@ -1,0 +1,10 @@
+.image {
+  background-size: cover;
+  cursor: pointer;
+}
+
+.previewArea {
+  border-bottom: 1px solid var(--border-color);
+  height: 300px;
+  width: 100%;
+}
