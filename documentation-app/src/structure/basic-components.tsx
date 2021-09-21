@@ -2,6 +2,12 @@ import React from 'react';
 import { CopyArea, LiveCodeEditor, jsxExample } from 'maincode-ui';
 import { IComponentCategoryPages } from './assembly';
 
+const liveCodeEditorExample = `
+<div className='mt-4'>
+  <CopyArea command='npm install maincode-ui' />
+</div>
+`;
+
 export const basicComponentPages: IComponentCategoryPages = {
   title: 'Basic Components',
   pages: [
@@ -26,15 +32,11 @@ export const basicComponentPages: IComponentCategoryPages = {
       customContent: <LiveCodeEditor code={jsxExample} isDarkMode={true} noInline={true} />,
     },
     {
-      url: '/Component3',
-      title: 'Component 3',
-      description: <p>This is a teaser for component 2. They got a hang of a long text right? Is this really how they made it? I had to put max-width on the card container.</p>,
+      url: '/LiveCodeEditor',
+      title: 'Live Code Editor',
+      description: <p>Live Edit component code to play around with the Maincode UI component with instant feedback. </p>,
       preview: {
-        element: (
-          <button className='p-2 glass-bg text-white rounded' onClick={() => alert('Mark er noob')}>
-            Mark tester mig
-          </button>
-        ),
+        element: <LiveCodeEditor scope={{ CopyArea }} isDarkMode={true} code={liveCodeEditorExample} />,
       },
     },
   ],

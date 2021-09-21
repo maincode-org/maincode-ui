@@ -1,5 +1,5 @@
-import ComponentPreview from '../../../components/component-preview/ComponentPreview';
-import { IDocumentationPage } from '../../../structure/assembly';
+import ComponentPreview from 'components/component-preview/ComponentPreview';
+import { IDocumentationPage } from 'structure/assembly';
 
 export const makeOverviewContent = (previews: IDocumentationPage[]): JSX.Element => (
   <>
