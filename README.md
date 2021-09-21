@@ -20,17 +20,23 @@
 
 ---
 
-**Maincode UI** strives to deliver quickly integrated components to supplement **Ionic** or **other React.js** applications. It is..
+**Maincode UI** strives to deliver quickly integrated components to supplement **Ionic** or **other React.js**
+applications. It is..
 
-- **Simplistic but customizable**. The components are high level and include several sub-components. It trades some customization for less development time. We gradually expand our use-case support.
+- **Simplistic but customizable**. The components are high level and include several sub-components. It trades some
+  customization for less development time. We gradually expand our use-case support.
 
-- **Not a complete UI library**. For a complete collection of lower level components, please see the Ionic Framework [component library](https://ionicframework.com/docs/components). Your **Maincode UI** theming will automatically theme any Ionic component!
+- **Not a complete UI library**. For a complete collection of lower level components, please see the Ionic
+  Framework [component library](https://ionicframework.com/docs/components). Your **Maincode UI** theming will
+  automatically theme any Ionic component!
 
-- **An Ionic extension**. It provides utilities for some things which are usually difficult in Ionic apps, such as our **dark mode context** and **scrollbar styling** helper.
+- **An Ionic extension**. It provides utilities for some things which are usually difficult in Ionic apps, such as
+  our **dark mode context** and **scrollbar styling** helper.
 
 ## Getting Started
 
-<a href="https://maincode-org.github.io/maincode-ui/QuickStart" target="_blank">Read the Getting Started tutorial</a> or follow the steps below:
+<a href="https://maincode-org.github.io/maincode-ui/QuickStart" target="_blank">Read the Getting Started tutorial</a> or
+follow the steps below:
 
 ### ⏳ Installation
 
@@ -40,7 +46,8 @@ npm install --save maincode-ui
 
 ### 🎉 Usage
 
-For usage on all components, please see the <a href="https://maincode-org.github.io/maincode-ui/Overview">complete component documentation.</a>
+For usage on all components, please see the <a href="https://maincode-org.github.io/maincode-ui/Overview">complete
+component documentation.</a>
 
 > **!Note** that the stylesheets need only be imported once for each app, not for every component.
 
@@ -60,9 +67,11 @@ const ExampleApp: React.FC = () => {
 
 ### Theming
 
-The `maincode-ui/styles/theme.css` file provides a base theme. To customize the theme you can overwrite relevant CSS variables. We generally use the **Ionic theme** variable names, with a few **Maincode UI** additions.
+The `maincode-ui/styles/theme.css` file provides a base theme. To customize the theme you can overwrite relevant CSS
+variables. We generally use the **Ionic theme** variable names, with a few **Maincode UI** additions.
 
-To do this, create a new `theme.css` file, and apply assign values to the CSS variables described in the Ionic documentation [here.](https://ionicframework.com/docs/theming/color-generator)
+To do this, create a new `theme.css` file, and apply assign values to the CSS variables described in the Ionic
+documentation [here.](https://ionicframework.com/docs/theming/color-generator)
 
 Besides the Ionic variables, we also provide the following Maincode UI specific variables:
 
@@ -84,7 +93,8 @@ Enabling dark mode.. (use context on app). TBA
 
 You can customize your dark mode theme by setting values for any CSS variable in your custom theme file.
 
-The variables must be on the `body.dark` element, and also apply for `.md body.dark` and `.ios body.dark` elements. The reason is that darkmode is set as a classname on the `body` element with values `"light"` or `"dark""`.
+The variables must be on the `body.dark` element, and also apply for `.md body.dark` and `.ios body.dark` elements. The
+reason is that dark mode is set as a classname on the `body` element with values `"light"` or `"dark"`.
 
 ```css
 body.dark,
@@ -96,17 +106,20 @@ body.dark,
 }
 ```
 
-This approach lets you use any variable, like `--ion-text-color` in your app, and have it automatically adapt to dark mode.
+This approach lets you use any variable, like `--ion-text-color` in your app, and have it automatically adapt to dark
+mode.
 
-#### Setting and reading Dark Mode manually
+#### Setting and reading dark mode manually
 
-The provided theme context allows you to toggle and read the state of the app theme. This is useful when making "toggle" buttons for dark mode, or adapting components dynamically based on theme changes.
+The provided theme context allows you to toggle and read the state of the app theme. This is useful when making "toggle"
+buttons for dark mode, or adapting components dynamically based on theme changes.
 
 ... example ...
 
 ### Styling the scrollbar
 
-It is normally difficult to apply scrollbar styles to Ionic applications [(see their issue)](https://github.com/ionic-team/ionic-framework/issues/17685).
+It is normally difficult to apply scrollbar styles to Ionic
+applications [(see their issue)](https://github.com/ionic-team/ionic-framework/issues/17685).
 
 We provide a helper to style the scrollbar from the following set of css theme variables:
 
@@ -126,8 +139,7 @@ npm install ...
 
 ### Library structure
 
-What folders do what..
-Which CSS file does what..
+What folders do what.. Which CSS file does what..
 
 ### Testing
 
