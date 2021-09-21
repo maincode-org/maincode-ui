@@ -1,12 +1,7 @@
 import React from 'react';
 import { CopyArea, LiveCodeEditor, jsxExample } from 'maincode-ui';
 import { IComponentCategoryPages } from './assembly';
-
-const liveCodeEditorExample = `
-<div className='mt-4'>
-  <CopyArea command='npm install maincode-ui' />
-</div>
-`;
+import LiveCodeEditorPreview from '../pages/component-pages/live-editor-page/Preview';
 
 export const basicComponentPages: IComponentCategoryPages = {
   title: 'Basic Components',
@@ -29,14 +24,15 @@ export const basicComponentPages: IComponentCategoryPages = {
       preview: {
         picture: 'https://i.picsum.photos/id/12/1000/1000.jpg?hmac=rd7CBVhclToSFt6oDC9OPLQiV4x08Geesh3ONi36e8c',
       },
-      customContent: <LiveCodeEditor code={jsxExample} isDarkMode={true} noInline={true} />,
+      customContent: <LiveCodeEditor code={jsxExample} isDarkMode={false} noInline={true} />,
     },
     {
       url: '/LiveCodeEditor',
-      title: 'Live Code Editor',
+      title: localStorage.getItem('themeName') ?? '',
       description: <p>Live Edit component code to play around with the Maincode UI component with instant feedback. </p>,
       preview: {
-        element: <LiveCodeEditor scope={{ CopyArea }} isDarkMode={true} code={liveCodeEditorExample} />,
+        element: <LiveCodeEditorPreview />,
+        elementPaddingClass: 'p-0',
       },
     },
   ],

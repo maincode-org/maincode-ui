@@ -1,4 +1,17 @@
-import { colorPaletteOutline, colorPaletteSharp, contrastOutline, contrastSharp, gitMergeOutline, gitMergeSharp, heartOutline, heartSharp, rocketOutline, rocketSharp } from 'ionicons/icons';
+import {
+  colorPaletteOutline,
+  colorPaletteSharp,
+  contrastOutline,
+  contrastSharp,
+  gitMergeOutline,
+  gitMergeSharp,
+  extensionPuzzleSharp,
+  extensionPuzzleOutline,
+  rocketOutline,
+  rocketSharp,
+  diamondOutline,
+  diamondSharp,
+} from 'ionicons/icons';
 import { makeOverviewContent } from '../pages/guide-pages/overview-page/documentation-page';
 import QuickStartContent from '../pages/guide-pages/quick-start-page/documentation-page';
 import ThemingContent from '../pages/guide-pages/theming-page/documentation-page';
@@ -10,8 +23,8 @@ export const guidePages: IDocumentationPage[] = [
   {
     url: '/Overview',
     title: 'Overview',
-    iosIcon: heartOutline,
-    mdIcon: heartSharp,
+    iosIcon: extensionPuzzleOutline,
+    mdIcon: extensionPuzzleSharp,
     description: <p>This is the overview intro description</p>,
     customContent: makeOverviewContent(basicComponentPages.pages),
   },
@@ -42,6 +55,13 @@ export const guidePages: IDocumentationPage[] = [
     mdIcon: contrastSharp,
     description: <p>This is the dark mode intro description</p>,
     customContent: DarkModeContent,
+  },
+  {
+    url: 'StylingSystem',
+    title: 'Styling System',
+    iosIcon: diamondOutline,
+    mdIcon: diamondSharp,
+    description: <p>This is the styling system intro description</p>,
   },
   {
     url: '/Contributing',
