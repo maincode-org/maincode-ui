@@ -1,5 +1,5 @@
 import { CopyArea, InfoArea } from 'maincode-ui';
-import { LiveCodeEditor } from 'maincode-ui';
+import LiveCodeEditorContextWrapper from '../../../components/live-code-editor-context-wrapper/LiveCodeEditorContextWrapper';
 
 const cssImportExample = `/** Maincode UI stylesheets. */
 import 'maincode-ui/dist/index.css'; // All the component specific styles.
@@ -29,11 +29,11 @@ const DocumentationPage: JSX.Element = (
     <p>- index.css which is the specific styles for all components.</p>
     <p>- theme.css which is the default theme variables.</p>
     <p>{`- generics.css a subset of tailwind-like generic classes (e.g. "text-white"), and a few custom classes.`}</p>
-    <LiveCodeEditor isDarkMode={true} enablePreview={false} code={cssImportExample} />
+    <LiveCodeEditorContextWrapper codeExamples={[{ code: cssImportExample, enablePreview: false }]} />
     <br />
     <br />
     <h3>Usage example</h3>
-    <LiveCodeEditor isDarkMode={true} enablePreview={false} code={usageExample} />
+    <LiveCodeEditorContextWrapper codeExamples={[{ code: usageExample, enablePreview: false }]} />
     <br />
     <InfoArea info='Note that the stylesheets need only be imported once for each app, not for every component.' />
     <br />

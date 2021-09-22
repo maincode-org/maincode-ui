@@ -6,7 +6,7 @@ import PaginationFooter, { IFooterNav } from '../../page-components/pagination-f
 export type IDocumentationPageContent = {
   description?: JSX.Element;
   onContentLoad?: () => void;
-  examples?: IComponentUsage[];
+  codeExamples?: IComponentUsage[];
   customContent?: JSX.Element;
   props?: IPropertyDetail[];
   styles?: IStyleDetail[];
@@ -17,9 +17,13 @@ export type IDocumentationPageContent = {
 };
 
 export type IComponentUsage = {
-  title: string;
-  example: JSX.Element;
-  previewEnabled?: boolean;
+  code: string;
+  title?: string;
+  description?: string;
+  language?: string;
+  enablePreview?: boolean;
+  noInline?: boolean;
+  scope?: { [key: string]: any };
 };
 
 export type IPropertyDetail = {
@@ -39,7 +43,7 @@ type IProps = IDocumentationPageContent & {
   className?: string;
 };
 
-const DocumentationSection: React.FC<IProps> = ({ onContentLoad, className = '', customContent, props, styles, description, examples, prevNav, nextNav, urlPrefix, children }) => {
+const DocumentationSection: React.FC<IProps> = ({ onContentLoad, className = '', customContent, props, styles, description, codeExamples, prevNav, nextNav, urlPrefix, children }) => {
   useEffect(() => {
     onContentLoad?.();
   }, [onContentLoad]);
@@ -54,7 +58,7 @@ const DocumentationSection: React.FC<IProps> = ({ onContentLoad, className = '',
             <br />
           </div>
         )}
-        {examples && <h3 className='theme-bg'>Usage / demos</h3>}
+        {codeExamples && <h3 className='theme-bg'>Usage / demos</h3>}
         {children}
         {customContent && customContent}
         {props?.[0] && (

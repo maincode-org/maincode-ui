@@ -1,4 +1,5 @@
 import { LiveCodeEditor, Table, InfoArea } from 'maincode-ui';
+import LiveCodeEditorContextWrapper from '../../../components/live-code-editor-context-wrapper/LiveCodeEditorContextWrapper';
 
 const scrollbarStyleExample = `import React, { useEffect } from 'react';
 import styleScrollbar from 'maincode-ui';
@@ -47,7 +48,7 @@ const DocumentationPage: JSX.Element = (
       .
     </p>
     <p>We provide a helper to style the scrollbar. It can be used after the app is mounted: </p>
-    <LiveCodeEditor isDarkMode={true} enablePreview={false} code={scrollbarStyleExample} />
+    <LiveCodeEditorContextWrapper codeExamples={[{ code: scrollbarStyleExample, enablePreview: false }]} />
     <br />
     <InfoArea info='The styleScrollbar helper is called automatically dark mode context changes, allowing for separate dark mode scrollbar styling. If you use the dark mode context, you dont have to import the script.' />
     <p>The look of the scrollbar can be modified in the theme.css file through the following set of CSS theme variables:</p>
