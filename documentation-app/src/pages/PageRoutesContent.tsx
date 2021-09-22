@@ -37,20 +37,20 @@ const makeRoutes = (setPageTitle: (value: React.SetStateAction<string>) => void,
           key={i}
           path={`/maincode-ui${c.url}`}
           exact={true}
-          render={() => {
-            setPageTitle(c.title);
-            return makeContent(c, scrollToTop, { title: elements[i - 1]?.title, URL: elements[i - 1]?.url }, { title: elements[i + 1]?.title, URL: elements[i + 1]?.url });
-          }}
+          render={() => makeContent(c, setPageTitle, scrollToTop, { title: elements[i - 1]?.title, URL: elements[i - 1]?.url }, { title: elements[i + 1]?.title, URL: elements[i + 1]?.url })}
         />
       ))}
     </>
   );
 };
 
-const makeContent = (c: IDocumentationPage, scrollToTop: () => void, prevNav?: IFooterNav, nextNav?: IFooterNav): React.ReactNode => (
+const makeContent = (c: IDocumentationPage, setTitle: (title: string) => void, scrollToTop: () => void, prevNav?: IFooterNav, nextNav?: IFooterNav): React.ReactNode => (
   <DocumentationSection
     className='px-2'
-    onContentLoad={scrollToTop}
+    onContentLoad={() => {
+      setTitle(c.title);
+      scrollToTop();
+    }}
     description={c.description}
     props={c.props}
     styles={c.styles}
