@@ -180,6 +180,8 @@ const App: React.FC = () => {
 };
 ```
 
+> **!Note** that the context also sets the mode in the browsers `localStorage` under the `themeName` key, automatically saving the clients selected theme and loading it by default on future visits.
+
 ### Styling system
 
 Maincode UI offer a lot of styling through pre-defined classnames.
