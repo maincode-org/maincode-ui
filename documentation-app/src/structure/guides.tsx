@@ -16,6 +16,7 @@ import { makeOverviewContent } from '../pages/guide-pages/overview-page/document
 import QuickStartContent from '../pages/guide-pages/quick-start-page/documentation-page';
 import ThemingContent from '../pages/guide-pages/theming-page/documentation-page';
 import DarkModeContent from '../pages/guide-pages/dark-mode-page/documentation-page';
+import StylingSystemContent from '../pages/guide-pages/styling-system-page/documentation-page';
 import { IDocumentationPage } from './assembly';
 import { basicComponentPages } from './basic-components';
 
@@ -29,7 +30,7 @@ export const guidePages: IDocumentationPage[] = [
     customContent: makeOverviewContent(basicComponentPages.pages),
   },
   {
-    url: '/quickStart',
+    url: '/quick-start',
     title: 'Quickstart',
     iosIcon: rocketOutline,
     mdIcon: rocketSharp,
@@ -49,7 +50,7 @@ export const guidePages: IDocumentationPage[] = [
     customContent: ThemingContent,
   },
   {
-    url: '/darkMode',
+    url: '/dark-mode',
     title: 'Dark Mode',
     iosIcon: contrastOutline,
     mdIcon: contrastSharp,
@@ -57,17 +58,19 @@ export const guidePages: IDocumentationPage[] = [
     customContent: DarkModeContent,
   },
   {
-    url: 'styling-system',
-    title: 'Styling System',
+    url: '/style-system',
+    title: 'Style System',
     iosIcon: diamondOutline,
     mdIcon: diamondSharp,
-    description: <p>This is the styling system intro description</p>,
+    description: <p>This is the style system intro description</p>,
+    customContent: StylingSystemContent,
   },
   {
     url: '/contributing',
     title: 'Contributing',
     iosIcon: gitMergeOutline,
     mdIcon: gitMergeSharp,
-    description: <p>This is the contributions description</p>,
+    description: <p>This is the contributions intro description</p>,
+    customContent: StylingSystemContent,
   },
 ];
