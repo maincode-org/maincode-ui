@@ -20,7 +20,7 @@ const DocumentationPage: JSX.Element = (
     />
     <p>Here is an example of how to utilize the generic classes when styling and layouting your app:</p>
     <br />
-    <LiveCodeEditor isDarkMode={true} enablePreview={false} code={codeExample} />
+    <LiveCodeEditor isDarkMode={true} code={codeExample} />
   </>
 );
 export default DocumentationPage;
