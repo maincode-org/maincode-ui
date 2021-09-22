@@ -124,7 +124,21 @@ The look of the scrollbar can be modified in your `theme.css` file through the f
 
 ### Dark mode
 
-Enabling dark mode.. (use context on app). TBA
+The dark mode of the application is controlled by toggling the classnames `"light"` and `"dark"` on the `body` element.
+
+The library provides a context `ThemeContext` to manage and apply the dark and light mode themes.
+
+Enable it by applying the context on the root element of your app as shown below.
+
+```tsx
+import { ThemeContext } from 'maincode-ui';
+
+const App: React.FC = () => {
+  const theme = useContext(ThemeContext);
+
+  return <div className={theme?.themeName}>my app!</div>;
+};
+```
 
 You can customize your dark mode theme by setting values for any CSS variable in your custom theme file.
 
@@ -141,15 +155,32 @@ body.dark,
 }
 ```
 
-This approach lets you use any variable, like `--ion-text-color` in your app, and have it automatically adapt to dark
+This approach allows you to use variables like `--ion-text-color` in your app, and have the targeted element automatically adapt to dark
 mode.
 
 #### Setting and reading dark mode manually
 
-The provided theme context allows you to toggle and read the state of the app theme. This is useful when making "toggle"
+The provided `ThemeContext` allows you to toggle and read the state of the app theme. This is useful when making "toggle"
 buttons for dark mode, or adapting components dynamically based on theme changes.
 
-... example ...
+It can be used as shown in the modified`ThemeContext` example below:
+
+```tsx
+import { ThemeContext } from 'maincode-ui';
+
+const App: React.FC = () => {
+  const theme = useContext(ThemeContext);
+
+  return (
+    <div className={theme?.themeName}>
+      <h1>my {theme?.themeName} mode app!</h1>
+      <button onClick={theme?.toggleTheme}> toggle light/dark mode</button>
+    </div>
+  );
+};
+```
+
+> **!Note** that the context also sets the mode in the browsers `localStorage` under the `themeName` key, automatically saving the clients selected theme and loading it by default on future visits.
 
 ### Styling system
 

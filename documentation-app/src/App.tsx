@@ -1,4 +1,3 @@
-import { useContext } from 'react';
 import { IonApp, IonRouterOutlet, IonSplitPane } from '@ionic/react';
 import { IonReactRouter } from '@ionic/react-router';
 import { Redirect, Route } from 'react-router-dom';
@@ -26,13 +25,10 @@ import '@ionic/react/css/display.css';
 import 'maincode-ui/dist/index.css';
 import 'maincode-ui/styles/generics.css';
 import 'maincode-ui/styles/theme.css';
-import { ThemeContext } from 'maincode-ui';
 
 const App: React.FC = () => {
-  const themeName = useContext(ThemeContext)?.themeName;
-
   return (
-    <IonApp className={themeName}>
+    <IonApp>
       <IonReactRouter>
         <IonSplitPane contentId='main'>
           <Menu />
