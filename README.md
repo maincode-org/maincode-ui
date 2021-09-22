@@ -73,7 +73,7 @@ variables. We generally use the **Ionic theme** variable names, with a few **Mai
 To do this, create a new `theme.css` file, and assign values to the CSS variables described in the Ionic
 documentation [here.](https://ionicframework.com/docs/theming/color-generator)
 
-Besides the Ionic variables, we also provide the Maincode UI specific variables described in our [theming documentation](https://maincode-org.github.io/maincode-ui/Theming).
+Besides the Ionic variables, we also provide the Maincode UI specific variables described in our [theming documentation](https://maincode-org.github.io/maincode-ui/theming).
 
 FOR WEBSITE: -------------
 Besides the Ionic variables, we also provide the following Maincode UI specific variables:
@@ -111,13 +111,16 @@ const App: React.FC = () => {
 
 > **!Note** that this helper is called automatically dark mode context changes, allowing for separate dark mode scrollbar styling. If you use the dark mode context, you dont have to import the script.
 
+The look of the scrollbar can be modified as described in our [theming documentation](https://maincode-org.github.io/maincode-ui/theming).
+
+FOR WEBSITE----
 The look of the scrollbar can be modified in your `theme.css` file through the following set of CSS theme variables:
 
-> `--scroll-color` modifies the default color of the scrollbar thumb.
+> `--scroll-color` which modifies the default color of the scrollbar thumb.
 >
-> `--scroll-color-hover` modifies the color of the scrollbar thumb on hover.
+> `--scroll-color-hover` which modifies the color of the scrollbar thumb on hover.
 >
-> `--scroll-color-active` modifies the color of the scrollbar while pressed.
+> `--scroll-color-active` which modifies the color of the scrollbar while pressed.
 
 ### Dark mode
 
