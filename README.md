@@ -200,24 +200,35 @@ Here is an example of how to utilize the generic classes when styling and layout
 ...
 ```
 
-## Development & contribution
+### Contributing
 
-...
+Like this project?
 
-### Getting started
+TBA: Buy us a coffee
+
+- work with us
+
+To extend the code base, please see the development details below.
+
+#### Setting up
 
 ```bash
 npm install ...
 ```
 
-### Library structure
+#### Library structure
 
-What folders do what.. Which CSS file does what..
+What folders do what..
+Which CSS file does what..
 
-### Testing
+#### Adding a new component
+
+#### Adding the documentation for the new component
+
+#### Testing
 
 .. How to run tests, what to cover in tests
 
-## License
+### License
 
 BSD 3-Clause License © [MarkKragerup](https://github.com/MarkKragerup)
