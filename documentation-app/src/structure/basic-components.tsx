@@ -28,7 +28,7 @@ export const basicComponentPages: IComponentCategoryPages = {
       customContent: <LiveCodeEditor code={jsxExample} isDarkMode={true} noInline={true} />,
     },
     {
-      url: '/Component3',
+      url: '/component-3',
       title: 'Component 3',
       description: <p>This is a teaser for component 2. They got a hang of a long text right? Is this really how they made it? I had to put max-width on the card container.</p>,
       preview: {

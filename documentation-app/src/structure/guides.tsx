@@ -21,7 +21,7 @@ import { basicComponentPages } from './basic-components';
 
 export const guidePages: IDocumentationPage[] = [
   {
-    url: '/Overview',
+    url: '/overview',
     title: 'Overview',
     iosIcon: extensionPuzzleOutline,
     mdIcon: extensionPuzzleSharp,
@@ -29,7 +29,7 @@ export const guidePages: IDocumentationPage[] = [
     customContent: makeOverviewContent(basicComponentPages.pages),
   },
   {
-    url: '/QuickStart',
+    url: '/quickStart',
     title: 'Quickstart',
     iosIcon: rocketOutline,
     mdIcon: rocketSharp,
@@ -41,7 +41,7 @@ export const guidePages: IDocumentationPage[] = [
     customContent: QuickStartContent,
   },
   {
-    url: '/Theming',
+    url: '/theming',
     title: 'Theming',
     iosIcon: colorPaletteOutline,
     mdIcon: colorPaletteSharp,
@@ -49,7 +49,7 @@ export const guidePages: IDocumentationPage[] = [
     customContent: ThemingContent,
   },
   {
-    url: '/DarkMode',
+    url: '/darkMode',
     title: 'Dark Mode',
     iosIcon: contrastOutline,
     mdIcon: contrastSharp,
@@ -57,14 +57,14 @@ export const guidePages: IDocumentationPage[] = [
     customContent: DarkModeContent,
   },
   {
-    url: 'StylingSystem',
+    url: 'styling-system',
     title: 'Styling System',
     iosIcon: diamondOutline,
     mdIcon: diamondSharp,
     description: <p>This is the styling system intro description</p>,
   },
   {
-    url: '/Contributing',
+    url: '/contributing',
     title: 'Contributing',
     iosIcon: gitMergeOutline,
     mdIcon: gitMergeSharp,

@@ -1,4 +1,5 @@
-import { LiveCodeEditor } from 'maincode-ui';
+import { LiveCodeEditor, Table } from 'maincode-ui';
+import React from 'react';
 
 const scrollbarStyleExample = `
 import { styleScrollbars } from 'maincode-ui';
@@ -21,16 +22,19 @@ const DocumentationPage: JSX.Element = (
     </p>
     <br />
     <p>Besides the Ionic variables, we also provide the following Maincode UI specific variables:</p>
-    <ul>
-      <li>--text-color-alt</li>
-      <li>--color-glass</li>
-      <li>--border-color</li>
-      <li>--border-glass</li>
-      <li>--shadow</li>
-      <li>--card-shadow</li>
-    </ul>
+    <Table
+      title='Additional variables'
+      properties={[
+        { label: '<code>--text-color-alt</code>', value: 'Modifies alternative texts such as sub-headers, which deviate from the --ion-text-color' },
+        { label: '<code>--border-color</code>', value: 'Modifies the border color set on Maincode UI components' },
+        { label: '<code>--color-glass</code>', value: 'Modifies the coloring of elements with the glassy background effects' },
+        { label: '<code>--border-glass</code>', value: 'Modifies the supplementary border color for elements with the glassy background effect' },
+        { label: '<code>--shadow</code>', value: 'Modifies the theme-shadow. This is used on selective Maincode UI elements.' },
+        { label: '<code>--card-shadow</code>', value: 'Modifies the custom card shadow - used on Maincode UI cards only' },
+      ]}
+    />
     <br />
-    <h3>Styling of scroll-bar</h3>
+    <h3>Styling of scrollbar</h3>
     <p>Additionally the library provides a way to style the scrollbar of your application. </p>
     <p>
       It is normally difficult to apply scrollbar styles to Ionic applications{' '}
