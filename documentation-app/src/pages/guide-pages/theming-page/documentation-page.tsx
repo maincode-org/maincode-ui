@@ -1,12 +1,15 @@
-import { LiveCodeEditor, Table } from 'maincode-ui';
-import React from 'react';
+import { LiveCodeEditor, Table, InfoArea } from 'maincode-ui';
 
-const scrollbarStyleExample = `
-import { styleScrollbars } from 'maincode-ui';
+const scrollbarStyleExample = `import React, { useEffect } from 'react';
+import styleScrollbar from 'maincode-ui';
 
+const App: React.FC = () => {
   useEffect(() => {
-    styleScrollbars();
-  }, []);`;
+    styleScrollbar();
+  }, []);
+
+  return <p>Some app</p>;
+};`;
 
 const DocumentationPage: JSX.Element = (
   <>
@@ -43,9 +46,19 @@ const DocumentationPage: JSX.Element = (
       </a>
       .
     </p>
-    <p>An example of how to utilize this function is shown below. </p>
+    <p>We provide a helper to style the scrollbar. It can be used after the app is mounted: </p>
     <LiveCodeEditor isDarkMode={true} enablePreview={false} code={scrollbarStyleExample} />
-    <p>Maincode UI automatically calls this helper on dark mode context changes, allowing for separate dark mode scrollbar styling.</p>
+    <br />
+    <InfoArea info='The styleScrollbar helper is called automatically dark mode context changes, allowing for separate dark mode scrollbar styling. If you use the dark mode context, you dont have to import the script.' />
+    <p>The look of the scrollbar can be modified in the theme.css file through the following set of CSS theme variables:</p>
+    <Table
+      title='Additional variables'
+      properties={[
+        { label: '<code>--scroll-color</code>', value: 'Modifies the default color of the scrollbar thumb' },
+        { label: '<code>--scroll-color-hover</code>', value: 'Modifies the color of the scrollbar thumb on hover' },
+        { label: '<code>--scroll-color-active</code>', value: 'Modifies the color of the scrollbar while pressed' },
+      ]}
+    />
   </>
 );
 export default DocumentationPage;
