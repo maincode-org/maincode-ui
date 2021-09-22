@@ -109,11 +109,15 @@ const App: React.FC = () => {
 };
 ```
 
+> **!Note** that this helper is called automatically dark mode context changes, allowing for separate dark mode scrollbar styling. If you use the dark mode context, you dont have to import the script.
+
 The look of the scrollbar can be modified in your `theme.css` file through the following set of CSS theme variables:
 
-...
-
-We automatically call this helper on dark mode context changes, allowing for separate dark mode scrollbar styling.
+> `--scroll-color` modifies the default color of the scrollbar thumb.
+>
+> `--scroll-color-hover` modifies the color of the scrollbar thumb on hover.
+>
+> `--scroll-color-active` modifies the color of the scrollbar while pressed.
 
 ### Dark mode
 
