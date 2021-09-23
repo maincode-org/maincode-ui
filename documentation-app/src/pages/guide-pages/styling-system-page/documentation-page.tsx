@@ -1,5 +1,4 @@
-import { PrettyUL, InfoArea } from 'maincode-ui';
-import LiveCodeEditorContextWrapper from '../../../components/live-code-editor-context-wrapper/LiveCodeEditorContextWrapper';
+import { PrettyUL, InfoArea, LiveCodeEditor } from 'maincode-ui';
 
 const codeExample = `
 <div className='p-1 glass-bg rounded'>
@@ -21,7 +20,7 @@ const DocumentationPage: JSX.Element = (
     />
     <p>Here is an example of how to utilize the generic classes when styling and layouting your app:</p>
     <br />
-    <LiveCodeEditorContextWrapper codeExamples={[{ code: codeExample, enablePreview: true }]} />
+    <LiveCodeEditor code={codeExample} enablePreview={true} />
   </>
 );
 export default DocumentationPage;

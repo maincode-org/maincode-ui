@@ -34,7 +34,7 @@ const App: React.FC = () => {
           <Menu />
           <IonRouterOutlet id='main'>
             <Route path='/' exact={true}>
-              <Redirect to={`${urlPrefix}/Overview`} />
+              <Redirect to={`${urlPrefix}/overview`} />
             </Route>
             <Route path={`${urlPrefix}/`} component={PageRoutesContent} />
           </IonRouterOutlet>

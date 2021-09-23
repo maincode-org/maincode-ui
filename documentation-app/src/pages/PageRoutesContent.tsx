@@ -1,11 +1,10 @@
 import { useState, useRef, useEffect } from 'react';
 import { IonContent, IonPage } from '@ionic/react';
 import { Redirect, Route } from 'react-router-dom';
-import { DocumentationSection, IFooterNav } from 'maincode-ui';
+import { DocumentationSection, IFooterNav, Header } from 'maincode-ui';
 
 import { allPages, IDocumentationPage, urlPrefix } from 'structure/assembly';
 import styles from './page-routes-content.module.css';
-import Header from '../components/header/Header';
 
 const PageRoutesContent: React.FC = () => {
   const [pageTitle, setPageTitle] = useState('');
@@ -20,7 +19,7 @@ const PageRoutesContent: React.FC = () => {
 
   return (
     <IonPage>
-      <Route path={`${urlPrefix}/`} exact={true} render={() => <Redirect to='/maincode-ui/Overview' />} />
+      <Route path={`${urlPrefix}/`} exact={true} render={() => <Redirect to={`${urlPrefix}/overview`} />} />
       <Header className='select-none' title={pageTitle} githubURL='https://github.com/maincode-org/maincode-ui' />
       <IonContent ref={ionContentRef} className={styles.ionContent} fullscreen>
         {routes}
