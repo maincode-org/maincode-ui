@@ -1,7 +1,7 @@
 import styles from './component-preview.module.css';
 import { IDocumentationPage, urlPrefix } from 'structure/assembly';
 import { IonCard, IonCardContent, IonCardHeader, IonCardTitle, IonGrid, IonRow, IonCol, IonIcon } from '@ionic/react';
-import { openOutline, openSharp } from 'ionicons/icons';
+import { openOutline } from 'ionicons/icons';
 import { Link } from 'react-router-dom';
 
 type IProps = {
@@ -12,7 +12,7 @@ const ComponentPreview: React.FC<IProps> = ({ componentPages }) => (
   <IonGrid className={styles.grid}>
     <IonRow>
       {[...componentPages].map((c, i) => (
-        <IonCol key={i} className='mb-1' size='12' size-md='6' size-lg='6' size-xl='4'>
+        <IonCol key={i} size='12' size-md='6' size-lg='6' size-xl='4'>
           <IonCard key={i} className={`${styles.card} theme-border shadow-lg`}>
             <IonCardHeader className={styles.cardHeader}>
               {c.preview?.picture && !c.preview?.element && (
@@ -26,7 +26,7 @@ const ComponentPreview: React.FC<IProps> = ({ componentPages }) => (
               <div className={styles.descriptionArea}>
                 <IonCardTitle className={styles.title}>
                   {c.title}
-                  <IonIcon className={styles.openIcon} ios={openOutline} md={openSharp} />
+                  <IonIcon className={styles.openIcon} ios={openOutline} md={openOutline} />
                 </IonCardTitle>
                 <IonCardContent className={styles.teaserText}>{c.description}</IonCardContent>
               </div>
