@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { LiveProvider, LiveEditor, LiveError, LivePreview } from 'react-live';
 import styles from './live-code-editor.module.css';
-import darkTheme from 'prism-react-renderer/themes/oceanicNext';
+import darkTheme from 'prism-react-renderer/themes/nightOwl';
 import lightTheme from 'prism-react-renderer/themes/nightOwlLight';
 import CopyButton from '../copy-button/CopyButton';
 import { Language } from 'prism-react-renderer';
