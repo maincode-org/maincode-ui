@@ -1,28 +1,32 @@
-import React, { useState } from 'react';
-import { LiveProvider, LiveEditor, LiveError, LivePreview } from 'react-live';
+import React, { useContext, useState } from 'react';
+import { LiveEditor, LiveError, LivePreview, LiveProvider } from 'react-live';
 import styles from './live-code-editor.module.css';
-import darkTheme from 'prism-react-renderer/themes/oceanicNext';
+import darkTheme from 'prism-react-renderer/themes/nightOwl';
 import lightTheme from 'prism-react-renderer/themes/nightOwlLight';
 import CopyButton from '../copy-button/CopyButton';
+import { Language } from 'prism-react-renderer';
+import { EThemeModes, ThemeContext } from 'index';
 
 type IProps = {
   code?: string;
   enablePreview?: boolean;
   scope?: { [key: string]: any };
   noInline?: boolean;
-  isDarkMode: boolean;
   className?: string;
+  language?: Language;
 };
 
-const LiveCodeEditor: React.FC<IProps> = ({ className = '', code = '', enablePreview = true, scope, isDarkMode, noInline = false }) => {
+const LiveCodeEditor: React.FC<IProps> = ({ className = '', code = '', language = 'jsx', enablePreview = true, scope, noInline = false }) => {
   const [currentCode, setCurrentCode] = useState(code?.trim());
+  const theme = useContext(ThemeContext);
 
   const padCode = (code: string): string => `${code}\n`;
 
-  const activeTheme = isDarkMode ? darkTheme : lightTheme;
+  const activeTheme = theme?.themeName === EThemeModes.dark ? darkTheme : lightTheme;
 
   return (
     <LiveProvider
+      language={language}
       theme={{ ...activeTheme, plain: { color: activeTheme.plain.color, backgroundColor: 'transparent' } }}
       disabled={!enablePreview}
       className={`${className} ${styles.liveProvider}`}

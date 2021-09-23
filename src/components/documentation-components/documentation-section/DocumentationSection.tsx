@@ -2,7 +2,8 @@ import React, { useEffect } from 'react';
 import stylesheet from './documentation-section.module.css';
 import Table from '../../layout-components/table/Table';
 import PaginationFooter from 'components/page-components/pagination-footer/PaginationFooter';
-import { IDocumentationPageContent, IPropertyDetail, IStyleDetail } from '../types';
+import { IDocumentationPageContent, IPropertyDetail, IStyleDetail, IComponentUsage } from '../types';
+import LiveCodeEditor from 'components/code-components/live-code-editor/LiveCodeEditor';
 
 type IProps = IDocumentationPageContent & {
   className?: string;
@@ -23,7 +24,9 @@ const DocumentationSection: React.FC<IProps> = ({ onContentLoad, className = '',
             <br />
           </div>
         )}
-        {codeExamples && <h3 className='theme-bg'>Usage / demos</h3>}
+
+        {codeExamples && renderLiveCodeEditors(codeExamples)}
+
         {children}
         {customContent && customContent}
         {props?.[0] && (
@@ -44,6 +47,15 @@ const DocumentationSection: React.FC<IProps> = ({ onContentLoad, className = '',
   );
 };
 export default DocumentationSection;
+
+export const renderLiveCodeEditors = (codeExamples: IComponentUsage[]): JSX.Element[] =>
+  codeExamples.map((example, i) => (
+    <div key={i}>
+      {example.title && <h3>{example.title}</h3>}
+      {example.description && <p>{example.description}</p>}
+      <LiveCodeEditor code={example.code} enablePreview={example.enablePreview} noInline={example.noInline} scope={example.scope} />
+    </div>
+  ));
 
 const renderProps = (props: IPropertyDetail[]): JSX.Element[] => {
   return props.map((p, i) => (

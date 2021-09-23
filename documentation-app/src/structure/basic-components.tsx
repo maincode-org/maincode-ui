@@ -25,7 +25,7 @@ export const basicComponentPages: IComponentCategoryPages = {
         picture: liveCodeEditorLight,
         darkModePicture: liveCodeEditorDark,
       },
-      customContent: <LiveCodeEditor code={jsxExample} isDarkMode={true} noInline={true} />,
+      customContent: <LiveCodeEditor code={jsxExample} noInline={true} />,
     },
     {
       url: '/component-3',
