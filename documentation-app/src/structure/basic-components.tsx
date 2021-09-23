@@ -1,7 +1,8 @@
 import React from 'react';
 import { CopyArea, LiveCodeEditor, jsxExample } from 'maincode-ui';
 import { IComponentCategoryPages } from './assembly';
-import LiveCodeEditorPreview from '../pages/component-pages/live-editor-page/Preview';
+import liveCodeEditorDark from 'assets/LiveCodeEdit-dark.png';
+import liveCodeEditorLight from 'assets/LiveCodeEdit-light.png';
 
 export const basicComponentPages: IComponentCategoryPages = {
   title: 'Basic Components',
@@ -22,8 +23,8 @@ export const basicComponentPages: IComponentCategoryPages = {
       title: 'Live Code Editor',
       description: <p>Play around with the Maincode UI components and get instant feedback. </p>,
       preview: {
-        element: <LiveCodeEditorPreview />,
-        elementPaddingClass: 'p-0',
+        picture: liveCodeEditorLight,
+        darkModePicture: liveCodeEditorDark,
       },
       customContent: <LiveCodeEditor code={jsxExample} isDarkMode={true} noInline={true} />,
     },

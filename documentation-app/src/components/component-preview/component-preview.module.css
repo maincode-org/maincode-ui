@@ -8,6 +8,7 @@
 
 .card {
   height: 100%;
+  margin-bottom: 0;
   padding: 0;
 }
 
@@ -33,6 +34,7 @@
 }
 
 .descriptionArea {
+  height: 100%;
 }
 
 .previewArea {
