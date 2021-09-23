@@ -1047,6 +1047,10 @@
   letter-spacing: 0.5rem;
 }
 
+.decoration-none {
+  text-decoration: none;
+}
+
 .color-fg {
   color: var(--color-fg);
 }

@@ -1,6 +1,7 @@
 import React from 'react';
 import { CopyArea, LiveCodeEditor, jsxExample } from 'maincode-ui';
 import { IComponentCategoryPages } from './assembly';
+import LiveCodeEditorPreview from '../pages/component-pages/live-editor-page/Preview';
 
 export const basicComponentPages: IComponentCategoryPages = {
   title: 'Basic Components',
@@ -17,24 +18,21 @@ export const basicComponentPages: IComponentCategoryPages = {
       ],
     },
     {
-      url: '/Component2',
-      title: 'Component 2',
-      description: <p>This is a teaser for component 2. They got a hang of a long text right? Is this really how they made it? I had to put max-width on the card container.</p>,
+      url: '/live-code-editor',
+      title: 'Live Code Editor',
+      description: <p>Play around with the Maincode UI components and get instant feedback. </p>,
       preview: {
-        picture: 'https://i.picsum.photos/id/12/1000/1000.jpg?hmac=rd7CBVhclToSFt6oDC9OPLQiV4x08Geesh3ONi36e8c',
+        element: <LiveCodeEditorPreview />,
+        elementPaddingClass: 'p-0',
       },
       customContent: <LiveCodeEditor code={jsxExample} isDarkMode={true} noInline={true} />,
     },
     {
-      url: '/Component3',
+      url: '/component-3',
       title: 'Component 3',
       description: <p>This is a teaser for component 2. They got a hang of a long text right? Is this really how they made it? I had to put max-width on the card container.</p>,
       preview: {
-        element: (
-          <button className='p-2 glass-bg text-white rounded' onClick={() => alert('Mark er noob')}>
-            Mark tester mig
-          </button>
-        ),
+        picture: 'https://i.picsum.photos/id/12/1000/1000.jpg?hmac=rd7CBVhclToSFt6oDC9OPLQiV4x08Geesh3ONi36e8c',
       },
     },
   ],

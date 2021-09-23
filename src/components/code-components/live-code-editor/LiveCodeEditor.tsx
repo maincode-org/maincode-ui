@@ -54,7 +54,8 @@ const Wrapper = ({ children }) => (
   <div style={{
     background: 'rgba(100, 100, 100, 0.1)',
     width: '90%',
-    padding: '2rem'
+    padding: '2rem',
+    margin: 'auto'
   }}>
     {children}
   </div>

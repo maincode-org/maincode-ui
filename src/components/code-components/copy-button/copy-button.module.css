@@ -10,7 +10,7 @@
   z-index: 999999;
 
   cursor: pointer;
-  transition: 0.1s all ease-in;
+  transition: box-shadow 0.15s ease-in-out;
 }
 
 .copyButton:hover {

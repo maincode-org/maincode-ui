@@ -1,20 +1,36 @@
-import { colorPaletteOutline, colorPaletteSharp, contrastOutline, contrastSharp, gitMergeOutline, gitMergeSharp, heartOutline, heartSharp, rocketOutline, rocketSharp } from 'ionicons/icons';
+import {
+  colorPaletteOutline,
+  colorPaletteSharp,
+  contrastOutline,
+  contrastSharp,
+  gitMergeOutline,
+  gitMergeSharp,
+  extensionPuzzleSharp,
+  extensionPuzzleOutline,
+  rocketOutline,
+  rocketSharp,
+  diamondOutline,
+  diamondSharp,
+} from 'ionicons/icons';
 import { makeOverviewContent } from '../pages/guide-pages/overview-page/documentation-page';
 import QuickStartContent from '../pages/guide-pages/quick-start-page/documentation-page';
+import ThemingContent from '../pages/guide-pages/theming-page/documentation-page';
+import DarkModeContent from '../pages/guide-pages/dark-mode-page/documentation-page';
+import StylingSystemContent from '../pages/guide-pages/styling-system-page/documentation-page';
 import { IDocumentationPage } from './assembly';
 import { basicComponentPages } from './basic-components';
 
 export const guidePages: IDocumentationPage[] = [
   {
-    url: '/Overview',
+    url: '/overview',
     title: 'Overview',
-    iosIcon: heartOutline,
-    mdIcon: heartSharp,
-    description: <p>This is the overview description</p>,
+    iosIcon: extensionPuzzleOutline,
+    mdIcon: extensionPuzzleSharp,
+    description: <p>This is the overview intro description</p>,
     customContent: makeOverviewContent(basicComponentPages.pages),
   },
   {
-    url: '/QuickStart',
+    url: '/quick-start',
     title: 'Quickstart',
     iosIcon: rocketOutline,
     mdIcon: rocketSharp,
@@ -26,24 +42,35 @@ export const guidePages: IDocumentationPage[] = [
     customContent: QuickStartContent,
   },
   {
-    url: '/Theming',
+    url: '/theming',
     title: 'Theming',
     iosIcon: colorPaletteOutline,
     mdIcon: colorPaletteSharp,
-    description: <p>This is the theming description</p>,
+    description: <p>This is the theming intro description</p>,
+    customContent: ThemingContent,
   },
   {
-    url: '/DarkMode',
+    url: '/dark-mode',
     title: 'Dark Mode',
     iosIcon: contrastOutline,
     mdIcon: contrastSharp,
-    description: <p>This is the dark mode description</p>,
+    description: <p>This is the dark mode intro description</p>,
+    customContent: DarkModeContent,
   },
   {
-    url: '/Contributing',
+    url: '/style-system',
+    title: 'Style System',
+    iosIcon: diamondOutline,
+    mdIcon: diamondSharp,
+    description: <p>This is the style system intro description</p>,
+    customContent: StylingSystemContent,
+  },
+  {
+    url: '/contributing',
     title: 'Contributing',
     iosIcon: gitMergeOutline,
     mdIcon: gitMergeSharp,
-    description: <p>This is the contributions description</p>,
+    description: <p>This is the contributions intro description</p>,
+    customContent: StylingSystemContent,
   },
 ];

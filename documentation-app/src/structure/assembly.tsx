@@ -6,7 +6,8 @@ export const urlPrefix = '/maincode-ui'; // Accounts for the prefix in hosting p
 
 export type IPreview = {
   picture?: string;
-  element?: JSX.Element;
+  element?: React.ReactNode;
+  elementPaddingClass?: string;
 };
 
 export type IDocumentationPage = IDocumentationPageContent & {
@@ -23,4 +24,4 @@ export type IComponentCategoryPages = {
 };
 
 export const allPages: IDocumentationPage[] = [...guidePages, ...basicComponentPages.pages];
-export const allComponentCategoryPages: IComponentCategoryPages[] = [basicComponentPages];
+export const allComponentCategoryPages: IComponentCategoryPages[] = [basicComponentPages, basicComponentPages];
