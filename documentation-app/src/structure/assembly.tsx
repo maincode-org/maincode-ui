@@ -6,8 +6,8 @@ export const urlPrefix = '/maincode-ui'; // Accounts for the prefix in hosting p
 
 export type IPreview = {
   picture?: string;
+  darkModePicture?: string;
   element?: React.ReactNode;
-  elementPaddingClass?: string;
 };
 
 export type IDocumentationPage = IDocumentationPageContent & {
