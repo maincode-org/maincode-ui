@@ -3,6 +3,16 @@
   height: 85px;
 }
 
+.title {
+  color: var(--ion-color-primary);
+  margin-top: 0;
+}
+
+.anchor {
+  --background: transparent;
+  --background-hover: transparent;
+}
+
 .anchor,
 .label {
   text-decoration: none;
