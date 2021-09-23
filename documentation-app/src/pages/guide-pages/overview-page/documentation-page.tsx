@@ -1,5 +1,4 @@
-import ComponentPreview from 'components/component-preview/ComponentPreview';
-import { IDocumentationPage } from 'structure/assembly';
+import { ComponentPreviewGallery, IDocumentationPage } from 'maincode-ui';
 
 export const makeOverviewContent = (previews: IDocumentationPage[]): JSX.Element => (
   <>
@@ -24,7 +23,7 @@ export const makeOverviewContent = (previews: IDocumentationPage[]): JSX.Element
     </ul>
     <br />
     <h2>Component overview:</h2>
-    <ComponentPreview componentPages={previews} />
+    <ComponentPreviewGallery componentPages={previews} />
     <h3>Some outro text</h3>
   </>
 );

@@ -17,8 +17,8 @@ import QuickStartContent from '../pages/guide-pages/quick-start-page/documentati
 import ThemingContent from '../pages/guide-pages/theming-page/documentation-page';
 import DarkModeContent from '../pages/guide-pages/dark-mode-page/documentation-page';
 import StylingSystemContent from '../pages/guide-pages/styling-system-page/documentation-page';
-import { IDocumentationPage } from './assembly';
 import { basicComponentPages } from './basic-components';
+import { IDocumentationPage } from 'maincode-ui';
 
 export const guidePages: IDocumentationPage[] = [
   {
