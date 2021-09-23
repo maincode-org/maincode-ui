@@ -4,6 +4,7 @@ import styles from './live-code-editor.module.css';
 import darkTheme from 'prism-react-renderer/themes/oceanicNext';
 import lightTheme from 'prism-react-renderer/themes/nightOwlLight';
 import CopyButton from '../copy-button/CopyButton';
+import { Language } from 'prism-react-renderer';
 
 type IProps = {
   code?: string;
@@ -12,9 +13,10 @@ type IProps = {
   noInline?: boolean;
   isDarkMode: boolean;
   className?: string;
+  language?: Language;
 };
 
-const LiveCodeEditor: React.FC<IProps> = ({ className = '', code = '', enablePreview = true, scope, isDarkMode, noInline = false }) => {
+const LiveCodeEditor: React.FC<IProps> = ({ className = '', code = '', language = 'jsx', enablePreview = true, scope, isDarkMode, noInline = false }) => {
   const [currentCode, setCurrentCode] = useState(code?.trim());
 
   const padCode = (code: string): string => `${code}\n`;
@@ -23,6 +25,7 @@ const LiveCodeEditor: React.FC<IProps> = ({ className = '', code = '', enablePre
 
   return (
     <LiveProvider
+      language={language}
       theme={{ ...activeTheme, plain: { color: activeTheme.plain.color, backgroundColor: 'transparent' } }}
       disabled={!enablePreview}
       className={`${className} ${styles.liveProvider}`}
