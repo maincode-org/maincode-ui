@@ -1,43 +1,8 @@
 import React, { useEffect } from 'react';
 import stylesheet from './documentation-section.module.css';
 import Table from '../../layout-components/table/Table';
-import PaginationFooter, { IFooterNav } from '../../page-components/pagination-footer/PaginationFooter';
-
-export type IDocumentationPageContent = {
-  description?: JSX.Element;
-  onContentLoad?: () => void;
-  codeExamples?: IComponentUsage[];
-  customContent?: JSX.Element;
-  props?: IPropertyDetail[];
-  styles?: IStyleDetail[];
-  outro?: JSX.Element;
-  prevNav?: IFooterNav;
-  nextNav?: IFooterNav;
-  urlPrefix?: string;
-};
-
-export type IComponentUsage = {
-  code: string;
-  title?: string;
-  description?: string;
-  language?: string;
-  enablePreview?: boolean;
-  noInline?: boolean;
-  scope?: { [key: string]: any };
-};
-
-export type IPropertyDetail = {
-  propTitle: string;
-  description: string;
-  attribute: string;
-  type: string;
-  default: string;
-};
-
-export type IStyleDetail = {
-  className: string;
-  description: string;
-};
+import PaginationFooter from 'components/page-components/pagination-footer/PaginationFooter';
+import { IDocumentationPageContent, IPropertyDetail, IStyleDetail } from '../types';
 
 type IProps = IDocumentationPageContent & {
   className?: string;
