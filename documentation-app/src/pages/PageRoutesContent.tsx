@@ -1,9 +1,9 @@
 import { useState, useRef, useEffect } from 'react';
 import { IonContent, IonPage } from '@ionic/react';
 import { Redirect, Route } from 'react-router-dom';
-import { DocumentationSection, IFooterNav, Header } from 'maincode-ui';
+import { DocumentationSection, IFooterNav, Header, IDocumentationPage } from 'maincode-ui';
 
-import { allPages, IDocumentationPage, urlPrefix } from 'structure/assembly';
+import { allPages, urlPrefix } from 'structure/assembly';
 import styles from './page-routes-content.module.css';
 
 const PageRoutesContent: React.FC = () => {

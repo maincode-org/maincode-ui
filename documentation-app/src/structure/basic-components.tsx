@@ -1,6 +1,5 @@
 import React from 'react';
-import { CopyArea, LiveCodeEditor, jsxExample } from 'maincode-ui';
-import { IComponentCategoryPages } from './assembly';
+import { CopyArea, LiveCodeEditor, jsxExample, IComponentCategoryPages } from 'maincode-ui';
 import liveCodeEditorDark from 'assets/LiveCodeEdit-dark.png';
 import liveCodeEditorLight from 'assets/LiveCodeEdit-light.png';
 
