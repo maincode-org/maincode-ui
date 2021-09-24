@@ -1,9 +1,9 @@
 /** Types ------------------------------------------ */
-import { IDocumentationPage, IDocumentationPageContent, IPropertyDetail, IStyleDetail, IPreview, IComponentUsage, IComponentCategoryPages } from './components/documentation-components/types';
+import { IDocumentationPage, IDocumentationPageContent, IPropertyDetail, IStyleDetail, IPreview, IComponentUsage, IEntityCategory } from './components/documentation-components/types';
 import { IFooterNav } from './components/page-components/pagination-footer/PaginationFooter';
 import { IThemeContext } from './contexts/theme';
 
-export type { IDocumentationPage, IDocumentationPageContent, IPropertyDetail, IStyleDetail, IComponentUsage, IFooterNav, IThemeContext, IPreview, IComponentCategoryPages };
+export type { IDocumentationPage, IDocumentationPageContent, IPropertyDetail, IStyleDetail, IComponentUsage, IFooterNav, IThemeContext, IPreview, IEntityCategory };
 
 /** Contexts --------------------------------------- */
 import { EThemeModes, ThemeContext, ThemeProvider } from './contexts/theme';
@@ -30,8 +30,9 @@ export { LiveCodeEditor, jsxExample, CopyArea, CopyButton };
 import DocumentationSection, { renderLiveCodeEditors } from './components/documentation-components/documentation-section/DocumentationSection';
 import DocumentationRouterWithPageContent from './components/documentation-components/documentation-router-with-page-content/DocumentationRouterWithPageContent';
 import ComponentPreviewGallery from './components/documentation-components/component-preview-gallery/ComponentPreviewGallery';
+import DocumentationApp from './components/documentation-components/documentation-app/DocumentationApp';
 
-export { DocumentationSection, renderLiveCodeEditors, DocumentationRouterWithPageContent, ComponentPreviewGallery };
+export { DocumentationSection, renderLiveCodeEditors, DocumentationRouterWithPageContent, ComponentPreviewGallery, DocumentationApp };
 
 /** Layout Components ------------------------------- */
 import Table from './components/layout-components/table/Table';

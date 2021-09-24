@@ -12,7 +12,7 @@ type IProps = {
   githubUrl?: string;
 };
 
-const DocumentationRouterWithPageContent: React.FC<IProps> = ({ githubUrl, pages }) => {
+const DocumentationRouterWithPageContent: React.FC<IProps> = ({ githubUrl, pages, children }) => {
   const [pageTitle, setPageTitle] = useState('');
   const [routes, setRoutes] = useState<JSX.Element[]>();
   const ionContentRef = useRef<HTMLIonContentElement>(null);
@@ -28,6 +28,7 @@ const DocumentationRouterWithPageContent: React.FC<IProps> = ({ githubUrl, pages
       <Header className='select-none' title={pageTitle} githubURL={githubUrl} />
       <IonContent ref={ionContentRef} className={styles.ionContent} fullscreen>
         {routes}
+        {children}
       </IonContent>
     </IonPage>
   );

@@ -1,20 +1,21 @@
 import React, { useContext } from 'react';
 import { useLocation } from 'react-router-dom';
+import parse from 'html-react-parser';
 import { IonContent, IonIcon, IonItem, IonLabel, IonList, IonListHeader, IonMenu, IonMenuToggle, IonNote } from '@ionic/react';
 import { chevronForwardOutline } from 'ionicons/icons';
-import { IComponentCategoryPages, IDocumentationPage } from '../../documentation-components/types';
-import styles from './menu.module.css';
+import { IEntityCategory, IDocumentationPage } from '../../documentation-components/types';
 import { EThemeModes, ThemeContext } from 'contexts/theme';
+import styles from './menu.module.css';
 
 type IProps = {
   guidePages: IDocumentationPage[];
-  entityPages: IComponentCategoryPages[];
+  entityPages: IEntityCategory[];
   headerText: string;
-  subHeader?: string | JSX.Element;
-  bottomImage?: string;
+  subHeader?: string;
+  footerImage?: string;
 };
 
-const Menu: React.FC<IProps> = ({ entityPages, guidePages, headerText, subHeader, bottomImage }) => {
+const Menu: React.FC<IProps> = ({ entityPages, guidePages, headerText, subHeader, footerImage }) => {
   const location = useLocation();
   const theme = useContext(ThemeContext);
   const isDarkMode = theme?.themeName === EThemeModes.dark;
@@ -25,7 +26,7 @@ const Menu: React.FC<IProps> = ({ entityPages, guidePages, headerText, subHeader
         <div className={styles.menuUpper}>
           <IonList className={`${styles.menuList} mb-1`}>
             <IonListHeader className='select-none'>{headerText}</IonListHeader>
-            {subHeader && <IonNote className='pb-1 pt-05 select-none'>{subHeader}</IonNote>}
+            {subHeader && <IonNote className='pb-1 pt-05 select-none'>{parse(subHeader)}</IonNote>}
             {guidePages.map((c, index) => makeMenuEntry(index, c.url, c.title, location.pathname, c.iosIcon, c.mdIcon))}
           </IonList>
 
@@ -37,9 +38,9 @@ const Menu: React.FC<IProps> = ({ entityPages, guidePages, headerText, subHeader
             </IonList>
           ))}
         </div>
-        {bottomImage && (
+        {footerImage && (
           <div className={`${styles.menuLower} flex flex justify-center`}>
-            <img className='h-full select-none' src={bottomImage} alt='Maincode Robot' />
+            <img className='h-full select-none' src={footerImage} alt='Maincode Robot' />
           </div>
         )}
       </IonContent>
