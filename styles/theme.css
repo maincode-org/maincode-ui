@@ -39,7 +39,7 @@ code {
   letter-spacing: 0.06rem;
   line-height: 2rem;
   color: var(--ion-text-color);
-  background-color: var(--ion-card-background);
+  background-color: var(--code-background-color);
   padding: 3px 6px;
   border-radius: 0.5rem;
 }
@@ -58,6 +58,8 @@ code {
 
   --color-glass: rgba(255, 255, 255, 0.8);
   --border-glass: rgba(209, 213, 219, 0.4);
+
+  --code-background-color: #e6e1e1;
 
   --scroll-color: rgba(85, 85, 85, 0.6);
   --scroll-color-hover: rgba(85, 85, 85, 0.5);
@@ -151,6 +153,8 @@ body.dark,
 
   --color-glass: rgba(42, 47, 76, 0.8);
   --border-glass: rgba(42, 47, 767, 0.2);
+
+  --code-background-color: #191e34;
 
   --scroll-color: rgba(189, 189, 221, 0.6);
   --scroll-color-hover: rgba(189, 189, 221, 0.7);

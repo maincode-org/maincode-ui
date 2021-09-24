@@ -28,12 +28,13 @@ const DocumentationPage: JSX.Element = (
     <Table
       title='Additional variables'
       properties={[
-        { label: '<code>--text-color-alt</code>', value: 'Modifies alternative texts such as sub-headers, which deviate from the --ion-text-color' },
+        { label: '<code>--text-color-alt</code>', value: 'Modifies alternative texts such as sub-headers, which deviate from the <code>--ion-text-color</code>' },
         { label: '<code>--border-color</code>', value: 'Modifies the border color set on Maincode UI components' },
         { label: '<code>--color-glass</code>', value: 'Modifies the coloring of elements with the glassy background effects' },
         { label: '<code>--border-glass</code>', value: 'Modifies the supplementary border color for elements with the glassy background effect' },
         { label: '<code>--shadow</code>', value: 'Modifies the theme-shadow. This is used on selective Maincode UI elements.' },
         { label: '<code>--card-shadow</code>', value: 'Modifies the custom card shadow - used on Maincode UI cards only' },
+        { label: '<code>--code-background-color</code>', value: 'Modifies the background color of the code HTML element' },
       ]}
     />
     <br />
