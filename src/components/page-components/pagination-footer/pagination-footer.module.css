@@ -32,6 +32,10 @@
   letter-spacing: 0.1rem;
 }
 
+.anchor::part(native) {
+  --border-style: none;
+}
+
 .label {
   font-size: 0.8rem;
   opacity: 0.8;
