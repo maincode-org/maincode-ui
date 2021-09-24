@@ -1,6 +1,7 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import styles from './component-preview-gallery.module.css';
-import { IonCard, IonCardContent, IonCardHeader, IonCardTitle, IonGrid, IonRow, IonCol, IonIcon, IonItem } from '@ionic/react';
+import { IonCard, IonCardContent, IonCardHeader, IonCardTitle, IonGrid, IonRow, IonCol, IonIcon } from '@ionic/react';
 import { openOutline } from 'ionicons/icons';
 import { useContext } from 'react';
 import { ThemeContext, EThemeModes } from 'index';
@@ -24,13 +25,13 @@ const ComponentPreviewGallery: React.FC<IProps> = ({ componentPages }) => {
             <IonCard key={i} className={`${styles.card} theme-border shadow-lg`}>
               <IonCardHeader className={styles.cardHeader}>
                 {c.preview?.picture && !c.preview?.element && (
-                  <IonItem className={`${styles.link} decoration-none h-full`} routerLink={c.url}>
+                  <Link className='decoration-none h-full' to={c.url}>
                     <div className={`${styles.image} ${styles.previewArea}`} style={{ backgroundImage: `url('${getPictureURL(c, isDarkMode)}')` }} />
-                  </IonItem>
+                  </Link>
                 )}
                 {c.preview?.element && <div className={`${styles.previewArea} ${styles.previewElement} p-1 theme-bg`}>{c.preview.element}</div>}
               </IonCardHeader>
-              <IonItem className={`${styles.link} decoration-none h-full`} routerLink={c.url}>
+              <Link className='decoration-none h-full' to={c.url}>
                 <div className={styles.descriptionArea}>
                   <IonCardTitle className={styles.title}>
                     {c.title}
@@ -38,7 +39,7 @@ const ComponentPreviewGallery: React.FC<IProps> = ({ componentPages }) => {
                   </IonCardTitle>
                   <IonCardContent className={styles.teaserText}>{c.description}</IonCardContent>
                 </div>
-              </IonItem>
+              </Link>
             </IonCard>
           </IonCol>
         ))}

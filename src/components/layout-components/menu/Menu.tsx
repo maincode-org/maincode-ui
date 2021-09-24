@@ -3,7 +3,7 @@ import { Route, useLocation } from 'react-router-dom';
 import { IonContent, IonIcon, IonItem, IonLabel, IonList, IonListHeader, IonMenu, IonMenuToggle, IonNote } from '@ionic/react';
 import { chevronForwardOutline } from 'ionicons/icons';
 import { IComponentCategoryPages, IDocumentationPage } from '../../documentation-components/types';
-import './menu.css';
+import styles from './menu.module.css';
 
 type IProps = {
   componentCategoryPages: IComponentCategoryPages[];
@@ -15,10 +15,10 @@ const Menu: React.FC<IProps> = ({ componentCategoryPages, guidePages, bottomImag
   const location = useLocation();
 
   return (
-    <IonMenu contentId='main' type='overlay'>
+    <IonMenu className={styles.menu} contentId='main' type='overlay'>
       <IonContent>
-        <div className='menu-upper'>
-          <IonList className='menu-list'>
+        <div className={styles.menuUpper}>
+          <IonList className={styles.menuList}>
             <IonListHeader className='select-none'>Maincode UI Documentation</IonListHeader>
             <IonNote className='pb-15 select-none'>
               By <a href='https://maincode.dk'>maincode.dk</a>
@@ -27,7 +27,7 @@ const Menu: React.FC<IProps> = ({ componentCategoryPages, guidePages, bottomImag
           </IonList>
 
           {componentCategoryPages.map((p, index) => (
-            <IonList key={index} className='menu-list'>
+            <IonList key={index} className={styles.menuList}>
               <IonListHeader className='pb-15 select-none'>{p.title}</IonListHeader>
 
               {p.pages.map((c, index) => makeMenuEntry(index, c.url, c.title, location.pathname, chevronForwardOutline, chevronForwardOutline))}
@@ -35,7 +35,7 @@ const Menu: React.FC<IProps> = ({ componentCategoryPages, guidePages, bottomImag
           ))}
         </div>
         {bottomImage && (
-          <div className='menu-lower flex justify-center'>
+          <div className={`${styles.menuLower} flex flex justify-center`}>
             <img className='h-full select-none' src={bottomImage} alt='Maincode Robot' />
           </div>
         )}
@@ -46,7 +46,7 @@ const Menu: React.FC<IProps> = ({ componentCategoryPages, guidePages, bottomImag
 
 const makeMenuEntry = (key: string | number, url: string, title: string, locationPath: string, iosIcon?: string, mdIcon?: string): JSX.Element => (
   <IonMenuToggle key={key} autoHide={false}>
-    <IonItem className={locationPath === url ? 'selected' : ''} routerLink={url} routerDirection='none' lines='none' detail={false}>
+    <IonItem className={locationPath === url ? `${styles.selected}` : ''} routerLink={url} routerDirection='none' lines='none' detail={false}>
       {(iosIcon || mdIcon) && <IonIcon slot='start' ios={iosIcon} md={mdIcon} />}
       <IonLabel>{title}</IonLabel>
     </IonItem>
