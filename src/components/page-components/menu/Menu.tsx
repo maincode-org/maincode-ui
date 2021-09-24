@@ -4,7 +4,7 @@ import { IonContent, IonIcon, IonItem, IonLabel, IonList, IonListHeader, IonMenu
 import { chevronForwardOutline } from 'ionicons/icons';
 import { IComponentCategoryPages, IDocumentationPage } from '../../documentation-components/types';
 import styles from './menu.module.css';
-import { EThemeModes, ThemeContext } from 'index';
+import { EThemeModes, ThemeContext } from 'contexts/theme';
 
 type IProps = {
   guidePages: IDocumentationPage[];

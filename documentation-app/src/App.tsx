@@ -1,11 +1,13 @@
 import { IonApp, IonRouterOutlet, IonSplitPane } from '@ionic/react';
 import { IonReactRouter } from '@ionic/react-router';
 import { Redirect, Route } from 'react-router-dom';
-import { Menu } from 'maincode-ui';
-import PageRoutesContent from './pages/PageRoutesContent';
 import { urlPrefix } from './structure/url-prefix';
-import { allComponentCategoryPages } from './structure/assembly';
+
+/** Page and menu content */
+import { allComponentCategoryPages, allPages } from './structure/assembly';
 import { guidePages } from './structure/guides';
+
+import robot from './assets/maincode-robot.png';
 
 /* Core CSS required for Ionic components to work properly */
 import '@ionic/react/css/core.css';
@@ -24,14 +26,14 @@ import '@ionic/react/css/flex-utils.css';
 import '@ionic/react/css/display.css';
 
 /** Maincode dependencies. */
+import { Menu, DocumentationRouterWithPageContent } from 'maincode-ui';
 import 'maincode-ui/dist/index.css';
 import 'maincode-ui/styles/generics.css';
 import 'maincode-ui/styles/theme.css';
-import React from 'react';
 
 const App: React.FC = () => {
   return (
-    <IonApp className='light'>
+    <IonApp>
       <IonReactRouter>
         <IonSplitPane contentId='main'>
           <Menu
@@ -43,12 +45,21 @@ const App: React.FC = () => {
                 By <a href='https://maincode.dk'>maincode.dk</a>
               </>
             }
+            bottomImage={robot}
           />
           <IonRouterOutlet id='main'>
             <Route path='/' exact={true}>
-              <Redirect to={`${urlPrefix}/overview`} />
+              <Redirect to={allPages?.[0].url} />
             </Route>
-            <Route path={`${urlPrefix}/`} component={PageRoutesContent} />
+            <Route
+              path={`${urlPrefix}/`}
+              render={() => (
+                <>
+                  <DocumentationRouterWithPageContent pages={allPages} githubUrl='https://github.com/maincode-org/maincode-ui' />
+                  <Route path={`${urlPrefix}/`} exact={true} render={() => <Redirect to={allPages?.[0].url} />} />
+                </>
+              )}
+            />
           </IonRouterOutlet>
         </IonSplitPane>
       </IonReactRouter>
