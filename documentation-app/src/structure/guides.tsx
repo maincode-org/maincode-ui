@@ -21,7 +21,7 @@ import { basicComponentPages } from './basic-components';
 import { IDocumentationPage } from 'maincode-ui';
 import { prepareURLPrefixGuides } from './url-prefix';
 
-const rawGuidePages: IDocumentationPage[] = [
+export const guidePages: IDocumentationPage[] = prepareURLPrefixGuides([
   {
     url: '/overview',
     title: 'Overview',
@@ -74,6 +74,4 @@ const rawGuidePages: IDocumentationPage[] = [
     description: <p>This is the contributions intro description</p>,
     customContent: StylingSystemContent,
   },
-];
-
-export const guidePages = prepareURLPrefixGuides(rawGuidePages);
+]);
