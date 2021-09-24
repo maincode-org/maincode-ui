@@ -27,13 +27,23 @@ import '@ionic/react/css/display.css';
 import 'maincode-ui/dist/index.css';
 import 'maincode-ui/styles/generics.css';
 import 'maincode-ui/styles/theme.css';
+import React from 'react';
 
 const App: React.FC = () => {
   return (
-    <IonApp>
+    <IonApp className='light'>
       <IonReactRouter>
         <IonSplitPane contentId='main'>
-          <Menu componentCategoryPages={allComponentCategoryPages} guidePages={guidePages} />
+          <Menu
+            entityPages={allComponentCategoryPages}
+            guidePages={guidePages}
+            headerText='Maincode UI Documentation'
+            subHeader={
+              <>
+                By <a href='https://maincode.dk'>maincode.dk</a>
+              </>
+            }
+          />
           <IonRouterOutlet id='main'>
             <Route path='/' exact={true}>
               <Redirect to={`${urlPrefix}/overview`} />

@@ -1,5 +1,9 @@
 .menu ion-content {
   --background: var(--ion-item-background, var(--ion-background-color, #fff));
+  --padding-start: 8px;
+  --padding-end: 8px;
+  --padding-top: 6px;
+  --padding-bottom: 6px;
 }
 
 .menuUpper {
@@ -14,15 +18,8 @@
   overflow-y: scroll;
 }
 
-.menu ion-content {
-  --padding-start: 8px;
-  --padding-end: 8px;
-  --padding-top: 20px;
-  --padding-bottom: 20px;
-}
-
 .menu ion-list {
-  padding: 20px 0;
+  padding: 8px 0 10px 0;
 }
 
 .menu ion-list-header,
@@ -30,11 +27,11 @@
   padding-left: 10px;
 }
 
-.light .menu ion-list.menuList:first-child {
+.menu.light ion-list.menuList:first-child {
   border-bottom: 1px solid var(--ion-color-step-150, #d7d8da);
 }
 
-.dark .menu ion-list.menuList:first-child {
+.menu.dark ion-list.menuList:first-child {
   border-bottom: 1px solid var(--ion-background-color);
 }
 
