@@ -14,11 +14,11 @@ const App: React.FC = () => {
 const DocumentationPage: JSX.Element = (
   <>
     <p>
-      The <code className='glass-bg p-05 rounded'>maincode-ui/styles/theme.css</code> file provides a base theme. To customize the theme you can overwrite relevant CSS variables. We generally use the{' '}
-      <b>Ionic theme</b> variable names, with a few <b>Maincode UI</b> additions.
+      The <code>maincode-ui/styles/theme.css</code> file provides a base theme. To customize the theme you can overwrite relevant CSS variables. We generally use the <b>Ionic theme</b> variable names,
+      with a few <b>Maincode UI</b> additions.
     </p>
     <p>
-      To do this, create a new <code className='glass-bg p-05 rounded'>theme.css</code> file, and apply assign values to the CSS variables described in the Ionic documentation{' '}
+      To do this, create a new <code>theme.css</code> file, and apply assign values to the CSS variables described in the Ionic documentation{' '}
       <a className='decoration-none' href='https://ionicframework.com/docs/theming/color-generator' target='_blank' rel='noreferrer'>
         here.
       </a>

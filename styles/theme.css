@@ -39,6 +39,9 @@ code {
   letter-spacing: 0.06rem;
   line-height: 2rem;
   color: var(--ion-text-color);
+  background-color: var(--ion-card-background);
+  padding: 3px 6px;
+  border-radius: 0.5rem;
 }
 
 /** Ionic CSS Variables ------------------------ **/
