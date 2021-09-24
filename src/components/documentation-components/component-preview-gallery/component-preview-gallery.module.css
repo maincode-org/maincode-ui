@@ -11,6 +11,8 @@
 
 .link::part(native) {
   height: 100%;
+  padding: 0;
+  --inner-padding-end: 0;
 }
 
 .card {
