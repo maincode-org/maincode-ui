@@ -5,7 +5,7 @@ import darkTheme from 'prism-react-renderer/themes/nightOwl';
 import lightTheme from 'prism-react-renderer/themes/nightOwlLight';
 import CopyButton from '../copy-button/CopyButton';
 import { Language } from 'prism-react-renderer';
-import { EThemeModes, ThemeContext } from 'index';
+import { EThemeModes, ThemeContext } from 'contexts/theme';
 
 type IProps = {
   code?: string;

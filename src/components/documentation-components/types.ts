@@ -14,7 +14,7 @@ export type IDocumentationPage = IDocumentationPageContent & {
   mdIcon?: string;
 };
 
-export type IComponentCategoryPages = {
+export type IEntityCategory = {
   title: string;
   pages: IDocumentationPage[];
 };

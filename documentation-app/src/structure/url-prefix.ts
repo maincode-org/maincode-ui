@@ -1,7 +1,7 @@
-import { IDocumentationPage, IComponentCategoryPages } from 'maincode-ui';
+import { IDocumentationPage, IEntityCategory } from 'maincode-ui';
 export const urlPrefix = '/maincode-ui'; // Accounts for the prefix in hosting paths, such as github.io/maincode-ui/.
 
-export const prepareURLPrefixComponents = (componentPages: IComponentCategoryPages): IComponentCategoryPages => ({
+export const prepareURLPrefixComponents = (componentPages: IEntityCategory): IEntityCategory => ({
   ...componentPages,
   pages: componentPages.pages.map((c) => ({ ...c, url: `${urlPrefix}${c.url}` })),
 });

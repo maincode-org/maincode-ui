@@ -1,42 +1,46 @@
-import React from 'react';
-import { Route, useLocation } from 'react-router-dom';
+import React, { useContext } from 'react';
+import { useLocation } from 'react-router-dom';
+import parse from 'html-react-parser';
 import { IonContent, IonIcon, IonItem, IonLabel, IonList, IonListHeader, IonMenu, IonMenuToggle, IonNote } from '@ionic/react';
 import { chevronForwardOutline } from 'ionicons/icons';
-import { IComponentCategoryPages, IDocumentationPage } from '../../documentation-components/types';
+import { IEntityCategory, IDocumentationPage } from '../../documentation-components/types';
+import { EThemeModes, ThemeContext } from 'contexts/theme';
 import styles from './menu.module.css';
 
 type IProps = {
-  componentCategoryPages: IComponentCategoryPages[];
   guidePages: IDocumentationPage[];
-  bottomImage?: string;
+  entityPages: IEntityCategory[];
+  headerText: string;
+  subHeader?: string;
+  footerImage?: string;
 };
 
-const Menu: React.FC<IProps> = ({ componentCategoryPages, guidePages, bottomImage }) => {
+const Menu: React.FC<IProps> = ({ entityPages, guidePages, headerText, subHeader, footerImage }) => {
   const location = useLocation();
+  const theme = useContext(ThemeContext);
+  const isDarkMode = theme?.themeName === EThemeModes.dark;
 
   return (
-    <IonMenu className={styles.menu} contentId='main' type='overlay'>
+    <IonMenu className={`${styles.menu} ${isDarkMode ? styles.dark : styles.light}`} contentId='main' type='overlay'>
       <IonContent>
         <div className={styles.menuUpper}>
-          <IonList className={styles.menuList}>
-            <IonListHeader className='select-none'>Maincode UI Documentation</IonListHeader>
-            <IonNote className='pb-15 select-none'>
-              By <a href='https://maincode.dk'>maincode.dk</a>
-            </IonNote>
+          <IonList className={`${styles.menuList} mb-1`}>
+            <IonListHeader className='select-none'>{headerText}</IonListHeader>
+            {subHeader && <IonNote className='pb-1 pt-05 select-none'>{parse(subHeader)}</IonNote>}
             {guidePages.map((c, index) => makeMenuEntry(index, c.url, c.title, location.pathname, c.iosIcon, c.mdIcon))}
           </IonList>
 
-          {componentCategoryPages.map((p, index) => (
+          {entityPages.map((p, index) => (
             <IonList key={index} className={styles.menuList}>
-              <IonListHeader className='pb-15 select-none'>{p.title}</IonListHeader>
+              <IonListHeader className='pb-05 select-none'>{p.title}</IonListHeader>
 
               {p.pages.map((c, index) => makeMenuEntry(index, c.url, c.title, location.pathname, chevronForwardOutline, chevronForwardOutline))}
             </IonList>
           ))}
         </div>
-        {bottomImage && (
+        {footerImage && (
           <div className={`${styles.menuLower} flex flex justify-center`}>
-            <img className='h-full select-none' src={bottomImage} alt='Maincode Robot' />
+            <img className='h-full select-none' src={footerImage} alt='Maincode Robot' />
           </div>
         )}
       </IonContent>
@@ -54,5 +58,3 @@ const makeMenuEntry = (key: string | number, url: string, title: string, locatio
 );
 
 export default Menu;
-
-export const menuRoutes = (allPages: IDocumentationPage[]): JSX.Element[] => allPages.map((c, i) => <Route key={i} path={c.url} />);

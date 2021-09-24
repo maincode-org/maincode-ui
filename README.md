@@ -1,5 +1,5 @@
 <p align="center">
-  <a href="https://strapi.io">
+  <a href="https://maincode-org.github.io/maincode-ui/">
     <img src="./assets/MaincodeUITitle_Filled.png" width="581" alt="Maincode UI logo" />
   </a>
 </p>

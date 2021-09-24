@@ -4,7 +4,7 @@ import styles from './component-preview-gallery.module.css';
 import { IonCard, IonCardContent, IonCardHeader, IonCardTitle, IonGrid, IonRow, IonCol, IonIcon } from '@ionic/react';
 import { openOutline } from 'ionicons/icons';
 import { useContext } from 'react';
-import { ThemeContext, EThemeModes } from 'index';
+import { ThemeContext, EThemeModes } from 'contexts/theme';
 import { IDocumentationPage } from '../types';
 
 type IProps = {
