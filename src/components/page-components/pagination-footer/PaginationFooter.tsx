@@ -11,14 +11,13 @@ type IProps = {
   className?: string;
   prev?: IFooterNav;
   next?: IFooterNav;
-  urlPrefix?: string;
 };
 
-const PaginationFooter: React.FC<IProps> = ({ className = '', prev, next, urlPrefix = '' }) => {
+const PaginationFooter: React.FC<IProps> = ({ className = '', prev, next }) => {
   return (
     <div className={`${className} ${styles.container} flex justify-between mt-1`}>
       {prev && prev.title ? (
-        <IonItem className={styles.anchor} routerLink={`${urlPrefix}${prev.URL}`}>
+        <IonItem className={styles.anchor} routerLink={prev.URL}>
           <div className='flex flex-col'>
             <p className={styles.label}>{'<'} Previous</p>
             <p className={styles.title}>{prev.title}</p>
@@ -28,7 +27,7 @@ const PaginationFooter: React.FC<IProps> = ({ className = '', prev, next, urlPre
         <div />
       )}
       {next && next.title ? (
-        <IonItem className={styles.anchor} routerLink={`${urlPrefix}${next.URL}`}>
+        <IonItem className={styles.anchor} routerLink={next.URL}>
           <div className='flex flex-col'>
             <p className={`${styles.label} text-right`}>Next {'>'}</p>
             <p className={styles.title}>{next.title}</p>

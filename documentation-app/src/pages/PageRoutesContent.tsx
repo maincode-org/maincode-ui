@@ -3,7 +3,8 @@ import { IonContent, IonPage } from '@ionic/react';
 import { Redirect, Route } from 'react-router-dom';
 import { DocumentationSection, IFooterNav, Header, IDocumentationPage } from 'maincode-ui';
 
-import { allPages, urlPrefix } from 'structure/assembly';
+import { allPages } from 'structure/assembly';
+import { urlPrefix } from '../structure/url-prefix';
 import styles from './page-routes-content.module.css';
 
 const PageRoutesContent: React.FC = () => {
@@ -34,7 +35,7 @@ const makeRoutes = (setPageTitle: (value: React.SetStateAction<string>) => void,
       {allPages.map((c, i, elements) => (
         <Route
           key={i}
-          path={`/maincode-ui${c.url}`}
+          path={c.url}
           exact={true}
           render={() => makeContent(c, setPageTitle, scrollToTop, { title: elements[i - 1]?.title, URL: elements[i - 1]?.url }, { title: elements[i + 1]?.title, URL: elements[i + 1]?.url })}
         />
@@ -56,7 +57,6 @@ const makeContent = (c: IDocumentationPage, setTitle: (title: string) => void, s
     customContent={c.customContent}
     prevNav={prevNav}
     nextNav={nextNav}
-    urlPrefix={urlPrefix}
   />
 );
 export default PageRoutesContent;
