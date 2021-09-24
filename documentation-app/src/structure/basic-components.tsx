@@ -4,7 +4,7 @@ import liveCodeEditorDark from 'assets/LiveCodeEdit-dark.png';
 import liveCodeEditorLight from 'assets/LiveCodeEdit-light.png';
 import { prepareURLPrefixComponents } from './url-prefix';
 
-const rawBasicComponentPages: IComponentCategoryPages = {
+export const basicComponentPages: IComponentCategoryPages = prepareURLPrefixComponents({
   title: 'Basic Components',
   pages: [
     {
@@ -37,6 +37,4 @@ const rawBasicComponentPages: IComponentCategoryPages = {
       },
     },
   ],
-};
-
-export const basicComponentPages = prepareURLPrefixComponents(rawBasicComponentPages);
+});
