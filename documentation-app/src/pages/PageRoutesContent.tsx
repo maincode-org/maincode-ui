@@ -36,7 +36,15 @@ const makeRoutes = (setPageTitle: (value: React.SetStateAction<string>) => void,
           key={i}
           path={`/maincode-ui${c.url}`}
           exact={true}
-          render={() => makeContent(c, setPageTitle, scrollToTop, { title: elements[i - 1]?.title, URL: elements[i - 1]?.url }, { title: elements[i + 1]?.title, URL: elements[i + 1]?.url })}
+          render={() =>
+            makeContent(
+              c,
+              setPageTitle,
+              scrollToTop,
+              { title: elements[i - 1]?.title, URL: `${urlPrefix}${elements[i - 1]?.url}` },
+              { title: elements[i + 1]?.title, URL: `${urlPrefix}${elements[i + 1]?.url}` }
+            )
+          }
         />
       ))}
     </>
@@ -56,7 +64,6 @@ const makeContent = (c: IDocumentationPage, setTitle: (title: string) => void, s
     customContent={c.customContent}
     prevNav={prevNav}
     nextNav={nextNav}
-    urlPrefix={urlPrefix}
   />
 );
 export default PageRoutesContent;

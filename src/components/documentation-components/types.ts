@@ -29,7 +29,6 @@ export type IDocumentationPageContent = {
   outro?: JSX.Element;
   prevNav?: IFooterNav;
   nextNav?: IFooterNav;
-  urlPrefix?: string;
 };
 
 export type IComponentUsage = {
