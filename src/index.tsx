@@ -9,10 +9,11 @@ import InfoArea from './components/basic-components/info-area/InfoArea';
 import PrettyUL from './components/basic-components/pretty-ul/PrettyUL';
 import Table from './components/layout-components/table/Table';
 import ComponentPreviewGallery from './components/documentation-components/component-preview-gallery/ComponentPreviewGallery';
+import Menu from './components/layout-components/menu/Menu';
 import { EThemeModes, IThemeContext, ThemeContext, ThemeProvider } from './contexts/theme';
 import Header from './components/page-components/header/Header';
 
 export type { IDocumentationPage, IDocumentationPageContent, IPropertyDetail, IStyleDetail, IComponentUsage, IFooterNav, IThemeContext, IPreview, IComponentCategoryPages };
 
-export { PaginationFooter, CopyButton, PrettyUL, Table, ComponentPreviewGallery, Header, renderLiveCodeEditors };
+export { PaginationFooter, CopyButton, PrettyUL, Table, ComponentPreviewGallery, Header, renderLiveCodeEditors, Menu };
 export { styleScrollbars, jsxExample, LiveCodeEditor, DocumentationSection, CopyArea, InfoArea, ThemeContext, EThemeModes, ThemeProvider };

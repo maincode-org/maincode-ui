@@ -2,19 +2,6 @@
   --ion-grid-padding: 0;
 }
 
-.link {
-  text-decoration: none;
-  height: 100%;
-  --background: transparent;
-  --background-hover: transparent;
-}
-
-.link::part(native) {
-  height: 100%;
-  padding: 0;
-  --inner-padding-end: 0;
-}
-
 .card {
   height: 100%;
   margin-bottom: 0;

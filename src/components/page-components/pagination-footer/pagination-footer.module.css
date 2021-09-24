@@ -8,11 +8,6 @@
   margin-top: 0;
 }
 
-.anchor {
-  --background: transparent;
-  --background-hover: transparent;
-}
-
 .anchor,
 .label {
   text-decoration: none;
@@ -30,10 +25,6 @@
 .anchor:hover > .label,
 .anchor:hover {
   letter-spacing: 0.1rem;
-}
-
-.anchor::part(native) {
-  --border-style: none;
 }
 
 .label {

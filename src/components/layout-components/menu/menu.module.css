@@ -1,0 +1,126 @@
+.menu ion-content {
+  --background: var(--ion-item-background, var(--ion-background-color, #fff));
+}
+
+.menuUpper {
+  min-height: 80%;
+}
+
+.menuLower {
+  height: 20%;
+}
+
+#menu-component-list {
+  overflow-y: scroll;
+}
+
+.menu ion-content {
+  --padding-start: 8px;
+  --padding-end: 8px;
+  --padding-top: 20px;
+  --padding-bottom: 20px;
+}
+
+.menu ion-list {
+  padding: 20px 0;
+}
+
+.menu ion-list-header,
+.menu ion-note {
+  padding-left: 10px;
+}
+
+.light .menu ion-list.menuList:first-child {
+  border-bottom: 1px solid var(--ion-color-step-150, #d7d8da);
+}
+
+.dark .menu ion-list.menuList:first-child {
+  border-bottom: 1px solid var(--ion-background-color);
+}
+
+.menu ion-list.menuList ion-list-header {
+  font-size: 22px;
+  font-weight: 600;
+  min-height: 20px;
+}
+
+.menu ion-list#labels-list ion-list-header {
+  font-size: 16px;
+  margin-bottom: 18px;
+  color: #757575;
+  min-height: 26px;
+}
+
+.menu ion-item {
+  --padding-start: 10px;
+  --padding-end: 10px;
+  border-radius: 4px;
+}
+
+.menu ion-item.selected {
+  --background: rgba(var(--ion-color-primary-rgb), 0.14);
+}
+
+.menu ion-item.selected ion-icon {
+  color: var(--ion-color-primary);
+}
+
+.menu ion-item ion-icon {
+  color: #616e7e;
+}
+
+.menu ion-item ion-label {
+  font-weight: 500;
+}
+
+.menu.ios ion-content {
+  --padding-bottom: 20px;
+}
+
+.menu.ios ion-list {
+  padding: 20px 0 0 0;
+}
+
+.menu.ios ion-note {
+  line-height: 24px;
+  margin-bottom: 20px;
+}
+
+.menu.ios ion-item {
+  --padding-start: 16px;
+  --padding-end: 16px;
+  --min-height: 50px;
+}
+
+.menu.ios ion-item ion-icon {
+  font-size: 24px;
+  color: #73849a;
+}
+
+.menu.ios ion-item .selected ion-icon {
+  color: var(--ion-color-primary);
+}
+
+.menu.ios ion-list#labels-list ion-list-header {
+  margin-bottom: 8px;
+}
+
+.menu.ios ion-list-header,
+.menu.ios ion-note {
+  padding-left: 16px;
+  padding-right: 16px;
+}
+
+.menu.ios ion-note {
+  margin-bottom: 8px;
+}
+
+ion-note {
+  display: inline-block;
+  font-size: 16px;
+  color: var(--ion-color-medium-shade);
+}
+
+ion-item.selected {
+  --color: var(--ion-color-primary);
+}
