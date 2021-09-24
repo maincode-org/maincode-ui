@@ -40,7 +40,7 @@ const Menu: React.FC = () => {
 
 const makeMenuEntry = (key: string | number, url: string, title: string, locationPath: string, iosIcon?: string, mdIcon?: string): JSX.Element => (
   <IonMenuToggle key={key} autoHide={false}>
-    <IonItem className={locationPath === `/maincode-ui${url}` ? 'selected' : ''} routerLink={`/maincode-ui${url}`} routerDirection='none' lines='none' detail={false}>
+    <IonItem className={locationPath === url ? 'selected' : ''} routerLink={url} routerDirection='none' lines='none' detail={false}>
       {(iosIcon || mdIcon) && <IonIcon slot='start' ios={iosIcon} md={mdIcon} />}
       <IonLabel>{title}</IonLabel>
     </IonItem>
@@ -52,7 +52,7 @@ export default Menu;
 export const menuRoutes: JSX.Element = (
   <>
     {allPages.map((c, i) => (
-      <Route key={i} path={`/maincode-ui/${c.url}`} />
+      <Route key={i} path={c.url} />
     ))}
   </>
 );

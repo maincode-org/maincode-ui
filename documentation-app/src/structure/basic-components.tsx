@@ -2,8 +2,9 @@ import React from 'react';
 import { CopyArea, LiveCodeEditor, jsxExample, IComponentCategoryPages } from 'maincode-ui';
 import liveCodeEditorDark from 'assets/LiveCodeEdit-dark.png';
 import liveCodeEditorLight from 'assets/LiveCodeEdit-light.png';
+import { prepareURLPrefixComponents } from './url-prefix';
 
-export const basicComponentPages: IComponentCategoryPages = {
+const rawBasicComponentPages: IComponentCategoryPages = {
   title: 'Basic Components',
   pages: [
     {
@@ -37,3 +38,5 @@ export const basicComponentPages: IComponentCategoryPages = {
     },
   ],
 };
+
+export const basicComponentPages = prepareURLPrefixComponents(rawBasicComponentPages);

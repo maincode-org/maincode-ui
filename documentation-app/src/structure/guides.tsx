@@ -19,8 +19,9 @@ import DarkModeContent from '../pages/guide-pages/dark-mode-page/documentation-p
 import StylingSystemContent from '../pages/guide-pages/styling-system-page/documentation-page';
 import { basicComponentPages } from './basic-components';
 import { IDocumentationPage } from 'maincode-ui';
+import { prepareURLPrefixGuides } from './url-prefix';
 
-export const guidePages: IDocumentationPage[] = [
+const rawGuidePages: IDocumentationPage[] = [
   {
     url: '/overview',
     title: 'Overview',
@@ -74,3 +75,5 @@ export const guidePages: IDocumentationPage[] = [
     customContent: StylingSystemContent,
   },
 ];
+
+export const guidePages = prepareURLPrefixGuides(rawGuidePages);
