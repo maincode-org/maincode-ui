@@ -89,6 +89,8 @@ Besides the Ionic variables, we also provide the following Maincode UI specific 
 > `--shadow` which modifies the theme-shadow. This is used on selective Maincode UI elements.
 >
 > `--card-shadow` which modifies the custom card shadow. This is used on Maincode UI cards only.
+>
+> `--code-background-color` which modifies the background color of the <code> element.
 
 #### Styling the scrollbar
 
