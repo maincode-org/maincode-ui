@@ -1,8 +1,7 @@
 import React from 'react';
-import { CopyArea, LiveCodeEditor, jsxExample, IEntityCategory } from 'maincode-ui';
-import liveCodeEditorDark from 'assets/LiveCodeEdit-dark.png';
-import liveCodeEditorLight from 'assets/LiveCodeEdit-light.png';
+import { CopyArea, IEntityCategory } from 'maincode-ui';
 import { prepareURLPrefixComponents } from './url-prefix';
+import { liveEditorDocumentation, liveEditorPreview } from '../pages/component-pages/code/live-editor-page/documentation-page';
 
 export const basicComponentPages: IEntityCategory = prepareURLPrefixComponents({
   title: 'Basic Components',
@@ -21,12 +20,8 @@ export const basicComponentPages: IEntityCategory = prepareURLPrefixComponents({
     {
       url: '/live-code-editor',
       title: 'Live Code Editor',
-      description: <p>Play around with the Maincode UI components and get instant feedback. </p>,
-      preview: {
-        picture: liveCodeEditorLight,
-        darkModePicture: liveCodeEditorDark,
-      },
-      customContent: <LiveCodeEditor code={jsxExample} noInline={true} />,
+      preview: liveEditorPreview,
+      ...liveEditorDocumentation,
     },
     {
       url: '/component-3',
