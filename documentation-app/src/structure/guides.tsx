@@ -1,17 +1,4 @@
-import {
-  colorPaletteOutline,
-  colorPaletteSharp,
-  contrastOutline,
-  contrastSharp,
-  gitMergeOutline,
-  gitMergeSharp,
-  extensionPuzzleSharp,
-  extensionPuzzleOutline,
-  rocketOutline,
-  rocketSharp,
-  diamondOutline,
-  diamondSharp,
-} from 'ionicons/icons';
+import { colorPaletteSharp, contrastSharp, gitMergeSharp, extensionPuzzleSharp, rocketSharp, diamondSharp } from 'ionicons/icons';
 import { makeOverviewContent } from '../pages/guide-pages/overview-page/documentation-page';
 import QuickStartContent from '../pages/guide-pages/quick-start-page/documentation-page';
 import ThemingContent from '../pages/guide-pages/theming-page/documentation-page';
@@ -25,7 +12,7 @@ export const guidePages: IDocumentationPage[] = prepareURLPrefixGuides([
   {
     url: '/overview',
     title: 'Overview',
-    iosIcon: extensionPuzzleOutline,
+    iosIcon: extensionPuzzleSharp,
     mdIcon: extensionPuzzleSharp,
     description: <p>This is the overview intro description</p>,
     customContent: makeOverviewContent(basicComponentPages.pages),
@@ -33,7 +20,7 @@ export const guidePages: IDocumentationPage[] = prepareURLPrefixGuides([
   {
     url: '/quick-start',
     title: 'Quickstart',
-    iosIcon: rocketOutline,
+    iosIcon: rocketSharp,
     mdIcon: rocketSharp,
     description: (
       <p>
@@ -45,7 +32,7 @@ export const guidePages: IDocumentationPage[] = prepareURLPrefixGuides([
   {
     url: '/theming',
     title: 'Theming',
-    iosIcon: colorPaletteOutline,
+    iosIcon: colorPaletteSharp,
     mdIcon: colorPaletteSharp,
     description: <p>This is the theming intro description</p>,
     customContent: ThemingContent,
@@ -53,7 +40,7 @@ export const guidePages: IDocumentationPage[] = prepareURLPrefixGuides([
   {
     url: '/dark-mode',
     title: 'Dark Mode',
-    iosIcon: contrastOutline,
+    iosIcon: contrastSharp,
     mdIcon: contrastSharp,
     description: <p>This is the dark mode intro description</p>,
     customContent: DarkModeContent,
@@ -61,7 +48,7 @@ export const guidePages: IDocumentationPage[] = prepareURLPrefixGuides([
   {
     url: '/style-system',
     title: 'Style System',
-    iosIcon: diamondOutline,
+    iosIcon: diamondSharp,
     mdIcon: diamondSharp,
     description: <p>This is the style system intro description</p>,
     customContent: StylingSystemContent,
@@ -69,7 +56,7 @@ export const guidePages: IDocumentationPage[] = prepareURLPrefixGuides([
   {
     url: '/contributing',
     title: 'Contributing',
-    iosIcon: gitMergeOutline,
+    iosIcon: gitMergeSharp,
     mdIcon: gitMergeSharp,
     description: <p>This is the contributions intro description</p>,
     customContent: StylingSystemContent,
