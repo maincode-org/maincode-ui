@@ -50,7 +50,10 @@ const DocumentationPage: JSX.Element = (
     <p>We provide a helper to style the scrollbar. It can be used after the app is mounted: </p>
     <LiveCodeEditor code={scrollbarStyleExample} enablePreview={false} />
     <br />
-    <InfoArea info='The styleScrollbar helper is called automatically dark mode context changes, allowing for separate dark mode scrollbar styling. If you use the dark mode context, you dont have to import the script.' />
+    <InfoArea>
+      The styleScrollbar helper is called automatically dark mode context changes, allowing for separate dark mode scrollbar styling. If you use the dark mode context, you dont have to import the
+      script.
+    </InfoArea>
     <p>The look of the scrollbar can be modified in the theme.css file through the following set of CSS theme variables:</p>
     <Table
       title='Additional variables'

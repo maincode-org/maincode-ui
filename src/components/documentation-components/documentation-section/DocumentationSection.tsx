@@ -4,7 +4,6 @@ import Table from '../../layout-components/table/Table';
 import PaginationFooter from 'components/page-components/pagination-footer/PaginationFooter';
 import { IDocumentationPageContent, IPropertyDetail, IStyleDetail, IComponentUsage } from '../types';
 import LiveCodeEditor from 'components/code-components/live-code-editor/LiveCodeEditor';
-import parse from 'html-react-parser';
 
 type IProps = IDocumentationPageContent & {
   className?: string;
@@ -53,7 +52,7 @@ export const renderLiveCodeEditors = (codeExamples: IComponentUsage[]): JSX.Elem
   codeExamples.map((example, i) => (
     <div key={i}>
       {example.title && <h3>{example.title}</h3>}
-      {example.description && <p>{parse(example.description)}</p>}
+      {example.description && example.description}
       <LiveCodeEditor code={example.code} enablePreview={example.enablePreview} noInline={example.noInline} scope={example.scope} />
     </div>
   ));

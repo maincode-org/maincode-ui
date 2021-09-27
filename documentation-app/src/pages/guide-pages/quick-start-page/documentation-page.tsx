@@ -34,7 +34,7 @@ const DocumentationPage: JSX.Element = (
     <h3>Usage example</h3>
     <LiveCodeEditor code={usageExample} enablePreview={false} />
     <br />
-    <InfoArea info='Note that the stylesheets need only be imported once for each app, not for every component.' />
+    <InfoArea>Note that the stylesheets need only be imported once for each app, not for every component.</InfoArea>
     <br />
     <br />
   </>

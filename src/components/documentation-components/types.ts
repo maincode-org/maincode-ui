@@ -33,8 +33,8 @@ export type IDocumentationPageContent = {
 
 export type IComponentUsage = {
   code: string;
-  title?: string;
-  description?: string;
+  title?: string | JSX.Element;
+  description?: string | JSX.Element;
   language?: string;
   enablePreview?: boolean;
   noInline?: boolean;
