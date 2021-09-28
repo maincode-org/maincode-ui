@@ -1,4 +1,4 @@
-import { IDocumentationPageContent, IPreview, InfoArea, jsxExample } from 'maincode-ui';
+import { IDocumentationPageContent, IPreview, InfoArea, jsxExample, LiveCodeEditor } from 'maincode-ui';
 import liveCodeEditorLight from 'assets/LiveCodeEdit-light.png';
 import liveCodeEditorDark from 'assets/LiveCodeEdit-dark.png';
 import { IonButton } from '@ionic/react';
@@ -10,18 +10,23 @@ const jsxExample = "${jsxExample.trim()}";
 `;
 
 const basicCodeExample = `
-render(
-  <LiveCodeEditor
-    code="<IonButton>An ion button!</IonButton>"
-    scope={{IonButton}}
-  />
-);
+<LiveCodeEditor
+  code="<IonButton>An ion button!</IonButton>"
+  scope={{IonButton}}
+/>
 `;
 
-// TODO add something about the Live Code Editor react version limitations
-
 export const liveEditorDocumentation: IDocumentationPageContent = {
-  description: <p>Play around with the Maincode UI components and get instant feedback. </p>,
+  description: (
+    <>
+      <p>Play around with the Maincode UI components and get instant feedback. </p>
+      <InfoArea>
+        Note that this component is currently not compatible with <code>React v. 17+</code> projects, due to the <a href='https://github.com/FormidableLabs/react-live'>React Live v. 2.3.0</a>{' '}
+        library&apos;s incompatibility with <code>React v. {'>'} 16.14</code>. We will upgrade the version as soon as possible and have opened an{' '}
+        <a href='https://github.com/maincode-org/maincode-ui/issues/53'>issue</a> which can be monitored for updates.
+      </InfoArea>
+    </>
+  ),
   codeExamples: [
     {
       title: 'Basic example',
@@ -39,9 +44,8 @@ export const liveEditorDocumentation: IDocumentationPageContent = {
           </InfoArea>
         </>
       ),
-
-      code: '<IonButton>An ion button!</IonButton>',
-      scope: { IonButton },
+      enablePreview: false,
+      code: basicCodeExample,
     },
     {
       title: 'Advanced example',
