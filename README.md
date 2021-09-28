@@ -182,7 +182,7 @@ const App: React.FC = () => {
 };
 ```
 
-> **!Note** that the context also sets the mode in the browsers `localStorage` under the `themeName` key, automatically saving the clients selected theme and loading it by default on future visits.
+> **!Note** that the `ThemeContext` also sets the mode in the browsers `localStorage` under the `themeName` key, automatically saving the clients' selected theme and loading it by default on future visits.
 
 ### Styling system
 
@@ -194,7 +194,7 @@ Maincode UI offer a lot of styling through pre-defined classnames.
 
 - In case you use Tailwind, you don't have to import our generics.
 
-> **!Note** that some specific classes, like `glass-bg` will be missing. We will split up Tailwind overwrites and our additions in the future. More information about this issue will follow.
+> **!Note** that some specific classes, like `glass-bg` will be missing. We will split up Tailwind overwrites and our Maincode UI additions in the future. More information about this issue will follow.
 
 Here is an example of how to utilize the generic classes when styling and layouting your app!
 
