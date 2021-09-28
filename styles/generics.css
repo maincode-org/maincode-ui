@@ -1052,19 +1052,7 @@
 }
 
 .color-fg {
-  color: var(--color-fg);
-}
-
-.color-fg-alt {
-  color: var(--color-fg-alt);
-}
-
-.color-bg {
-  color: var(--color-bg);
-}
-
-.color-bg-alt {
-  color: var(--color-bg-alt);
+  color: var(--ion-text-color);
 }
 
 .bg-cover-blur::part(background) {
@@ -1098,6 +1086,10 @@
 
 .select-none {
   user-select: none;
+}
+
+.border-box {
+  box-sizing: border-box;
 }
 
 .rounded {
