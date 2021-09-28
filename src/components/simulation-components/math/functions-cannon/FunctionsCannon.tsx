@@ -15,20 +15,14 @@ type IProps = {
 
 const FunctionsCannon: React.FC<IProps> = ({ id, className = '' }) => {
   const [hasPaintedSection, setHasPaintedSection] = useState(false);
-  const sectionRef = useRef<HTMLElement>(null);
+  const [sectionRef, setSectionRef] = useState<HTMLElement>();
   const canvasRef = useRef<HTMLCanvasElement>(null);
 
   useEffect(() => {
-    if (!sectionRef.current) return;
-    const resizeObserver = new ResizeObserver(() => setHasPaintedSection(true));
-    resizeObserver.observe(sectionRef.current);
-  }, [sectionRef]);
+    if (!sectionRef || !hasPaintedSection) return;
 
-  useEffect(() => {
-    if (!hasPaintedSection) return;
-
-    const cannon: SVGSVGElement = sectionRef.current?.querySelector('svg') as SVGSVGElement;
-    const cannonBody: HTMLElement = sectionRef.current?.querySelector(`.${styles.cannonBody}`) as HTMLElement;
+    const cannon: SVGSVGElement = sectionRef.querySelector('svg') as SVGSVGElement;
+    const cannonBody: HTMLElement = sectionRef.querySelector(`.${styles.cannonBody}`) as HTMLElement;
     if (!cannonBody) return;
 
     applyCannonStyle(cannon);
@@ -39,7 +33,7 @@ const FunctionsCannon: React.FC<IProps> = ({ id, className = '' }) => {
     const canvas = canvasRef.current;
     if (!canvas) return;
 
-    const context = enhanceCanvasQuality(canvas, sectionRef.current?.clientWidth ?? 0, 80, 80);
+    const context = enhanceCanvasQuality(canvas, sectionRef.clientWidth ?? 0, 80, 80);
 
     const axisOptions: IAxisOptions = {
       x: {
@@ -59,9 +53,15 @@ const FunctionsCannon: React.FC<IProps> = ({ id, className = '' }) => {
       drawFunction(plot, linearFunction(2, 0), context);
       drawFunction(plot, linearFunction(1, 2), context, 'rgb(148,16,126)');
     }
-  }, [hasPaintedSection]);
+  }, [sectionRef, hasPaintedSection]);
+
+  const onSectionPaint = (sectionElement: HTMLElement) => {
+    setSectionRef(sectionElement);
+    setHasPaintedSection(true);
+  };
+
   return (
-    <SimulationContainer className={className} id={id} ref={sectionRef}>
+    <SimulationContainer className={className} id={id} onLoad={onSectionPaint}>
       {drawing}
       <canvas className={styles.canvas} ref={canvasRef} />
     </SimulationContainer>
