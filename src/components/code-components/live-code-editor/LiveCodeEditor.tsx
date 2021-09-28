@@ -34,7 +34,7 @@ const LiveCodeEditor: React.FC<IProps> = ({ className = '', code = '', language 
       scope={scope}
       noInline={noInline}
     >
-      <div className={`${styles.liveWrapper} theme-shadow theme-item-bg theme-border`}>
+      <div className={`${className} ${styles.liveWrapper} theme-shadow theme-item-bg theme-border`}>
         <div className={`${styles.liveEditor} ${enablePreview ? styles.column : 'w-full h-full'} theme-item-bg`}>
           <CopyButton code={currentCode} />
           <LiveEditor onChange={(val) => setCurrentCode(val)} code={padCode(currentCode)} />

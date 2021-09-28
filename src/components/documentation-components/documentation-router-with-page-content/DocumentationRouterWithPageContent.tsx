@@ -52,6 +52,7 @@ const makeContent = (c: IDocumentationPage, setTitle: (title: string) => void, s
       scrollToTop();
     }}
     description={c.description}
+    mainText={c.mainText}
     props={c.props}
     styles={c.styles}
     codeExamples={c.codeExamples}

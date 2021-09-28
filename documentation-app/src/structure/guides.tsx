@@ -14,7 +14,7 @@ export const guidePages: IDocumentationPage[] = prepareURLPrefixGuides([
     title: 'Overview',
     iosIcon: extensionPuzzleSharp,
     mdIcon: extensionPuzzleSharp,
-    description: <p>This is the overview intro description</p>,
+    description: <p>Play around with the Maincode UI components and get instant feedback.</p>,
     customContent: makeOverviewContent(basicComponentPages.pages),
   },
   {

@@ -9,7 +9,7 @@ type IProps = Omit<IDocumentationPageContent, 'customContent'> & {
   className?: string;
 };
 
-const DocumentationSection: React.FC<IProps> = ({ onContentLoad, className = '', props, styles, description, codeExamples, prevNav, nextNav, children }) => {
+const DocumentationSection: React.FC<IProps> = ({ onContentLoad, className = '', mainText, props, styles, description, codeExamples, prevNav, nextNav, children }) => {
   useEffect(() => {
     onContentLoad?.();
   }, [onContentLoad]);
@@ -17,13 +17,9 @@ const DocumentationSection: React.FC<IProps> = ({ onContentLoad, className = '',
   return (
     <div className={`${className} ${stylesheet.wrapper}`}>
       <section>
-        {description && (
-          <div>
-            {description}
-            <br />
-            <br />
-          </div>
-        )}
+        {description && description}
+
+        {mainText && mainText}
 
         {codeExamples && renderLiveCodeEditors(codeExamples)}
 
@@ -42,7 +38,7 @@ const DocumentationSection: React.FC<IProps> = ({ onContentLoad, className = '',
           </div>
         )}
       </section>
-      {(prevNav || nextNav) && <PaginationFooter className='px-2' prev={prevNav} next={nextNav} />}
+      {(prevNav || nextNav) && <PaginationFooter className='mt-3' prev={prevNav} next={nextNav} />}
     </div>
   );
 };
@@ -53,7 +49,7 @@ export const renderLiveCodeEditors = (codeExamples: IComponentUsage[]): JSX.Elem
     <div key={i}>
       {example.title && <h3>{example.title}</h3>}
       {example.description && example.description}
-      <LiveCodeEditor code={example.code} enablePreview={example.enablePreview} noInline={example.noInline} scope={example.scope} />
+      <LiveCodeEditor className='my-1' code={example.code} enablePreview={example.enablePreview} noInline={example.noInline} scope={example.scope} />
     </div>
   ));
 
