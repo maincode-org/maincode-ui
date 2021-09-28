@@ -15,9 +15,9 @@ const DocumentationPage: JSX.Element = (
         "In case you use Tailwind, you don't have to import our generics.",
       ]}
     />
-    <InfoArea
-      info={`Some specific classes, like <code>glass-bg</code> will be missing. We will split up Tailwind overwrites and our additions in the future. More information about this issue will follow.`}
-    />
+    <InfoArea>
+      Some specific classes, like <code>glass-bg</code> will be missing. We will split up Tailwind overwrites and our additions in the future. More information about this issue will follow.
+    </InfoArea>
     <p>Here is an example of how to utilize the generic classes when styling and layouting your app:</p>
     <br />
     <LiveCodeEditor code={codeExample} enablePreview={true} />

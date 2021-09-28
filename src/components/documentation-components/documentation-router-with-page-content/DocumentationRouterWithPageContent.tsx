@@ -55,6 +55,7 @@ const makeContent = (c: IDocumentationPage, setTitle: (title: string) => void, s
     props={c.props}
     styles={c.styles}
     customContent={c.customContent}
+    codeExamples={c.codeExamples}
     prevNav={prevNav}
     nextNav={nextNav}
   />

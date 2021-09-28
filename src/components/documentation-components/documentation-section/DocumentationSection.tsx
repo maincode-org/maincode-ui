@@ -52,7 +52,7 @@ export const renderLiveCodeEditors = (codeExamples: IComponentUsage[]): JSX.Elem
   codeExamples.map((example, i) => (
     <div key={i}>
       {example.title && <h3>{example.title}</h3>}
-      {example.description && <p>{example.description}</p>}
+      {example.description && example.description}
       <LiveCodeEditor code={example.code} enablePreview={example.enablePreview} noInline={example.noInline} scope={example.scope} />
     </div>
   ));

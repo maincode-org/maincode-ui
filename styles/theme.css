@@ -20,6 +20,7 @@
 body,
 th {
   font-family: 'Tomorrow', sans-serif;
+  color: var(--ion-text-color);
 }
 
 p,
@@ -32,6 +33,7 @@ h5,
 h6,
 th {
   white-space: pre-line;
+  color: var(--ion-text-color);
 }
 
 code {

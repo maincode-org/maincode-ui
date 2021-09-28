@@ -60,9 +60,10 @@ const DocumentationPage: JSX.Element = (
     <p>It can be used as shown in the modifiedThemeContext example below:</p>
     <LiveCodeEditor code={themeContextExample} enablePreview={false} />
     <br />
-    <InfoArea
-      info={`The context also sets the mode in the browsers <code>localStorage</code> under the <code>themeName</code> key, automatically saving the clients selected theme and loading it by default on future visits.`}
-    />
+    <InfoArea>
+      The context also sets the mode in the browsers <code>localStorage</code> under the <code>themeName</code> key, automatically saving the clients selected theme and loading it by default on future
+      visits.
+    </InfoArea>
   </>
 );
 export default DocumentationPage;
