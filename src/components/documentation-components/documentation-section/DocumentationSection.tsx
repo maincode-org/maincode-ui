@@ -5,18 +5,18 @@ import PaginationFooter from 'components/page-components/pagination-footer/Pagin
 import { IDocumentationPageContent, IPropertyDetail, IStyleDetail, IComponentUsage } from '../types';
 import LiveCodeEditor from 'components/code-components/live-code-editor/LiveCodeEditor';
 
-type IProps = IDocumentationPageContent & {
+type IProps = Omit<IDocumentationPageContent, 'customContent'> & {
   className?: string;
 };
 
-const DocumentationSection: React.FC<IProps> = ({ onContentLoad, className = '', customContent, props, styles, description, codeExamples, prevNav, nextNav, children }) => {
+const DocumentationSection: React.FC<IProps> = ({ onContentLoad, className = '', props, styles, description, codeExamples, prevNav, nextNav, children }) => {
   useEffect(() => {
     onContentLoad?.();
   }, [onContentLoad]);
 
   return (
-    <div className={stylesheet.wrapper}>
-      <section className={`${className}`}>
+    <div className={`${className} ${stylesheet.wrapper}`}>
+      <section>
         {description && (
           <div>
             {description}
@@ -28,7 +28,7 @@ const DocumentationSection: React.FC<IProps> = ({ onContentLoad, className = '',
         {codeExamples && renderLiveCodeEditors(codeExamples)}
 
         {children}
-        {customContent && customContent}
+
         {props?.[0] && (
           <div>
             <h2>Props</h2>

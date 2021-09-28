@@ -40,7 +40,7 @@ const Menu: React.FC<IProps> = ({ entityPages, guidePages, headerText, subHeader
         </div>
         {footerImage && (
           <div className={`${styles.menuLower} flex flex justify-center`}>
-            <img className='h-full select-none' src={footerImage} alt='Maincode Robot' />
+            <img className='h-full select-none pt-2' src={footerImage} alt='Maincode Robot' />
           </div>
         )}
       </IonContent>

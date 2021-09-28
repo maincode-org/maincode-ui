@@ -54,10 +54,11 @@ const makeContent = (c: IDocumentationPage, setTitle: (title: string) => void, s
     description={c.description}
     props={c.props}
     styles={c.styles}
-    customContent={c.customContent}
     codeExamples={c.codeExamples}
     prevNav={prevNav}
     nextNav={nextNav}
-  />
+  >
+    {c.customContent}
+  </DocumentationSection>
 );
 export default DocumentationRouterWithPageContent;
