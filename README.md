@@ -111,7 +111,7 @@ const App: React.FC = () => {
 };
 ```
 
-> **!Note** that this helper is called automatically dark mode context changes, allowing for separate dark mode scrollbar styling. If you use the dark mode context, you dont have to import the script.
+> **!Note** that this helper is called automatically when the `ThemeContext` changes, allowing for separate dark mode scrollbar styling. If you use the `ThemeContext`, you dont have to import the script.
 
 The look of the scrollbar can be modified as described in our [theming documentation](https://maincode-org.github.io/maincode-ui/theming).
 
