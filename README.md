@@ -199,7 +199,9 @@ Maincode UI offer a lot of styling through pre-defined classnames.
 Here is an example of how to utilize the generic classes when styling and layouting your app!
 
 ```jsx
-...
+<div className='p-1 glass-bg rounded'>
+  <p>Nicely styled text area</p>
+</div>
 ```
 
 ### Contributing
