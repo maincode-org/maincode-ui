@@ -38,6 +38,9 @@ applications. It is..
 <a href="https://maincode-org.github.io/maincode-ui/QuickStart" target="_blank">Read the Getting Started tutorial</a> or
 follow the steps below:
 
+> !Note that the library is currently not compatible with **React v. 17+**, due to the [React Live v. 2.3.0](https://github.com/FormidableLabs/react-live) library's incompatibility with **React v. > 16.14**.
+> We will upgrade the version as soon as possible and have opened an [issue](https://github.com/maincode-org/maincode-ui/issues/53) which can be monitored for updates.
+
 ### ⏳ Installation
 
 ```bash
@@ -55,6 +58,8 @@ component documentation.</a>
 import React from 'react';
 import { CopyArea } from 'maincode-ui';
 
+// > Ionic styles omitted for breviety..
+
 /** Maincode UI stylesheets. */
 import 'maincode-ui/dist/index.css'; // All the component specific styles.
 import 'maincode-ui/styles/theme.css'; // The default theme variables. See the "themes" section for customization.
@@ -63,6 +68,26 @@ import 'maincode-ui/styles/generics.css'; // A subset of tailwind classes (eg. "
 const ExampleApp: React.FC = () => {
   return <CopyArea command={'npm install maincode-ui'} />;
 };
+```
+
+The app will also need most of the styling from Ionic as well to work correctly. Add the [Ionic style imports](https://ionicframework.com/docs/layout/global-stylesheets) at the indicated location in the above example. The imports are:
+
+```tsx
+/* Core CSS required for Ionic components to work properly */
+import '@ionic/react/css/core.css';
+
+/* Basic CSS for apps built with Ionic */
+import '@ionic/react/css/normalize.css';
+import '@ionic/react/css/structure.css';
+import '@ionic/react/css/typography.css';
+
+/* Optional CSS utils that can be commented out */
+import '@ionic/react/css/padding.css';
+import '@ionic/react/css/float-elements.css';
+import '@ionic/react/css/text-alignment.css';
+import '@ionic/react/css/text-transformation.css';
+import '@ionic/react/css/flex-utils.css';
+import '@ionic/react/css/display.css';
 ```
 
 ### Theming
@@ -90,7 +115,7 @@ Besides the Ionic variables, we also provide the following Maincode UI specific 
 >
 > `--card-shadow` which modifies the custom card shadow. This is used on Maincode UI cards only.
 >
-> `--code-background-color` which modifies the background color of the <code> element.
+> `--code-background-color` which modifies the background color of the `code` HTML element.
 
 #### Styling the scrollbar
 
@@ -135,11 +160,24 @@ Enable it by applying the context on the root element of your app as shown below
 ```tsx
 import { ThemeContext } from 'maincode-ui';
 
+//> stylesheets and other imports omitted for brievity..
+
 const App: React.FC = () => {
   const theme = useContext(ThemeContext);
 
   return <div className={theme?.themeName}>my app!</div>;
 };
+```
+
+And wrap the app in the ThemeProvider for the context as shown below.
+
+```tsx
+ReactDOM.render(
+  <ThemeProvider>
+    <App />
+  </ThemeProvider>,
+  document.getElementById('root')
+);
 ```
 
 You can customize your dark mode theme by setting values for any CSS variable in your custom theme file.
@@ -165,18 +203,18 @@ mode.
 The provided `ThemeContext` allows you to toggle and read the state of the app theme. This is useful when making "toggle"
 buttons for dark mode, or adapting components dynamically based on theme changes.
 
-It can be used as shown in the modified`ThemeContext` example below:
+It can be used as shown in the example below:
 
 ```tsx
 import { ThemeContext } from 'maincode-ui';
 
-const App: React.FC = () => {
+const MyComponent: React.FC = () => {
   const theme = useContext(ThemeContext);
 
   return (
-    <div className={theme?.themeName}>
-      <h1>my {theme?.themeName} mode app!</h1>
-      <button onClick={theme?.toggleTheme}> toggle light/dark mode</button>
+    <div>
+      <h1>my {theme?.themeName} mode component!</h1>
+      <button onClick={theme?.toggleTheme}> toggle light/dark mode for the entire app</button>
     </div>
   );
 };
@@ -188,19 +226,20 @@ const App: React.FC = () => {
 
 Maincode UI offer a lot of styling through pre-defined classnames.
 
-- This is entirely inspired by Tailwind CSS and can be seen as a less advanced subset of Tailwind.
+- This is entirely inspired by **Tailwind CSS** and can be seen as a less advanced subset of Tailwind.
 
-- It can be exchanged for tailwind CSS if you want additional classnames or smart functionality such as purging.
+- It can be exchanged for **Tailwind CSS** if you want additional classnames or smart functionality such as purging.
 
-- In case you use Tailwind, you don't have to import our generics.
+- In case you are using **Tailwind CSS**, you don't have to import our generics.
 
-> **!Note** that some specific classes, like `glass-bg` will be missing. We will split up Tailwind overwrites and our Maincode UI additions in the future. More information about this issue will follow.
+> **!Note** that some specific classes, like `glass-bg` will be missing. We will split up Tailwind overwrites and our Maincode UI additions in the future. See our [issue](https://github.com/maincode-org/maincode-ui/issues/54) for updates.
 
 Here is an example of how to utilize the generic classes when styling and layouting your app!
 
 ```jsx
-<div className='p-1 glass-bg rounded'>
-  <p>Nicely styled text area</p>
+<div className='flex flex-col p-1 glass-bg rounded shadow-md'>
+  <p className='bold'>A bold styled p</p>
+  <p className='color-bg'>Another styled p</p>
 </div>
 ```
 

@@ -18,6 +18,8 @@ render(
 );
 `;
 
+// TODO add something about the Live Code Editor react version limitations
+
 export const liveEditorDocumentation: IDocumentationPageContent = {
   description: <p>Play around with the Maincode UI components and get instant feedback. </p>,
   codeExamples: [
