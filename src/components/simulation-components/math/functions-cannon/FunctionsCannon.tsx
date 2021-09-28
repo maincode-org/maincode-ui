@@ -15,14 +15,14 @@ type IProps = {
 
 const FunctionsCannon: React.FC<IProps> = ({ id, className = '' }) => {
   const [hasPaintedSection, setHasPaintedSection] = useState(false);
-  const [sectionRef, setSectionRef] = useState<HTMLElement>();
+  const [sectionElement, setSectionElement] = useState<HTMLElement>();
   const canvasRef = useRef<HTMLCanvasElement>(null);
 
   useEffect(() => {
-    if (!sectionRef || !hasPaintedSection) return;
+    if (!sectionElement || !hasPaintedSection) return;
 
-    const cannon: SVGSVGElement = sectionRef.querySelector('svg') as SVGSVGElement;
-    const cannonBody: HTMLElement = sectionRef.querySelector(`.${styles.cannonBody}`) as HTMLElement;
+    const cannon: SVGSVGElement = sectionElement.querySelector('svg') as SVGSVGElement;
+    const cannonBody: HTMLElement = sectionElement.querySelector(`.${styles.cannonBody}`) as HTMLElement;
     if (!cannonBody) return;
 
     applyCannonStyle(cannon);
@@ -33,7 +33,7 @@ const FunctionsCannon: React.FC<IProps> = ({ id, className = '' }) => {
     const canvas = canvasRef.current;
     if (!canvas) return;
 
-    const context = enhanceCanvasQuality(canvas, sectionRef.clientWidth ?? 0, 80, 80);
+    const context = enhanceCanvasQuality(canvas, sectionElement.clientWidth ?? 0, 80, 80);
 
     const axisOptions: IAxisOptions = {
       x: {
@@ -53,10 +53,10 @@ const FunctionsCannon: React.FC<IProps> = ({ id, className = '' }) => {
       drawFunction(plot, linearFunction(2, 0), context);
       drawFunction(plot, linearFunction(1, 2), context, 'rgb(148,16,126)');
     }
-  }, [sectionRef, hasPaintedSection]);
+  }, [sectionElement, hasPaintedSection]);
 
   const onSectionPaint = (sectionElement: HTMLElement) => {
-    setSectionRef(sectionElement);
+    setSectionElement(sectionElement);
     setHasPaintedSection(true);
   };
 
