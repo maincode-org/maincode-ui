@@ -43,11 +43,11 @@ export type IComponentUsage = {
 };
 
 export type IPropertyDetail = {
-  propTitle: string;
+  title: string;
   description: string;
   attribute: string;
   type: string;
-  default: string;
+  defaultValue: string;
 };
 
 export type IStyleDetail = {

@@ -1,4 +1,4 @@
-import { IDocumentationPageContent, IPreview, InfoArea, jsxExample, LiveCodeEditor } from 'maincode-ui';
+import { IDocumentationPageContent, IPreview, InfoArea, jsxExample, LiveCodeEditor, IPropertyDetail, IStyleDetail } from 'maincode-ui';
 import liveCodeEditorLight from 'assets/LiveCodeEdit-light.png';
 import liveCodeEditorDark from 'assets/LiveCodeEdit-dark.png';
 import { IonButton } from '@ionic/react';
@@ -16,8 +16,29 @@ const basicCodeExample = `
 />
 `;
 
+const liveEditorProps: IPropertyDetail[] = [
+  {
+    title: '..',
+    description: '..',
+    attribute: '..',
+    type: '..',
+    defaultValue: '..',
+  },
+];
+
+const liveEditorStyles: IStyleDetail[] = [
+  {
+    className: '..',
+    description: '..',
+  },
+];
+
 export const liveEditorDocumentation: IDocumentationPageContent = {
-  description: <p>Showcase editable React, JSX or HTML code snippets with a live preview.</p>,
+  description: (
+    <p>
+      Showcase editable React, JSX or HTML code snippets with a live preview. This component is based on the <a href='https://github.com/FormidableLabs/react-live'>React Live library</a>.
+    </p>
+  ),
   mainText: (
     <>
       <InfoArea>
@@ -63,6 +84,8 @@ export const liveEditorDocumentation: IDocumentationPageContent = {
       noInline: true,
     },
   ],
+  props: liveEditorProps,
+  styles: liveEditorStyles,
 };
 
 export const liveEditorPreview: IPreview = {
