@@ -1,6 +1,6 @@
 import React, { useContext, useEffect, useRef, useState } from 'react';
 import styles from './functions-cannon.module.css';
-import cannon from './Cannon';
+import Cannon from './Cannon';
 import cannonBall from './CannonBall';
 import gsap from 'gsap';
 import SimulationContainer from '../../simulation-container/SimulationContainer';
@@ -36,6 +36,7 @@ const FunctionsCannon: React.FC<IProps> = ({ id, className = '' }) => {
     animationTimeline.to(cannonBodySelector, { duration: 2, transform: 'rotateZ(45deg)' });
     animationTimeline.to(cannonBall, { duration: 3, x: sectionElement.clientWidth * 0.06, y: -sectionElement.clientHeight * 0.1 });
     animationTimeline.to(cannonWheel, { duration: 1, transform: 'rotateZ(-60deg)' }, '<');
+    animationTimeline.to(cannonBodySelector, { duration: 1, transform: 'rotateZ(-1deg)' }, '<');
     animationTimeline.to(cannonBodySelector, { duration: 1, x: -40 }, '<');
 
     const canvas = canvasRef.current;
@@ -70,7 +71,7 @@ const FunctionsCannon: React.FC<IProps> = ({ id, className = '' }) => {
 
   return (
     <SimulationContainer className={className} id={id} onLoad={onSectionPaint}>
-      {cannon}
+      <Cannon isDarkMode={theme?.themeName === 'dark'} />
       {cannonBall}
       <canvas className={styles.canvas} ref={canvasRef} />
     </SimulationContainer>
