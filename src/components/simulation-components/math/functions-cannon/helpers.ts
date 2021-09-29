@@ -35,7 +35,7 @@ export type IPlotConfig = {
   };
 };
 
-export const drawPlot = (context: CanvasRenderingContext2D, axisOptions: IAxisOptions): IPlotConfig => {
+export const drawPlot = (context: CanvasRenderingContext2D, axisOptions: IAxisOptions, isDarkMode: boolean): IPlotConfig => {
   const ratio = window.devicePixelRatio;
   const canvasWidth = context.canvas.width / ratio;
   const canvasHeight = context.canvas.height / ratio;
@@ -73,8 +73,8 @@ export const drawPlot = (context: CanvasRenderingContext2D, axisOptions: IAxisOp
   const xStepWidth = (canvasWidth - offset.right - offset.left) / xNumberOfDashes;
   const yStepWidth = (canvasHeight - offset.top - offset.bottom) / yNumberOfDashes;
 
-  context.strokeStyle = '#000000';
-  context.fillStyle = '#000000';
+  context.strokeStyle = isDarkMode ? '#ffffff' : '#000000';
+  context.fillStyle = isDarkMode ? '#ffffff' : '#000000';
   context.lineWidth = 2;
 
   // y-axis
@@ -136,12 +136,25 @@ const shouldRoundAxisValues = (numberOfDashes: number, fromValue: number, stepVa
   return values.every((num) => num % 1 === 0);
 };
 
-export const applyCannonStyle = (cannon: SVGSVGElement) => {
+export const applyCannonStyle = (cannon: SVGSVGElement): void => {
   cannon.style.height = '15%';
   cannon.style.width = '15%';
   cannon.style.left = '2%';
   cannon.style.bottom = '2%';
   cannon.style.position = 'absolute';
+};
+
+export const applyCannonBallStyle = (cannonBall: SVGSVGElement): void => {
+  cannonBall.style.height = '5%';
+  cannonBall.style.width = '5%';
+  cannonBall.style.left = '15%';
+  cannonBall.style.bottom = '12%';
+  cannonBall.style.position = 'absolute';
+};
+
+export const applyCannonWheelStyle = (cannonWheel: SVGSVGElement): void => {
+  cannonWheel.style.transformBox = 'fill-box';
+  cannonWheel.style.transformOrigin = 'center';
 };
 
 export const enhanceCanvasQuality = (canvas: HTMLCanvasElement, simulationSize: number, wPct: number, hPct: number): CanvasRenderingContext2D | null => {
@@ -200,15 +213,11 @@ export const drawFunction = (plot: IPlotConfig, fn: (x: number) => number, conte
   context.beginPath();
   const yOffset = fn(0) * plot.stepWidth.y;
 
-  context.moveTo(plot.offset.left, translateYPoint(plot, fn(plot.offset.left)) - yOffset);
-
-  // console.log(plot.offset.left, translateYPoint(plot, fn(plot.offset.left)));
-
-  // console.log(coordToPoint({ x: 0, y: 3 }, plot));
-
   for (let x = 0; x <= plot.canvasWidth - (plot.offset.left + plot.offset.right); x++) {
+    if (fn(x) > (plot.axis.y.toValue - fn(0)) * plot.stepWidth.y) continue; // Prevents overdraw on positive y-values.
+    if (fn(x) < -(fn(0) * plot.stepWidth.y)) continue; // Prevents overdraw on negative y-values.
     context.lineTo(x + plot.offset.left, translateYPoint(plot, fn(x)) - yOffset + fn(0));
-    // console.log(x, translateYPoint(plot, fn(x)));
+    if (x === 0) console.log(fn(x));
   }
 
   context.strokeStyle = color ?? 'rgba(9,67,131,0.5)';
