@@ -214,6 +214,8 @@ export const drawFunction = (plot: IPlotConfig, fn: (x: number) => number, conte
   const yOffset = fn(0) * plot.stepWidth.y;
 
   for (let x = 0; x <= plot.canvasWidth - (plot.offset.left + plot.offset.right); x++) {
+    if (fn(x) > (plot.axis.y.toValue - fn(0)) * plot.stepWidth.y) continue; // Prevents overdraw on positive y-values.
+    if (fn(x) < -(fn(0) * plot.stepWidth.y)) continue; // Prevents overdraw on negative y-values.
     context.lineTo(x + plot.offset.left, translateYPoint(plot, fn(x)) - yOffset + fn(0));
     if (x === 0) console.log(fn(x));
   }

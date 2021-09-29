@@ -5,7 +5,7 @@ import cannonBall from './CannonBall';
 import gsap from 'gsap';
 import SimulationContainer from '../../simulation-container/SimulationContainer';
 import { applyCannonBallStyle, applyCannonStyle, applyCannonWheelStyle, drawFunction, drawPlot, drawPlotPoint, enhanceCanvasQuality, IAxisOptions, IPlotConfig } from './helpers';
-import { linearFunction } from './math-lib';
+import { linearFunction, throwParabolaFunction } from './math-lib';
 import { EThemeModes, ThemeContext } from 'contexts/theme';
 
 type IProps = {
@@ -61,6 +61,7 @@ const FunctionsCannon: React.FC<IProps> = ({ id, className = '' }) => {
       drawPlotPoint(plot, { x: 2, y: 4 }, context);
       drawFunction(plot, linearFunction(2, 0), context);
       drawFunction(plot, linearFunction(1, 2), context, 'rgb(148,16,126)');
+      drawFunction(plot, throwParabolaFunction(-0.01, 2), context, 'rgb(200,20,220)');
     }
   }, [sectionElement, hasPaintedSection, theme]);
 
