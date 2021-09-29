@@ -21,6 +21,7 @@ export type IEntityCategory = {
 
 export type IDocumentationPageContent = {
   description?: JSX.Element;
+  mainText?: JSX.Element;
   onContentLoad?: () => void;
   codeExamples?: IComponentUsage[];
   customContent?: JSX.Element;
@@ -33,8 +34,9 @@ export type IDocumentationPageContent = {
 
 export type IComponentUsage = {
   code: string;
-  title?: string | JSX.Element;
-  description?: string | JSX.Element;
+  title?: string;
+  description?: JSX.Element;
+  outro?: JSX.Element;
   language?: string;
   enablePreview?: boolean;
   noInline?: boolean;
@@ -42,14 +44,14 @@ export type IComponentUsage = {
 };
 
 export type IPropertyDetail = {
-  propTitle: string;
+  title: string;
   description: string;
   attribute: string;
   type: string;
-  default: string;
+  defaultValue: string;
 };
 
 export type IStyleDetail = {
-  className: string;
+  propertyName: string;
   description: string;
 };

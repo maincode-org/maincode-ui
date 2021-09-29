@@ -3,30 +3,39 @@
   white-space: pre-wrap;
 }
 
+.liveProvider,
+.liveWrapper,
+.liveEditor,
+.rightWrapper {
+  --border-radius: 8px;
+}
+
 .liveProvider {
-  border-radius: 8px;
+  border-radius: var(--border-radius);
   margin-bottom: 20px;
   overflow: hidden;
 }
 
 .liveWrapper {
-  min-height: 150px;
-  max-height: 70vh;
+  --wrapper-min-height: 80px;
+  --wrapper-max-height: 70vh;
+  min-height: var(--wrapper-min-height);
+  max-height: var(--wrapper-max-height);
 
   display: flex;
   flex-direction: row;
   justify-content: stretch;
   align-items: stretch;
 
-  border-radius: 8px;
+  border-radius: var(--border-radius);
   overflow-y: auto;
 }
 
 .liveEditor {
   overflow: auto;
   position: relative;
-  border-top-left-radius: 8px;
-  border-bottom-left-radius: 8px;
+  border-top-left-radius: var(--border-radius);
+  border-bottom-left-radius: var(--border-radius);
   height: 50%;
 }
 
@@ -42,8 +51,8 @@
 
 .rightWrapper {
   border-left: 1px dashed var(--border-color);
-  border-top-right-radius: 8px;
-  border-bottom-right-radius: 8px;
+  border-top-right-radius: var(--border-radius);
+  border-bottom-right-radius: var(--border-radius);
   padding: 0.5rem 0.5rem 0.5rem 1rem;
   overflow-y: auto;
 }
@@ -75,14 +84,10 @@
     height: 35vh;
   }
   .liveEditor {
-    border-radius: 0;
-    border-top-left-radius: 8px;
-    border-top-right-radius: 8px;
+    border-radius: var(--border-radius) var(--border-radius) 0 0;
   }
   .rightWrapper {
-    border-radius: 0;
-    border-bottom-left-radius: 8px;
-    border-bottom-right-radius: 8px;
+    border-radius: 0 0 var(--border-radius) var(--border-radius);
     border-left: none;
     border-top: 1px dashed var(--border-color);
   }

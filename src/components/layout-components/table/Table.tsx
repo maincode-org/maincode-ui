@@ -5,15 +5,16 @@ import parse from 'html-react-parser';
 type IProps = {
   title: string;
   properties: { label: string; value: string }[];
+  className?: string;
 };
 
-const Table: React.FC<IProps> = ({ title, properties }) => {
+const Table: React.FC<IProps> = ({ title, properties, className = '' }) => {
   return (
-    <table className={`w-full glass-bg shadow-md ${styles.table}`}>
+    <table className={`w-full glass-bg shadow-md ${styles.table} ${className}`}>
       <thead className='theme-border w-full rounded-md'>
         <tr>
           <td className='theme-border'>
-            <h1 className='p-1'>{title}</h1>
+            <h4 className='p-1'>{title}</h4>
           </td>
           <td className='theme-border' />
         </tr>

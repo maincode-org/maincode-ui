@@ -2,7 +2,7 @@ import React, { useContext, useState } from 'react';
 import { LiveEditor, LiveError, LivePreview, LiveProvider } from 'react-live';
 import { Language } from 'prism-react-renderer';
 import darkTheme from 'prism-react-renderer/themes/nightOwl';
-import lightTheme from 'prism-react-renderer/themes/nightOwlLight';
+import lightTheme from 'prism-react-renderer/themes/github';
 import CopyButton from '../copy-button/CopyButton';
 import styles from './live-code-editor.module.css';
 import { EThemeModes, ThemeContext } from 'contexts/theme';
@@ -34,7 +34,7 @@ const LiveCodeEditor: React.FC<IProps> = ({ className = '', code = '', language 
       scope={scope}
       noInline={noInline}
     >
-      <div className={`${styles.liveWrapper} theme-shadow theme-item-bg theme-border`}>
+      <div className={`${className} ${styles.liveWrapper} theme-shadow theme-item-bg theme-border`}>
         <div className={`${styles.liveEditor} ${enablePreview ? styles.column : 'w-full h-full'} theme-item-bg`}>
           <CopyButton code={currentCode} />
           <LiveEditor onChange={(val) => setCurrentCode(val)} code={padCode(currentCode)} />
