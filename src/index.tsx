@@ -43,4 +43,8 @@ import PaginationFooter from './components/page-components/pagination-footer/Pag
 import Menu from './components/page-components/menu/Menu';
 import Header from './components/page-components/header/Header';
 
+/** Simulation Components --------------------------- */
+import FunctionsCannon from './components/simulation-components/math/functions-cannon/FunctionsCannon';
+export { FunctionsCannon };
+
 export { PaginationFooter, Menu, Header };

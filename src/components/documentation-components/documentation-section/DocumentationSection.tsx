@@ -16,7 +16,7 @@ const DocumentationSection: React.FC<IProps> = ({ onContentLoad, className = '',
 
   return (
     <div className={`${className} ${stylesheet.wrapper}`}>
-      <section className='pb-2'>
+      <section className={`${stylesheet.section} pb-2`}>
         {description && <div className='mt-1 mb-2'>{description}</div>}
 
         {mainText && mainText}

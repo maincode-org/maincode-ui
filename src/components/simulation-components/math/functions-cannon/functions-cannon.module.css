@@ -1,0 +1,10 @@
+.cannonBody {
+  transform-origin: center;
+  transform-box: fill-box;
+}
+
+.canvas {
+  position: absolute;
+  left: 17%;
+  bottom: 17%;
+}
