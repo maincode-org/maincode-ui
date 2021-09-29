@@ -16,29 +16,31 @@ const DocumentationSection: React.FC<IProps> = ({ onContentLoad, className = '',
 
   return (
     <div className={`${className} ${stylesheet.wrapper}`}>
-      <section>
-        {description && description}
+      <section className='pb-2'>
+        {description && <div className='mt-1 mb-2'>{description}</div>}
 
         {mainText && mainText}
 
-        {codeExamples && renderLiveCodeEditors(codeExamples)}
+        {codeExamples && <div className='mt-1 mb-3'>{renderLiveCodeEditors(codeExamples)}</div>}
 
         {children}
 
         {props?.[0] && (
           <div>
-            <h2>Props</h2>
+            <h4>Props</h4>
             {renderProps(props)}
           </div>
         )}
+
         {styles?.[0] && (
-          <div className='mb-2'>
-            <h2>Custom CSS properties</h2>
+          <div>
+            <h4>Customization</h4>
             {renderStyles(styles)}
           </div>
         )}
       </section>
-      {(prevNav || nextNav) && <PaginationFooter className='mt-3' prev={prevNav} next={nextNav} />}
+
+      {(prevNav || nextNav) && <PaginationFooter prev={prevNav} next={nextNav} />}
     </div>
   );
 };
@@ -46,10 +48,11 @@ export default DocumentationSection;
 
 export const renderLiveCodeEditors = (codeExamples: IComponentUsage[]): JSX.Element[] =>
   codeExamples.map((example, i) => (
-    <div key={i}>
-      {example.title && <h4>{example.title}</h4>}
+    <div key={i} className='mb-2'>
+      {example.title && <h4 className='mt-2'>{example.title}</h4>}
       {example.description && example.description}
-      <LiveCodeEditor className='my-1' code={example.code} enablePreview={example.enablePreview} noInline={example.noInline} scope={example.scope} />
+      <LiveCodeEditor className='my-2' code={example.code} enablePreview={example.enablePreview} noInline={example.noInline} scope={example.scope} />
+      {example.outro && example.outro}
     </div>
   ));
 
@@ -58,6 +61,7 @@ const renderProps = (props: IPropertyDetail[]): JSX.Element[] => {
     <Table
       key={i}
       title={p.title}
+      className='mb-3 mt-1'
       properties={[
         { label: 'Description', value: p.description },
         { label: 'Attribute', value: `<code>${p.attribute}</code>` },
@@ -69,6 +73,6 @@ const renderProps = (props: IPropertyDetail[]): JSX.Element[] => {
 };
 
 const renderStyles = (styles: IStyleDetail[]): JSX.Element => {
-  const tableProperties = styles.map((s) => ({ label: `<code>${s.className}</code>`, value: s.description }));
-  return <Table title='Styles' properties={tableProperties} />;
+  const tableProperties = styles.map((s) => ({ label: `<code>${s.propertyName}</code>`, value: s.description }));
+  return <Table title='Styles' className='mb-3 mt-1' properties={tableProperties} />;
 };

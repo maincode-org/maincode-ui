@@ -1,37 +1,10 @@
-import { IDocumentationPageContent, IPreview, InfoArea, jsxExample, LiveCodeEditor, IPropertyDetail, IStyleDetail } from 'maincode-ui';
+import { IDocumentationPageContent, IPreview, InfoArea, jsxExample } from 'maincode-ui';
 import liveCodeEditorLight from 'assets/LiveCodeEdit-light.png';
 import liveCodeEditorDark from 'assets/LiveCodeEdit-dark.png';
 import { IonButton } from '@ionic/react';
-
-const advancedCodeExample = `
-const jsxExample = "${jsxExample.trim()}";
-
-<LiveCodeEditor code={jsxExample} noInline={true} />
-`;
-
-const basicCodeExample = `
-<LiveCodeEditor
-  code="<IonButton>An ion button!</IonButton>"
-  scope={{IonButton}}
-/>
-`;
-
-const liveEditorProps: IPropertyDetail[] = [
-  {
-    title: '..',
-    description: '..',
-    attribute: '..',
-    type: '..',
-    defaultValue: '..',
-  },
-];
-
-const liveEditorStyles: IStyleDetail[] = [
-  {
-    className: '..',
-    description: '..',
-  },
-];
+import { basicCodeExample, advancedCodeExample } from './examples';
+import { liveEditorStyles } from './styles';
+import { liveEditorProps } from './props';
 
 export const liveEditorDocumentation: IDocumentationPageContent = {
   description: (
@@ -56,14 +29,12 @@ export const liveEditorDocumentation: IDocumentationPageContent = {
       scope: { IonButton },
     },
     {
-      description: (
-        <>
-          <p>In order to produce the above example, we can initiate the live code editor with the code below. </p>
-          <InfoArea>
-            The editor must have <code>IonButton</code> in scope in order to preview it. However, any CSS and classes in scope for the parent component or page will <b>automatically</b> be in scope
-            for the code. This extends to theming, and is why the button has styling according to the theme of this page.
-          </InfoArea>
-        </>
+      description: <>In order to produce the above example, we can initiate the live code editor with the code below.</>,
+      outro: (
+        <InfoArea>
+          The editor must have <code>IonButton</code> in scope in order to preview it. However, any CSS and classes in scope for the parent component or page will <b>automatically</b> be in scope for
+          the code. This extends to theming, and is why the button has styling according to the theme of this page.
+        </InfoArea>
       ),
       enablePreview: false,
       code: basicCodeExample,

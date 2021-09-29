@@ -36,6 +36,7 @@ export type IComponentUsage = {
   code: string;
   title?: string;
   description?: JSX.Element;
+  outro?: JSX.Element;
   language?: string;
   enablePreview?: boolean;
   noInline?: boolean;
@@ -51,6 +52,6 @@ export type IPropertyDetail = {
 };
 
 export type IStyleDetail = {
-  className: string;
+  propertyName: string;
   description: string;
 };
