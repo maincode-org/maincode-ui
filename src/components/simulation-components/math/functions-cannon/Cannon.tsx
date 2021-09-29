@@ -1,8 +1,8 @@
 import React from 'react';
 import styles from './functions-cannon.module.css';
 export default (
-  <svg width='350' height='347' viewBox='0 0 312 347' fill='none' xmlns='http://www.w3.org/2000/svg'>
-    <g id='cannon'>
+  <svg id='cannon' width='350' height='347' viewBox='0 0 312 347' fill='none' xmlns='http://www.w3.org/2000/svg'>
+    <g>
       <path id='Vector' d='M312 0H0V347H312V0Z' fill='none' />
       <g className={styles.cannonBody}>
         <g id='Group'>
