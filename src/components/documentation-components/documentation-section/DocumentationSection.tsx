@@ -4,6 +4,8 @@ import Table from '../../layout-components/table/Table';
 import PaginationFooter from 'components/page-components/pagination-footer/PaginationFooter';
 import { IDocumentationPageContent, IPropertyDetail, IStyleDetail, IComponentUsage } from '../types';
 import LiveCodeEditor from 'components/code-components/live-code-editor/LiveCodeEditor';
+import { IonIcon } from '@ionic/react';
+import { pushOutline, brushSharp, codeSlashSharp } from 'ionicons/icons';
 
 type IProps = Omit<IDocumentationPageContent, 'customContent'> & {
   className?: string;
@@ -27,14 +29,20 @@ const DocumentationSection: React.FC<IProps> = ({ onContentLoad, className = '',
 
         {props?.[0] && (
           <div>
-            <h4 className='mt-4'>Props</h4>
+            <h3 className='mt-4 align-middle'>
+              <IonIcon className='align-middle mr-05' src={pushOutline} />
+              Props
+            </h3>
             {renderProps(props)}
           </div>
         )}
 
         {styles?.[0] && (
           <div>
-            <h4 className='mt-4'>Customization</h4>
+            <h3 className='mt-4 align-middle'>
+              <IonIcon className='align-middle mr-05 pb-025' src={brushSharp} />
+              Customization
+            </h3>
             {renderStyles(styles)}
           </div>
         )}
@@ -49,7 +57,12 @@ export default DocumentationSection;
 export const renderLiveCodeEditors = (codeExamples: IComponentUsage[]): JSX.Element[] =>
   codeExamples.map((example, i) => (
     <div key={i} className='mb-2'>
-      {example.title && <h4 className='mt-4'>{example.title}</h4>}
+      {example.title && (
+        <h3 className='mt-4'>
+          <IonIcon className='align-middle mr-05' src={codeSlashSharp} />
+          <span className='align-middle'>{example.title}</span>
+        </h3>
+      )}
       {example.description && example.description}
       <LiveCodeEditor className='my-2' code={example.code} enablePreview={example.enablePreview} noInline={example.noInline} scope={example.scope} />
       {example.outro && example.outro}
