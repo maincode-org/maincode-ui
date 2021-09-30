@@ -11,7 +11,7 @@ export const basicComponentPages: IEntityCategory = prepareURLPrefixComponents({
       title: 'Copy Area',
       preview: { element: <CopyArea command={'npm install maincode-ui'} /> },
       description: <p>Displays single commands with controls for seamless clipboard copying</p>,
-      props: [{ title: 'Animated', description: `If <code>true</code>, the alert will animate`, attribute: 'animated', type: 'boolean', defaultValue: 'true' }],
+      props: [{ title: 'Animated', description: `If <code>true</code>, the alert will animate`, required: true, type: 'boolean', defaultValue: 'true' }],
       styles: [
         { propertyName: `<code>glass-bg</code>`, description: 'This is a glass effect on the background' },
         { propertyName: `<code>theme-border</code>`, description: 'Border matching the theme' },

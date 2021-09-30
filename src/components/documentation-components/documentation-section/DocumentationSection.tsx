@@ -27,14 +27,14 @@ const DocumentationSection: React.FC<IProps> = ({ onContentLoad, className = '',
 
         {props?.[0] && (
           <div>
-            <h4>Props</h4>
+            <h4 className='mt-4'>Props</h4>
             {renderProps(props)}
           </div>
         )}
 
         {styles?.[0] && (
           <div>
-            <h4>Customization</h4>
+            <h4 className='mt-4'>Customization</h4>
             {renderStyles(styles)}
           </div>
         )}
@@ -49,7 +49,7 @@ export default DocumentationSection;
 export const renderLiveCodeEditors = (codeExamples: IComponentUsage[]): JSX.Element[] =>
   codeExamples.map((example, i) => (
     <div key={i} className='mb-2'>
-      {example.title && <h4 className='mt-2'>{example.title}</h4>}
+      {example.title && <h4 className='mt-4'>{example.title}</h4>}
       {example.description && example.description}
       <LiveCodeEditor className='my-2' code={example.code} enablePreview={example.enablePreview} noInline={example.noInline} scope={example.scope} />
       {example.outro && example.outro}
@@ -60,13 +60,13 @@ const renderProps = (props: IPropertyDetail[]): JSX.Element[] => {
   return props.map((p, i) => (
     <Table
       key={i}
-      title={p.title}
-      className='mb-3 mt-1'
+      title={<code>{p.title}</code>}
+      className='mb-3 mt-2'
       properties={[
         { label: 'Description', value: p.description },
-        { label: 'Attribute', value: `<code>${p.attribute}</code>` },
         { label: 'Type', value: `<code>${p.type}</code>` },
-        { label: 'Default', value: `<code>${p.defaultValue}</code>` },
+        { label: 'Required', value: `<code>${p.required}</code>` },
+        { label: 'Default value', value: `<code>${p.defaultValue}</code>` },
       ]}
     />
   ));
@@ -74,5 +74,5 @@ const renderProps = (props: IPropertyDetail[]): JSX.Element[] => {
 
 const renderStyles = (styles: IStyleDetail[]): JSX.Element => {
   const tableProperties = styles.map((s) => ({ label: `<code>${s.propertyName}</code>`, value: s.description }));
-  return <Table title='Styles' className='mb-3 mt-1' properties={tableProperties} />;
+  return <Table title='Styles' className='mb-3 mt-2' properties={tableProperties} />;
 };

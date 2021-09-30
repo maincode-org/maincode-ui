@@ -46,8 +46,8 @@ export type IComponentUsage = {
 export type IPropertyDetail = {
   title: string;
   description: string;
-  attribute: string;
   type: string;
+  required: boolean;
   defaultValue: string;
 };
 
