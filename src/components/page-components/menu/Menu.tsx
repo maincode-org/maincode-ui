@@ -2,7 +2,7 @@ import React, { useContext } from 'react';
 import { useLocation } from 'react-router-dom';
 import parse from 'html-react-parser';
 import { IonContent, IonIcon, IonItem, IonLabel, IonList, IonListHeader, IonMenu, IonMenuToggle, IonNote } from '@ionic/react';
-import { chevronForwardOutline } from 'ionicons/icons';
+import { chevronForwardSharp } from 'ionicons/icons';
 import { IEntityCategory, IDocumentationPage } from '../../documentation-components/types';
 import { EThemeModes, ThemeContext } from 'contexts/theme';
 import styles from './menu.module.css';
@@ -34,7 +34,7 @@ const Menu: React.FC<IProps> = ({ entityPages, guidePages, headerText, subHeader
             <IonList key={index} className={styles.menuList}>
               <IonListHeader className='pb-05 select-none'>{p.title}</IonListHeader>
 
-              {p.pages.map((c, index) => makeMenuEntry(index, c.url, c.title, location.pathname, chevronForwardOutline, chevronForwardOutline))}
+              {p.pages.map((c, index) => makeMenuEntry(index, c.url, c.title, location.pathname, chevronForwardSharp, chevronForwardSharp))}
             </IonList>
           ))}
         </div>
