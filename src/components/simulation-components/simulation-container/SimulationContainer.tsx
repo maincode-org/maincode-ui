@@ -5,7 +5,7 @@ type IProps = {
   id: string;
   onLoad?: (ref: HTMLElement) => void;
   className?: string;
-  children?: React.ReactElement | React.ReactElement[];
+  children?: React.ReactElement | (React.ReactElement | undefined)[];
 };
 
 const SimulationContainer: React.FC<IProps> = ({ id, onLoad, className = '', children }) => {
