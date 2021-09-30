@@ -12,8 +12,8 @@ type IProps = {
   enablePreview?: boolean;
   scope?: { [key: string]: any };
   noInline?: boolean;
-  className?: string;
   language?: Language;
+  className?: string;
 };
 
 const LiveCodeEditor: React.FC<IProps> = ({ className = '', code = '', language = 'jsx', enablePreview = true, scope, noInline = false }) => {
