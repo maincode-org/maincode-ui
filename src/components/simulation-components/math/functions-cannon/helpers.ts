@@ -144,13 +144,15 @@ export const initCannon = (cannon: SVGSVGElement): void => {
   cannon.style.position = 'absolute';
 };
 
-export const initCannonBall = (cannonBall: SVGSVGElement): void => {
+export const initCannonBall = (cannonBall: SVGSVGElement, plot: IPlotConfig, x: number, y: number): void => {
+  console.log(plot);
+  console.log('initCannonBall', x, y);
   cannonBall.style.height = '5%';
   cannonBall.style.width = '5%';
-  cannonBall.style.left = '15%';
-  cannonBall.style.bottom = '12%';
+  cannonBall.style.left = `${x}px`; //`calc(100% - ${plot.canvasWidth}px + 2.5%)`;
+  cannonBall.style.bottom = `${y}px`; //`calc(100% - ${plot.canvasHeight}px + ${2 * plot.stepWidth.y}px + 2.5%)`;
   cannonBall.style.position = 'absolute';
-  cannonBall.style.display = 'none';
+  cannonBall.style.display = 'inline';
   cannonBall.style.zIndex = '50';
 };
 

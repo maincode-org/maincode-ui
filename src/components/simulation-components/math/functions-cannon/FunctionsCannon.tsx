@@ -37,7 +37,6 @@ const FunctionsCannon: React.FC<IProps> = ({ id, className = '' }) => {
     setCannonWheel(cannonWheel);
 
     initCannon(cannon);
-    initCannonBall(cannonBall);
     applyCannonWheelStyle(cannonWheel);
 
     const canvas = canvasRef.current;
@@ -59,6 +58,43 @@ const FunctionsCannon: React.FC<IProps> = ({ id, className = '' }) => {
     if (context) {
       const plot: IPlotConfig = drawPlot(context, axisOptions, theme?.themeName === EThemeModes.dark);
 
+      const yPxFromBorder = sectionElement.clientHeight * 0.175;
+
+      const borderYToAxis = sectionElement.clientHeight - (canvas.clientHeight - plot.offset.bottom);
+
+      const yPxFromPlot = borderYToAxis - yPxFromBorder;
+      console.log(yPxFromPlot);
+
+      // https://en.wikipedia.org/wiki/Quadratic_equation
+      // "Solving quadratic functions with complete square algorithm"
+      // ax^2 + x + c = y
+      // 1:  x^2 + b / a * x + c/a = y/a
+      // 2:  x^2 + b / a * x = y/a - c/a
+      // 3:  x^2 + b / a * x + (b / a) / 2 = y/a - c/a + (b / a) / 2
+      // 4:  (x + (b / a) / 2)^2 = y/a - c/a + (b / a) / 2
+      // 5:  x + (b / a) / 2 = sqrt(y/a - c/a + (b / a) / 2)
+      // 6:  x = - (b / a) / 2 +- sqrt(y/a - c/a + (b / a) / 2)
+
+      /*
+      const a = -0.01;
+      const b = 1;
+      const c = 2;
+       */
+      const y = yPxFromPlot;
+
+      const xForInitialY = -41;
+
+      // const xForInitialY = -(b / a / 2) - Math.sqrt(y / a - c / a + b / a / 2);
+
+      const borderXToAxis = sectionElement.clientWidth - (canvas.clientWidth - plot.offset.left);
+      const xFromBorder = borderXToAxis + xForInitialY;
+
+      console.log('Initial pos: ', xForInitialY, y);
+      console.log('Initial pos calced: ', xForInitialY, throwParabolaFunction(-0.01, 2)(xForInitialY));
+
+      console.log('from plot', xFromBorder, yPxFromPlot);
+      initCannonBall(cannonBall, plot, xFromBorder, yPxFromBorder);
+
       drawFunction(plot, linearFunction(2, 0), context);
       drawFunction(plot, linearFunction(1, 2), context, 'rgb(148,16,126)');
       drawFunction(plot, throwParabolaFunction(-0.01, 2), context, 'rgb(200,20,220)');
@@ -66,7 +102,7 @@ const FunctionsCannon: React.FC<IProps> = ({ id, className = '' }) => {
 
       if (cannonBallRef) {
         setCannonAnimation(createCannonAnimation(cannonBodySelector, cannonWheel));
-        setCannonBallAnimation(createFollowFnAnimation(cannonBallRef, plot, throwParabolaFunction(-0.01, 2)));
+        setCannonBallAnimation(createFollowFnAnimation(cannonBallRef, plot, throwParabolaFunction(-0.01, 2), xForInitialY, borderXToAxis, borderYToAxis));
       }
     }
   }, [sectionElement, hasPaintedSection, theme, cannonBallRef, cannonBodySelector]);
@@ -84,14 +120,23 @@ const FunctionsCannon: React.FC<IProps> = ({ id, className = '' }) => {
     return animationTimeline;
   };
 
-  const createFollowFnAnimation = (cannonBall: SVGSVGElement, plot: IPlotConfig, fn: (x: number) => number) => {
+  const createFollowFnAnimation = (cannonBall: SVGSVGElement, plot: IPlotConfig, fn: (x: number) => number, xFrom = 0, borderAxisDistX = 0, borderAxisDistY = 0) => {
     const animationTimeline = gsap.timeline();
     animationTimeline.to(cannonBall, { display: 'inline' });
 
-    let currentX = 0;
+    let currentX = xFrom;
 
-    for (let x = 0; x <= plot.canvasWidth - (plot.offset.left + plot.offset.right); x++) {
-      animationTimeline.fromTo(cannonBall, { x: currentX, y: -fn(currentX) }, { duration: 0.1, x: (currentX += 2), y: -fn(currentX) });
+    console.log('borderAxisDistX', borderAxisDistX);
+    console.log('borderAxisDistY', borderAxisDistY);
+    console.log('borderAxisDistX + currentX', borderAxisDistX + currentX);
+    console.log('borderAxisDistY + -fn(currentX)', borderAxisDistY - fn(currentX));
+
+    for (let x = xFrom; x <= plot.canvasWidth - (plot.offset.left + plot.offset.right); x++) {
+      animationTimeline.fromTo(
+        cannonBall,
+        { x: borderAxisDistX + currentX, y: borderAxisDistY - fn(currentX) },
+        { duration: 0.025, x: borderAxisDistX + ++currentX, y: borderAxisDistY - fn(currentX) }
+      );
     }
     animationTimeline.pause();
     return animationTimeline;
