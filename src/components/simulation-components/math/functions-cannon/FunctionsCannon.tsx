@@ -42,7 +42,7 @@ const FunctionsCannon: React.FC<IProps> = ({ id, className = '' }) => {
     const canvas = canvasRef.current;
     if (!canvas) return;
 
-    const context = enhanceCanvasQuality(canvas, sectionElement.clientWidth ?? 0, 80, 80);
+    const context = enhanceCanvasQuality(canvas, sectionElement.clientWidth ?? 0, 82, 82);
 
     const axisOptions: IAxisOptions = {
       x: {
@@ -58,12 +58,17 @@ const FunctionsCannon: React.FC<IProps> = ({ id, className = '' }) => {
     if (context) {
       const plot: IPlotConfig = drawPlot(context, axisOptions, theme?.themeName === EThemeModes.dark);
 
-      const yPxFromBorder = sectionElement.clientHeight * 0.175;
+      const bottomToXAxis = sectionElement.clientHeight - (canvas.clientHeight - plot.offset.bottom);
 
-      const borderYToAxis = sectionElement.clientHeight - (canvas.clientHeight - plot.offset.bottom);
+      const initialBallPos = {
+        x: 0,
+        y: sectionElement.clientHeight * 0.145,
+      };
 
-      const yPxFromPlot = borderYToAxis - yPxFromBorder;
-      console.log(yPxFromPlot);
+      const initalBallCoord = {
+        x: 0,
+        y: bottomToXAxis - initialBallPos.y,
+      };
 
       // https://en.wikipedia.org/wiki/Quadratic_equation
       // "Solving quadratic functions with complete square algorithm"
@@ -80,7 +85,7 @@ const FunctionsCannon: React.FC<IProps> = ({ id, className = '' }) => {
       const b = 1;
       const c = 2;
        */
-      const y = yPxFromPlot;
+      const y = initalBallCoord.y;
 
       const xForInitialY = -41;
 
@@ -89,11 +94,20 @@ const FunctionsCannon: React.FC<IProps> = ({ id, className = '' }) => {
       const borderXToAxis = sectionElement.clientWidth - (canvas.clientWidth - plot.offset.left);
       const xFromBorder = borderXToAxis + xForInitialY;
 
+      /** Test - delete later */
+      const test: HTMLElement = sectionElement.querySelector('#test') as HTMLElement;
+      test.style.position = 'absolute';
+      test.style.bottom = `${bottomToXAxis}px`;
+      test.style.background = 'blue';
+      test.style.width = '10px';
+      test.style.height = '10px';
+      test.style.left = `${borderXToAxis}px`;
+
       console.log('Initial pos: ', xForInitialY, y);
       console.log('Initial pos calced: ', xForInitialY, throwParabolaFunction(-0.01, 2)(xForInitialY));
 
-      console.log('from plot', xFromBorder, yPxFromPlot);
-      initCannonBall(cannonBall, plot, xFromBorder, yPxFromBorder);
+      console.log('from plot', xFromBorder, initalBallCoord.y);
+      initCannonBall(cannonBall, plot, xFromBorder, initialBallPos.y);
 
       drawFunction(plot, linearFunction(2, 0), context);
       drawFunction(plot, linearFunction(1, 2), context, 'rgb(148,16,126)');
@@ -102,7 +116,7 @@ const FunctionsCannon: React.FC<IProps> = ({ id, className = '' }) => {
 
       if (cannonBallRef) {
         setCannonAnimation(createCannonAnimation(cannonBodySelector, cannonWheel));
-        setCannonBallAnimation(createFollowFnAnimation(cannonBallRef, plot, throwParabolaFunction(-0.01, 2), xForInitialY, borderXToAxis, borderYToAxis));
+        setCannonBallAnimation(createFollowFnAnimation(cannonBallRef, plot, throwParabolaFunction(-0.01, 2), xForInitialY, borderXToAxis, bottomToXAxis));
       }
     }
   }, [sectionElement, hasPaintedSection, theme, cannonBallRef, cannonBodySelector]);
@@ -124,13 +138,16 @@ const FunctionsCannon: React.FC<IProps> = ({ id, className = '' }) => {
     const animationTimeline = gsap.timeline();
     animationTimeline.to(cannonBall, { display: 'inline' });
 
-    let currentX = xFrom;
+    const currentX = xFrom;
+
+    console.log(plot);
 
     console.log('borderAxisDistX', borderAxisDistX);
     console.log('borderAxisDistY', borderAxisDistY);
     console.log('borderAxisDistX + currentX', borderAxisDistX + currentX);
     console.log('borderAxisDistY + -fn(currentX)', borderAxisDistY - fn(currentX));
 
+    /*
     for (let x = xFrom; x <= plot.canvasWidth - (plot.offset.left + plot.offset.right); x++) {
       animationTimeline.fromTo(
         cannonBall,
@@ -138,6 +155,7 @@ const FunctionsCannon: React.FC<IProps> = ({ id, className = '' }) => {
         { duration: 0.025, x: borderAxisDistX + ++currentX, y: borderAxisDistY - fn(currentX) }
       );
     }
+     */
     animationTimeline.pause();
     return animationTimeline;
   };
@@ -153,6 +171,7 @@ const FunctionsCannon: React.FC<IProps> = ({ id, className = '' }) => {
       <Cannon isDarkMode={theme?.themeName === 'dark'} />
       {cannonBall}
       <p className={`${styles.functionText} p-05 m-0 glass-bg rounded`}>f(x) = -0.01x^2+2x+3</p>
+      <div id='test' />
       {cannonBallRef && cannonWheel && sectionElement && (
         <IonButton className={`${styles.playButton}`} onClick={() => playAnimation(cannonAnimation, cannonBallAnimation)}>
           Afspil
