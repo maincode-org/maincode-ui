@@ -1,13 +1,19 @@
 import React, { useContext, useEffect, useRef, useState } from 'react';
 import styles from './functions-cannon.module.css';
 import Cannon from './Cannon';
-import cannonBall from './CannonBall';
 import gsap from 'gsap';
 import SimulationContainer from '../../simulation-container/SimulationContainer';
-import { initCannonBall, initCannon, applyCannonWheelStyle, drawFunction, drawPlot, drawPlotPoint, enhanceCanvasQuality, IAxisOptions, IPlotConfig } from './helpers';
+import { initCannon, applyCannonWheelStyle, drawFunction, drawPlot, drawPlotPoint, enhanceCanvasQuality, IAxisOptions, IPlotConfig, initCannonBall } from './helpers';
 import { linearFunction, throwParabolaFunction } from './math-lib';
 import { EThemeModes, ThemeContext } from 'contexts/theme';
 import { IonButton } from '@ionic/react';
+
+type ICoord = {
+  x: number;
+  y: number;
+};
+
+type IPos = ICoord;
 
 type IProps = {
   id: string;
@@ -18,7 +24,6 @@ const FunctionsCannon: React.FC<IProps> = ({ id, className = '' }) => {
   const [hasPaintedSection, setHasPaintedSection] = useState(false);
   const [sectionElement, setSectionElement] = useState<HTMLElement>();
   const canvasRef = useRef<HTMLCanvasElement>(null);
-  const [cannonBallRef, setCannonBallRef] = useState<SVGSVGElement>();
   const [cannonWheel, setCannonWheel] = useState<SVGSVGElement>();
   const [cannonAnimation, setCannonAnimation] = useState<gsap.core.Timeline>();
   const [cannonBallAnimation, setCannonBallAnimation] = useState<gsap.core.Timeline>();
@@ -30,10 +35,8 @@ const FunctionsCannon: React.FC<IProps> = ({ id, className = '' }) => {
     if (!sectionElement || !hasPaintedSection) return;
 
     const cannon: SVGSVGElement = sectionElement.querySelector('#cannon') as SVGSVGElement;
-    const cannonBall: SVGSVGElement = sectionElement.querySelector('#cannonBall') as SVGSVGElement;
     const cannonWheel: SVGSVGElement = sectionElement.querySelector('#wheel') as SVGSVGElement;
 
-    setCannonBallRef(cannonBall);
     setCannonWheel(cannonWheel);
 
     initCannon(cannon);
@@ -59,15 +62,16 @@ const FunctionsCannon: React.FC<IProps> = ({ id, className = '' }) => {
       const plot: IPlotConfig = drawPlot(context, axisOptions, theme?.themeName === EThemeModes.dark);
 
       const bottomToXAxis = sectionElement.clientHeight - (canvas.clientHeight - plot.offset.bottom);
+      const leftToYAxis = sectionElement.clientWidth - (canvas.clientWidth - plot.offset.left);
 
-      const initialBallPos = {
+      const initialBallPos: IPos = {
         x: 0,
         y: sectionElement.clientHeight * 0.145,
       };
 
-      const initalBallCoord = {
+      const initialBallCoord: ICoord = {
         x: 0,
-        y: bottomToXAxis - initialBallPos.y,
+        y: -(bottomToXAxis - initialBallPos.y),
       };
 
       // https://en.wikipedia.org/wiki/Quadratic_equation
@@ -85,41 +89,49 @@ const FunctionsCannon: React.FC<IProps> = ({ id, className = '' }) => {
       const b = 1;
       const c = 2;
        */
-      const y = initalBallCoord.y;
+      // const y = initialBallCoord.y;
 
-      const xForInitialY = -41;
+      const xForInitialY = -32.2;
+      initialBallCoord.x = xForInitialY;
 
       // const xForInitialY = -(b / a / 2) - Math.sqrt(y / a - c / a + b / a / 2);
 
-      const borderXToAxis = sectionElement.clientWidth - (canvas.clientWidth - plot.offset.left);
-      const xFromBorder = borderXToAxis + xForInitialY;
+      initialBallPos.x = leftToYAxis + initialBallCoord.x;
 
-      /** Test - delete later */
-      const test: HTMLElement = sectionElement.querySelector('#test') as HTMLElement;
-      test.style.position = 'absolute';
-      test.style.bottom = `${bottomToXAxis}px`;
-      test.style.background = 'blue';
-      test.style.width = '10px';
-      test.style.height = '10px';
-      test.style.left = `${borderXToAxis}px`;
+      const cannonBall: HTMLElement = sectionElement.querySelector('#cannonBall') as HTMLElement;
+      if (!cannonBall) return;
+      initCannonBall(cannonBall);
 
-      console.log('Initial pos: ', xForInitialY, y);
-      console.log('Initial pos calced: ', xForInitialY, throwParabolaFunction(-0.01, 2)(xForInitialY));
+      /** Initial coord */
+      const initialCoord: HTMLElement = sectionElement.querySelector('#initialCoord') as HTMLElement;
+      initialCoord.style.position = 'absolute';
+      initialCoord.style.fontSize = '8px';
+      initialCoord.style.top = '5%';
+      initialCoord.style.left = '0';
+      initialCoord.innerText = `coord: (${initialBallCoord.x.toFixed(0)}, ${initialBallCoord.y.toFixed(0)})`;
 
-      console.log('from plot', xFromBorder, initalBallCoord.y);
-      initCannonBall(cannonBall, plot, xFromBorder, initialBallPos.y);
+      /** Current coord */
+      const currentCoord: HTMLElement = sectionElement.querySelector('#currentCoord') as HTMLElement;
+      currentCoord.style.position = 'absolute';
+      currentCoord.style.fontSize = '8px';
+      currentCoord.style.top = '0';
+      currentCoord.style.left = '0';
+      currentCoord.innerText = `coord: (${initialBallCoord.x.toFixed(0)}, ${throwParabolaFunction(-0.01, 0)(initialBallCoord.x).toFixed(0)})`;
+
+      console.log('Initial coord: ', initialBallCoord);
+      console.log('Initial pos calced: ', xForInitialY, throwParabolaFunction(-0.01, 0)(xForInitialY));
+
+      console.log('from plot', initialBallPos.x, initialBallCoord.y);
 
       drawFunction(plot, linearFunction(2, 0), context);
       drawFunction(plot, linearFunction(1, 2), context, 'rgb(148,16,126)');
-      drawFunction(plot, throwParabolaFunction(-0.01, 2), context, 'rgb(200,20,220)');
+      drawFunction(plot, throwParabolaFunction(-0.01, 0), context, 'rgb(200,20,220)');
       drawPlotPoint(plot, { x: 2, y: 4 }, context);
 
-      if (cannonBallRef) {
-        setCannonAnimation(createCannonAnimation(cannonBodySelector, cannonWheel));
-        setCannonBallAnimation(createFollowFnAnimation(cannonBallRef, plot, throwParabolaFunction(-0.01, 2), xForInitialY, borderXToAxis, bottomToXAxis));
-      }
+      setCannonAnimation(createCannonAnimation(cannonBodySelector, cannonWheel));
+      setCannonBallAnimation(createFollowFnAnimation(cannonBall, plot, throwParabolaFunction(-0.01, 0), initialBallCoord, leftToYAxis, bottomToXAxis, currentCoord));
     }
-  }, [sectionElement, hasPaintedSection, theme, cannonBallRef, cannonBodySelector]);
+  }, [sectionElement, hasPaintedSection, theme, cannonBodySelector]);
 
   const onSectionPaint = (sectionElement: HTMLElement) => {
     setSectionElement(sectionElement);
@@ -134,28 +146,21 @@ const FunctionsCannon: React.FC<IProps> = ({ id, className = '' }) => {
     return animationTimeline;
   };
 
-  const createFollowFnAnimation = (cannonBall: SVGSVGElement, plot: IPlotConfig, fn: (x: number) => number, xFrom = 0, borderAxisDistX = 0, borderAxisDistY = 0) => {
+  const createFollowFnAnimation = (cannonBall: HTMLElement, plot: IPlotConfig, fn: (x: number) => number, initialCoord: ICoord, leftToYAxis: number, bottomToXAxis: number, debugBox?: HTMLElement) => {
     const animationTimeline = gsap.timeline();
-    animationTimeline.to(cannonBall, { display: 'inline' });
 
-    const currentX = xFrom;
+    console.log(cannonBall, fn, leftToYAxis, bottomToXAxis, debugBox);
 
-    console.log(plot);
+    let currentX = initialCoord.x;
 
-    console.log('borderAxisDistX', borderAxisDistX);
-    console.log('borderAxisDistY', borderAxisDistY);
-    console.log('borderAxisDistX + currentX', borderAxisDistX + currentX);
-    console.log('borderAxisDistY + -fn(currentX)', borderAxisDistY - fn(currentX));
+    console.log('coord (x,y)', currentX, fn(currentX));
 
-    /*
-    for (let x = xFrom; x <= plot.canvasWidth - (plot.offset.left + plot.offset.right); x++) {
-      animationTimeline.fromTo(
-        cannonBall,
-        { x: borderAxisDistX + currentX, y: borderAxisDistY - fn(currentX) },
-        { duration: 0.025, x: borderAxisDistX + ++currentX, y: borderAxisDistY - fn(currentX) }
-      );
+    for (let x = initialCoord.x; x <= plot.canvasWidth - (plot.offset.left + plot.offset.right); x++) {
+      if (currentX > 1 && fn(currentX) <= 1 && fn(currentX) >= -1) break;
+      animationTimeline.fromTo(cannonBall, { x: leftToYAxis + currentX, y: -(bottomToXAxis + fn(currentX)) }, { duration: 0.025, x: leftToYAxis + ++currentX, y: -(bottomToXAxis + fn(currentX)) });
+      console.log('pos (x,y)', leftToYAxis + currentX, bottomToXAxis + fn(currentX));
+      console.log('pos to (x,y)', leftToYAxis + ++currentX, bottomToXAxis + fn(currentX));
     }
-     */
     animationTimeline.pause();
     return animationTimeline;
   };
@@ -169,10 +174,11 @@ const FunctionsCannon: React.FC<IProps> = ({ id, className = '' }) => {
   return (
     <SimulationContainer className={className} id={id} onLoad={onSectionPaint}>
       <Cannon isDarkMode={theme?.themeName === 'dark'} />
-      {cannonBall}
       <p className={`${styles.functionText} p-05 m-0 glass-bg rounded`}>f(x) = -0.01x^2+2x+3</p>
-      <div id='test' />
-      {cannonBallRef && cannonWheel && sectionElement && (
+      <p id='initialCoord'>(x,y)</p>
+      <p id='currentCoord'>(x,y)</p>
+      <div id='cannonBall' />
+      {cannonWheel && sectionElement && (
         <IonButton className={`${styles.playButton}`} onClick={() => playAnimation(cannonAnimation, cannonBallAnimation)}>
           Afspil
         </IonButton>
