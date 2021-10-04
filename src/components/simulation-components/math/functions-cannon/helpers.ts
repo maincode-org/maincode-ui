@@ -158,7 +158,7 @@ export const initCannonBall = (cannonBall: HTMLElement): void => {
 export const applyCannonWheelStyle = (cannonWheel: SVGSVGElement): void => {
   cannonWheel.style.transformBox = 'fill-box';
   cannonWheel.style.transformOrigin = 'center';
-  cannonWheel.style.transform = 'translateX(20px)';
+  cannonWheel.style.transform = 'translateX(30px)';
 };
 
 export const enhanceCanvasQuality = (canvas: HTMLCanvasElement, simulationSize: number, wPct: number, hPct: number): CanvasRenderingContext2D | null => {
