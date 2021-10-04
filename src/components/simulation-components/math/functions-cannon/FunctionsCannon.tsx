@@ -72,7 +72,7 @@ const FunctionsCannon: React.FC<IProps> = ({ id, className = '' }) => {
 
       const initialBallCoord: ICoord = {
         x: 0,
-        y: -(bottomToXAxis - initialBallPos.y),
+        y: -(bottomToXAxis - initialBallPos.y) / plot.stepWidth.y,
       };
 
       // https://en.wikipedia.org/wiki/Quadratic_equation
@@ -92,12 +92,12 @@ const FunctionsCannon: React.FC<IProps> = ({ id, className = '' }) => {
        */
       // const y = initialBallCoord.y;
 
-      const xForInitialY = -32.2;
+      const xForInitialY = -3.12;
       initialBallCoord.x = xForInitialY;
 
       // const xForInitialY = -(b / a / 2) - Math.sqrt(y / a - c / a + b / a / 2);
 
-      initialBallPos.x = leftToYAxis + initialBallCoord.x;
+      initialBallPos.x = leftToYAxis + initialBallCoord.x * plot.stepWidth.x;
 
       const cannonBallRef: HTMLElement = sectionElement.querySelector('#cannonBall') as HTMLElement;
       if (!cannonBall && cannonBallRef) setCannonBall(cannonBallRef);
@@ -118,20 +118,19 @@ const FunctionsCannon: React.FC<IProps> = ({ id, className = '' }) => {
       currentCoord.style.fontSize = '8px';
       currentCoord.style.top = '0';
       currentCoord.style.left = '0';
-      currentCoord.innerText = `coord: (${initialBallCoord.x.toFixed(0)}, ${throwParabolaFunction(-0.01, 0)(initialBallCoord.x).toFixed(0)})`;
+      currentCoord.innerText = `coord: (${initialBallCoord.x.toFixed(0)}, ${throwParabolaFunction(-0.2, 3)(initialBallCoord.x).toFixed(0)})`;
 
       console.log('Initial coord: ', initialBallCoord);
-      console.log('Initial pos calced: ', xForInitialY, throwParabolaFunction(-0.01, 0)(xForInitialY));
 
-      console.log('from plot', initialBallPos.x, initialBallCoord.y);
+      console.log('pos', initialBallPos.x, initialBallPos.y);
 
       drawFunction(plot, linearFunction(2, 0), context);
       drawFunction(plot, linearFunction(1, 2), context, 'rgb(148,16,126)');
-      drawFunction(plot, throwParabolaFunction(-0.01, 0), context, 'rgb(200,20,220)');
+      drawFunction(plot, throwParabolaFunction(-0.2, 3), context, 'rgb(200,20,220)');
       drawPlotPoint(plot, { x: 2, y: 4 }, context);
 
       setCannonAnimation(createCannonAnimation(cannonBodySelector));
-      setCannonBallAnimation(createFollowFnAnimation(cannonBall, plot, throwParabolaFunction(-0.01, 0), initialBallCoord, leftToYAxis, bottomToXAxis));
+      setCannonBallAnimation(createFollowFnAnimation(cannonBall, plot, throwParabolaFunction(-0.2, 3), initialBallCoord, leftToYAxis, bottomToXAxis, 1.5));
     }
   }, [sectionElement, hasPaintedSection, theme, cannonBall, cannonBodySelector]);
 
@@ -149,16 +148,19 @@ const FunctionsCannon: React.FC<IProps> = ({ id, className = '' }) => {
     return animationTimeline;
   };
 
-  const createFollowFnAnimation = (cannonBall: HTMLElement, plot: IPlotConfig, fn: (x: number) => number, initialCoord: ICoord, leftToYAxis: number, bottomToXAxis: number) => {
+  const createFollowFnAnimation = (cannonBall: HTMLElement, plot: IPlotConfig, fn: (x: number) => number, initialCoord: ICoord, leftToYAxis: number, bottomToXAxis: number, duration: number) => {
     const animationTimeline = gsap.timeline();
-
-    let currentX = initialCoord.x;
-
     animationTimeline.set(cannonBall, { visibility: 'visible' });
+    const stepSize = (plot.axis.x.toValue - plot.axis.x.fromValue) / 100; // visible range of x-values divided by a number of animation steps.
+    const speed = duration / (plot.numberOfDashes.x * (stepSize * 100));
 
-    for (let x = initialCoord.x; x <= plot.canvasWidth - (plot.offset.left + plot.offset.right); x++) {
-      if (currentX > 1 && fn(currentX) <= 1 && fn(currentX) >= -1) break;
-      animationTimeline.fromTo(cannonBall, { x: leftToYAxis + currentX, y: -(bottomToXAxis + fn(currentX)) }, { duration: 0.025, x: leftToYAxis + ++currentX, y: -(bottomToXAxis + fn(currentX)) });
+    for (let x = initialCoord.x; x <= plot.axis.x.toValue; x += stepSize) {
+      if (x > stepSize && fn(x) <= stepSize && fn(x) >= -stepSize) break;
+      animationTimeline.fromTo(
+        cannonBall,
+        { x: leftToYAxis + x * plot.stepWidth.x, y: -(bottomToXAxis + fn(x) * plot.stepWidth.y) },
+        { duration: speed, x: leftToYAxis + (x + stepSize) * plot.stepWidth.x, y: -(bottomToXAxis + fn(x + stepSize) * plot.stepWidth.y) }
+      );
     }
     animationTimeline.pause();
     cannonBall.style.visibility = 'hidden';
@@ -174,7 +176,7 @@ const FunctionsCannon: React.FC<IProps> = ({ id, className = '' }) => {
   return (
     <SimulationContainer className={className} id={id} onLoad={onSectionPaint}>
       <Cannon isDarkMode={theme?.themeName === 'dark'} />
-      <p className={`${styles.functionText} p-05 m-0 glass-bg rounded`}>f(x) = -0.01x^2+2x+3</p>
+      <p className={`${styles.functionText} p-05 m-0 glass-bg rounded`}>f(x) = -0.2x²+x+3</p>
       <p id='initialCoord'>(x,y)</p>
       <p id='currentCoord'>(x,y)</p>
       <div id='cannonBall' />
