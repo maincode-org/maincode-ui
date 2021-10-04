@@ -142,6 +142,7 @@ export const initCannon = (cannon: SVGSVGElement): void => {
   cannon.style.left = '2%';
   cannon.style.bottom = '2%';
   cannon.style.position = 'absolute';
+  cannon.style.transform = 'rotateZ(30deg)';
 };
 
 export const initCannonBall = (cannonBall: HTMLElement): void => {
@@ -157,6 +158,7 @@ export const initCannonBall = (cannonBall: HTMLElement): void => {
 export const applyCannonWheelStyle = (cannonWheel: SVGSVGElement): void => {
   cannonWheel.style.transformBox = 'fill-box';
   cannonWheel.style.transformOrigin = 'center';
+  cannonWheel.style.transform = 'translateX(20px)';
 };
 
 export const enhanceCanvasQuality = (canvas: HTMLCanvasElement, simulationSize: number, wPct: number, hPct: number): CanvasRenderingContext2D | null => {

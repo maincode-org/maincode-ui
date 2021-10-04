@@ -27,6 +27,7 @@ const FunctionsCannon: React.FC<IProps> = ({ id, className = '' }) => {
   const [cannonWheel, setCannonWheel] = useState<SVGSVGElement>();
   const [cannonAnimation, setCannonAnimation] = useState<gsap.core.Timeline>();
   const [cannonBallAnimation, setCannonBallAnimation] = useState<gsap.core.Timeline>();
+  const [cannonBall, setCannonBall] = useState<HTMLElement>();
   const theme = useContext(ThemeContext);
 
   const cannonBodySelector = `.${styles.cannonBody}`;
@@ -98,7 +99,8 @@ const FunctionsCannon: React.FC<IProps> = ({ id, className = '' }) => {
 
       initialBallPos.x = leftToYAxis + initialBallCoord.x;
 
-      const cannonBall: HTMLElement = sectionElement.querySelector('#cannonBall') as HTMLElement;
+      const cannonBallRef: HTMLElement = sectionElement.querySelector('#cannonBall') as HTMLElement;
+      if (!cannonBall && cannonBallRef) setCannonBall(cannonBallRef);
       if (!cannonBall) return;
       initCannonBall(cannonBall);
 
@@ -128,45 +130,43 @@ const FunctionsCannon: React.FC<IProps> = ({ id, className = '' }) => {
       drawFunction(plot, throwParabolaFunction(-0.01, 0), context, 'rgb(200,20,220)');
       drawPlotPoint(plot, { x: 2, y: 4 }, context);
 
-      setCannonAnimation(createCannonAnimation(cannonBodySelector, cannonWheel));
-      setCannonBallAnimation(createFollowFnAnimation(cannonBall, plot, throwParabolaFunction(-0.01, 0), initialBallCoord, leftToYAxis, bottomToXAxis, currentCoord));
+      setCannonAnimation(createCannonAnimation(cannonBodySelector));
+      setCannonBallAnimation(createFollowFnAnimation(cannonBall, plot, throwParabolaFunction(-0.01, 0), initialBallCoord, leftToYAxis, bottomToXAxis));
     }
-  }, [sectionElement, hasPaintedSection, theme, cannonBodySelector]);
+  }, [sectionElement, hasPaintedSection, theme, cannonBall, cannonBodySelector]);
 
   const onSectionPaint = (sectionElement: HTMLElement) => {
     setSectionElement(sectionElement);
     setHasPaintedSection(true);
   };
 
-  const createCannonAnimation = (cannonBody: string, cannonWheel: SVGSVGElement): gsap.core.Timeline => {
+  const createCannonAnimation = (cannonBody: string): gsap.core.Timeline => {
     const animationTimeline = gsap.timeline();
-    animationTimeline.fromTo(cannonWheel, { transform: 'rotateZ(0deg)' }, { duration: 0.5, transform: 'rotateZ(-45deg)' });
-    animationTimeline.fromTo(cannonBody, { transform: 'rotateZ(45deg)' }, { duration: 0.5, x: -40, transform: 'rotateZ(30deg)' }, '<');
+    animationTimeline.to(cannonBody, { duration: 0.1, transform: 'rotateZ(-10deg)' });
+    animationTimeline.to(cannonBody, { duration: 0.2, transform: 'rotateZ(0deg)' });
+
     animationTimeline.pause();
     return animationTimeline;
   };
 
-  const createFollowFnAnimation = (cannonBall: HTMLElement, plot: IPlotConfig, fn: (x: number) => number, initialCoord: ICoord, leftToYAxis: number, bottomToXAxis: number, debugBox?: HTMLElement) => {
+  const createFollowFnAnimation = (cannonBall: HTMLElement, plot: IPlotConfig, fn: (x: number) => number, initialCoord: ICoord, leftToYAxis: number, bottomToXAxis: number) => {
     const animationTimeline = gsap.timeline();
-
-    console.log(cannonBall, fn, leftToYAxis, bottomToXAxis, debugBox);
 
     let currentX = initialCoord.x;
 
-    console.log('coord (x,y)', currentX, fn(currentX));
+    animationTimeline.set(cannonBall, { visibility: 'visible' });
 
     for (let x = initialCoord.x; x <= plot.canvasWidth - (plot.offset.left + plot.offset.right); x++) {
       if (currentX > 1 && fn(currentX) <= 1 && fn(currentX) >= -1) break;
       animationTimeline.fromTo(cannonBall, { x: leftToYAxis + currentX, y: -(bottomToXAxis + fn(currentX)) }, { duration: 0.025, x: leftToYAxis + ++currentX, y: -(bottomToXAxis + fn(currentX)) });
-      console.log('pos (x,y)', leftToYAxis + currentX, bottomToXAxis + fn(currentX));
-      console.log('pos to (x,y)', leftToYAxis + ++currentX, bottomToXAxis + fn(currentX));
     }
     animationTimeline.pause();
+    cannonBall.style.visibility = 'hidden';
     return animationTimeline;
   };
 
   const playAnimation = (timeline1: gsap.core.Timeline | undefined, timeline2: gsap.core.Timeline | undefined) => {
-    if (!timeline1 || !timeline2) return;
+    if (!timeline1 || !timeline2 || !cannonBall) return;
     const masterTimeline = gsap.timeline();
     masterTimeline.add(timeline1.restart()).add(timeline2.restart(), '<');
   };
