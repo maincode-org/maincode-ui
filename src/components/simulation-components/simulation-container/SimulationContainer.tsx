@@ -5,7 +5,7 @@ type IProps = {
   id: string;
   onLoad?: (ref: HTMLElement) => void;
   className?: string;
-  children?: React.ReactElement | React.ReactElement[];
+  children?: React.ReactElement | (React.ReactElement | undefined)[];
 };
 
 const SimulationContainer: React.FC<IProps> = ({ id, onLoad, className = '', children }) => {
@@ -27,7 +27,12 @@ const SimulationContainer: React.FC<IProps> = ({ id, onLoad, className = '', chi
   }, [hasPaintedSection, onLoad]);
 
   return (
-    <section id={id} ref={sectionRef} style={{ height: `${dim}px`, width: `${dim}px` }} className={`${className} ${styles.container} w-full h-full inline-block relative`}>
+    <section
+      id={id}
+      ref={sectionRef}
+      style={{ maxHeight: `${dim}px`, height: `${dim}px`, maxWidth: `${dim}px`, width: `${dim}px` }}
+      className={`${className} ${styles.container} inline-block relative`}
+    >
       {children}
     </section>
   );
