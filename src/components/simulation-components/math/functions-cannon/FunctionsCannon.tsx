@@ -6,7 +6,9 @@ import SimulationContainer from '../../simulation-container/SimulationContainer'
 import { initCannon, applyCannonWheelStyle, drawFunction, drawPlot, drawPlotPoint, enhanceCanvasQuality, IAxisOptions, IPlotConfig, initCannonBall } from './helpers';
 import { linearFunction, throwParabolaFunction } from './math-lib';
 import { EThemeModes, ThemeContext } from 'contexts/theme';
-import { IonButton } from '@ionic/react';
+import { IonButton, IonIcon } from '@ionic/react';
+import { playOutline } from 'ionicons/icons';
+import MathLive from '../../../basic-components/math-live/MathLive';
 
 type ICoord = {
   x: number;
@@ -28,6 +30,9 @@ const FunctionsCannon: React.FC<IProps> = ({ id, className = '' }) => {
   const [cannonAnimation, setCannonAnimation] = useState<gsap.core.Timeline>();
   const [cannonBallAnimation, setCannonBallAnimation] = useState<gsap.core.Timeline>();
   const [cannonBall, setCannonBall] = useState<HTMLElement>();
+  //const [userParabolaA, setUserParabolaA] = useState('');
+  const [, setUserParabolaC] = useState('');
+
   const theme = useContext(ThemeContext);
 
   const cannonBodySelector = `.${styles.cannonBody}`;
@@ -176,15 +181,16 @@ const FunctionsCannon: React.FC<IProps> = ({ id, className = '' }) => {
   return (
     <SimulationContainer className={className} id={id} onLoad={onSectionPaint}>
       <Cannon isDarkMode={theme?.themeName === 'dark'} />
-      <p className={`${styles.functionText} p-05 m-0 glass-bg rounded`}>f(x) = -0.2x²+x+3</p>
       <p id='initialCoord'>(x,y)</p>
       <p id='currentCoord'>(x,y)</p>
       <div id='cannonBall' />
       {cannonWheel && sectionElement && (
         <IonButton className={`${styles.playButton}`} onClick={() => playAnimation(cannonAnimation, cannonBallAnimation)}>
-          Afspil
+          <IonIcon ios={playOutline} md={playOutline} />
         </IonButton>
       )}
+      <MathLive formula='x=\sqrt{\placeholder{}}\cdot 14' onChange={(s) => setUserParabolaC(s)} />
+      <div id='parabolaInput' />
       <canvas className={styles.canvas} ref={canvasRef} />
     </SimulationContainer>
   );
