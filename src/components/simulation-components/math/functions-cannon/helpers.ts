@@ -203,7 +203,7 @@ export const drawPlotPoint = (plot: IPlotConfig, coord: ICoord, context: CanvasR
   if (!point.isInPlotView) return;
 
   context.beginPath();
-  context.arc(point.x, point.y, 2, 0, 2 * Math.PI);
+  context.arc(point.x, point.y, 6, 0, 2 * Math.PI);
   context.fill();
 };
 
