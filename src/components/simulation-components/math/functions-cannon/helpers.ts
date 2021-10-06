@@ -216,7 +216,9 @@ export const translateYPoint = (plot: IPlotConfig, y: number): number => {
 export const drawFunction = (plot: IPlotConfig, fn: (x: number) => number, context: CanvasRenderingContext2D, color?: string): void => {
   context.beginPath();
 
-  for (let x = 0; x <= plot.canvasWidth - (plot.offset.left + plot.offset.right); x++) {
+  const stepSize = 0.01;
+
+  for (let x = 0; x <= plot.canvasWidth - (plot.offset.left + plot.offset.right); x += stepSize) {
     if (fn(x) > plot.axis.y.toValue) continue; // Prevents overdraw on positive y-values.
     if (fn(x) < plot.axis.y.fromValue) continue; // Prevents overdraw on negative y-values.
     context.lineTo(x * plot.stepWidth.x + plot.offset.left, translateYPoint(plot, fn(x)) + fn(0));

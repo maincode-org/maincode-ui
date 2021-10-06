@@ -69,10 +69,6 @@ const MathLive: React.FC<IProps> = ({ formula, className = '' }) => {
     // newInput is o.k if newInputAsJson.replace(lastInputtedChar, "Missing") === originalFormulaAsJson
   }, [ref]);
 
-  return (
-    <div ref={ref} className={`${className} ${styles.container}`}>
-      <p>lol</p>
-    </div>
-  );
+  return <div ref={ref} className={`${className} ${styles.container}`} />;
 };
 export default MathLive;

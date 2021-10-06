@@ -189,7 +189,7 @@ const FunctionsCannon: React.FC<IProps> = ({ id, className = '' }) => {
           <IonIcon ios={playOutline} md={playOutline} />
         </IonButton>
       )}
-      <MathLive formula='x=\sqrt{\placeholder{}}\cdot 14' onChange={(s) => setUserParabolaC(s)} />
+      <MathLive formula='f(x)=\placeholder{}\cdot x²+x+\placeholder' onChange={(s) => setUserParabolaC(s)} />
       <div id='parabolaInput' />
       <canvas className={styles.canvas} ref={canvasRef} />
     </SimulationContainer>
