@@ -90,18 +90,12 @@ const FunctionsCannon: React.FC<IProps> = ({ id, className = '' }) => {
       // 5:  x + (b / a) / 2 = sqrt(y/a - c/a + (b / a) / 2)
       // 6:  x = - (b / a) / 2 +- sqrt(y/a - c/a + (b / a) / 2)
 
-      /*
-      const a = -0.01;
+      const a = -0.2;
       const b = 1;
-      const c = 2;
-       */
-      // const y = initialBallCoord.y;
+      const c = 3;
+      const y = initialBallCoord.y;
 
-      const xForInitialY = -3.12;
-      initialBallCoord.x = xForInitialY;
-
-      // const xForInitialY = -(b / a / 2) - Math.sqrt(y / a - c / a + b / a / 2);
-
+      initialBallCoord.x = -(b / a / 2) - Math.sqrt(y / a - c / a + b / a / 2); // calculates x for initial y.
       initialBallPos.x = leftToYAxis + initialBallCoord.x * plot.stepWidth.x;
 
       const cannonBallRef: HTMLElement = sectionElement.querySelector('#cannonBall') as HTMLElement;

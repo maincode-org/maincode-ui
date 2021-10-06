@@ -38,19 +38,28 @@ const MathLive: React.FC<IProps> = ({ formula, className = '' }) => {
         isLegal = false;
       }
 
-      const traverseSubTree = (subTree: any[], indexArr: number[]) => {
-        subTree.map((value: any, index: number) => {
-          if (value === 'Missing') console.log('I found missing', value, index, [...indexArr, index]);
-          else if (Array.isArray(value)) traverseSubTree(value, [...indexArr, index]);
+      const traverseSubTree = (subTree: any[]): number[][] => {
+        let missingArr: number[][] = [];
+
+        subTree.forEach((value: any, index: number) => {
+          if (value === 'Missing') {
+            missingArr = [...missingArr, [index]];
+          } else if (Array.isArray(value)) {
+            missingArr = [...missingArr, ...traverseSubTree(value).map((arr) => [index, ...arr])];
+          }
         });
+
+        return missingArr;
       };
 
       const traverseExpressionTree = (tree: any[]) => {
+        console.log(tree);
         for (const key of Object.keys(tree)) {
           if (Array.isArray(tree?.[key])) {
-            traverseSubTree(tree?.[key], []);
+            console.log('New top level', key);
+            console.log(traverseSubTree(tree?.[key]));
           }
-          if (tree?.[key] === 'Missing') console.log('I found outer missing - level 0');
+          if (tree?.[key] === 'Missing') console.log('I found outer missing - top level');
         }
       };
 
