@@ -38,6 +38,24 @@ const MathLive: React.FC<IProps> = ({ formula, className = '' }) => {
         isLegal = false;
       }
 
+      const traverseSubTree = (subTree: any[], indexArr: number[]) => {
+        subTree.map((value: any, index: number) => {
+          if (value === 'Missing') console.log('I found missing', value, index, [...indexArr, index]);
+          else if (Array.isArray(value)) traverseSubTree(value, [...indexArr, index]);
+        });
+      };
+
+      const traverseExpressionTree = (tree: any[]) => {
+        for (const key of Object.keys(tree)) {
+          if (Array.isArray(tree?.[key])) {
+            traverseSubTree(tree?.[key], []);
+          }
+          if (tree?.[key] === 'Missing') console.log('I found outer missing - level 0');
+        }
+      };
+
+      traverseExpressionTree(expressionTree);
+
       // Find indexes by traversals (when prop formula change, make array of getters for inputs)
       const getInputAtFirstPos = (tree: any) => tree?.[2]?.[1]?.[1];
       const getLenAtFirstPos = (tree: any) => tree?.[2]?.[1]?.length;
@@ -50,7 +68,7 @@ const MathLive: React.FC<IProps> = ({ formula, className = '' }) => {
         isLegal = false;
       }
 
-      console.log(aInput);
+      // console.log(aInput);
 
       // Guards for changed tree structure at input as position
       if (Array.isArray(aInput)) {
