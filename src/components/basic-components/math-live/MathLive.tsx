@@ -38,36 +38,42 @@ const MathLive: React.FC<IProps> = ({ formula, className = '' }) => {
         isLegal = false;
       }
 
-      const traverseSubTree = (subTree: any[]): number[][] => {
-        let missingArr: number[][] = [];
+      type IStringTree = (string | { num: string } | IStringTree)[];
 
-        subTree.forEach((value: any, index: number) => {
+      const calcInputPaths = (tree: IStringTree): number[][] => {
+        let paths: number[][] = [];
+
+        tree.forEach((value, index: number) => {
           if (value === 'Missing') {
-            missingArr = [...missingArr, [index]];
+            paths = [...paths, [index]];
           } else if (Array.isArray(value)) {
-            missingArr = [...missingArr, ...traverseSubTree(value).map((arr) => [index, ...arr])];
+            paths = [...paths, ...calcInputPaths(value).map((arr) => [index, ...arr])];
           }
         });
 
-        return missingArr;
+        return paths;
       };
 
-      const traverseExpressionTree = (tree: any[]) => {
-        console.log(tree);
-        for (const key of Object.keys(tree)) {
-          if (Array.isArray(tree?.[key])) {
-            console.log('New top level', key);
-            console.log(traverseSubTree(tree?.[key]));
-          }
-          if (tree?.[key] === 'Missing') console.log('I found outer missing - top level');
-        }
+      const findMathTreeValue = (tree: IStringTree, path: number[]): string => {
+        const restTree = tree[path?.[0]] ?? tree;
+        const restPath = path.slice(1);
+        if (restPath.length === 0) return restTree?.['num'] ?? restTree; // node that holds the value
+        return findMathTreeValue(restTree as IStringTree, restPath);
       };
 
-      traverseExpressionTree(expressionTree);
+      const findAllMathTreeValues = (tree: IStringTree, paths: number[][]): string[] => paths.map((path) => findMathTreeValue(tree, path));
+
+      console.log(
+        'find all values',
+        findAllMathTreeValues(expressionTree, [
+          [2, 1, 1, 0],
+          [2, 3],
+        ])
+      );
 
       // Find indexes by traversals (when prop formula change, make array of getters for inputs)
-      const getInputAtFirstPos = (tree: any) => tree?.[2]?.[1]?.[1];
-      const getLenAtFirstPos = (tree: any) => tree?.[2]?.[1]?.length;
+      const getInputAtFirstPos = (tree: IStringTree) => tree?.[2]?.[1]?.[1];
+      const getLenAtFirstPos = (tree: IStringTree) => tree?.[2]?.[1]?.length;
 
       const aInput = getInputAtFirstPos(expressionTree);
       const aInputLen = getLenAtFirstPos(expressionTree);
