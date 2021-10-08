@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import * as Mathlive from 'mathlive';
 import styles from './math-live.module.css';
 
@@ -8,100 +8,106 @@ type IProps = {
   className?: string;
 };
 
+type IInputTree = (string | { num: string } | IInputTree)[];
+
 const MathLive: React.FC<IProps> = ({ formula, className = '' }) => {
   const ref = useRef<HTMLDivElement>(null);
+  const [inputTree, _setInputTree] = useState<IInputTree>();
+  const [inputFormula, _setInputFormula] = useState(formula);
+  const inputTreeRef = useRef(inputTree);
+  const inputFormulaRef = useRef(inputFormula);
+
+  const setInputTreeForm = (tree: IInputTree, formula: string) => {
+    inputTreeRef.current = tree;
+    inputFormulaRef.current = formula;
+    _setInputFormula(formula);
+    _setInputTree(tree);
+  };
 
   useEffect(() => {
     if (!ref) return;
-    const ml = new Mathlive.MathfieldElement();
-    ml.value = formula;
 
-    ml.setOptions({
-      virtualKeyboardMode: 'manual',
-    });
+    const ml = new Mathlive.MathfieldElement();
+
+    ml.setOptions({ virtualKeyboardMode: 'off' });
+    ml.value = formula;
 
     // Attach the element to the DOM
     ref?.current && ref.current.appendChild(ml);
 
     const originalAst = JSON.parse(ml.getValue('math-json'));
-    console.log(originalAst);
+
+    setInputTreeForm(originalAst, formula);
+
+    const paths = calcInputPaths(originalAst);
 
     ml.addEventListener('input', () => {
-      const val = ml.getValue('math-json');
-      let isLegal = true;
-      console.log(val);
+      const newInputFormula = ml.getValue('latex');
 
-      const expressionTree = JSON.parse(val);
+      const newInputTree = JSON.parse(ml.getValue('math-json'));
 
-      if (expressionTree?.[1] !== originalAst?.[1]) {
-        console.log('Lefthand side what changed');
-        isLegal = false;
-      }
+      const prevValues = inputTreeRef.current ? findAllMathTreeValues(inputTreeRef.current, paths) : [];
+      const newValues = findAllMathTreeValues(newInputTree, paths);
 
-      type IStringTree = (string | { num: string } | IStringTree)[];
+      const legalPlaceholdersUnchanged: boolean = prevValues.every((v) => newValues.includes(v)) && newValues.every((v) => prevValues.includes(v));
 
-      const calcInputPaths = (tree: IStringTree): number[][] => {
-        let paths: number[][] = [];
+      const isLegalValue = (v: string) => Number.isFinite(Number(v)) || v === 'Missing';
 
-        tree.forEach((value, index: number) => {
-          if (value === 'Missing') {
-            paths = [...paths, [index]];
-          } else if (Array.isArray(value)) {
-            paths = [...paths, ...calcInputPaths(value).map((arr) => [index, ...arr])];
-          }
-        });
-
-        return paths;
-      };
-
-      const findMathTreeValue = (tree: IStringTree, path: number[]): string => {
-        const restTree = tree[path?.[0]] ?? tree;
-        const restPath = path.slice(1);
-        if (restPath.length === 0) return restTree?.['num'] ?? restTree; // node that holds the value
-        return findMathTreeValue(restTree as IStringTree, restPath);
-      };
-
-      const findAllMathTreeValues = (tree: IStringTree, paths: number[][]): string[] => paths.map((path) => findMathTreeValue(tree, path));
-
+      console.log('legal place', !legalPlaceholdersUnchanged);
       console.log(
-        'find all values',
-        findAllMathTreeValues(expressionTree, [
-          [2, 1, 1, 0],
-          [2, 3],
-        ])
+        'legal nums',
+        newValues.every((v) => isLegalValue(v))
       );
 
-      // Find indexes by traversals (when prop formula change, make array of getters for inputs)
-      const getInputAtFirstPos = (tree: IStringTree) => tree?.[2]?.[1]?.[1];
-      const getLenAtFirstPos = (tree: IStringTree) => tree?.[2]?.[1]?.length;
+      if (legalPlaceholdersUnchanged) {
+        ml.value = inputFormulaRef.current;
+      } else if (!newValues.every((v) => isLegalValue(v))) {
+        let i = 0;
+        const newFormula = formula.replaceAll('\\placeholder{}', (m, o, w) => {
+          console.log(m, w, o);
+          i++;
+          return isLegalValue(newValues[i - 1]) && newValues[i - 1] !== 'Missing' ? newValues[i - 1] : m;
+        });
+        console.log('test', newFormula);
 
-      const aInput = getInputAtFirstPos(expressionTree);
-      const aInputLen = getLenAtFirstPos(expressionTree);
+        // newValues.forEach((v) => (newFormula = newFormula.replace('\\placeholder{}', isLegalValue(v) ? v : v)));
 
-      if (aInputLen !== getLenAtFirstPos(originalAst)) {
-        console.log('Tree structure changed around input a');
-        isLegal = false;
+        ml.value = newFormula;
+        const adjustedValues = JSON.parse(ml.getValue('math-json'));
+        setInputTreeForm(adjustedValues, newFormula);
+        // TODO callback
+        console.log('set input tree2', adjustedValues);
+      } else {
+        console.log('set input tree', newValues);
+        setInputTreeForm(newInputTree, newInputFormula);
+        // TODO onChange
       }
-
-      // console.log(aInput);
-
-      // Guards for changed tree structure at input as position
-      if (Array.isArray(aInput)) {
-        console.log('Tree structure has changed within input a');
-        isLegal = false;
-      }
-
-      if (aInput === getInputAtFirstPos(originalAst)) {
-        console.log('Whatever changed was not input a');
-        isLegal = false;
-      }
-
-      if (!isLegal) ml.value = formula; // todo replace formula with previous value
     });
-
-    // newInput is o.k if newInputAsJson.replace(lastInputtedChar, "Missing") === originalFormulaAsJson
-  }, [ref]);
+  }, [ref, formula]);
 
   return <div ref={ref} className={`${className} ${styles.container}`} />;
 };
 export default MathLive;
+
+const calcInputPaths = (tree: IInputTree): number[][] => {
+  let paths: number[][] = [];
+
+  tree.forEach((value, index: number) => {
+    if (value === 'Missing') {
+      paths = [...paths, [index]];
+    } else if (Array.isArray(value)) {
+      paths = [...paths, ...calcInputPaths(value).map((arr) => [index, ...arr])];
+    }
+  });
+
+  return paths;
+};
+
+const findMathTreeValue = (tree: IInputTree, path: number[]): string => {
+  const restTree = tree[path?.[0]] ?? tree ?? 'Elevated';
+  const restPath = path.slice(1);
+  if (restPath.length === 0) return restTree?.['num'] ?? restTree; // node that holds the value
+  return findMathTreeValue(restTree as IInputTree, restPath);
+};
+
+const findAllMathTreeValues = (tree: IInputTree, paths: number[][]): string[] => paths.map((path) => findMathTreeValue(tree, path));
