@@ -31,7 +31,7 @@ const FunctionsCannon: React.FC<IProps> = ({ id, className = '' }) => {
   const [cannonBallAnimation, setCannonBallAnimation] = useState<gsap.core.Timeline>();
   const [cannonBall, setCannonBall] = useState<HTMLElement>();
   //const [userParabolaA, setUserParabolaA] = useState('');
-  const [, setUserParabolaC] = useState('');
+  //const [, setUserParabolaC] = useState('');
 
   const theme = useContext(ThemeContext);
 
@@ -183,7 +183,7 @@ const FunctionsCannon: React.FC<IProps> = ({ id, className = '' }) => {
           <IonIcon ios={playOutline} md={playOutline} />
         </IonButton>
       )}
-      <MathLive formula='f(x)=\placeholder{}\cdot x^2+x+\placeholder{}' onChange={(s) => setUserParabolaC(s)} />
+      <MathLive formula='f(x)=\placeholder{}\cdot x^2+x+\placeholder{}' onChange={(s) => console.log(s)} />
       <div id='parabolaInput' />
       <canvas className={styles.canvas} ref={canvasRef} />
     </SimulationContainer>

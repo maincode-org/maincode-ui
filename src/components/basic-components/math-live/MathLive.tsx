@@ -4,13 +4,13 @@ import styles from './math-live.module.css';
 
 type IProps = {
   formula: string;
-  onChange: (s: string) => void;
+  onChange?: (values: (string | undefined)[]) => void;
   className?: string;
 };
 
 type IInputTree = (string | { num: string } | IInputTree)[];
 
-const MathLive: React.FC<IProps> = ({ formula, className = '' }) => {
+const MathLive: React.FC<IProps> = ({ formula, onChange, className = '' }) => {
   const ref = useRef<HTMLDivElement>(null);
   const [inputTree, _setInputTree] = useState<IInputTree>();
   const [inputFormula, _setInputFormula] = useState(formula);
@@ -43,7 +43,6 @@ const MathLive: React.FC<IProps> = ({ formula, className = '' }) => {
 
     ml.addEventListener('input', () => {
       const newInputFormula = ml.getValue('latex');
-
       const newInputTree = JSON.parse(ml.getValue('math-json'));
 
       const prevValues = inputTreeRef.current ? findAllMathTreeValues(inputTreeRef.current, paths) : [];
@@ -51,36 +50,25 @@ const MathLive: React.FC<IProps> = ({ formula, className = '' }) => {
 
       const legalPlaceholdersUnchanged: boolean = prevValues.every((v) => newValues.includes(v)) && newValues.every((v) => prevValues.includes(v));
 
-      const isLegalValue = (v: string) => Number.isFinite(Number(v)) || v === 'Missing';
+      const removeMissing = (values: string[]): (string | undefined)[] => values.map((v) => (v !== 'Missing' ? v : undefined));
 
-      console.log('legal place', !legalPlaceholdersUnchanged);
-      console.log(
-        'legal nums',
-        newValues.every((v) => isLegalValue(v))
-      );
-
+      // Input validation protected onChange callback.
       if (legalPlaceholdersUnchanged) {
         ml.value = inputFormulaRef.current;
       } else if (!newValues.every((v) => isLegalValue(v))) {
-        let i = 0;
-        const newFormula = formula.replaceAll('\\placeholder{}', (m, o, w) => {
-          console.log(m, w, o);
-          i++;
-          return isLegalValue(newValues[i - 1]) && newValues[i - 1] !== 'Missing' ? newValues[i - 1] : m;
-        });
-        console.log('test', newFormula);
+        let i = 0; // TODO use offset in replacer to move caret/cursor to correct index in new formula
 
-        // newValues.forEach((v) => (newFormula = newFormula.replace('\\placeholder{}', isLegalValue(v) ? v : v)));
+        const cleanedFormula = formula.replaceAll('\\placeholder{}', (placeholderStr) => (isLegalValue(newValues[i++]) && newValues[i - 1] !== 'Missing' ? newValues[i - 1] : placeholderStr));
 
-        ml.value = newFormula;
-        const adjustedValues = JSON.parse(ml.getValue('math-json'));
-        setInputTreeForm(adjustedValues, newFormula);
-        // TODO callback
-        console.log('set input tree2', adjustedValues);
+        ml.value = cleanedFormula;
+        const cleanedTree = JSON.parse(ml.getValue('math-json'));
+
+        setInputTreeForm(cleanedTree, cleanedFormula);
+
+        onChange && onChange(removeMissing(findAllMathTreeValues(cleanedTree, paths)));
       } else {
-        console.log('set input tree', newValues);
         setInputTreeForm(newInputTree, newInputFormula);
-        // TODO onChange
+        onChange && onChange(removeMissing(newValues));
       }
     });
   }, [ref, formula]);
@@ -93,21 +81,20 @@ const calcInputPaths = (tree: IInputTree): number[][] => {
   let paths: number[][] = [];
 
   tree.forEach((value, index: number) => {
-    if (value === 'Missing') {
-      paths = [...paths, [index]];
-    } else if (Array.isArray(value)) {
-      paths = [...paths, ...calcInputPaths(value).map((arr) => [index, ...arr])];
-    }
+    if (value === 'Missing') paths = [...paths, [index]];
+    else if (Array.isArray(value)) paths = [...paths, ...calcInputPaths(value).map((arr) => [index, ...arr])];
   });
 
   return paths;
 };
 
 const findMathTreeValue = (tree: IInputTree, path: number[]): string => {
-  const restTree = tree[path?.[0]] ?? tree ?? 'Elevated';
+  const restTree = tree[path?.[0]] ?? tree;
   const restPath = path.slice(1);
   if (restPath.length === 0) return restTree?.['num'] ?? restTree; // node that holds the value
   return findMathTreeValue(restTree as IInputTree, restPath);
 };
 
 const findAllMathTreeValues = (tree: IInputTree, paths: number[][]): string[] => paths.map((path) => findMathTreeValue(tree, path));
+
+const isLegalValue = (v: string) => Number.isFinite(Number(v)) || v === 'Missing';
