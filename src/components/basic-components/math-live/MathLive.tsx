@@ -56,11 +56,14 @@ const MathLive: React.FC<IProps> = ({ formula, onChange, className = '' }) => {
       if (legalPlaceholdersUnchanged) {
         ml.value = inputFormulaRef.current;
       } else if (!newValues.every((v) => isLegalValue(v))) {
-        let i = 0; // TODO use offset in replacer to move caret/cursor to correct index in new formula
+        let i = 0;
 
         const cleanedFormula = formula.replaceAll('\\placeholder{}', (placeholderStr) => (isLegalValue(newValues[i++]) && newValues[i - 1] !== 'Missing' ? newValues[i - 1] : placeholderStr));
 
         ml.value = cleanedFormula;
+
+        ml.executeCommand('moveToNextPlaceholder'); // bugs if you enter last and deletes last.
+
         const cleanedTree = JSON.parse(ml.getValue('math-json'));
 
         setInputTreeForm(cleanedTree, cleanedFormula);
