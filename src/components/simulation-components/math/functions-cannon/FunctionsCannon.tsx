@@ -3,8 +3,8 @@ import styles from './functions-cannon.module.css';
 import Cannon from './Cannon';
 import gsap from 'gsap';
 import SimulationContainer from '../../simulation-container/SimulationContainer';
-import { initCannon, applyCannonWheelStyle, drawFunction, drawPlot, drawPlotPoint, enhanceCanvasQuality, IAxisOptions, IPlotConfig, initCannonBall } from './helpers';
-import { linearFunction, throwParabolaFunction } from './math-lib';
+import { initCannon, applyCannonWheelStyle, drawFunction, drawPlot, enhanceCanvasQuality, IAxisOptions, IPlotConfig, initCannonBall } from './helpers';
+import { throwParabolaFunction } from './math-lib';
 import { EThemeModes, ThemeContext } from 'contexts/theme';
 import { IonButton, IonIcon } from '@ionic/react';
 import { playOutline } from 'ionicons/icons';
@@ -30,8 +30,7 @@ const FunctionsCannon: React.FC<IProps> = ({ id, className = '' }) => {
   const [cannonAnimation, setCannonAnimation] = useState<gsap.core.Timeline>();
   const [cannonBallAnimation, setCannonBallAnimation] = useState<gsap.core.Timeline>();
   const [cannonBall, setCannonBall] = useState<HTMLElement>();
-  //const [userParabolaA, setUserParabolaA] = useState('');
-  //const [, setUserParabolaC] = useState('');
+  const [parabolaInputValues, setParabolaInputValues] = useState<(string | undefined)[]>();
 
   const theme = useContext(ThemeContext);
 
@@ -123,15 +122,13 @@ const FunctionsCannon: React.FC<IProps> = ({ id, className = '' }) => {
 
       console.log('pos', initialBallPos.x, initialBallPos.y);
 
-      drawFunction(plot, linearFunction(2, 0), context);
-      drawFunction(plot, linearFunction(1, 2), context, 'rgb(148,16,126)');
+      parabolaInputValues?.[0] && parabolaInputValues?.[1] && drawFunction(plot, throwParabolaFunction(Number(parabolaInputValues[0]), Number(parabolaInputValues[1])), context, 'rgb(234,195,80)');
       drawFunction(plot, throwParabolaFunction(-0.2, 3), context, 'rgb(200,20,220)');
-      drawPlotPoint(plot, { x: 2, y: 4 }, context);
 
       setCannonAnimation(createCannonAnimation(cannonBodySelector));
       setCannonBallAnimation(createFollowFnAnimation(cannonBall, plot, throwParabolaFunction(-0.2, 3), initialBallCoord, leftToYAxis, bottomToXAxis, 1.5));
     }
-  }, [sectionElement, hasPaintedSection, theme, cannonBall, cannonBodySelector]);
+  }, [sectionElement, hasPaintedSection, theme, cannonBall, cannonBodySelector, parabolaInputValues]);
 
   const onSectionPaint = (sectionElement: HTMLElement) => {
     setSectionElement(sectionElement);
@@ -183,7 +180,7 @@ const FunctionsCannon: React.FC<IProps> = ({ id, className = '' }) => {
           <IonIcon ios={playOutline} md={playOutline} />
         </IonButton>
       )}
-      <MathLive formula='f(x)=\placeholder{}\cdot x^2+x+\placeholder{}' onChange={(s) => console.log(s)} />
+      <MathLive formula='f(x)=\placeholder{}\cdot x^2+x+\placeholder{}' onChange={(s) => setParabolaInputValues(s)} />
       <div id='parabolaInput' />
       <canvas className={styles.canvas} ref={canvasRef} />
     </SimulationContainer>
