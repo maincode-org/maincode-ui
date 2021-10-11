@@ -109,7 +109,7 @@ const FunctionsCannon: React.FC<IProps> = ({ id, parabolaValues, className = '' 
       if (!cannonBall) return;
       initCannonBall(cannonBall);
 
-      initCannon(cannon, initialBallPos, leftToYAxis, bottomToXAxis);
+      initCannon(cannon, initialBallPos);
       applyCannonWheelStyle(cannonWheel);
 
       drawFunction(plot, throwParabolaFunction(-0.2, 3), context, 'rgb(200,20,220)');
