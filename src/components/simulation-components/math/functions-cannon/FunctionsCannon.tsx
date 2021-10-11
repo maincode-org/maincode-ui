@@ -122,11 +122,16 @@ const FunctionsCannon: React.FC<IProps> = ({ id, className = '' }) => {
 
       console.log('pos', initialBallPos.x, initialBallPos.y);
 
-      parabolaInputValues?.[0] && parabolaInputValues?.[1] && drawFunction(plot, throwParabolaFunction(Number(parabolaInputValues[0]), Number(parabolaInputValues[1])), context, 'rgb(234,195,80)');
       drawFunction(plot, throwParabolaFunction(-0.2, 3), context, 'rgb(200,20,220)');
 
       setCannonAnimation(createCannonAnimation(cannonBodySelector));
-      setCannonBallAnimation(createFollowFnAnimation(cannonBall, plot, throwParabolaFunction(-0.2, 3), initialBallCoord, leftToYAxis, bottomToXAxis, 1.5));
+
+      console.log('parabola input', parabolaInputValues?.[0], parabolaInputValues?.[1]);
+      parabolaInputValues?.[0] &&
+        parabolaInputValues?.[1] &&
+        setCannonBallAnimation(
+          createFollowFnAnimation(cannonBall, plot, throwParabolaFunction(Number(parabolaInputValues[0]), Number(parabolaInputValues[1])), initialBallCoord, leftToYAxis, bottomToXAxis, 1.5)
+        );
     }
   }, [sectionElement, hasPaintedSection, theme, cannonBall, cannonBodySelector, parabolaInputValues]);
 
@@ -180,7 +185,7 @@ const FunctionsCannon: React.FC<IProps> = ({ id, className = '' }) => {
           <IonIcon ios={playOutline} md={playOutline} />
         </IonButton>
       )}
-      <MathLive formula='f(x)=\placeholder{}\cdot x^2+x+\placeholder{}' onChange={(s) => setParabolaInputValues(s)} />
+      <MathLive formula='f(x)=-\placeholder{}\cdot x^2+x+\placeholder{}' onChange={(s) => setParabolaInputValues(s)} initialValues={['', '']} />
       <div id='parabolaInput' />
       <canvas className={styles.canvas} ref={canvasRef} />
     </SimulationContainer>
