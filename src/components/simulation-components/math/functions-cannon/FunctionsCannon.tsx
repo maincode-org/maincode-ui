@@ -54,9 +54,6 @@ const FunctionsCannon: React.FC<IProps> = ({ id, parabolaValues, className = '' 
 
     setCannonWheel(cannonWheel);
 
-    initCannon(cannon);
-    applyCannonWheelStyle(cannonWheel);
-
     const canvas = canvasRef.current;
     if (!canvas) return;
 
@@ -111,6 +108,9 @@ const FunctionsCannon: React.FC<IProps> = ({ id, parabolaValues, className = '' 
       if (!cannonBall && cannonBallRef) setCannonBall(cannonBallRef);
       if (!cannonBall) return;
       initCannonBall(cannonBall);
+
+      initCannon(cannon, initialBallPos, leftToYAxis, bottomToXAxis);
+      applyCannonWheelStyle(cannonWheel);
 
       drawFunction(plot, throwParabolaFunction(-0.2, 3), context, 'rgb(200,20,220)');
 

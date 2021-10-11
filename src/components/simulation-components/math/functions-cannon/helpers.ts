@@ -136,11 +136,12 @@ const shouldRoundAxisValues = (numberOfDashes: number, fromValue: number, stepVa
   return values.every((num) => num % 1 === 0);
 };
 
-export const initCannon = (cannon: SVGSVGElement): void => {
+export const initCannon = (cannon: SVGSVGElement, cannonBallPos: ICoord): void => {
+  console.log(cannonBallPos);
   cannon.style.height = '15%';
   cannon.style.width = '15%';
-  cannon.style.left = '2%';
-  cannon.style.bottom = '2%';
+  cannon.style.left = `calc(${cannonBallPos.x}px - 12%)`;
+  cannon.style.bottom = `${cannonBallPos.y}px`;
   cannon.style.position = 'absolute';
   cannon.style.transform = 'rotateZ(30deg)';
 };
