@@ -18,8 +18,6 @@ const MathLive: React.FC<IProps> = ({ formula, onChange, initialValues = [], cla
   const inputTreeRef = useRef(inputTree);
   const inputFormulaRef = useRef(inputFormula);
 
-  console.log(initialValues);
-
   const setInputTreeForm = (tree: IInputTree, formula: string) => {
     inputTreeRef.current = tree;
     inputFormulaRef.current = formula;
@@ -46,8 +44,6 @@ const MathLive: React.FC<IProps> = ({ formula, onChange, initialValues = [], cla
     const originalAst = JSON.parse(ml.getValue('math-json'));
 
     setInputTreeForm(originalAst, ml.value);
-
-    console.log('value test', ml.value);
 
     const paths = calcInputPaths(originalAst);
 
