@@ -153,6 +153,7 @@ export const initCannonBall = (cannonBall: HTMLElement): void => {
   cannonBall.style.width = '4%';
   cannonBall.style.height = '4%';
   cannonBall.style.borderRadius = '100%';
+  cannonBall.style.visibility = 'hidden';
 };
 
 export const applyCannonWheelStyle = (cannonWheel: SVGSVGElement): void => {

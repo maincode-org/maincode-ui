@@ -112,26 +112,6 @@ const FunctionsCannon: React.FC<IProps> = ({ id, parabolaValues, className = '' 
       if (!cannonBall) return;
       initCannonBall(cannonBall);
 
-      /** Initial coord */
-      const initialCoord: HTMLElement = sectionElement.querySelector('#initialCoord') as HTMLElement;
-      initialCoord.style.position = 'absolute';
-      initialCoord.style.fontSize = '8px';
-      initialCoord.style.top = '5%';
-      initialCoord.style.left = '0';
-      initialCoord.innerText = `coord: (${initialBallCoord.x.toFixed(0)}, ${initialBallCoord.y.toFixed(0)})`;
-
-      /** Current coord */
-      const currentCoord: HTMLElement = sectionElement.querySelector('#currentCoord') as HTMLElement;
-      currentCoord.style.position = 'absolute';
-      currentCoord.style.fontSize = '8px';
-      currentCoord.style.top = '0';
-      currentCoord.style.left = '0';
-      currentCoord.innerText = `coord: (${initialBallCoord.x.toFixed(0)}, ${throwParabolaFunction(-0.2, 3)(initialBallCoord.x).toFixed(0)})`;
-
-      console.log('Initial coord: ', initialBallCoord);
-
-      console.log('pos', initialBallPos.x, initialBallPos.y);
-
       drawFunction(plot, throwParabolaFunction(-0.2, 3), context, 'rgb(200,20,220)');
 
       setCannonAnimation(createCannonAnimation(cannonBodySelector));
@@ -186,16 +166,14 @@ const FunctionsCannon: React.FC<IProps> = ({ id, parabolaValues, className = '' 
   };
 
   const onMathInputChange = (inputs: (string | undefined)[]) => {
-    if (inputs.length === 1 && parabolaValues?.c) {
-      setParabolaInputValues([inputs[0], parabolaValues.c.toString()]);
-    } else setParabolaInputValues(inputs);
+    if (inputs.length === 1 && parabolaValues?.c) setParabolaInputValues([inputs[0], parabolaValues.c.toString()]);
+    else if (inputs.length === 1 && parabolaValues?.a) setParabolaInputValues([parabolaValues.a.toString(), inputs[0]]);
+    else setParabolaInputValues(inputs);
   };
 
   return (
     <SimulationContainer className={className} id={id} onLoad={onSectionPaint}>
       <Cannon isDarkMode={theme?.themeName === 'dark'} />
-      <p id='initialCoord'>(x,y)</p>
-      <p id='currentCoord'>(x,y)</p>
       <div id='cannonBall' />
       {cannonWheel && sectionElement && (
         <IonButton className={`${styles.playButton}`} onClick={() => playAnimation(cannonAnimation, cannonBallAnimation)}>
