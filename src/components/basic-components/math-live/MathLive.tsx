@@ -5,17 +5,20 @@ import styles from './math-live.module.css';
 type IProps = {
   formula: string;
   onChange?: (values: (string | undefined)[]) => void;
+  initialValues?: string[];
   className?: string;
 };
 
 type IInputTree = (string | { num: string } | IInputTree)[];
 
-const MathLive: React.FC<IProps> = ({ formula, onChange, className = '' }) => {
+const MathLive: React.FC<IProps> = ({ formula, onChange, initialValues = [], className = '' }) => {
   const ref = useRef<HTMLDivElement>(null);
   const [inputTree, _setInputTree] = useState<IInputTree>();
   const [inputFormula, _setInputFormula] = useState(formula);
   const inputTreeRef = useRef(inputTree);
   const inputFormulaRef = useRef(inputFormula);
+
+  console.log(initialValues);
 
   const setInputTreeForm = (tree: IInputTree, formula: string) => {
     inputTreeRef.current = tree;
@@ -32,17 +35,24 @@ const MathLive: React.FC<IProps> = ({ formula, onChange, className = '' }) => {
     ml.setOptions({ virtualKeyboardMode: 'off' });
     ml.value = formula;
 
+    // Add initial values
+    if (initialValues && initialValues.length > 0) {
+      ml.value = insertInitialValues(formula, initialValues);
+    }
+
     // Attach the element to the DOM
     ref?.current && ref.current.appendChild(ml);
 
     const originalAst = JSON.parse(ml.getValue('math-json'));
 
-    setInputTreeForm(originalAst, formula);
+    setInputTreeForm(originalAst, ml.value);
+
+    console.log('value test', ml.value);
 
     const paths = calcInputPaths(originalAst);
 
     ml.addEventListener('input', () => {
-      const newInputFormula = ml.getValue('latex');
+      const newInputFormula = ml.getValue().replaceAll('⬚', '');
       const newInputTree = JSON.parse(ml.getValue('math-json'));
 
       const prevValues = inputTreeRef.current ? findAllMathTreeValues(inputTreeRef.current, paths) : [];
@@ -58,7 +68,16 @@ const MathLive: React.FC<IProps> = ({ formula, onChange, className = '' }) => {
       } else if (!newValues.every((v) => isLegalValue(v))) {
         let i = 0;
 
-        const cleanedFormula = formula.replaceAll('\\placeholder{}', (placeholderStr) => (isLegalValue(newValues[i++]) && newValues[i - 1] !== 'Missing' ? newValues[i - 1] : placeholderStr));
+        const cleanedFormula = insertInitialValues(formula, initialValues).replaceAll('\\placeholder{}', (placeholderStr) =>
+          isLegalValue(newValues[i++]) && newValues[i - 1] !== 'Missing' ? newValues[i - 1] : placeholderStr
+        );
+
+        /* TODO: Allow user to input the character '-'
+        const prefixMinusFormula = inputFormulaRef.current.replaceAll('\\placeholder{}', (placeholderStr, offset) => {
+          if (newInputFormula[offset] === '-') return '-\\placeholder{}';
+          return placeholderStr;
+        });
+         */
 
         ml.value = cleanedFormula;
 
@@ -71,10 +90,17 @@ const MathLive: React.FC<IProps> = ({ formula, onChange, className = '' }) => {
         onChange && onChange(removeMissing(findAllMathTreeValues(cleanedTree, paths)));
       } else {
         setInputTreeForm(newInputTree, newInputFormula);
+        console.log(removeMissing(newValues));
         onChange && onChange(removeMissing(newValues));
       }
     });
   }, [ref, formula]);
+
+  /*
+  useEffect(() => {
+    a && inputTreeRef.current && setInputTreeForm(inputTreeRef.current, 'f(x)=2');
+  }, [a]);
+   */
 
   return <div ref={ref} className={`${className} ${styles.container}`} />;
 };
@@ -100,4 +126,12 @@ const findMathTreeValue = (tree: IInputTree, path: number[]): string => {
 
 const findAllMathTreeValues = (tree: IInputTree, paths: number[][]): string[] => paths.map((path) => findMathTreeValue(tree, path));
 
-const isLegalValue = (v: string) => Number.isFinite(Number(v)) || v === 'Missing';
+const isLegalValue = (v: string) => {
+  console.log('inside isLegal', v);
+  return Number.isFinite(Number(v)) || v === '-' || v === 'Missing';
+};
+
+const insertInitialValues = (formula: string, initialValues: string[]): string => {
+  let counter = 0;
+  return formula.replaceAll('\\placeholder{}', (placeholderStr) => (initialValues[counter++] !== '' && initialValues[counter - 1] ? initialValues[counter - 1] : placeholderStr));
+};
