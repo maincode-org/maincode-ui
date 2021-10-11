@@ -19,10 +19,11 @@ type IPos = ICoord;
 
 type IProps = {
   id: string;
+  parabolaValues?: { a?: number; c?: number };
   className?: string;
 };
 
-const FunctionsCannon: React.FC<IProps> = ({ id, className = '' }) => {
+const FunctionsCannon: React.FC<IProps> = ({ id, parabolaValues, className = '' }) => {
   const [hasPaintedSection, setHasPaintedSection] = useState(false);
   const [sectionElement, setSectionElement] = useState<HTMLElement>();
   const canvasRef = useRef<HTMLCanvasElement>(null);
@@ -30,11 +31,20 @@ const FunctionsCannon: React.FC<IProps> = ({ id, className = '' }) => {
   const [cannonAnimation, setCannonAnimation] = useState<gsap.core.Timeline>();
   const [cannonBallAnimation, setCannonBallAnimation] = useState<gsap.core.Timeline>();
   const [cannonBall, setCannonBall] = useState<HTMLElement>();
-  const [parabolaInputValues, setParabolaInputValues] = useState<(string | undefined)[]>();
+  const [parabolaInputValues, setParabolaInputValues] = useState<(string | undefined)[]>([]);
 
   const theme = useContext(ThemeContext);
 
   const cannonBodySelector = `.${styles.cannonBody}`;
+
+  useEffect(() => {
+    console.log('fuck mig');
+    setParabolaInputValues([parabolaValues?.a ? parabolaValues?.a.toString() : undefined, parabolaValues?.c ? parabolaValues?.c.toString() : undefined]);
+  }, [parabolaValues]);
+
+  useEffect(() => {
+    console.log('inputValueState', parabolaInputValues);
+  }, [parabolaInputValues]);
 
   useEffect(() => {
     if (!sectionElement || !hasPaintedSection) return;
@@ -127,6 +137,7 @@ const FunctionsCannon: React.FC<IProps> = ({ id, className = '' }) => {
       setCannonAnimation(createCannonAnimation(cannonBodySelector));
 
       console.log('parabola input', parabolaInputValues?.[0], parabolaInputValues?.[1]);
+
       parabolaInputValues?.[0] &&
         parabolaInputValues?.[1] &&
         setCannonBallAnimation(
@@ -174,6 +185,12 @@ const FunctionsCannon: React.FC<IProps> = ({ id, className = '' }) => {
     masterTimeline.add(timeline1.restart()).add(timeline2.restart(), '<');
   };
 
+  const onMathInputChange = (inputs: (string | undefined)[]) => {
+    if (inputs.length === 1 && parabolaValues?.c) {
+      setParabolaInputValues([inputs[0], parabolaValues.c.toString()]);
+    } else setParabolaInputValues(inputs);
+  };
+
   return (
     <SimulationContainer className={className} id={id} onLoad={onSectionPaint}>
       <Cannon isDarkMode={theme?.themeName === 'dark'} />
@@ -185,7 +202,11 @@ const FunctionsCannon: React.FC<IProps> = ({ id, className = '' }) => {
           <IonIcon ios={playOutline} md={playOutline} />
         </IonButton>
       )}
-      <MathLive formula='f(x)=-\placeholder{}\cdot x^2+x+\placeholder{}' onChange={(s) => setParabolaInputValues(s)} initialValues={['', '']} />
+      <MathLive
+        formula='f(x)=-\placeholder{}\cdot x^2+x+\placeholder{}'
+        onChange={onMathInputChange}
+        initialValues={[parabolaValues?.a ? parabolaValues?.a.toString() : '', parabolaValues?.c ? parabolaValues?.c.toString() : '']}
+      />
       <div id='parabolaInput' />
       <canvas className={styles.canvas} ref={canvasRef} />
     </SimulationContainer>

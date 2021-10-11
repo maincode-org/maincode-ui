@@ -48,6 +48,8 @@ const MathLive: React.FC<IProps> = ({ formula, onChange, initialValues = [], cla
     const paths = calcInputPaths(originalAst);
 
     ml.addEventListener('input', () => {
+      console.log(ml.getValue('spoken-text'));
+
       const newInputFormula = ml.getValue().replaceAll('⬚', '');
       const newInputTree = JSON.parse(ml.getValue('math-json'));
 
