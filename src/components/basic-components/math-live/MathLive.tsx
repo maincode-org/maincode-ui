@@ -126,10 +126,7 @@ const findMathTreeValue = (tree: IInputTree, path: number[]): string => {
 
 const findAllMathTreeValues = (tree: IInputTree, paths: number[][]): string[] => paths.map((path) => findMathTreeValue(tree, path));
 
-const isLegalValue = (v: string) => {
-  console.log('inside isLegal', v);
-  return Number.isFinite(Number(v)) || v === '-' || v === 'Missing';
-};
+const isLegalValue = (v: string) => Number.isFinite(Number(v)) || v === 'Missing';
 
 const insertInitialValues = (formula: string, initialValues: string[]): string => {
   let counter = 0;
