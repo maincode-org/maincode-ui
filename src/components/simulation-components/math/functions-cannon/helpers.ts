@@ -137,7 +137,6 @@ const shouldRoundAxisValues = (numberOfDashes: number, fromValue: number, stepVa
 };
 
 export const initCannon = (cannon: SVGSVGElement, cannonBallPos: ICoord): void => {
-  console.log(cannonBallPos);
   cannon.style.height = '15%';
   cannon.style.width = '15%';
   cannon.style.left = `calc(${cannonBallPos.x}px - 12%)`;

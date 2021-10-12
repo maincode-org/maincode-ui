@@ -34,9 +34,7 @@ const MathLive: React.FC<IProps> = ({ formula, onChange, initialValues = [], cla
     ml.value = formula;
 
     // Add initial values
-    if (initialValues && initialValues.length > 0) {
-      ml.value = insertInitialValues(formula, initialValues);
-    }
+    if (initialValues && initialValues.length > 0) ml.value = insertInitialValues(formula, initialValues);
 
     // Attach the element to the DOM
     ref?.current && ref.current.appendChild(ml);
@@ -48,8 +46,6 @@ const MathLive: React.FC<IProps> = ({ formula, onChange, initialValues = [], cla
     const paths = calcInputPaths(originalAst);
 
     ml.addEventListener('input', () => {
-      console.log(ml.getValue('spoken-text'));
-
       const newInputFormula = ml.getValue().replaceAll('⬚', '');
       const newInputTree = JSON.parse(ml.getValue('math-json'));
 
@@ -88,17 +84,10 @@ const MathLive: React.FC<IProps> = ({ formula, onChange, initialValues = [], cla
         onChange && onChange(removeMissing(findAllMathTreeValues(cleanedTree, paths)));
       } else {
         setInputTreeForm(newInputTree, newInputFormula);
-        console.log(removeMissing(newValues));
         onChange && onChange(removeMissing(newValues));
       }
     });
   }, [ref, formula]);
-
-  /*
-  useEffect(() => {
-    a && inputTreeRef.current && setInputTreeForm(inputTreeRef.current, 'f(x)=2');
-  }, [a]);
-   */
 
   return <div ref={ref} className={`${className} ${styles.container}`} />;
 };

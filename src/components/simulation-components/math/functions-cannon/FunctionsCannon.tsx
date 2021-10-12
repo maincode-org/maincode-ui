@@ -38,13 +38,8 @@ const FunctionsCannon: React.FC<IProps> = ({ id, parabolaValues, className = '' 
   const cannonBodySelector = `.${styles.cannonBody}`;
 
   useEffect(() => {
-    console.log('fuck mig');
     setParabolaInputValues([parabolaValues?.a ? parabolaValues?.a.toString() : undefined, parabolaValues?.c ? parabolaValues?.c.toString() : undefined]);
   }, [parabolaValues]);
-
-  useEffect(() => {
-    console.log('inputValueState', parabolaInputValues);
-  }, [parabolaInputValues]);
 
   useEffect(() => {
     if (!sectionElement || !hasPaintedSection) return;
