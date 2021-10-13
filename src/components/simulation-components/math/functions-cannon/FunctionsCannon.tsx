@@ -3,10 +3,12 @@ import styles from './functions-cannon.module.css';
 import Cannon from './Cannon';
 import gsap from 'gsap';
 import SimulationContainer from '../../simulation-container/SimulationContainer';
-import { initCannon, applyCannonWheelStyle, drawFunction, drawPlot, drawPlotPoint, enhanceCanvasQuality, IAxisOptions, IPlotConfig, initCannonBall } from './helpers';
-import { linearFunction, throwParabolaFunction } from './math-lib';
+import { initCannon, applyCannonWheelStyle, drawFunction, drawPlot, enhanceCanvasQuality, IAxisOptions, IPlotConfig, initCannonBall } from './helpers';
+import { throwParabolaFunction } from './math-lib';
 import { EThemeModes, ThemeContext } from 'contexts/theme';
-import { IonButton } from '@ionic/react';
+import { IonButton, IonIcon } from '@ionic/react';
+import { playOutline } from 'ionicons/icons';
+import MathLive from '../../../basic-components/math-live/MathLive';
 
 type ICoord = {
   x: number;
@@ -17,10 +19,14 @@ type IPos = ICoord;
 
 type IProps = {
   id: string;
+  axisOptions?: { x: { from: number; to: number }; y: { from: number; to: number } };
+  parabolaValues: { a: number; c: number };
+  shouldRevealA: boolean;
+  shouldRevealC: boolean;
   className?: string;
 };
 
-const FunctionsCannon: React.FC<IProps> = ({ id, className = '' }) => {
+const FunctionsCannon: React.FC<IProps> = ({ id, axisOptions, parabolaValues, shouldRevealA, shouldRevealC, className = '' }) => {
   const [hasPaintedSection, setHasPaintedSection] = useState(false);
   const [sectionElement, setSectionElement] = useState<HTMLElement>();
   const canvasRef = useRef<HTMLCanvasElement>(null);
@@ -28,9 +34,15 @@ const FunctionsCannon: React.FC<IProps> = ({ id, className = '' }) => {
   const [cannonAnimation, setCannonAnimation] = useState<gsap.core.Timeline>();
   const [cannonBallAnimation, setCannonBallAnimation] = useState<gsap.core.Timeline>();
   const [cannonBall, setCannonBall] = useState<HTMLElement>();
+  const [parabolaInputValues, setParabolaInputValues] = useState<(string | undefined)[]>([]);
+
   const theme = useContext(ThemeContext);
 
   const cannonBodySelector = `.${styles.cannonBody}`;
+
+  useEffect(() => {
+    setParabolaInputValues([shouldRevealA ? parabolaValues.a.toString() : undefined, shouldRevealC ? parabolaValues.c.toString() : undefined]);
+  }, [parabolaValues]);
 
   useEffect(() => {
     if (!sectionElement || !hasPaintedSection) return;
@@ -40,27 +52,26 @@ const FunctionsCannon: React.FC<IProps> = ({ id, className = '' }) => {
 
     setCannonWheel(cannonWheel);
 
-    initCannon(cannon);
-    applyCannonWheelStyle(cannonWheel);
-
     const canvas = canvasRef.current;
     if (!canvas) return;
 
     const context = enhanceCanvasQuality(canvas, sectionElement.clientWidth ?? 0, 82, 82);
 
-    const axisOptions: IAxisOptions = {
-      x: {
-        fromValue: 0,
-        toValue: 10,
-      },
-      y: {
-        fromValue: 0,
-        toValue: 10,
-      },
-    };
+    const axisOptionsValues: IAxisOptions = axisOptions
+      ? axisOptions
+      : {
+          x: {
+            from: 0,
+            to: 10,
+          },
+          y: {
+            from: 0,
+            to: 10,
+          },
+        };
 
     if (context) {
-      const plot: IPlotConfig = drawPlot(context, axisOptions, theme?.themeName === EThemeModes.dark);
+      const plot: IPlotConfig = drawPlot(context, axisOptionsValues, theme?.themeName === EThemeModes.dark);
 
       const bottomToXAxis = sectionElement.clientHeight - (canvas.clientHeight - plot.offset.bottom);
       const leftToYAxis = sectionElement.clientWidth - (canvas.clientWidth - plot.offset.left);
@@ -85,18 +96,12 @@ const FunctionsCannon: React.FC<IProps> = ({ id, className = '' }) => {
       // 5:  x + (b / a) / 2 = sqrt(y/a - c/a + (b / a) / 2)
       // 6:  x = - (b / a) / 2 +- sqrt(y/a - c/a + (b / a) / 2)
 
-      /*
-      const a = -0.01;
+      const a = -0.2;
       const b = 1;
-      const c = 2;
-       */
-      // const y = initialBallCoord.y;
+      const c = 3;
+      const y = initialBallCoord.y;
 
-      const xForInitialY = -3.12;
-      initialBallCoord.x = xForInitialY;
-
-      // const xForInitialY = -(b / a / 2) - Math.sqrt(y / a - c / a + b / a / 2);
-
+      initialBallCoord.x = -(b / a / 2) - Math.sqrt(y / a - c / a + b / a / 2); // calculates x for initial y.
       initialBallPos.x = leftToYAxis + initialBallCoord.x * plot.stepWidth.x;
 
       const cannonBallRef: HTMLElement = sectionElement.querySelector('#cannonBall') as HTMLElement;
@@ -104,35 +109,20 @@ const FunctionsCannon: React.FC<IProps> = ({ id, className = '' }) => {
       if (!cannonBall) return;
       initCannonBall(cannonBall);
 
-      /** Initial coord */
-      const initialCoord: HTMLElement = sectionElement.querySelector('#initialCoord') as HTMLElement;
-      initialCoord.style.position = 'absolute';
-      initialCoord.style.fontSize = '8px';
-      initialCoord.style.top = '5%';
-      initialCoord.style.left = '0';
-      initialCoord.innerText = `coord: (${initialBallCoord.x.toFixed(0)}, ${initialBallCoord.y.toFixed(0)})`;
+      initCannon(cannon, initialBallPos);
+      applyCannonWheelStyle(cannonWheel);
 
-      /** Current coord */
-      const currentCoord: HTMLElement = sectionElement.querySelector('#currentCoord') as HTMLElement;
-      currentCoord.style.position = 'absolute';
-      currentCoord.style.fontSize = '8px';
-      currentCoord.style.top = '0';
-      currentCoord.style.left = '0';
-      currentCoord.innerText = `coord: (${initialBallCoord.x.toFixed(0)}, ${throwParabolaFunction(-0.2, 3)(initialBallCoord.x).toFixed(0)})`;
-
-      console.log('Initial coord: ', initialBallCoord);
-
-      console.log('pos', initialBallPos.x, initialBallPos.y);
-
-      drawFunction(plot, linearFunction(2, 0), context);
-      drawFunction(plot, linearFunction(1, 2), context, 'rgb(148,16,126)');
-      drawFunction(plot, throwParabolaFunction(-0.2, 3), context, 'rgb(200,20,220)');
-      drawPlotPoint(plot, { x: 2, y: 4 }, context);
+      drawFunction(plot, throwParabolaFunction(parabolaValues.a, parabolaValues.c), context, 'rgb(200,20,220)');
 
       setCannonAnimation(createCannonAnimation(cannonBodySelector));
-      setCannonBallAnimation(createFollowFnAnimation(cannonBall, plot, throwParabolaFunction(-0.2, 3), initialBallCoord, leftToYAxis, bottomToXAxis, 1.5));
+
+      parabolaInputValues?.[0] &&
+        parabolaInputValues?.[1] &&
+        setCannonBallAnimation(
+          createFollowFnAnimation(cannonBall, plot, throwParabolaFunction(Number(parabolaInputValues[0]), Number(parabolaInputValues[1])), initialBallCoord, leftToYAxis, bottomToXAxis, 1.5)
+        );
     }
-  }, [sectionElement, hasPaintedSection, theme, cannonBall, cannonBodySelector]);
+  }, [sectionElement, hasPaintedSection, theme, cannonBall, cannonBodySelector, parabolaInputValues]);
 
   const onSectionPaint = (sectionElement: HTMLElement) => {
     setSectionElement(sectionElement);
@@ -151,10 +141,10 @@ const FunctionsCannon: React.FC<IProps> = ({ id, className = '' }) => {
   const createFollowFnAnimation = (cannonBall: HTMLElement, plot: IPlotConfig, fn: (x: number) => number, initialCoord: ICoord, leftToYAxis: number, bottomToXAxis: number, duration: number) => {
     const animationTimeline = gsap.timeline();
     animationTimeline.set(cannonBall, { visibility: 'visible' });
-    const stepSize = (plot.axis.x.toValue - plot.axis.x.fromValue) / 100; // visible range of x-values divided by a number of animation steps.
+    const stepSize = (plot.axis.x.to - plot.axis.x.from) / 100; // visible range of x-values divided by a number of animation steps.
     const speed = duration / (plot.numberOfDashes.x * (stepSize * 100));
 
-    for (let x = initialCoord.x; x <= plot.axis.x.toValue; x += stepSize) {
+    for (let x = initialCoord.x; x <= plot.axis.x.to; x += stepSize) {
       if (x > stepSize && fn(x) <= stepSize && fn(x) >= -stepSize) break;
       animationTimeline.fromTo(
         cannonBall,
@@ -173,18 +163,27 @@ const FunctionsCannon: React.FC<IProps> = ({ id, className = '' }) => {
     masterTimeline.add(timeline1.restart()).add(timeline2.restart(), '<');
   };
 
+  const onMathInputChange = (inputs: (string | undefined)[]) => {
+    if (inputs.length === 1 && shouldRevealA) setParabolaInputValues([parabolaValues.a.toString(), inputs[0]]);
+    else if (inputs.length === 1 && shouldRevealC) setParabolaInputValues([inputs[0], parabolaValues.c.toString()]);
+    else setParabolaInputValues(inputs);
+  };
+
   return (
     <SimulationContainer className={className} id={id} onLoad={onSectionPaint}>
       <Cannon isDarkMode={theme?.themeName === 'dark'} />
-      <p className={`${styles.functionText} p-05 m-0 glass-bg rounded`}>f(x) = -0.2x²+x+3</p>
-      <p id='initialCoord'>(x,y)</p>
-      <p id='currentCoord'>(x,y)</p>
       <div id='cannonBall' />
       {cannonWheel && sectionElement && (
         <IonButton className={`${styles.playButton}`} onClick={() => playAnimation(cannonAnimation, cannonBallAnimation)}>
-          Afspil
+          <IonIcon ios={playOutline} md={playOutline} />
         </IonButton>
       )}
+      <MathLive
+        formula={parabolaValues.a < 0 ? 'f(x)=\\placeholder{}\\cdot x^2+x+\\placeholder{}' : 'f(x)=-\\placeholder{}\\cdot x^2+x+\\placeholder{}'}
+        onChange={onMathInputChange}
+        initialValues={[shouldRevealA ? parabolaValues.a.toString() : '', shouldRevealC ? parabolaValues.c.toString() : '']}
+      />
+      <div id='parabolaInput' />
       <canvas className={styles.canvas} ref={canvasRef} />
     </SimulationContainer>
   );
