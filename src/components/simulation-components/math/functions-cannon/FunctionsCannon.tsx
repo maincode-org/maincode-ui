@@ -19,11 +19,14 @@ type IPos = ICoord;
 
 type IProps = {
   id: string;
-  parabolaValues?: { a?: number; c?: number };
+  axisOptions?: { x: { from: number; to: number }; y: { from: number; to: number } };
+  parabolaValues: { a: number; c: number };
+  shouldRevealA: boolean;
+  shouldRevealC: boolean;
   className?: string;
 };
 
-const FunctionsCannon: React.FC<IProps> = ({ id, parabolaValues, className = '' }) => {
+const FunctionsCannon: React.FC<IProps> = ({ id, axisOptions, parabolaValues, shouldRevealA, shouldRevealC, className = '' }) => {
   const [hasPaintedSection, setHasPaintedSection] = useState(false);
   const [sectionElement, setSectionElement] = useState<HTMLElement>();
   const canvasRef = useRef<HTMLCanvasElement>(null);
@@ -38,7 +41,7 @@ const FunctionsCannon: React.FC<IProps> = ({ id, parabolaValues, className = '' 
   const cannonBodySelector = `.${styles.cannonBody}`;
 
   useEffect(() => {
-    setParabolaInputValues([parabolaValues?.a ? parabolaValues?.a.toString() : undefined, parabolaValues?.c ? parabolaValues?.c.toString() : undefined]);
+    setParabolaInputValues([shouldRevealA ? parabolaValues.a.toString() : undefined, shouldRevealC ? parabolaValues.c.toString() : undefined]);
   }, [parabolaValues]);
 
   useEffect(() => {
@@ -54,19 +57,21 @@ const FunctionsCannon: React.FC<IProps> = ({ id, parabolaValues, className = '' 
 
     const context = enhanceCanvasQuality(canvas, sectionElement.clientWidth ?? 0, 82, 82);
 
-    const axisOptions: IAxisOptions = {
-      x: {
-        fromValue: 0,
-        toValue: 10,
-      },
-      y: {
-        fromValue: 0,
-        toValue: 10,
-      },
-    };
+    const axisOptionsValues: IAxisOptions = axisOptions
+      ? axisOptions
+      : {
+          x: {
+            from: 0,
+            to: 10,
+          },
+          y: {
+            from: 0,
+            to: 10,
+          },
+        };
 
     if (context) {
-      const plot: IPlotConfig = drawPlot(context, axisOptions, theme?.themeName === EThemeModes.dark);
+      const plot: IPlotConfig = drawPlot(context, axisOptionsValues, theme?.themeName === EThemeModes.dark);
 
       const bottomToXAxis = sectionElement.clientHeight - (canvas.clientHeight - plot.offset.bottom);
       const leftToYAxis = sectionElement.clientWidth - (canvas.clientWidth - plot.offset.left);
@@ -107,11 +112,9 @@ const FunctionsCannon: React.FC<IProps> = ({ id, parabolaValues, className = '' 
       initCannon(cannon, initialBallPos);
       applyCannonWheelStyle(cannonWheel);
 
-      drawFunction(plot, throwParabolaFunction(-0.2, 3), context, 'rgb(200,20,220)');
+      drawFunction(plot, throwParabolaFunction(parabolaValues.a, parabolaValues.c), context, 'rgb(200,20,220)');
 
       setCannonAnimation(createCannonAnimation(cannonBodySelector));
-
-      console.log('parabola input', parabolaInputValues?.[0], parabolaInputValues?.[1]);
 
       parabolaInputValues?.[0] &&
         parabolaInputValues?.[1] &&
@@ -138,10 +141,10 @@ const FunctionsCannon: React.FC<IProps> = ({ id, parabolaValues, className = '' 
   const createFollowFnAnimation = (cannonBall: HTMLElement, plot: IPlotConfig, fn: (x: number) => number, initialCoord: ICoord, leftToYAxis: number, bottomToXAxis: number, duration: number) => {
     const animationTimeline = gsap.timeline();
     animationTimeline.set(cannonBall, { visibility: 'visible' });
-    const stepSize = (plot.axis.x.toValue - plot.axis.x.fromValue) / 100; // visible range of x-values divided by a number of animation steps.
+    const stepSize = (plot.axis.x.to - plot.axis.x.from) / 100; // visible range of x-values divided by a number of animation steps.
     const speed = duration / (plot.numberOfDashes.x * (stepSize * 100));
 
-    for (let x = initialCoord.x; x <= plot.axis.x.toValue; x += stepSize) {
+    for (let x = initialCoord.x; x <= plot.axis.x.to; x += stepSize) {
       if (x > stepSize && fn(x) <= stepSize && fn(x) >= -stepSize) break;
       animationTimeline.fromTo(
         cannonBall,
@@ -161,8 +164,8 @@ const FunctionsCannon: React.FC<IProps> = ({ id, parabolaValues, className = '' 
   };
 
   const onMathInputChange = (inputs: (string | undefined)[]) => {
-    if (inputs.length === 1 && parabolaValues?.c) setParabolaInputValues([inputs[0], parabolaValues.c.toString()]);
-    else if (inputs.length === 1 && parabolaValues?.a) setParabolaInputValues([parabolaValues.a.toString(), inputs[0]]);
+    if (inputs.length === 1 && shouldRevealA) setParabolaInputValues([parabolaValues.a.toString(), inputs[0]]);
+    else if (inputs.length === 1 && shouldRevealC) setParabolaInputValues([inputs[0], parabolaValues.c.toString()]);
     else setParabolaInputValues(inputs);
   };
 
@@ -176,9 +179,9 @@ const FunctionsCannon: React.FC<IProps> = ({ id, parabolaValues, className = '' 
         </IonButton>
       )}
       <MathLive
-        formula='f(x)=-\placeholder{}\cdot x^2+x+\placeholder{}'
+        formula={parabolaValues.a < 0 ? 'f(x)=\\placeholder{}\\cdot x^2+x+\\placeholder{}' : 'f(x)=-\\placeholder{}\\cdot x^2+x+\\placeholder{}'}
         onChange={onMathInputChange}
-        initialValues={[parabolaValues?.a ? parabolaValues?.a.toString() : '', parabolaValues?.c ? parabolaValues?.c.toString() : '']}
+        initialValues={[shouldRevealA ? parabolaValues.a.toString() : '', shouldRevealC ? parabolaValues.c.toString() : '']}
       />
       <div id='parabolaInput' />
       <canvas className={styles.canvas} ref={canvasRef} />

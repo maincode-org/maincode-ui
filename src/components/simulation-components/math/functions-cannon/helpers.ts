@@ -1,6 +1,6 @@
 export type IAxisOption = {
-  fromValue: number;
-  toValue: number;
+  from: number;
+  to: number;
   label?: string;
   numberOfDashes?: number;
 };
@@ -56,18 +56,18 @@ export const drawPlot = (context: CanvasRenderingContext2D, axisOptions: IAxisOp
   const yNumberOfDashes = axisOptions.y.numberOfDashes ?? 10;
 
   // Axis settings and helpers
-  const xStepValue = (axisOptions.x.toValue - axisOptions.x.fromValue) / xNumberOfDashes;
-  const yStepValue = (axisOptions.y.toValue - axisOptions.y.fromValue) / yNumberOfDashes;
+  const xStepValue = (axisOptions.x.to - axisOptions.x.from) / xNumberOfDashes;
+  const yStepValue = (axisOptions.y.to - axisOptions.y.from) / yNumberOfDashes;
 
-  const shouldRoundX = shouldRoundAxisValues(xNumberOfDashes, axisOptions.x.fromValue, xStepValue);
-  const shouldRoundY = shouldRoundAxisValues(yNumberOfDashes, axisOptions.y.fromValue, yStepValue);
+  const shouldRoundX = shouldRoundAxisValues(xNumberOfDashes, axisOptions.x.from, xStepValue);
+  const shouldRoundY = shouldRoundAxisValues(yNumberOfDashes, axisOptions.y.from, yStepValue);
   const yRoundPadding = !shouldRoundY ? textWidth('.4') : 0;
 
   const offset = {
     top: textHeight('Y') * 2,
-    right: textWidthCenter(`${axisOptions.x.toValue}`) > textWidth('X') * 1.25 ? textWidthCenter(`${axisOptions.x.toValue}`) : textWidth('X') * 2,
-    bottom: textHeight(`${axisOptions.x.toValue}`) * 2.5,
-    left: textWidth(`${axisOptions.y.toValue}`) + textPadding + yRoundPadding,
+    right: textWidthCenter(`${axisOptions.x.to}`) > textWidth('X') * 1.25 ? textWidthCenter(`${axisOptions.x.to}`) : textWidth('X') * 2,
+    bottom: textHeight(`${axisOptions.x.to}`) * 2.5,
+    left: textWidth(`${axisOptions.y.to}`) + textPadding + yRoundPadding,
   };
 
   const xStepWidth = (canvasWidth - offset.right - offset.left) / xNumberOfDashes;
@@ -96,7 +96,7 @@ export const drawPlot = (context: CanvasRenderingContext2D, axisOptions: IAxisOp
       context.lineTo(xAxisPoint, canvasHeight - offset.bottom - pointDashSize / 2);
     }
 
-    const stepDisplayNumber = axisOptions.x.fromValue + i * xStepValue;
+    const stepDisplayNumber = axisOptions.x.from + i * xStepValue;
     const stepText = `${shouldRoundX ? Math.round(stepDisplayNumber) : stepDisplayNumber.toFixed(1)}`;
     context.fillText(stepText, xAxisPoint - textWidthCenter(stepText), canvasHeight - textHeightCenter(stepText));
   }
@@ -111,7 +111,7 @@ export const drawPlot = (context: CanvasRenderingContext2D, axisOptions: IAxisOp
       context.lineTo(offset.left - pointDashSize / 2, yAxisPoint);
     }
 
-    const stepDisplayNumber = axisOptions.y.fromValue + i * yStepValue;
+    const stepDisplayNumber = axisOptions.y.from + i * yStepValue;
     const stepText = `${shouldRoundY ? Math.round(stepDisplayNumber) : stepDisplayNumber.toFixed(1)}`;
     context.fillText(stepText, offset.left - pointDashSize / 2 - textPadding / 2, yAxisPoint + textHeightCenter(stepText));
   }
@@ -187,14 +187,14 @@ export const coordToPoint = (coord: ICoord, plot: IPlotConfig): IPoint => {
 
   /** The reciprocal (1/..) indicates the number of steps between a full value. Eg. step value 0.5 => 2 steps between each value. */
   const xSteps = coord.x * stepWidth.x * (1 / stepValue.x);
-  const xFromOffset = axis.x.fromValue * (1 / stepValue.x) * stepWidth.x;
+  const xFromOffset = axis.x.from * (1 / stepValue.x) * stepWidth.x;
   const x = offset.left + xSteps - xFromOffset;
 
   const ySteps = coord.y * stepWidth.y * (1 / stepValue.y);
-  const yFromOffset = axis.y.fromValue * (1 / stepValue.y) * stepWidth.y;
+  const yFromOffset = axis.y.from * (1 / stepValue.y) * stepWidth.y;
   const y = canvasHeight - (offset.bottom + ySteps) + yFromOffset;
 
-  const isInPlotView = coord.x >= axis.x.fromValue && coord.x <= axis.x.toValue && coord.y >= axis.y.fromValue && coord.y <= axis.y.toValue;
+  const isInPlotView = coord.x >= axis.x.from && coord.x <= axis.x.to && coord.y >= axis.y.from && coord.y <= axis.y.to;
 
   return { x, y, isInPlotView };
 };
@@ -220,8 +220,8 @@ export const drawFunction = (plot: IPlotConfig, fn: (x: number) => number, conte
   const stepSize = 0.01;
 
   for (let x = 0; x <= plot.canvasWidth - (plot.offset.left + plot.offset.right); x += stepSize) {
-    if (fn(x) > plot.axis.y.toValue) continue; // Prevents overdraw on positive y-values.
-    if (fn(x) < plot.axis.y.fromValue) continue; // Prevents overdraw on negative y-values.
+    if (fn(x) > plot.axis.y.to) continue; // Prevents overdraw on positive y-values.
+    if (fn(x) < plot.axis.y.from) continue; // Prevents overdraw on negative y-values.
     context.lineTo(x * plot.stepWidth.x + plot.offset.left, translateYPoint(plot, fn(x)) + fn(0));
   }
 
