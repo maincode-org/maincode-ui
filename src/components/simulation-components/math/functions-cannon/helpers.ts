@@ -154,6 +154,17 @@ export const initCannonBall = (cannonBall: HTMLElement): void => {
   cannonBall.style.height = '4%';
   cannonBall.style.borderRadius = '100%';
   cannonBall.style.visibility = 'hidden';
+  cannonBall.style.zIndex = '2';
+};
+
+export const initTestSquare = (testSquare: HTMLDivElement, xPos: number, yPos: number): void => {
+  testSquare.style.width = '5%';
+  testSquare.style.height = '5%';
+  testSquare.style.background = 'blue';
+  testSquare.style.position = 'absolute';
+  testSquare.style.left = `${xPos}px`;
+  testSquare.style.bottom = `${yPos}px`;
+  testSquare.style.display = 'none';
 };
 
 export const applyCannonWheelStyle = (cannonWheel: SVGSVGElement): void => {
@@ -211,7 +222,8 @@ export const drawPlotPoint = (plot: IPlotConfig, coord: ICoord, context: CanvasR
 export const drawPlotPoints = (plot: IPlotConfig, coords: ICoord[], context: CanvasRenderingContext2D): void => coords.forEach((c) => drawPlotPoint(plot, c, context));
 
 export const translateYPoint = (plot: IPlotConfig, y: number): number => {
-  return plot.canvasHeight - (plot.offset.bottom + y * plot.stepWidth.y);
+  const scaledStepWidth = plot.stepWidth.y / plot.stepValue.y;
+  return plot.canvasHeight - (plot.offset.bottom + (y - plot.axis.y.from) * scaledStepWidth);
 };
 
 export const drawFunction = (plot: IPlotConfig, fn: (x: number) => number, context: CanvasRenderingContext2D, color?: string): void => {
@@ -220,9 +232,11 @@ export const drawFunction = (plot: IPlotConfig, fn: (x: number) => number, conte
   const stepSize = 0.01;
 
   for (let x = 0; x <= plot.canvasWidth - (plot.offset.left + plot.offset.right); x += stepSize) {
-    if (fn(x) > plot.axis.y.to) continue; // Prevents overdraw on positive y-values.
-    if (fn(x) < plot.axis.y.from) continue; // Prevents overdraw on negative y-values.
-    context.lineTo(x * plot.stepWidth.x + plot.offset.left, translateYPoint(plot, fn(x)) + fn(0));
+    if (fn(x) > plot.axis.y.to) continue; // Prevents top overdrawing.
+    if (fn(x) < plot.axis.y.from) continue; // Prevents bottom overdrawing.
+    if (x < plot.axis.x.from) continue; // Prevents left overdrawing.
+    if (x > plot.axis.x.to) continue; // Prevents right overdrawing.
+    context.lineTo((x - plot.axis.x.from) * (plot.stepWidth.x / plot.stepValue.x) + plot.offset.left, translateYPoint(plot, fn(x)));
   }
 
   context.strokeStyle = color ?? 'rgba(9,67,131,0.5)';
