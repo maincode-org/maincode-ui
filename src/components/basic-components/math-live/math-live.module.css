@@ -1,9 +1,4 @@
-.container {
-  width: 50%;
-  position: absolute;
-  left: 20%;
-  bottom: 2%;
-}
+.container {}
 .container math-field {
   background-color: var(--color-glass);
   border: 1px solid var(--border-glass);
