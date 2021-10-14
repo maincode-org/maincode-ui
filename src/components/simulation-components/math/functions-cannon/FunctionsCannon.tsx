@@ -3,7 +3,7 @@ import styles from './functions-cannon.module.css';
 import Cannon from './Cannon';
 import gsap from 'gsap';
 import SimulationContainer from '../../simulation-container/SimulationContainer';
-import { initCannon, applyCannonWheelStyle, drawFunction, drawPlot, enhanceCanvasQuality, IAxisOptions, IPlotConfig, initCannonBall } from './helpers';
+import { initCannon, applyCannonWheelStyle, drawFunction, drawPlot, enhanceCanvasQuality, IAxisOptions, IPlotConfig, initCannonBall, initTestSquare } from './helpers';
 import { throwParabolaFunction } from './math-lib';
 import { EThemeModes, ThemeContext } from 'contexts/theme';
 import { IonButton, IonIcon } from '@ionic/react';
@@ -83,7 +83,7 @@ const FunctionsCannon: React.FC<IProps> = ({ id, axisOptions, parabolaValues, sh
 
       const initialBallCoord: ICoord = {
         x: 0,
-        y: -(bottomToXAxis - initialBallPos.y) / plot.stepWidth.y,
+        y: -(bottomToXAxis - initialBallPos.y) / (plot.stepWidth.y / plot.stepValue.y) + plot.axis.y.from,
       };
 
       // https://en.wikipedia.org/wiki/Quadratic_equation
@@ -102,7 +102,14 @@ const FunctionsCannon: React.FC<IProps> = ({ id, axisOptions, parabolaValues, sh
       const y = initialBallCoord.y;
 
       initialBallCoord.x = -(b / a / 2) - Math.sqrt(y / a - c / a + b / a / 2); // calculates x for initial y.
-      initialBallPos.x = leftToYAxis + initialBallCoord.x * plot.stepWidth.x;
+      initialBallPos.x = leftToYAxis + (initialBallCoord.x - plot.axis.x.from) * (plot.stepWidth.x / plot.stepValue.x);
+
+      console.log('initialCoord', initialBallCoord);
+      console.log('initialPos', initialBallPos);
+
+      // Visual test object for debugging
+      const testSquare: HTMLDivElement = sectionElement.querySelector('#test') as HTMLDivElement;
+      initTestSquare(testSquare, initialBallPos.x, initialBallPos.y);
 
       const cannonBallRef: HTMLElement = sectionElement.querySelector('#cannonBall') as HTMLElement;
       if (!cannonBall && cannonBallRef) setCannonBall(cannonBallRef);
@@ -141,15 +148,20 @@ const FunctionsCannon: React.FC<IProps> = ({ id, axisOptions, parabolaValues, sh
   const createFollowFnAnimation = (cannonBall: HTMLElement, plot: IPlotConfig, fn: (x: number) => number, initialCoord: ICoord, leftToYAxis: number, bottomToXAxis: number, duration: number) => {
     const animationTimeline = gsap.timeline();
     animationTimeline.set(cannonBall, { visibility: 'visible' });
+
     const stepSize = (plot.axis.x.to - plot.axis.x.from) / 100; // visible range of x-values divided by a number of animation steps.
     const speed = duration / (plot.numberOfDashes.x * (stepSize * 100));
 
     for (let x = initialCoord.x; x <= plot.axis.x.to; x += stepSize) {
-      if (x > stepSize && fn(x) <= stepSize && fn(x) >= -stepSize) break;
+      if (x > plot.axis.x.to || fn(x) > plot.axis.y.to || (x > plot.axis.x.from && fn(x) < plot.axis.y.from)) break;
       animationTimeline.fromTo(
         cannonBall,
-        { x: leftToYAxis + x * plot.stepWidth.x, y: -(bottomToXAxis + fn(x) * plot.stepWidth.y) },
-        { duration: speed, x: leftToYAxis + (x + stepSize) * plot.stepWidth.x, y: -(bottomToXAxis + fn(x + stepSize) * plot.stepWidth.y) }
+        { x: leftToYAxis + (x - plot.axis.x.from) * (plot.stepWidth.x / plot.stepValue.x), y: -(bottomToXAxis + (fn(x) - plot.axis.y.from) * (plot.stepWidth.y / plot.stepValue.y)) },
+        {
+          duration: speed,
+          x: leftToYAxis + (x + stepSize - plot.axis.x.from) * (plot.stepWidth.x / plot.stepValue.x),
+          y: -(bottomToXAxis + (fn(x + stepSize) - plot.axis.y.from) * (plot.stepWidth.y / plot.stepValue.y)),
+        }
       );
     }
     animationTimeline.pause();
@@ -172,6 +184,7 @@ const FunctionsCannon: React.FC<IProps> = ({ id, axisOptions, parabolaValues, sh
   return (
     <SimulationContainer className={className} id={id} onLoad={onSectionPaint}>
       <Cannon isDarkMode={theme?.themeName === 'dark'} />
+      <div id='test' />
       <div id='cannonBall' />
       {cannonWheel && sectionElement && (
         <IonButton className={`${styles.playButton}`} onClick={() => playAnimation(cannonAnimation, cannonBallAnimation)}>
@@ -179,7 +192,7 @@ const FunctionsCannon: React.FC<IProps> = ({ id, axisOptions, parabolaValues, sh
         </IonButton>
       )}
       <MathLive
-        formula={parabolaValues.a < 0 ? 'f(x)=\\placeholder{}\\cdot x^2+x+\\placeholder{}' : 'f(x)=-\\placeholder{}\\cdot x^2+x+\\placeholder{}'}
+        formula={`f(x)=${parabolaValues.a && shouldRevealA ? '' : '-'}\\placeholder{}\\cdot x^2+x+\\placeholder{}`}
         onChange={onMathInputChange}
         initialValues={[shouldRevealA ? parabolaValues.a.toString() : '', shouldRevealC ? parabolaValues.c.toString() : '']}
       />
