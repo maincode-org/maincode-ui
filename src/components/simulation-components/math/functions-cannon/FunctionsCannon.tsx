@@ -104,9 +104,6 @@ const FunctionsCannon: React.FC<IProps> = ({ id, axisOptions, parabolaValues, sh
       initialBallCoord.x = -(b / a / 2) - Math.sqrt(y / a - c / a + b / a / 2); // calculates x for initial y.
       initialBallPos.x = leftToYAxis + (initialBallCoord.x - plot.axis.x.from) * (plot.stepWidth.x / plot.stepValue.x);
 
-      console.log('initialCoord', initialBallCoord);
-      console.log('initialPos', initialBallPos);
-
       // Visual test object for debugging
       const testSquare: HTMLDivElement = sectionElement.querySelector('#test') as HTMLDivElement;
       initTestSquare(testSquare, initialBallPos.x, initialBallPos.y);
