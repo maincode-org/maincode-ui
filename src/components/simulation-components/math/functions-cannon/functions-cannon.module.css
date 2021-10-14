@@ -2,40 +2,17 @@
   transform-origin: center;
   transform-box: fill-box;
 }
-
 .canvas {
   position: absolute;
   left: 17%;
   bottom: 17%;
 }
-
-.functionText {
-  display: inline-block;
+.mathLive {
+  width: 50%;
   position: absolute;
-  top: 1%;
-  right: 2%;
-  text-align: center;
-  z-index: 100;
+  left: 20%;
+  bottom: 2%;
 }
-
-.userInputA {
-  position: absolute;
-  bottom: 1%;
-  right: 50%;
-  width: 20%;
-  max-width: 20%;
-  max-height: 17%;
-}
-
-.userInputC {
-  position: absolute;
-  bottom: 1%;
-  right: 25%;
-  width: 20%;
-  max-width: 20%;
-  max-height: 17%;
-}
-
 .playButton {
   position: absolute;
   bottom: 1%;

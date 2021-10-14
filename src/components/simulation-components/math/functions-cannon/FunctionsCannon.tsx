@@ -189,6 +189,7 @@ const FunctionsCannon: React.FC<IProps> = ({ id, axisOptions, parabolaValues, sh
         </IonButton>
       )}
       <MathLive
+        className={styles.mathLive}
         formula={`f(x)=${parabolaValues.a && shouldRevealA ? '' : '-'}\\placeholder{}\\cdot x^2+x+\\placeholder{}`}
         onChange={onMathInputChange}
         initialValues={[shouldRevealA ? parabolaValues.a.toString() : '', shouldRevealC ? parabolaValues.c.toString() : '']}
