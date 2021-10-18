@@ -4,11 +4,12 @@ import styles from './simulation-container.module.css';
 type IProps = {
   id: string;
   onLoad?: (ref: HTMLElement) => void;
+  backgroundColor?: string;
   className?: string;
   children?: React.ReactElement | (React.ReactElement | undefined)[];
 };
 
-const SimulationContainer: React.FC<IProps> = ({ id, onLoad, className = '', children }) => {
+const SimulationContainer: React.FC<IProps> = ({ id, onLoad, backgroundColor, className = '', children }) => {
   const [dim, setDim] = useState(0);
   const [hasPaintedSection, setHasPaintedSection] = useState(false);
   const sectionRef = useRef<HTMLElement>(null);
@@ -30,7 +31,7 @@ const SimulationContainer: React.FC<IProps> = ({ id, onLoad, className = '', chi
     <section
       id={id}
       ref={sectionRef}
-      style={{ maxHeight: `${dim}px`, height: `${dim}px`, maxWidth: `${dim}px`, width: `${dim}px` }}
+      style={{ maxHeight: `${dim}px`, height: `${dim}px`, maxWidth: `${dim}px`, width: `${dim}px`, backgroundColor: backgroundColor ?? '#ffffff' }}
       className={`${className} ${styles.container} inline-block relative`}
     >
       {children}
