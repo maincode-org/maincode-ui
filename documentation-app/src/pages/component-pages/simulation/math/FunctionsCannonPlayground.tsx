@@ -1,8 +1,8 @@
 import { FunctionsCannon, MathLive } from 'maincode-ui';
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { IonButton } from '@ionic/react';
 
-const TempFunctionsCannon: React.FC = () => {
+const FunctionsCannonPlayground: React.FC = () => {
   const [shouldRevealA, setShouldRevealA] = useState(false);
   const [shouldRevealC, setShouldRevealC] = useState(false);
   const [parabolaA, setParabolaA] = useState(-0.2);
@@ -19,14 +19,18 @@ const TempFunctionsCannon: React.FC = () => {
       <FunctionsCannon
         id='cannon'
         parabolaValues={{ a: parabolaA, c: parabolaC }}
-        axisOptions={{ x: { from: 0, to: 15 }, y: { from: 0, to: 10 } }}
+        axisOptions={{ x: { from: 0, to: 10 }, y: { from: 0, to: 10 }, color: '#9027b9' }}
         shouldRevealA={shouldRevealA}
         shouldRevealC={shouldRevealC}
+        theme={{ backgroundColor: '#de5a67', parabolaColor: '#8fde5a' }}
       />
       <MathLive
-        formula={`f(x)=${parabolaA && shouldRevealA ? '' : '-'}\\placeholder{}\\cdot x^2+x+\\placeholder{}`}
+        formula='f(x)=\placeholder{}\cdot x^2+x+\placeholder{}'
         onChange={mathLiveOnChange}
-        initialValues={[shouldRevealA ? parabolaA.toString() : '', shouldRevealC ? parabolaC.toString() : '']}
+        answerValues={[
+          { value: parabolaA, shouldReveal: shouldRevealA },
+          { value: parabolaC, shouldReveal: shouldRevealC },
+        ]}
       />
       <p>Current rev A{shouldRevealA ? ': TRUE' : ': FALSE'}</p>
       <p>Current rev C{shouldRevealC ? ': TRUE' : ': FALSE'}</p>
@@ -37,4 +41,4 @@ const TempFunctionsCannon: React.FC = () => {
     </>
   );
 };
-export default TempFunctionsCannon;
+export default FunctionsCannonPlayground;

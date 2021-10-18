@@ -3,23 +3,28 @@ import * as Mathlive from 'mathlive';
 import styles from './math-live.module.css';
 import _ from 'lodash';
 
+type IAnswerValue = {
+  value: number | string;
+  shouldReveal: boolean;
+};
+
 type IProps = {
   formula: string;
   onChange?: (values: (string | undefined)[]) => void;
-  initialValues?: string[];
+  answerValues?: IAnswerValue[];
   className?: string;
 };
 
 type IInputTree = (string | { num: string } | IInputTree)[];
 
-const MathLive: React.FC<IProps> = ({ formula, onChange, initialValues = [], className = '' }) => {
+const MathLive: React.FC<IProps> = ({ formula, onChange, answerValues = [], className = '' }) => {
   const ref = useRef<HTMLDivElement>(null);
   const [inputTree, _setInputTree] = useState<IInputTree>();
   const [inputFormula, _setInputFormula] = useState(formula);
   const inputTreeRef = useRef(inputTree);
   const inputFormulaRef = useRef(inputFormula);
   const onChangeRef = useRef(onChange);
-  const [latestInitialValues, setLatestInitialValues] = useState<string[]>(initialValues);
+  const [latestAnswerValues, setLatestAnswerValues] = useState<IAnswerValue[]>(answerValues);
   const ml = useMemo(() => new Mathlive.MathfieldElement(), []);
 
   /** The DOM event handler of the input field cannot see changes in states. It can however access the current values of refs.*/
@@ -36,10 +41,10 @@ const MathLive: React.FC<IProps> = ({ formula, onChange, initialValues = [], cla
   }, [onChange]);
 
   useEffect(() => {
-    if (_.isEqual(latestInitialValues, initialValues)) return;
-    setLatestInitialValues(initialValues);
-    if (initialValues && initialValues.length > 0) ml.value = insertInitialValues(formula, initialValues);
-  }, [initialValues]);
+    if (_.isEqual(latestAnswerValues, answerValues)) return;
+    setLatestAnswerValues(answerValues);
+    if (answerValues && answerValues.length > 0) ml.value = insertAnswerValues(formula, answerValues);
+  }, [answerValues]);
 
   /** First meaningful load */
   useEffect(() => {
@@ -52,7 +57,7 @@ const MathLive: React.FC<IProps> = ({ formula, onChange, initialValues = [], cla
     ref?.current && ref.current.appendChild(ml);
 
     // Add initial values
-    if (initialValues && initialValues.length > 0) ml.value = insertInitialValues(formula, initialValues);
+    if (answerValues && answerValues.length > 0) ml.value = insertAnswerValues(formula, answerValues);
 
     // Get AST and calculate paths
     const originalAst = JSON.parse(ml.getValue('math-json'));
@@ -74,7 +79,7 @@ const MathLive: React.FC<IProps> = ({ formula, onChange, initialValues = [], cla
       } else if (!newValues.every((v) => isLegalValue(v))) {
         let i = 0;
 
-        const cleanedFormula = insertInitialValues(formula, initialValues).replaceAll('\\placeholder{}', (placeholderStr) =>
+        const cleanedFormula = insertAnswerValues(formula, answerValues).replaceAll('\\placeholder{}', (placeholderStr) =>
           isLegalValue(newValues[i++]) && newValues[i - 1] !== 'Missing' ? newValues[i - 1] : placeholderStr
         );
 
@@ -127,9 +132,17 @@ const findAllMathTreeValues = (tree: IInputTree, paths: number[][]): string[] =>
 
 const isLegalValue = (v: string) => Number.isFinite(Number(v)) || v === 'Missing';
 
-const insertInitialValues = (formula: string, initialValues: string[]): string => {
+const insertAnswerValues = (formula: string, answerValues: IAnswerValue[]): string => {
   let counter = 0;
-  return formula.replaceAll('\\placeholder{}', (placeholderStr) => (initialValues[counter++] !== '' && initialValues[counter - 1] ? initialValues[counter - 1] : placeholderStr));
+  return formula.replaceAll('\\placeholder{}', (placeholderStr) => {
+    if (answerValues[counter++].shouldReveal && answerValues[counter - 1]) {
+      return answerValues[counter - 1].value.toString();
+    } else if (answerValues[counter - 1].value < 0) {
+      return `-${placeholderStr}`;
+    } else {
+      return placeholderStr;
+    }
+  });
 };
 
 const removeMissing = (values: string[]): (string | undefined)[] => values.map((v) => (v !== 'Missing' ? v : undefined));
