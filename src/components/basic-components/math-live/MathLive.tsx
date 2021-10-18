@@ -1,6 +1,7 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect, useRef, useMemo } from 'react';
 import * as Mathlive from 'mathlive';
 import styles from './math-live.module.css';
+import _ from 'lodash';
 
 type IProps = {
   formula: string;
@@ -17,6 +18,16 @@ const MathLive: React.FC<IProps> = ({ formula, onChange, initialValues = [], cla
   const [inputFormula, _setInputFormula] = useState(formula);
   const inputTreeRef = useRef(inputTree);
   const inputFormulaRef = useRef(inputFormula);
+  const [inputValues, setInputValues] = useState<string[]>(initialValues);
+  const [latestInitialValues, setLatestInitialValues] = useState<string[]>(initialValues);
+
+  const ml = useMemo(() => new Mathlive.MathfieldElement(), []);
+
+  useEffect(() => {
+    console.log('initialValues', initialValues);
+    if (_.isEqual(latestInitialValues, initialValues)) return;
+    setLatestInitialValues(initialValues);
+  }, [initialValues]);
 
   const setInputTreeForm = (tree: IInputTree, formula: string) => {
     inputTreeRef.current = tree;
@@ -26,23 +37,30 @@ const MathLive: React.FC<IProps> = ({ formula, onChange, initialValues = [], cla
   };
 
   useEffect(() => {
+    // Add initial values
+    // const currentValues = removeMissing(inputValues);
+
+    if (latestInitialValues && latestInitialValues.length > 0) ml.value = insertInitialValues(formula, latestInitialValues);
+    console.log('values', inputValues);
+  }, [latestInitialValues]);
+
+  /** First meaningful load */
+  useEffect(() => {
     if (!ref) return;
 
-    const ml = new Mathlive.MathfieldElement();
-
+    console.log('I am creating new MathLive input', ref, formula);
     ml.setOptions({ virtualKeyboardMode: 'off' });
     ml.value = formula;
-
-    // Add initial values
-    if (initialValues && initialValues.length > 0) ml.value = insertInitialValues(formula, initialValues);
 
     // Attach the element to the DOM
     ref?.current && ref.current.appendChild(ml);
 
+    // Add initial values
+    if (initialValues && initialValues.length > 0) ml.value = insertInitialValues(formula, initialValues);
+
+    // Get AST and calculate paths
     const originalAst = JSON.parse(ml.getValue('math-json'));
-
     setInputTreeForm(originalAst, ml.value);
-
     const paths = calcInputPaths(originalAst);
 
     ml.addEventListener('input', () => {
@@ -53,8 +71,7 @@ const MathLive: React.FC<IProps> = ({ formula, onChange, initialValues = [], cla
       const newValues = findAllMathTreeValues(newInputTree, paths);
 
       const legalPlaceholdersUnchanged: boolean = prevValues.every((v) => newValues.includes(v)) && newValues.every((v) => prevValues.includes(v));
-
-      const removeMissing = (values: string[]): (string | undefined)[] => values.map((v) => (v !== 'Missing' ? v : undefined));
+      console.log('inside ev listener', legalPlaceholdersUnchanged);
 
       // Input validation protected onChange callback.
       if (legalPlaceholdersUnchanged) {
@@ -74,6 +91,7 @@ const MathLive: React.FC<IProps> = ({ formula, onChange, initialValues = [], cla
          */
 
         ml.value = cleanedFormula;
+        console.log('cleaned formula');
 
         ml.executeCommand('moveToNextPlaceholder'); // bugs if you enter last and deletes last.
 
@@ -83,11 +101,13 @@ const MathLive: React.FC<IProps> = ({ formula, onChange, initialValues = [], cla
 
         onChange && onChange(removeMissing(findAllMathTreeValues(cleanedTree, paths)));
       } else {
+        console.log('I am else');
         setInputTreeForm(newInputTree, newInputFormula);
         onChange && onChange(removeMissing(newValues));
       }
+      setInputValues(findAllMathTreeValues(JSON.parse(ml.getValue('math-json')), paths));
     });
-  }, [ref, formula]);
+  }, [ref]);
 
   return <div ref={ref} className={`${className} ${styles.container}`} />;
 };
@@ -119,3 +139,5 @@ const insertInitialValues = (formula: string, initialValues: string[]): string =
   let counter = 0;
   return formula.replaceAll('\\placeholder{}', (placeholderStr) => (initialValues[counter++] !== '' && initialValues[counter - 1] ? initialValues[counter - 1] : placeholderStr));
 };
+
+const removeMissing = (values: string[]): (string | undefined)[] => values.map((v) => (v !== 'Missing' ? v : undefined));
