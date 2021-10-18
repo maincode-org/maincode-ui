@@ -17,13 +17,19 @@ type ICoord = {
 
 type IPos = ICoord;
 
+type ICannonTheme = {
+  backgroundColor?: { light: string; dark: string };
+  parabolaColor?: { light: string; dark: string };
+  playButtonColor?: { light: 'primary' | 'secondary' | 'success'; dark: 'primary' | 'secondary' | 'success' };
+};
+
 type IProps = {
   id: string;
-  axisOptions?: { x: { from: number; to: number }; y: { from: number; to: number }; color?: string };
+  axisOptions?: { x: { from: number; to: number }; y: { from: number; to: number }; color?: { light: string; dark: string } };
   parabolaValues: { a: number; c: number };
   shouldRevealA: boolean;
   shouldRevealC: boolean;
-  theme?: { backgroundColor?: string; parabolaColor?: string };
+  theme?: ICannonTheme;
   className?: string;
 };
 
@@ -38,6 +44,7 @@ const FunctionsCannon: React.FC<IProps> = ({ id, axisOptions, parabolaValues, sh
   const [parabolaInputValues, setParabolaInputValues] = useState<(string | undefined)[]>([]);
 
   const themeContext = useContext(ThemeContext);
+  const isDarkMode = themeContext?.themeName === EThemeModes.dark;
 
   const cannonBodySelector = `.${styles.cannonBody}`;
 
@@ -69,11 +76,11 @@ const FunctionsCannon: React.FC<IProps> = ({ id, axisOptions, parabolaValues, sh
             from: 0,
             to: 10,
           },
-          color: '#000000',
+          color: { light: '#000000', dark: '#ffffff' },
         };
 
     if (context) {
-      const plot: IPlotConfig = drawPlot(context, axisOptionsValues, themeContext?.themeName === EThemeModes.dark);
+      const plot: IPlotConfig = drawPlot(context, axisOptionsValues, isDarkMode);
 
       const bottomToXAxis = sectionElement.clientHeight - (canvas.clientHeight - plot.offset.bottom);
       const leftToYAxis = sectionElement.clientWidth - (canvas.clientWidth - plot.offset.left);
@@ -118,7 +125,12 @@ const FunctionsCannon: React.FC<IProps> = ({ id, axisOptions, parabolaValues, sh
       initCannon(cannon, initialBallPos);
       applyCannonWheelStyle(cannonWheel);
 
-      drawFunction(plot, throwParabolaFunction(parabolaValues.a, parabolaValues.c), context, theme?.parabolaColor ?? 'rgb(200,20,220)');
+      drawFunction(
+        plot,
+        throwParabolaFunction(parabolaValues.a, parabolaValues.c),
+        context,
+        !theme?.parabolaColor ? 'rgb(200,20,220)' : isDarkMode ? theme?.parabolaColor.dark : theme?.parabolaColor.light
+      );
 
       setCannonAnimation(createCannonAnimation(cannonBodySelector));
 
@@ -181,12 +193,16 @@ const FunctionsCannon: React.FC<IProps> = ({ id, axisOptions, parabolaValues, sh
   };
 
   return (
-    <SimulationContainer className={className} backgroundColor={theme?.backgroundColor} id={id} onLoad={onSectionPaint}>
+    <SimulationContainer className={className} backgroundColor={isDarkMode ? theme?.backgroundColor?.dark : theme?.backgroundColor?.dark} id={id} onLoad={onSectionPaint}>
       <Cannon isDarkMode={themeContext?.themeName === 'dark'} />
       <div id='test' />
       <div id='cannonBall' />
       {cannonWheel && sectionElement && (
-        <IonButton className={`${styles.playButton}`} onClick={() => playAnimation(cannonAnimation, cannonBallAnimation)}>
+        <IonButton
+          className={`${styles.playButton}`}
+          color={isDarkMode ? theme?.playButtonColor?.dark : theme?.playButtonColor?.light}
+          onClick={() => playAnimation(cannonAnimation, cannonBallAnimation)}
+        >
           <IonIcon ios={playOutline} md={playOutline} />
         </IonButton>
       )}

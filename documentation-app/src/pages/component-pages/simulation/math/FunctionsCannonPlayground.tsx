@@ -19,10 +19,10 @@ const FunctionsCannonPlayground: React.FC = () => {
       <FunctionsCannon
         id='cannon'
         parabolaValues={{ a: parabolaA, c: parabolaC }}
-        axisOptions={{ x: { from: 0, to: 10 }, y: { from: 0, to: 10 }, color: '#9027b9' }}
+        axisOptions={{ x: { from: 0, to: 10 }, y: { from: 0, to: 10 }, color: { light: '#431959', dark: '' } }}
         shouldRevealA={shouldRevealA}
         shouldRevealC={shouldRevealC}
-        theme={{ backgroundColor: '#de5a67', parabolaColor: '#8fde5a' }}
+        theme={{ backgroundColor: { light: '#de5a67', dark: '#de2a25' }, parabolaColor: { light: '#8fde5a', dark: '#2fdeaa' }, playButtonColor: { light: 'secondary', dark: 'primary' } }}
       />
       <MathLive
         formula='f(x)=\placeholder{}\cdot x^2+x+\placeholder{}'

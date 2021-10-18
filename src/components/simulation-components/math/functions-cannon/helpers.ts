@@ -8,7 +8,7 @@ export type IAxisOption = {
 export type IAxisOptions = {
   x: IAxisOption;
   y: IAxisOption;
-  color?: string;
+  color?: { light: string; dark: string };
 };
 
 export type IPlotConfig = {
@@ -37,7 +37,6 @@ export type IPlotConfig = {
 };
 
 export const drawPlot = (context: CanvasRenderingContext2D, axisOptions: IAxisOptions, isDarkMode: boolean): IPlotConfig => {
-  console.log(isDarkMode);
   const ratio = window.devicePixelRatio;
   const canvasWidth = context.canvas.width / ratio;
   const canvasHeight = context.canvas.height / ratio;
@@ -75,8 +74,8 @@ export const drawPlot = (context: CanvasRenderingContext2D, axisOptions: IAxisOp
   const xStepWidth = (canvasWidth - offset.right - offset.left) / xNumberOfDashes;
   const yStepWidth = (canvasHeight - offset.top - offset.bottom) / yNumberOfDashes;
 
-  context.strokeStyle = axisOptions.color ?? '#000000'; // Change based on isDarkMode
-  context.fillStyle = axisOptions.color ?? '#000000'; // Change based on isDarkMode
+  context.strokeStyle = !axisOptions.color ? '#000000' : isDarkMode ? axisOptions.color?.dark : axisOptions.color?.light;
+  context.fillStyle = !axisOptions.color ? '#000000' : isDarkMode ? axisOptions.color?.dark : axisOptions.color?.light;
   context.lineWidth = 2;
 
   // y-axis
