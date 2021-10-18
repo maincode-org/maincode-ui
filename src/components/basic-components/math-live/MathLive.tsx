@@ -18,17 +18,11 @@ const MathLive: React.FC<IProps> = ({ formula, onChange, initialValues = [], cla
   const [inputFormula, _setInputFormula] = useState(formula);
   const inputTreeRef = useRef(inputTree);
   const inputFormulaRef = useRef(inputFormula);
-  const [inputValues, setInputValues] = useState<string[]>(initialValues);
+  const onChangeRef = useRef(onChange);
   const [latestInitialValues, setLatestInitialValues] = useState<string[]>(initialValues);
-
   const ml = useMemo(() => new Mathlive.MathfieldElement(), []);
 
-  useEffect(() => {
-    console.log('initialValues', initialValues);
-    if (_.isEqual(latestInitialValues, initialValues)) return;
-    setLatestInitialValues(initialValues);
-  }, [initialValues]);
-
+  /** The DOM event handler of the input field cannot see changes in states. It can however access the current values of refs.*/
   const setInputTreeForm = (tree: IInputTree, formula: string) => {
     inputTreeRef.current = tree;
     inputFormulaRef.current = formula;
@@ -36,19 +30,21 @@ const MathLive: React.FC<IProps> = ({ formula, onChange, initialValues = [], cla
     _setInputTree(tree);
   };
 
+  /** Set a reference to the latest created onchange function (its "re-created" on every render, see useCallback React Docs). */
   useEffect(() => {
-    // Add initial values
-    // const currentValues = removeMissing(inputValues);
+    onChangeRef.current = onChange;
+  }, [onChange]);
 
-    if (latestInitialValues && latestInitialValues.length > 0) ml.value = insertInitialValues(formula, latestInitialValues);
-    console.log('values', inputValues);
-  }, [latestInitialValues]);
+  useEffect(() => {
+    if (_.isEqual(latestInitialValues, initialValues)) return;
+    setLatestInitialValues(initialValues);
+    if (initialValues && initialValues.length > 0) ml.value = insertInitialValues(formula, initialValues);
+  }, [initialValues]);
 
   /** First meaningful load */
   useEffect(() => {
     if (!ref) return;
 
-    console.log('I am creating new MathLive input', ref, formula);
     ml.setOptions({ virtualKeyboardMode: 'off' });
     ml.value = formula;
 
@@ -71,7 +67,6 @@ const MathLive: React.FC<IProps> = ({ formula, onChange, initialValues = [], cla
       const newValues = findAllMathTreeValues(newInputTree, paths);
 
       const legalPlaceholdersUnchanged: boolean = prevValues.every((v) => newValues.includes(v)) && newValues.every((v) => prevValues.includes(v));
-      console.log('inside ev listener', legalPlaceholdersUnchanged);
 
       // Input validation protected onChange callback.
       if (legalPlaceholdersUnchanged) {
@@ -91,7 +86,6 @@ const MathLive: React.FC<IProps> = ({ formula, onChange, initialValues = [], cla
          */
 
         ml.value = cleanedFormula;
-        console.log('cleaned formula');
 
         ml.executeCommand('moveToNextPlaceholder'); // bugs if you enter last and deletes last.
 
@@ -99,13 +93,11 @@ const MathLive: React.FC<IProps> = ({ formula, onChange, initialValues = [], cla
 
         setInputTreeForm(cleanedTree, cleanedFormula);
 
-        onChange && onChange(removeMissing(findAllMathTreeValues(cleanedTree, paths)));
+        onChangeRef.current && onChangeRef.current(removeMissing(findAllMathTreeValues(cleanedTree, paths)));
       } else {
-        console.log('I am else');
         setInputTreeForm(newInputTree, newInputFormula);
-        onChange && onChange(removeMissing(newValues));
+        onChangeRef.current && onChangeRef.current(removeMissing(newValues));
       }
-      setInputValues(findAllMathTreeValues(JSON.parse(ml.getValue('math-json')), paths));
     });
   }, [ref]);
 
