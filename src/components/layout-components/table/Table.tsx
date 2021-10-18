@@ -3,7 +3,7 @@ import styles from './table.module.css';
 import parse from 'html-react-parser';
 
 type IProps = {
-  title: string;
+  title: string | JSX.Element;
   properties: { label: string; value: string }[];
   className?: string;
 };

@@ -9,7 +9,7 @@ import { liveEditorProps } from './props';
 export const liveEditorDocumentation: IDocumentationPageContent = {
   description: (
     <p>
-      Showcase editable React, JSX or HTML code snippets with a live preview. This component is based on the <a href='https://github.com/FormidableLabs/react-live'>React Live library</a>.
+      Showcase editable React, JSX or HTML code snippets with a live preview. This component is based on the <strong>React Live library</strong>.
     </p>
   ),
   mainText: (

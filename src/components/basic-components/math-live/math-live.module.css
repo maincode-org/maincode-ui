@@ -1,4 +1,5 @@
-.container {}
+.container {
+}
 .container math-field {
   background-color: var(--color-glass);
   border: 1px solid var(--border-glass);

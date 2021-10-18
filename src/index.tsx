@@ -16,8 +16,9 @@ export { styleScrollbars };
 /** Basic Components -------------------------------- */
 import InfoArea from './components/basic-components/info-area/InfoArea';
 import PrettyUL from './components/basic-components/pretty-ul/PrettyUL';
+import MathLive from './components/basic-components/math-live/MathLive';
 
-export { InfoArea, PrettyUL };
+export { InfoArea, PrettyUL, MathLive };
 
 /** Code Components --------------------------------- */
 import LiveCodeEditor, { jsxExample } from './components/code-components/live-code-editor/LiveCodeEditor';
