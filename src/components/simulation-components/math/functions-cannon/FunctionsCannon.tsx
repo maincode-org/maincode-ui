@@ -21,11 +21,12 @@ type ICannonTheme = {
   backgroundColor?: { light: string; dark: string };
   parabolaColor?: { light: string; dark: string };
   playButtonColor?: { light: 'primary' | 'secondary' | 'success'; dark: 'primary' | 'secondary' | 'success' };
+  axisColor?: { light: string; dark: string };
 };
 
 type IProps = {
   id: string;
-  axisOptions?: { x: { from: number; to: number }; y: { from: number; to: number }; color?: { light: string; dark: string } };
+  axisOptions?: { x: { from: number; to: number }; y: { from: number; to: number } };
   parabolaValues: { a: number; c: number };
   shouldRevealA: boolean;
   shouldRevealC: boolean;
@@ -76,11 +77,10 @@ const FunctionsCannon: React.FC<IProps> = ({ id, axisOptions, parabolaValues, sh
             from: 0,
             to: 10,
           },
-          color: { light: '#000000', dark: '#ffffff' },
         };
 
     if (context) {
-      const plot: IPlotConfig = drawPlot(context, axisOptionsValues, isDarkMode);
+      const plot: IPlotConfig = drawPlot(context, axisOptionsValues, isDarkMode, theme?.axisColor);
 
       const bottomToXAxis = sectionElement.clientHeight - (canvas.clientHeight - plot.offset.bottom);
       const leftToYAxis = sectionElement.clientWidth - (canvas.clientWidth - plot.offset.left);
@@ -193,7 +193,7 @@ const FunctionsCannon: React.FC<IProps> = ({ id, axisOptions, parabolaValues, sh
   };
 
   return (
-    <SimulationContainer className={className} backgroundColor={isDarkMode ? theme?.backgroundColor?.dark : theme?.backgroundColor?.dark} id={id} onLoad={onSectionPaint}>
+    <SimulationContainer className={className} backgroundColor={isDarkMode ? theme?.backgroundColor?.dark : theme?.backgroundColor?.light} id={id} onLoad={onSectionPaint}>
       <Cannon isDarkMode={themeContext?.themeName === 'dark'} />
       <div id='test' />
       <div id='cannonBall' />
