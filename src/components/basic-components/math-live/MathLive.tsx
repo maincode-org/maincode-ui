@@ -77,20 +77,16 @@ const MathLive: React.FC<IProps> = ({ formula, onChange, answerValues = [], clas
 
       const legalPlaceholdersUnchanged: boolean = prevValues.every((v) => newValues.includes(v)) && newValues.every((v) => prevValues.includes(v));
 
-      console.log('NEW VALUES -----------------------------', newValues);
       // Input validation protected onChange callback.
       if (legalPlaceholdersUnchanged) {
         ml.value = inputFormulaRef.current;
       } else if (newValues.some((v, i) => latestAnswerValuesRef.current[i]?.shouldReveal && v !== latestAnswerValuesRef.current[i]?.value)) {
-        console.log('You tried to change a revealed value!!!!!!');
         ml.value = inputFormulaRef.current;
       } else if (!newValues.every((v) => isLegalValue(v))) {
         let counter = 0;
 
-        console.log('insertAnswerValues gave ', insertAnswerValues(formula, latestAnswerValuesRef.current));
         const cleanedFormula = insertAnswerValues(formula, latestAnswerValuesRef.current).replaceAll('\\placeholder{}', (placeholderStr) => {
           const i = counter++;
-          console.log('Found a placeholder at', i);
           if (isLegalValue(newValues[i]) && newValues[i] !== 'Missing' && !latestAnswerValuesRef.current[i].shouldReveal) {
             return newValues[i];
           } else if (latestAnswerValuesRef.current[i - 1]?.shouldReveal) {
@@ -151,7 +147,6 @@ const isLegalValue = (v: string) => Number.isFinite(Number(v)) || v === 'Missing
 
 const insertAnswerValues = (formula: string, answerValues: IAnswerValue[]): string => {
   let counter = 0;
-  console.log('Insert answer values recieved answer values: ', answerValues);
   return formula.replaceAll('\\placeholder{}', (placeholderStr) => {
     const i = counter++;
     if (answerValues[i].shouldReveal) {
@@ -159,7 +154,6 @@ const insertAnswerValues = (formula: string, answerValues: IAnswerValue[]): stri
     } else if (Number(answerValues[i].value) < 0) {
       return `-${placeholderStr}`;
     } else {
-      console.log('Answer value ', answerValues[i], 'at ', i, ' is not revealed. Inserting placeholder.');
       return placeholderStr;
     }
   });
