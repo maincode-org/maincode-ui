@@ -5,8 +5,8 @@ import { IonButton } from '@ionic/react';
 const FunctionsCannonPlayground: React.FC = () => {
   const [shouldRevealA, setShouldRevealA] = useState(false);
   const [shouldRevealC, setShouldRevealC] = useState(false);
-  const [parabolaA, setParabolaA] = useState('-0.2');
-  const [parabolaC, setParabolaC] = useState('3');
+  const [parabolaA, setParabolaA] = useState('');
+  const [parabolaC, setParabolaC] = useState('');
   console.log('new render. revA and revC:', shouldRevealA, shouldRevealA);
 
   const mathLiveOnChange = (values: (string | undefined)[]) => {
@@ -28,8 +28,8 @@ const FunctionsCannonPlayground: React.FC = () => {
         formula='f(x)=\placeholder{}\cdot x^2+x+\placeholder{}'
         onChange={mathLiveOnChange}
         answerValues={[
-          { value: parabolaA, shouldReveal: shouldRevealA },
-          { value: parabolaC, shouldReveal: shouldRevealC },
+          { value: parabolaA, shouldReveal: false },
+          { value: parabolaC, shouldReveal: false },
         ]}
       />
       <p>Current rev A{shouldRevealA ? ': TRUE' : ': FALSE'}</p>
