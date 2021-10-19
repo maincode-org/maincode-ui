@@ -1,4 +1,5 @@
 import { ComponentPreviewGallery, IDocumentationPage } from 'maincode-ui';
+import FunctionsCannonPlayground from '../../component-pages/simulation/math/FunctionsCannonPlayground';
 
 export const makeOverviewContent = (previews: IDocumentationPage[]): JSX.Element => (
   <>
@@ -25,5 +26,8 @@ export const makeOverviewContent = (previews: IDocumentationPage[]): JSX.Element
     <h2>Component overview:</h2>
     <ComponentPreviewGallery componentPages={previews} />
     <h3>Some outro text</h3>
+    <div className='w-40 h-40'>
+      <FunctionsCannonPlayground />
+    </div>
   </>
 );

@@ -4,7 +4,7 @@ import styles from './math-live.module.css';
 import _ from 'lodash';
 
 type IAnswerValue = {
-  value: number | string;
+  value: string;
   shouldReveal: boolean;
 };
 
@@ -19,13 +19,16 @@ type IInputTree = (string | { num: string } | IInputTree)[];
 
 const MathLive: React.FC<IProps> = ({ formula, onChange, answerValues = [], className = '' }) => {
   const ref = useRef<HTMLDivElement>(null);
+  const ml = useMemo(() => new Mathlive.MathfieldElement(), []);
+
   const [inputTree, _setInputTree] = useState<IInputTree>();
   const [inputFormula, _setInputFormula] = useState(formula);
+
+  const [latestAnswerValues, _setLatestAnswerValues] = useState<IAnswerValue[]>(answerValues);
   const inputTreeRef = useRef(inputTree);
   const inputFormulaRef = useRef(inputFormula);
   const onChangeRef = useRef(onChange);
-  const [latestAnswerValues, setLatestAnswerValues] = useState<IAnswerValue[]>(answerValues);
-  const ml = useMemo(() => new Mathlive.MathfieldElement(), []);
+  const latestAnswerValuesRef = useRef(answerValues);
 
   /** The DOM event handler of the input field cannot see changes in states. It can however access the current values of refs.*/
   const setInputTreeForm = (tree: IInputTree, formula: string) => {
@@ -42,7 +45,8 @@ const MathLive: React.FC<IProps> = ({ formula, onChange, answerValues = [], clas
 
   useEffect(() => {
     if (_.isEqual(latestAnswerValues, answerValues)) return;
-    setLatestAnswerValues(answerValues);
+    _setLatestAnswerValues(answerValues);
+    latestAnswerValuesRef.current = answerValues;
     if (answerValues && answerValues.length > 0) ml.value = insertAnswerValues(formula, answerValues);
   }, [answerValues]);
 
@@ -73,15 +77,28 @@ const MathLive: React.FC<IProps> = ({ formula, onChange, answerValues = [], clas
 
       const legalPlaceholdersUnchanged: boolean = prevValues.every((v) => newValues.includes(v)) && newValues.every((v) => prevValues.includes(v));
 
+      console.log('NEW VALUES -----------------------------', newValues);
       // Input validation protected onChange callback.
       if (legalPlaceholdersUnchanged) {
         ml.value = inputFormulaRef.current;
+      } else if (newValues.some((v, i) => latestAnswerValuesRef.current[i]?.shouldReveal && v !== latestAnswerValuesRef.current[i]?.value)) {
+        console.log('You tried to change a revealed value!!!!!!');
+        ml.value = inputFormulaRef.current;
       } else if (!newValues.every((v) => isLegalValue(v))) {
-        let i = 0;
+        let counter = 0;
 
-        const cleanedFormula = insertAnswerValues(formula, answerValues).replaceAll('\\placeholder{}', (placeholderStr) =>
-          isLegalValue(newValues[i++]) && newValues[i - 1] !== 'Missing' ? newValues[i - 1] : placeholderStr
-        );
+        console.log('insertAnswerValues gave ', insertAnswerValues(formula, latestAnswerValuesRef.current));
+        const cleanedFormula = insertAnswerValues(formula, latestAnswerValuesRef.current).replaceAll('\\placeholder{}', (placeholderStr) => {
+          const i = counter++;
+          console.log('Found a placeholder at', i);
+          if (isLegalValue(newValues[i]) && newValues[i] !== 'Missing' && !latestAnswerValuesRef.current[i].shouldReveal) {
+            return newValues[i];
+          } else if (latestAnswerValuesRef.current[i - 1]?.shouldReveal) {
+            return latestAnswerValuesRef.current[i - 1].value;
+          } else {
+            return placeholderStr;
+          }
+        });
 
         /* TODO: Allow user to input the character '-'
         const prefixMinusFormula = inputFormulaRef.current.replaceAll('\\placeholder{}', (placeholderStr, offset) => {
@@ -134,12 +151,15 @@ const isLegalValue = (v: string) => Number.isFinite(Number(v)) || v === 'Missing
 
 const insertAnswerValues = (formula: string, answerValues: IAnswerValue[]): string => {
   let counter = 0;
+  console.log('Insert answer values recieved answer values: ', answerValues);
   return formula.replaceAll('\\placeholder{}', (placeholderStr) => {
-    if (answerValues[counter++].shouldReveal && answerValues[counter - 1]) {
-      return answerValues[counter - 1].value.toString();
-    } else if (answerValues[counter - 1].value < 0) {
+    const i = counter++;
+    if (answerValues[i].shouldReveal) {
+      return answerValues[i].value;
+    } else if (Number(answerValues[i].value) < 0) {
       return `-${placeholderStr}`;
     } else {
+      console.log('Answer value ', answerValues[i], 'at ', i, ' is not revealed. Inserting placeholder.');
       return placeholderStr;
     }
   });
