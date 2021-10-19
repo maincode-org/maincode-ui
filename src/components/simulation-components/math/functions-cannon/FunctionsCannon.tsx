@@ -211,8 +211,8 @@ const FunctionsCannon: React.FC<IProps> = ({ id, axisOptions, parabolaValues, sh
         formula='f(x)=\placeholder{}\cdot x^2+x+\placeholder{}'
         onChange={onMathInputChange}
         answerValues={[
-          { value: parabolaValues.a, shouldReveal: shouldRevealA },
-          { value: parabolaValues.c, shouldReveal: shouldRevealC },
+          { value: parabolaValues.a.toString(), shouldReveal: shouldRevealA },
+          { value: parabolaValues.c.toString(), shouldReveal: shouldRevealC },
         ]}
       />
       <div id='parabolaInput' />
