@@ -15,7 +15,8 @@
 }
 .playButton {
   position: absolute;
-  bottom: 1%;
-  right: 2%;
-  z-index: 100;
+  bottom: 1.5%;
+  height: 40px;
+  left: 6%;
+  z-index: 10;
 }
