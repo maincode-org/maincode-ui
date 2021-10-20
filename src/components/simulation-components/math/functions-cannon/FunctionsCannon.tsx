@@ -198,7 +198,11 @@ const FunctionsCannon: React.FC<IProps> = ({ id, axisOptions, parabolaValues, sh
       <div id='test' />
       <div id='cannonBall' />
       {cannonWheel && sectionElement && (
-        <IonButton className={`${styles.playButton}`} color='success' onClick={() => playAnimation(cannonAnimation, cannonBallAnimation)}>
+        <IonButton
+          className={`${styles.playButton}`}
+          color={isDarkMode ? theme?.playButtonColor?.dark : theme?.playButtonColor?.light}
+          onClick={() => playAnimation(cannonAnimation, cannonBallAnimation)}
+        >
           <IonIcon ios={playOutline} md={playOutline} />
         </IonButton>
       )}
