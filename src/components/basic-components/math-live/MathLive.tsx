@@ -122,6 +122,7 @@ const MathLive: React.FC<IProps> = ({ formula, onChange, answerValues = [], clas
   return <div ref={ref} className={`${className} ${styles.container}`} />;
 };
 export default MathLive;
+export type IMathLive = IProps;
 
 const calcInputPaths = (tree: IInputTree): number[][] => {
   let paths: number[][] = [];

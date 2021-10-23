@@ -16,9 +16,10 @@ export { styleScrollbars };
 /** Basic Components -------------------------------- */
 import InfoArea from './components/basic-components/info-area/InfoArea';
 import PrettyUL from './components/basic-components/pretty-ul/PrettyUL';
-import MathLive from './components/basic-components/math-live/MathLive';
+import MathLive, { IMathLive } from './components/basic-components/math-live/MathLive';
 
 export { InfoArea, PrettyUL, MathLive };
+export type { IMathLive };
 
 /** Code Components --------------------------------- */
 import LiveCodeEditor, { jsxExample } from './components/code-components/live-code-editor/LiveCodeEditor';
@@ -45,7 +46,8 @@ import Menu from './components/page-components/menu/Menu';
 import Header from './components/page-components/header/Header';
 
 /** Simulation Components --------------------------- */
-import FunctionsCannon from './components/simulation-components/math/functions-cannon/FunctionsCannon';
+import FunctionsCannon, { IFunctionCannon } from './components/simulation-components/math/functions-cannon/FunctionsCannon';
 export { FunctionsCannon };
+export type { IFunctionCannon };
 
 export { PaginationFooter, Menu, Header };

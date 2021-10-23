@@ -221,3 +221,4 @@ const FunctionsCannon: React.FC<IProps> = ({ id, axisOptions, parabolaValues, sh
   );
 };
 export default FunctionsCannon;
+export type IFunctionCannon = IProps;
