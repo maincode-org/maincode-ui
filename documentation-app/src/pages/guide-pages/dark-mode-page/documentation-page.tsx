@@ -1,33 +1,5 @@
 import { LiveCodeEditor, InfoArea } from 'maincode-ui';
-
-const darkModeClassesExample = `body.dark,
-.ios body.dark,
-.md body.dark {
-  --ion-text-color: #bdbddd;
-  --ion-color-primary: #dd7500 !important;
-  ...;
-}`;
-
-const darkModeExample = `import { ThemeContext } from 'maincode-ui';
-
-const App: React.FC = () => {
-  const theme = useContext(ThemeContext);
-
-  return <div className={theme?.themeName}>My app</div>;
-};`;
-
-const themeContextExample = `import { ThemeContext } from 'maincode-ui';
-
-const App: React.FC = () => {
-  const theme = useContext(ThemeContext);
-
-  return (
-    <div className={theme?.themeName}>
-      <h1>my {theme?.themeName} mode app!</h1>
-      <button onClick={theme?.toggleTheme}>Toggle light/dark mode</button>
-    </div>
-  );
-};`;
+import { darkModeClassesExample, darkModeExample, themeContextExample } from './code-examples';
 
 const DocumentationPage: JSX.Element = (
   <>
