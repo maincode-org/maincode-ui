@@ -10,8 +10,7 @@ export type IDocumentationPage = IDocumentationPageContent & {
   url: string;
   title: string;
   preview?: IPreview;
-  iosIcon?: string;
-  mdIcon?: string;
+  icon?: string;
 };
 
 export type IEntityCategory = {

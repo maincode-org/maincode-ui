@@ -8,12 +8,12 @@ export type IFooterNav = {
 };
 
 type IProps = {
-  className?: string;
   prev?: IFooterNav;
   next?: IFooterNav;
+  className?: string;
 };
 
-const PaginationFooter: React.FC<IProps> = ({ className = '', prev, next }) => {
+const PaginationFooter: React.FC<IProps> = ({ prev, next, className = '' }) => {
   return (
     <div className={`${className} ${styles.container} flex justify-between mt-1`}>
       {prev && prev.title ? (

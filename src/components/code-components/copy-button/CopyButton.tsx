@@ -5,9 +5,10 @@ import { checkmarkOutline, clipboardOutline } from 'ionicons/icons';
 
 type IProps = {
   code?: string;
+  className?: string;
 };
 
-const CopyButton: React.FC<IProps> = ({ code }) => {
+const CopyButton: React.FC<IProps> = ({ code, className = '' }) => {
   const [icon, setIcon] = useState(clipboardOutline);
 
   const onCopyClick = () => {
@@ -18,7 +19,7 @@ const CopyButton: React.FC<IProps> = ({ code }) => {
   };
 
   return (
-    <button onClick={onCopyClick} className={`${styles.copyButton} theme-item-bg theme-border rounded-sm`}>
+    <button onClick={onCopyClick} className={`${className} ${styles.copyButton} theme-item-bg theme-border rounded-sm`}>
       <IonIcon className={styles.icon} ios={icon} md={icon} />
     </button>
   );

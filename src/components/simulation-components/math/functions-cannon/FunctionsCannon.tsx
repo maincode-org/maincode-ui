@@ -1,19 +1,16 @@
 import React, { useContext, useEffect, useRef, useState } from 'react';
 import styles from './functions-cannon.module.css';
 import Cannon from './Cannon';
-import gsap from 'gsap';
 import SimulationContainer from '../../simulation-container/SimulationContainer';
-import { initCannon, applyCannonWheelStyle, drawFunction, drawPlot, enhanceCanvasQuality, IAxisOptions, IPlotConfig, initCannonBall, initTestSquare } from './helpers';
-import { throwParabolaFunction } from './math-lib';
+import { initCannon, applyCannonWheelStyle, initCannonBall, initTestSquare } from './style-helpers';
+import { solveQuadraticFn, throwParabolaFunction } from '../math-lib';
 import { EThemeModes, ThemeContext } from 'contexts/theme';
 import { IonButton, IonIcon } from '@ionic/react';
 import { playOutline } from 'ionicons/icons';
 import MathLive from '../../../basic-components/math-live/MathLive';
-
-type ICoord = {
-  x: number;
-  y: number;
-};
+import { drawPlot, drawFunction, enhanceCanvasQuality } from '../drawing-lib';
+import { IAxisOptions, ICoord, IPlotConfig } from '../types';
+import { createCannonAnimation, createFollowFnAnimation, playAnimation } from '../animation-lib';
 
 type IPos = ICoord;
 
@@ -95,27 +92,13 @@ const FunctionsCannon: React.FC<IProps> = ({ id, axisOptions, parabolaValues, sh
         y: -(bottomToXAxis - initialBallPos.y) / (plot.stepWidth.y / plot.stepValue.y) + plot.axis.y.from,
       };
 
-      // https://en.wikipedia.org/wiki/Quadratic_equation
-      // "Solving quadratic functions with complete square algorithm"
-      // ax^2 + x + c = y
-      // 1:  x^2 + b / a * x + c/a = y/a
-      // 2:  x^2 + b / a * x = y/a - c/a
-      // 3:  x^2 + b / a * x + (b / a) / 2 = y/a - c/a + (b / a) / 2
-      // 4:  (x + (b / a) / 2)^2 = y/a - c/a + (b / a) / 2
-      // 5:  x + (b / a) / 2 = sqrt(y/a - c/a + (b / a) / 2)
-      // 6:  x = - (b / a) / 2 +- sqrt(y/a - c/a + (b / a) / 2)
-
-      const a = parabolaValues.a;
-      const b = 1;
-      const c = parabolaValues.c;
-      const y = initialBallCoord.y;
-
-      initialBallCoord.x = -(b / a / 2) - Math.sqrt(y / a - c / a + b / a / 2); // calculates x for initial y.
+      initialBallCoord.x = solveQuadraticFn(parabolaValues.a, 1, parabolaValues.c, initialBallCoord.y); // calculates x for initial y.
       initialBallPos.x = leftToYAxis + (initialBallCoord.x - plot.axis.x.from) * (plot.stepWidth.x / plot.stepValue.x);
 
-      // Visual test object for debugging
+      /* ----------- Visual test object for debugging ---------- */
       const testSquare: HTMLDivElement = sectionElement.querySelector('#test') as HTMLDivElement;
-      initTestSquare(testSquare, initialBallPos.x, initialBallPos.y);
+      initTestSquare(testSquare, initialBallPos.x, initialBallPos.y, false);
+      /* ------------------------------------------------------- */
 
       const cannonBallRef: HTMLElement = sectionElement.querySelector('#cannonBall') as HTMLElement;
       if (!cannonBall && cannonBallRef) setCannonBall(cannonBallRef);
@@ -147,45 +130,6 @@ const FunctionsCannon: React.FC<IProps> = ({ id, axisOptions, parabolaValues, sh
     setHasPaintedSection(true);
   };
 
-  const createCannonAnimation = (cannonBody: string): gsap.core.Timeline => {
-    const animationTimeline = gsap.timeline();
-    animationTimeline.to(cannonBody, { duration: 0.1, transform: 'rotateZ(-10deg)' });
-    animationTimeline.to(cannonBody, { duration: 0.2, transform: 'rotateZ(0deg)' });
-
-    animationTimeline.pause();
-    return animationTimeline;
-  };
-
-  const createFollowFnAnimation = (cannonBall: HTMLElement, plot: IPlotConfig, fn: (x: number) => number, initialCoord: ICoord, leftToYAxis: number, bottomToXAxis: number, duration: number) => {
-    const animationTimeline = gsap.timeline();
-    animationTimeline.set(cannonBall, { visibility: 'visible' });
-
-    const stepSize = (plot.axis.x.to - plot.axis.x.from) / 100; // visible range of x-values divided by a number of animation steps.
-    const speed = duration / (plot.numberOfDashes.x * (stepSize * 100));
-
-    for (let x = initialCoord.x; x <= plot.axis.x.to; x += stepSize) {
-      if (x > plot.axis.x.to || fn(x) > plot.axis.y.to || (x > plot.axis.x.from && fn(x) < plot.axis.y.from)) break;
-      animationTimeline.fromTo(
-        cannonBall,
-        { x: leftToYAxis + (x - plot.axis.x.from) * (plot.stepWidth.x / plot.stepValue.x), y: -(bottomToXAxis + (fn(x) - plot.axis.y.from) * (plot.stepWidth.y / plot.stepValue.y)) },
-        {
-          duration: speed,
-          x: leftToYAxis + (x + stepSize - plot.axis.x.from) * (plot.stepWidth.x / plot.stepValue.x),
-          y: -(bottomToXAxis + (fn(x + stepSize) - plot.axis.y.from) * (plot.stepWidth.y / plot.stepValue.y)),
-        }
-      );
-    }
-    animationTimeline.pause();
-    cannonBall.style.visibility = 'hidden';
-    return animationTimeline;
-  };
-
-  const playAnimation = (timeline1: gsap.core.Timeline | undefined, timeline2: gsap.core.Timeline | undefined) => {
-    if (!timeline1 || !timeline2 || !cannonBall) return;
-    const masterTimeline = gsap.timeline();
-    masterTimeline.add(timeline1.restart()).add(timeline2.restart(), '<');
-  };
-
   const onMathInputChange = (inputs: (string | undefined)[]) => {
     if (inputs.length === 1 && shouldRevealA) setParabolaInputValues([parabolaValues.a.toString(), inputs[0]]);
     else if (inputs.length === 1 && shouldRevealC) setParabolaInputValues([inputs[0], parabolaValues.c.toString()]);
@@ -201,7 +145,7 @@ const FunctionsCannon: React.FC<IProps> = ({ id, axisOptions, parabolaValues, sh
         <IonButton
           className={`${styles.playButton}`}
           color={isDarkMode ? theme?.playButtonColor?.dark : theme?.playButtonColor?.light}
-          onClick={() => playAnimation(cannonAnimation, cannonBallAnimation)}
+          onClick={() => playAnimation(cannonBall, cannonAnimation, cannonBallAnimation)}
         >
           <IonIcon ios={playOutline} md={playOutline} />
         </IonButton>
