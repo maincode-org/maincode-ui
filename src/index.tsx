@@ -29,7 +29,8 @@ import CopyButton from './components/code-components/copy-button/CopyButton';
 export { LiveCodeEditor, jsxExample, CopyArea, CopyButton };
 
 /** Documentation Components ------------------------ */
-import DocumentationSection, { renderLiveCodeEditors } from './components/documentation-components/documentation-section/DocumentationSection';
+import DocumentationSection from './components/documentation-components/documentation-section/DocumentationSection';
+import { renderLiveCodeEditors } from './components/documentation-components/documentation-section/helpers';
 import DocumentationRouterWithPageContent from './components/documentation-components/documentation-router-with-page-content/DocumentationRouterWithPageContent';
 import ComponentPreviewGallery from './components/documentation-components/component-preview-gallery/ComponentPreviewGallery';
 import DocumentationApp from './components/documentation-components/documentation-app/DocumentationApp';
