@@ -16,7 +16,7 @@ type IProps = {
   className?: string;
 };
 
-const LiveCodeEditor: React.FC<IProps> = ({ className = '', code = '', language = 'jsx', enablePreview = true, scope, noInline = false }) => {
+const LiveCodeEditor: React.FC<IProps> = ({ code = '', language = 'jsx', enablePreview = true, scope, noInline = false, className = '' }) => {
   const [currentCode, setCurrentCode] = useState(code?.trim());
   const theme = useContext(ThemeContext);
 

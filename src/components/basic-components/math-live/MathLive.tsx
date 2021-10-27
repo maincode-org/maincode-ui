@@ -2,11 +2,11 @@ import React, { useState, useEffect, useRef, useMemo } from 'react';
 import * as Mathlive from 'mathlive';
 import styles from './math-live.module.css';
 import _ from 'lodash';
+import { calcInputPaths, findAllMathTreeValues, insertAnswerValues, isLegalValue, removeMissing } from './helpers';
 
-type IAnswerValue = {
-  value: string;
-  shouldReveal: boolean;
-};
+export type IAnswerValue = { value: string; shouldReveal: boolean };
+
+export type IInputTree = (string | { num: string } | IInputTree)[];
 
 type IProps = {
   formula: string;
@@ -14,8 +14,6 @@ type IProps = {
   answerValues?: IAnswerValue[];
   className?: string;
 };
-
-type IInputTree = (string | { num: string } | IInputTree)[];
 
 const MathLive: React.FC<IProps> = ({ formula, onChange, answerValues = [], className = '' }) => {
   const ref = useRef<HTMLDivElement>(null);
@@ -123,41 +121,3 @@ const MathLive: React.FC<IProps> = ({ formula, onChange, answerValues = [], clas
 };
 export default MathLive;
 export type IMathLive = IProps;
-
-const calcInputPaths = (tree: IInputTree): number[][] => {
-  let paths: number[][] = [];
-
-  tree.forEach((value, index: number) => {
-    if (value === 'Missing') paths = [...paths, [index]];
-    else if (Array.isArray(value)) paths = [...paths, ...calcInputPaths(value).map((arr) => [index, ...arr])];
-  });
-
-  return paths;
-};
-
-const findMathTreeValue = (tree: IInputTree, path: number[]): string => {
-  const restTree = tree[path?.[0]] ?? tree;
-  const restPath = path.slice(1);
-  if (restPath.length === 0) return restTree?.['num'] ?? restTree; // node that holds the value
-  return findMathTreeValue(restTree as IInputTree, restPath);
-};
-
-const findAllMathTreeValues = (tree: IInputTree, paths: number[][]): string[] => paths.map((path) => findMathTreeValue(tree, path));
-
-const isLegalValue = (v: string) => Number.isFinite(Number(v)) || v === 'Missing';
-
-const insertAnswerValues = (formula: string, answerValues: IAnswerValue[]): string => {
-  let counter = 0;
-  return formula.replaceAll('\\placeholder{}', (placeholderStr) => {
-    const i = counter++;
-    if (answerValues[i].shouldReveal) {
-      return answerValues[i].value;
-    } else if (Number(answerValues[i].value) < 0) {
-      return `-${placeholderStr}`;
-    } else {
-      return placeholderStr;
-    }
-  });
-};
-
-const removeMissing = (values: string[]): (string | undefined)[] => values.map((v) => (v !== 'Missing' ? v : undefined));

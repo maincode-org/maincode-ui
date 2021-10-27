@@ -6,10 +6,12 @@ import Tippy from '@tippyjs/react';
 
 type IProps = {
   command: string;
+  tooltip?: string;
+  className?: string;
 };
 
-const CopyArea: React.FC<IProps> = ({ command }) => {
-  const copyText = 'Copy to clipboard';
+const CopyArea: React.FC<IProps> = ({ command, tooltip = 'Copy to clipboard', className = '' }) => {
+  const copyText = tooltip;
   const [tooltipText, setTooltipText] = useState(copyText);
   const [clipboardIcon, setClipboardIcon] = useState(clipboardOutline);
 
@@ -26,7 +28,7 @@ const CopyArea: React.FC<IProps> = ({ command }) => {
 
   return (
     <Tippy className='tippy' hideOnClick={false} content={tooltipText} placement='top'>
-      <div className={`${styles.container} theme-border flex flex-row justify-between items-center glass-bg w-full rounded p-1 text-left pointer`} onClick={onClickHandler}>
+      <div className={`${className} ${styles.container} theme-border flex flex-row justify-between items-center glass-bg w-full rounded p-1 text-left pointer`} onClick={onClickHandler}>
         <code className='transparent'>
           <span className={`${styles.dollarSign} mr-1 select-none`}>$</span>
           {command}

@@ -9,16 +9,17 @@ import { IDocumentationPage } from '../types';
 
 type IProps = {
   componentPages: IDocumentationPage[];
+  className?: string;
 };
 
-const ComponentPreviewGallery: React.FC<IProps> = ({ componentPages }) => {
+const ComponentPreviewGallery: React.FC<IProps> = ({ componentPages, className = '' }) => {
   const themeContext = useContext(ThemeContext);
   const isDarkMode = themeContext?.themeName === EThemeModes.dark;
 
   const getPictureURL = (c: IDocumentationPage, isDarkMode: boolean) => (isDarkMode && c.preview?.darkModePicture ? c.preview.darkModePicture : c.preview?.picture);
 
   return (
-    <IonGrid className={styles.grid}>
+    <IonGrid className={`${className} ${styles.grid}`}>
       <IonRow>
         {[...componentPages].map((c, i) => (
           <IonCol key={i} size='12' size-md='6' size-lg='6' size-xl='4'>
