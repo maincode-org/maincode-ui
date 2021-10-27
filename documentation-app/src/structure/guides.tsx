@@ -12,16 +12,14 @@ export const guidePages: IDocumentationPage[] = prepareURLPrefixGuides([
   {
     url: '/overview',
     title: 'Overview',
-    iosIcon: extensionPuzzleSharp,
-    mdIcon: extensionPuzzleSharp,
+    icon: extensionPuzzleSharp,
     description: <p>Play around with the Maincode UI components and get instant feedback.</p>,
     customContent: makeOverviewContent(basicComponentPages.pages),
   },
   {
     url: '/quick-start',
     title: 'Quickstart',
-    iosIcon: rocketSharp,
-    mdIcon: rocketSharp,
+    icon: rocketSharp,
     description: (
       <p>
         To get started you need to install the node package <code>maincode-ui</code>
@@ -32,32 +30,28 @@ export const guidePages: IDocumentationPage[] = prepareURLPrefixGuides([
   {
     url: '/theming',
     title: 'Theming',
-    iosIcon: colorPaletteSharp,
-    mdIcon: colorPaletteSharp,
+    icon: colorPaletteSharp,
     description: <p>This is the theming intro description</p>,
     customContent: ThemingContent,
   },
   {
     url: '/dark-mode',
     title: 'Dark Mode',
-    iosIcon: contrastSharp,
-    mdIcon: contrastSharp,
+    icon: contrastSharp,
     description: <p>This is the dark mode intro description</p>,
     customContent: DarkModeContent,
   },
   {
     url: '/style-system',
     title: 'Style System',
-    iosIcon: diamondSharp,
-    mdIcon: diamondSharp,
+    icon: diamondSharp,
     description: <p>This is the style system intro description</p>,
     customContent: StylingSystemContent,
   },
   {
     url: '/contributing',
     title: 'Contributing',
-    iosIcon: gitMergeSharp,
-    mdIcon: gitMergeSharp,
+    icon: gitMergeSharp,
     description: <p>This is the contributions intro description</p>,
     customContent: StylingSystemContent,
   },
