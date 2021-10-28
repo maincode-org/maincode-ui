@@ -2,7 +2,7 @@ import React, { useState, useEffect, useRef, useMemo } from 'react';
 import * as Mathlive from 'mathlive';
 import styles from './math-live.module.css';
 import _ from 'lodash';
-import { calcInputPaths, findAllMathTreeValues, insertAnswerValues, isLegalValue, removeMissing } from './helpers';
+import { calcInputPaths, findAllMathTreeValues, initAnswerValues, isLegalValue, removeMissing } from './helpers';
 
 export type IAnswerValue = { value: string; shouldReveal: boolean };
 
@@ -45,7 +45,7 @@ const MathLive: React.FC<IProps> = ({ formula, onChange, answerValues = [], clas
     if (_.isEqual(latestAnswerValues, answerValues)) return;
     _setLatestAnswerValues(answerValues);
     latestAnswerValuesRef.current = answerValues;
-    if (answerValues && answerValues.length > 0) ml.value = insertAnswerValues(formula, answerValues);
+    if (answerValues && answerValues.length > 0) ml.value = initAnswerValues(formula, answerValues);
   }, [answerValues]);
 
   /** First meaningful load */
@@ -59,7 +59,7 @@ const MathLive: React.FC<IProps> = ({ formula, onChange, answerValues = [], clas
     ref?.current && ref.current.appendChild(ml);
 
     // Add initial values
-    if (answerValues && answerValues.length > 0) ml.value = insertAnswerValues(formula, answerValues);
+    if (answerValues && answerValues.length > 0) ml.value = initAnswerValues(formula, answerValues);
 
     // Get AST and calculate paths
     const originalAst = JSON.parse(ml.getValue('math-json'));
@@ -83,7 +83,7 @@ const MathLive: React.FC<IProps> = ({ formula, onChange, answerValues = [], clas
       } else if (!newValues.every((v) => isLegalValue(v))) {
         let counter = 0;
 
-        const cleanedFormula = insertAnswerValues(formula, latestAnswerValuesRef.current).replaceAll('\\placeholder{}', (placeholderStr) => {
+        const cleanedFormula = initAnswerValues(formula, latestAnswerValuesRef.current, newValues).replaceAll('\\placeholder{}', (placeholderStr) => {
           const i = counter++;
           if (isLegalValue(newValues[i]) && newValues[i] !== 'Missing' && !latestAnswerValuesRef.current[i].shouldReveal) {
             return newValues[i];
