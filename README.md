@@ -51,8 +51,10 @@ npm install --save maincode-ui
 
 ### 🎉 Usage
 
-For usage on all components, please see the <a href="https://maincode-org.github.io/maincode-ui/overview">complete
-component documentation.</a>
+For usage on all components, please see the [complete
+component documentation.](https://maincode-org.github.io/maincode-ui/overview)
+
+The code below is the minimum needed to get started with a <b>Maincode UI</b> app, and spawning a [CopyArea](https://maincode-org.github.io/maincode-ui/copy-area) component identical to the first command on this page.
 
 > **!Note** that the stylesheets need only be imported once for each app, not for every component.
 
@@ -69,7 +71,7 @@ import 'maincode-ui/styles/tail-generics.css'; // A subset of tailwind classes (
 import 'maincode-ui/styles/generics.css'; // A few common classes be Maincode (eg. "glass-bg").
 
 const ExampleApp: React.FC = () => {
-  return <CopyArea command={'npm install maincode-ui'} />;
+  return <CopyArea command={'npm install --save maincode-ui'} />;
 };
 ```
 

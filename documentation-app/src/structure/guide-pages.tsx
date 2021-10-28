@@ -15,18 +15,17 @@ export const guidePages: IDocumentationPage[] = prepareURLPrefixGuides([
     url: '/overview',
     title: 'Overview',
     icon: extensionPuzzleSharp,
-    description: <p>Play around with the Maincode UI components and get instant feedback.</p>,
+    description: (
+      <p>
+        <b>Maincode UI</b> strives to deliver quickly integratable components to supplement <b>Ionic</b> or other <b>React.js</b> applications. It is:
+      </p>
+    ),
     customContent: makeOverviewContent([...basicComponentPages.pages, ...codeComponentPages.pages, ...simulationComponentPages.pages]),
   },
   {
     url: '/quick-start',
     title: 'Quickstart',
     icon: rocketSharp,
-    description: (
-      <p>
-        To get started you need to install the node package <code>maincode-ui</code>
-      </p>
-    ),
     customContent: QuickStartContent,
   },
   {
