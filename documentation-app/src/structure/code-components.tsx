@@ -1,6 +1,6 @@
 import { IEntityCategory, CopyArea } from 'maincode-ui';
 import { prepareURLPrefixComponents } from './url-prefix';
-import { copyAreaPageDocumentation } from '../pages/component-pages/basic/copy-area/documentation-page';
+import { copyAreaPageDocumentation } from '../pages/component-pages/code/copy-area/documentation-page';
 import { liveEditorDocumentation, liveEditorPreview } from '../pages/component-pages/code/live-editor-page/documentation-page';
 
 export const codeComponentPages: IEntityCategory = prepareURLPrefixComponents({

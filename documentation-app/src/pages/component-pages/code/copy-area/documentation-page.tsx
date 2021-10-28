@@ -1,5 +1,5 @@
-import { IDocumentationPageContent, CopyArea } from 'maincode-ui';
 import React from 'react';
+import { IDocumentationPageContent, CopyArea } from 'maincode-ui';
 
 export const copyAreaPageDocumentation: IDocumentationPageContent = {
   description: <p>Displays single commands with controls for seamless clipboard copying</p>,
