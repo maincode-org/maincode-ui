@@ -16,11 +16,11 @@ export default PrettyList;
 
 const PrettyUL: React.FC<IProps> = ({ items, className = '' }) => {
   return (
-    <ul className={`${className} ${styles.ULWrapper} pl-1`}>
+    <ul className={`${className} ${styles.ULWrapper} p-0`}>
       {items.map((item, i) => (
-        <li key={i}>
-          <IonIcon className='pr-05' ios={chevronForwardOutline} md={chevronForwardOutline} />
-          {item}
+        <li className='flex flex-row m-1' key={i}>
+          <IonIcon className={styles.ULIcon} ios={chevronForwardOutline} md={chevronForwardOutline} />
+          <p className='p-0 m-0 ml-1'>{item}</p>
         </li>
       ))}
     </ul>
@@ -30,11 +30,11 @@ const PrettyUL: React.FC<IProps> = ({ items, className = '' }) => {
 const PrettyOL: React.FC<IProps> = ({ items, ordering, className = '' }) => {
   const alphabet = 'abcdefghijklmnopqrstuvwxyz';
   const listItem = (index: number, item: React.ReactNode | string) => (
-    <div className='flex flex-row m-05 items-center'>
+    <li className='flex flex-row m-05'>
       <p className={`${styles.OLNumberLabel} flex justify-center items-center`}>{ordering === 'numeric' ? index + 1 : alphabet[index]}</p>
       <p className='ml-1'>{item}</p>
-    </div>
+    </li>
   );
 
-  return <div className={`${className} ${styles.OLWrapper}`}>{items.map((item, i) => listItem(i, item))}</div>;
+  return <ol className={`${className} ${styles.OLWrapper} p-0`}>{items.map((item, i) => listItem(i, item))}</ol>;
 };
