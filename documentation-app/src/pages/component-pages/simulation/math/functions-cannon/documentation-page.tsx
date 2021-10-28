@@ -5,7 +5,7 @@ export const functionsCannonDocumentation: IDocumentationPageContent = {
   codeExamples: [
     {
       title: 'Basic usage',
-      code: '<FunctionsCannon id="cannon" parabolaValues={{a: 0.2, c: 3}} axisOptions={{x: {from: 0, to: 15}, y: {from: 0, to: 10}}} shouldRevealA={false} shouldRevealC={false}/>',
+      code: '<FunctionsCannon id="cannon" parabolaValues={{a: -0.2, c: 3}} axisOptions={{x: {from: 0, to: 15}, y: {from: 0, to: 10}}} shouldRevealA={false} shouldRevealC={false}/>',
       scope: { FunctionsCannon },
     },
   ],
