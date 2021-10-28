@@ -20,15 +20,20 @@ const findMathTreeValue = (tree: IInputTree, path: number[]): string => {
 
 export const findAllMathTreeValues = (tree: IInputTree, paths: number[][]): string[] => paths.map((path) => findMathTreeValue(tree, path));
 
-export const isLegalValue = (v: string): boolean => Number.isFinite(Number(v)) || v === 'Missing';
+export const isLegalValue = (v: string | undefined): boolean => v !== undefined && (Number.isFinite(Number(v)) || v === 'Missing');
 
-export const insertAnswerValues = (formula: string, answerValues: IAnswerValue[]): string => {
+export const initAnswerValues = (formula: string, answerValues: IAnswerValue[], currentValues?: string[]): string => {
   let counter = 0;
   return formula.replaceAll('\\placeholder{}', (placeholderStr) => {
     const i = counter++;
+
+    if (i > answerValues.length - 1) return placeholderStr;
+
+    if (isLegalValue(currentValues?.[i])) return placeholderStr;
+
     if (answerValues[i].shouldReveal) {
       return answerValues[i].value;
-    } else if (Number(answerValues[i].value) < 0) {
+    } else if (Number(answerValues[i].value) < 0 && !isLegalValue(currentValues?.[i])) {
       return `-${placeholderStr}`;
     } else {
       return placeholderStr;
