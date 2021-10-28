@@ -30,7 +30,7 @@ export const renderProps = (props: IPropertyDetail[]): JSX.Element[] => {
         { label: 'Description', value: p.description },
         { label: 'Type', value: `<code>${p.type}</code>` },
         { label: 'Required', value: `<code>${p.required}</code>` },
-        { label: 'Default value', value: `<code>${p.defaultValue}</code>` },
+        p.defaultValue ? { label: 'Default value', value: `<code>${p.defaultValue}</code>` } : undefined,
       ]}
     />
   ));

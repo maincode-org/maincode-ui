@@ -4,7 +4,7 @@ import parse from 'html-react-parser';
 
 type IProps = {
   title: string | JSX.Element;
-  properties: { label: string; value: string }[];
+  properties: ({ label: string; value: string } | undefined)[];
   className?: string;
 };
 
@@ -21,12 +21,14 @@ const Table: React.FC<IProps> = ({ title, properties, className = '' }) => {
       </thead>
       <tbody>
         {properties &&
-          properties.map((p, i) => (
-            <tr key={i} className={styles.row}>
-              <td className={`${styles.left} p-1 theme-border`}>{parse(p.label)}</td>
-              <td className={`${styles.right} p-1 theme-border`}>{parse(p.value)}</td>
-            </tr>
-          ))}
+          properties.map((p, i) =>
+            p ? (
+              <tr key={i} className={styles.row}>
+                <td className={`${styles.left} p-1 theme-border`}>{parse(p.label)}</td>
+                <td className={`${styles.right} p-1 theme-border`}>{parse(p.value)}</td>
+              </tr>
+            ) : undefined
+          )}
       </tbody>
     </table>
   );

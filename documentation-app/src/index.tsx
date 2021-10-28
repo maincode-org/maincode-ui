@@ -5,7 +5,7 @@ import reportWebVitals from './utils/reportWebVitals';
 
 import { ThemeProvider, DocumentationApp } from 'maincode-ui';
 
-import { guidePages } from './structure/guides';
+import { guidePages } from './structure/guide-pages';
 import { allComponentCategoryPages } from './structure/assembly';
 import { urlPrefix } from './structure/url-prefix';
 import robot from './assets/maincode-robot.png';
