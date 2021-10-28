@@ -26,7 +26,7 @@ export const basicComponentPages: IEntityCategory = prepareURLPrefixComponents({
         {
           title: 'Title',
           description: <p>Description</p>,
-          code: "<PrettyList ordering='alphabetic' items={['Mark er nice', 'Mark er noob', 'Mark er optical illusion']} />",
+          code: "<PrettyList ordering='alphabetic' items={['Mark er nice', 'Mark er noob', 'Mark er optical illusion  Mark er optical illusion Mark er optical illusion Mark er optical illusion Mark er optical illusion']} />",
           scope: { PrettyList },
         },
       ],
