@@ -2,7 +2,7 @@ import { IDocumentationPageContent, PrettyList } from 'maincode-ui';
 import React from 'react';
 
 export const prettyListPageDocumentation: IDocumentationPageContent = {
-  description: <p>Displays a list of elements akin to either the ol or the ul HTML element.</p>,
+  description: <p>Displays a list of elements similar to either the ol or the ul HTML element.</p>,
   codeExamples: [
     {
       title: 'Unordered',
@@ -24,8 +24,8 @@ export const prettyListPageDocumentation: IDocumentationPageContent = {
     },
   ],
   props: [
-    { title: 'items', description: 'The list items', required: true, type: '(React.ReactNode | string)[]', defaultValue: '[]' },
+    { title: 'items', description: 'The list items', required: true, type: '(React.ReactNode | string)[]' },
     { title: 'ordering', description: 'The ordering of the list items', required: false, type: 'unordered | numeric | alphabetic', defaultValue: 'unordered' },
   ],
-  styles: [{ propertyName: '--ion-color-secondary', description: 'This is a glass effect on the background' }],
+  styles: [{ propertyName: '--ion-color-primary-rgb', description: 'Controls the primary color of your application' }],
 };

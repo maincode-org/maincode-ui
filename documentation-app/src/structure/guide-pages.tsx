@@ -1,3 +1,5 @@
+import { IDocumentationPage } from 'maincode-ui';
+import { prepareURLPrefixGuides } from './url-prefix';
 import { colorPaletteSharp, contrastSharp, gitMergeSharp, extensionPuzzleSharp, rocketSharp, diamondSharp } from 'ionicons/icons';
 import { makeOverviewContent } from '../pages/guide-pages/overview-page/documentation-page';
 import QuickStartContent from '../pages/guide-pages/quick-start-page/documentation-page';
@@ -5,8 +7,8 @@ import ThemingContent from '../pages/guide-pages/theming-page/documentation-page
 import DarkModeContent from '../pages/guide-pages/dark-mode-page/documentation-page';
 import StylingSystemContent from '../pages/guide-pages/styling-system-page/documentation-page';
 import { basicComponentPages } from './basic-components';
-import { IDocumentationPage } from 'maincode-ui';
-import { prepareURLPrefixGuides } from './url-prefix';
+import { codeComponentPages } from './code-components';
+import { simulationComponentPages } from './simulation-components';
 
 export const guidePages: IDocumentationPage[] = prepareURLPrefixGuides([
   {
@@ -14,7 +16,7 @@ export const guidePages: IDocumentationPage[] = prepareURLPrefixGuides([
     title: 'Overview',
     icon: extensionPuzzleSharp,
     description: <p>Play around with the Maincode UI components and get instant feedback.</p>,
-    customContent: makeOverviewContent(basicComponentPages.pages),
+    customContent: makeOverviewContent([...basicComponentPages.pages, ...codeComponentPages.pages, ...simulationComponentPages.pages]),
   },
   {
     url: '/quick-start',
