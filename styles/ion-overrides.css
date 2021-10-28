@@ -1,3 +1,7 @@
 ion-toolbar ion-title {
   position: relative;
 }
+
+ion-button::part(native) {
+  letter-spacing: 0.15rem;
+}

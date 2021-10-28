@@ -21,7 +21,7 @@
 ---
 
 **Maincode UI** strives to deliver quickly integratable components to supplement **Ionic** or **other React.js**
-applications. It is..
+applications. It is:
 
 - **Simplistic but customizable**. The components are high level and include several sub-components. It trades some
   customization for less development time. We gradually expand our use-case support.
@@ -30,15 +30,17 @@ applications. It is..
   Framework [component library](https://ionicframework.com/docs/components). Your **Maincode UI** theming will
   automatically theme any Ionic component!
 
+- **Usable with most React.js frameworks**. The components even support server side rendering in Next.js with the use of dynamic imports.
+
 - **An Ionic extension**. It provides utilities for some things which are usually difficult in Ionic apps, such as
   our **dark mode context** and **scrollbar styling** helper.
 
 ## Getting Started
 
-<a href="https://maincode-org.github.io/maincode-ui/QuickStart" target="_blank">Read the Getting Started tutorial</a> or
+<a href="https://maincode-org.github.io/maincode-ui/quick-start" target="_blank">Read the Getting Started tutorial</a> or
 follow the steps below:
 
-> !Note that the library is currently not compatible with **React v. 17+**, due to the [React Live v. 2.3.0](https://github.com/FormidableLabs/react-live) library's incompatibility with **React v. > 16.14**.
+> **!Note** that the library is currently not compatible with **React v. 17+**, due to the [React Live v. 2.3.0](https://github.com/FormidableLabs/react-live) library's incompatibility with **React v. > 16.14**.
 > We will upgrade the version as soon as possible and have opened an [issue](https://github.com/maincode-org/maincode-ui/issues/53) which can be monitored for updates.
 
 ### ⏳ Installation
@@ -49,7 +51,7 @@ npm install --save maincode-ui
 
 ### 🎉 Usage
 
-For usage on all components, please see the <a href="https://maincode-org.github.io/maincode-ui/Overview">complete
+For usage on all components, please see the <a href="https://maincode-org.github.io/maincode-ui/overview">complete
 component documentation.</a>
 
 > **!Note** that the stylesheets need only be imported once for each app, not for every component.
@@ -95,8 +97,8 @@ import '@ionic/react/css/display.css';
 The `maincode-ui/styles/theme.css` file provides a base theme. To customize the theme you can overwrite relevant CSS
 variables. We generally use the **Ionic theme** variable names, with a few **Maincode UI** additions.
 
-To do this, create a new `theme.css` file, and assign values to the CSS variables described in the Ionic
-documentation [here.](https://ionicframework.com/docs/theming/color-generator)
+To do this, create a new `theme.css` file, and assign values to the CSS variables described in the [Ionic
+documentation.](https://ionicframework.com/docs/theming/color-generator)
 
 Besides the Ionic variables, we also provide the Maincode UI specific variables described in our [theming documentation](https://maincode-org.github.io/maincode-ui/theming).
 
@@ -136,7 +138,7 @@ const App: React.FC = () => {
 };
 ```
 
-> **!Note** that this helper is called automatically when the `ThemeContext` changes, allowing for separate dark mode scrollbar styling. If you use the `ThemeContext`, you dont have to import the script.
+> **!Note** that this helper is called automatically when the `ThemeContext` changes, allowing for separate dark mode scrollbar styling. If you are using our `ThemeContext`, you don't have to import the script.
 
 The look of the scrollbar can be modified as described in our [theming documentation](https://maincode-org.github.io/maincode-ui/theming).
 
@@ -150,8 +152,6 @@ The look of the scrollbar can be modified in your `theme.css` file through the f
 > `--scroll-color-active` which modifies the color of the scrollbar while pressed.
 
 ### Dark mode
-
-The dark mode of the application is controlled by toggling the classnames `"light"` and `"dark"` on the `body` element.
 
 The library provides a context `ThemeContext` to manage and apply the dark and light mode themes.
 
@@ -179,6 +179,8 @@ ReactDOM.render(
   document.getElementById('root')
 );
 ```
+
+Alternatively, the dark mode of the library components can be partially controlled by toggling the classnames `"light"` and `"dark"` on the `body` element.
 
 You can customize your dark mode theme by setting values for any CSS variable in your custom theme file.
 
@@ -230,7 +232,7 @@ Maincode UI offer a lot of styling through pre-defined classnames.
 
 - It can be exchanged for **Tailwind CSS** if you want additional classnames or smart functionality such as purging.
 
-- In case you are using **Tailwind CSS**, you don't have to import our generics.
+- In case you are using **Tailwind CSS**, you don't have to import our tail-generics.
 
 > **!Note** that some specific classes, like `glass-bg` will be missing. We will split up Tailwind overwrites and our Maincode UI additions in the future. See our [issue](https://github.com/maincode-org/maincode-ui/issues/54) for updates.
 
