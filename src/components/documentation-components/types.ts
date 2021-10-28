@@ -47,7 +47,7 @@ export type IPropertyDetail = {
   description: string;
   type: string;
   required: boolean;
-  defaultValue: string;
+  defaultValue?: string;
 };
 
 export type IStyleDetail = {

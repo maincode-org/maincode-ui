@@ -1,27 +1,16 @@
 import React from 'react';
-import { CopyArea, IEntityCategory } from 'maincode-ui';
+import { InfoArea, IEntityCategory } from 'maincode-ui';
 import { prepareURLPrefixComponents } from './url-prefix';
-import { liveEditorDocumentation, liveEditorPreview } from '../pages/component-pages/code/live-editor-page/documentation-page';
+import { infoAreaPageDocumentation } from '../pages/component-pages/basic/info-area-page/documentation-page';
 
 export const basicComponentPages: IEntityCategory = prepareURLPrefixComponents({
   title: 'Basic Components',
   pages: [
     {
-      url: '/copy-area',
-      title: 'Copy Area',
-      preview: { element: <CopyArea command={'npm install maincode-ui'} /> },
-      description: <p>Displays single commands with controls for seamless clipboard copying</p>,
-      props: [{ title: 'Animated', description: `If <code>true</code>, the alert will animate`, required: true, type: 'boolean', defaultValue: 'true' }],
-      styles: [
-        { propertyName: `<code>glass-bg</code>`, description: 'This is a glass effect on the background' },
-        { propertyName: `<code>theme-border</code>`, description: 'Border matching the theme' },
-      ],
-    },
-    {
-      url: '/live-code-editor',
-      title: 'Live Code Editor',
-      preview: liveEditorPreview,
-      ...liveEditorDocumentation,
+      url: '/info-area',
+      title: 'Info Area',
+      preview: { element: <InfoArea>Example of InfoArea</InfoArea> },
+      ...infoAreaPageDocumentation,
     },
     {
       url: '/component-3',
