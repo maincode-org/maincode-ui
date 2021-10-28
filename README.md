@@ -235,8 +235,6 @@ Maincode UI offer a lot of styling through pre-defined classnames.
 
 - In case you are using **Tailwind CSS**, you don't have to import our tail-generics.
 
-> **!Note** that some specific classes, like `glass-bg` will be missing. We will split up Tailwind overwrites and our Maincode UI additions in the future. See our [issue](https://github.com/maincode-org/maincode-ui/issues/54) for updates.
-
 Here is an example of how to utilize the generic classes when styling and layouting your app!
 
 ```jsx
@@ -250,30 +248,43 @@ Here is an example of how to utilize the generic classes when styling and layout
 
 Like this project?
 
-TBA: Buy us a coffee
+<a href="https://www.buymeacoffee.com/maincode" target="_blank"><img src="https://cdn.buymeacoffee.com/buttons/v2/default-yellow.png" alt="Buy Us A Coffee" style="height: 60px !important;width: 217px !important;" ></a>
 
-- work with us
+We always like to participate in interesting projects, and we love to help you overcome any difficulties with our library.
 
-To extend the code base, please see the development details below.
+If you have feedback or would like to work with is, please don't hesitate to contact us at mark@maincode.dk or mhn@maincode.dk
+
+### Extending the code base
+
+Please see the development details below to get started with the code base.
 
 #### Setting up
 
-```bash
-npm install ...
-```
+The repository contains two things. The UI library's modules in the root, and the documentation react app in the `/documentation-app` folder
+
+To get started, first run `npm install` in both folders.
+
+Run `npm start` in the root folder to actively recompile the library code on changes. Run the same command in the documentation app to launch the app and listen to library component changes with live reloading.
 
 #### Library structure
 
-What folders do what..
-Which CSS file does what..
+Please notice how the logic is grouped in the following folder structure:
 
-#### Adding a new component
+`/styles` contain the different stylesheets with their own logical CSS overwrites. See the usage example for an explanation on the difference.
 
-#### Adding the documentation for the new component
+`/src/components` contains sub-folders for each **category** of components offered in the library, and another level of sub-folders for each component in the category.
 
-#### Testing
+`/documentation-app/src/pages` contain all the documentation content for each component. Please keep this updated when contributing new components.
 
-.. How to run tests, what to cover in tests
+`/documentation-app/src/structure` assembles all the documentation pages into our navigation, route and layout generators. Documentation entries must be added here to appear in the webapp.
+
+### Testing
+
+To run tests, use `npm run test`.
+
+The source for the tests are located in the `/tests` directory.
+
+The tests should cover at least all exposed methods in the toolkits.
 
 ### License
 
