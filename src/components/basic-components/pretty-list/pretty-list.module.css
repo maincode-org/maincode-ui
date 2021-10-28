@@ -1,0 +1,12 @@
+.ULWrapper {
+  line-height: 2.5rem;
+  list-style: none;
+}
+
+.OLNumberLabel {
+  background-color: var(--ion-color-secondary);
+  border-radius: 100%;
+  font-size: 0.8rem;
+  width: 1.5rem;
+  height: 1.5rem;
+}

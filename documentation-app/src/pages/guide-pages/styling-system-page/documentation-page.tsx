@@ -1,4 +1,4 @@
-import { PrettyUL, InfoArea, LiveCodeEditor } from 'maincode-ui';
+import { PrettyList, InfoArea, LiveCodeEditor } from 'maincode-ui';
 
 const codeExample = `
 <div className='p-1 glass-bg rounded'>
@@ -8,7 +8,8 @@ const codeExample = `
 const DocumentationPage: JSX.Element = (
   <>
     <p>Maincode UI offers a lot of styling through pre-defined classnames.</p>
-    <PrettyUL
+    <PrettyList
+      ordering='alphabetic'
       items={[
         'This is entirely inspired by Tailwind CSS and can be seen as a less advanced subset of Tailwind.',
         'It can be exchanged for Tailwind CSS if you want additional classnames or smart functionality such as purging.',

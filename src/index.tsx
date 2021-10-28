@@ -15,10 +15,10 @@ export { styleScrollbars };
 
 /** Basic Components -------------------------------- */
 import InfoArea from './components/basic-components/info-area/InfoArea';
-import PrettyUL from './components/basic-components/pretty-ul/PrettyUL';
+import PrettyList from './components/basic-components/pretty-list/PrettyList';
 import MathLive, { IMathLive } from './components/basic-components/math-live/MathLive';
 
-export { InfoArea, PrettyUL, MathLive };
+export { InfoArea, PrettyList, MathLive };
 export type { IMathLive };
 
 /** Code Components --------------------------------- */
