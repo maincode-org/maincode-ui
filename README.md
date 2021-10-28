@@ -21,7 +21,7 @@
 ---
 
 **Maincode UI** strives to deliver quickly integratable components to supplement **Ionic** or **other React.js**
-applications. It is..
+applications. It is:
 
 - **Simplistic but customizable**. The components are high level and include several sub-components. It trades some
   customization for less development time. We gradually expand our use-case support.
@@ -30,15 +30,17 @@ applications. It is..
   Framework [component library](https://ionicframework.com/docs/components). Your **Maincode UI** theming will
   automatically theme any Ionic component!
 
+- **Usable with most React.js frameworks**. The components even support server side rendering in Next.js with the use of dynamic imports.
+
 - **An Ionic extension**. It provides utilities for some things which are usually difficult in Ionic apps, such as
   our **dark mode context** and **scrollbar styling** helper.
 
 ## Getting Started
 
-<a href="https://maincode-org.github.io/maincode-ui/QuickStart" target="_blank">Read the Getting Started tutorial</a> or
+<a href="https://maincode-org.github.io/maincode-ui/quick-start" target="_blank">Read the Getting Started tutorial</a> or
 follow the steps below:
 
-> !Note that the library is currently not compatible with **React v. 17+**, due to the [React Live v. 2.3.0](https://github.com/FormidableLabs/react-live) library's incompatibility with **React v. > 16.14**.
+> **!Note** that the library is currently not compatible with **React v. 17+**, due to the [React Live v. 2.3.0](https://github.com/FormidableLabs/react-live) library's incompatibility with **React v. > 16.14**.
 > We will upgrade the version as soon as possible and have opened an [issue](https://github.com/maincode-org/maincode-ui/issues/53) which can be monitored for updates.
 
 ### ⏳ Installation
@@ -49,7 +51,7 @@ npm install --save maincode-ui
 
 ### 🎉 Usage
 
-For usage on all components, please see the <a href="https://maincode-org.github.io/maincode-ui/Overview">complete
+For usage on all components, please see the <a href="https://maincode-org.github.io/maincode-ui/overview">complete
 component documentation.</a>
 
 > **!Note** that the stylesheets need only be imported once for each app, not for every component.
@@ -63,7 +65,8 @@ import { CopyArea } from 'maincode-ui';
 /** Maincode UI stylesheets. */
 import 'maincode-ui/dist/index.css'; // All the component specific styles.
 import 'maincode-ui/styles/theme.css'; // The default theme variables. See the "themes" section for customization.
-import 'maincode-ui/styles/generics.css'; // A subset of tailwind classes (eg. "text-white"), and a few custom classes.
+import 'maincode-ui/styles/tail-generics.css'; // A subset of tailwind classes (eg. "text-white").
+import 'maincode-ui/styles/generics.css'; // A few common classes be Maincode (eg. "glass-bg").
 
 const ExampleApp: React.FC = () => {
   return <CopyArea command={'npm install maincode-ui'} />;
@@ -95,8 +98,8 @@ import '@ionic/react/css/display.css';
 The `maincode-ui/styles/theme.css` file provides a base theme. To customize the theme you can overwrite relevant CSS
 variables. We generally use the **Ionic theme** variable names, with a few **Maincode UI** additions.
 
-To do this, create a new `theme.css` file, and assign values to the CSS variables described in the Ionic
-documentation [here.](https://ionicframework.com/docs/theming/color-generator)
+To do this, create a new `theme.css` file, and assign values to the CSS variables described in the [Ionic
+documentation.](https://ionicframework.com/docs/theming/color-generator)
 
 Besides the Ionic variables, we also provide the Maincode UI specific variables described in our [theming documentation](https://maincode-org.github.io/maincode-ui/theming).
 
@@ -136,7 +139,7 @@ const App: React.FC = () => {
 };
 ```
 
-> **!Note** that this helper is called automatically when the `ThemeContext` changes, allowing for separate dark mode scrollbar styling. If you use the `ThemeContext`, you dont have to import the script.
+> **!Note** that this helper is called automatically when the `ThemeContext` changes, allowing for separate dark mode scrollbar styling. If you are using our `ThemeContext`, you don't have to import the script.
 
 The look of the scrollbar can be modified as described in our [theming documentation](https://maincode-org.github.io/maincode-ui/theming).
 
@@ -150,8 +153,6 @@ The look of the scrollbar can be modified in your `theme.css` file through the f
 > `--scroll-color-active` which modifies the color of the scrollbar while pressed.
 
 ### Dark mode
-
-The dark mode of the application is controlled by toggling the classnames `"light"` and `"dark"` on the `body` element.
 
 The library provides a context `ThemeContext` to manage and apply the dark and light mode themes.
 
@@ -179,6 +180,8 @@ ReactDOM.render(
   document.getElementById('root')
 );
 ```
+
+Alternatively, the dark mode of the library components can be partially controlled by toggling the classnames `"light"` and `"dark"` on the `body` element.
 
 You can customize your dark mode theme by setting values for any CSS variable in your custom theme file.
 
@@ -230,9 +233,7 @@ Maincode UI offer a lot of styling through pre-defined classnames.
 
 - It can be exchanged for **Tailwind CSS** if you want additional classnames or smart functionality such as purging.
 
-- In case you are using **Tailwind CSS**, you don't have to import our generics.
-
-> **!Note** that some specific classes, like `glass-bg` will be missing. We will split up Tailwind overwrites and our Maincode UI additions in the future. See our [issue](https://github.com/maincode-org/maincode-ui/issues/54) for updates.
+- In case you are using **Tailwind CSS**, you don't have to import our tail-generics.
 
 Here is an example of how to utilize the generic classes when styling and layouting your app!
 
@@ -247,30 +248,43 @@ Here is an example of how to utilize the generic classes when styling and layout
 
 Like this project?
 
-TBA: Buy us a coffee
+<a href="https://www.buymeacoffee.com/maincode" target="_blank"><img src="https://cdn.buymeacoffee.com/buttons/v2/default-yellow.png" alt="Buy Us A Coffee" style="height: 60px !important;width: 217px !important;" ></a>
 
-- work with us
+We always like to participate in interesting projects, and we love to help you overcome any difficulties with our library.
 
-To extend the code base, please see the development details below.
+If you have feedback or would like to work with is, please don't hesitate to contact us at mark@maincode.dk or mhn@maincode.dk
+
+### Extending the code base
+
+Please see the development details below to get started with the code base.
 
 #### Setting up
 
-```bash
-npm install ...
-```
+The repository contains two things. The UI library's modules in the root, and the documentation react app in the `/documentation-app` folder
+
+To get started, first run `npm install` in both folders.
+
+Run `npm start` in the root folder to actively recompile the library code on changes. Run the same command in the documentation app to launch the app and listen to library component changes with live reloading.
 
 #### Library structure
 
-What folders do what..
-Which CSS file does what..
+Please notice how the logic is grouped in the following folder structure:
 
-#### Adding a new component
+`/styles` contain the different stylesheets with their own logical CSS overwrites. See the usage example for an explanation on the difference.
 
-#### Adding the documentation for the new component
+`/src/components` contains sub-folders for each **category** of components offered in the library, and another level of sub-folders for each component in the category.
 
-#### Testing
+`/documentation-app/src/pages` contain all the documentation content for each component. Please keep this updated when contributing new components.
 
-.. How to run tests, what to cover in tests
+`/documentation-app/src/structure` assembles all the documentation pages into our navigation, route and layout generators. Documentation entries must be added here to appear in the webapp.
+
+### Testing
+
+To run tests, use `npm run test`.
+
+The source for the tests are located in the `/tests` directory.
+
+The tests should cover at least all exposed methods in the toolkits.
 
 ### License
 
