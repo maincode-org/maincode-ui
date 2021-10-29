@@ -1,13 +1,13 @@
-import { IDocumentationPageContent, CopyArea } from 'maincode-ui';
+import { IDocumentationPageContent, CopyButton } from 'maincode-ui';
 
-export const copyAreaPageDocumentation: IDocumentationPageContent = {
-  description: <p>Displays single commands with controls for seamless clipboard copying.</p>,
+export const copyButtonPageDocumentation: IDocumentationPageContent = {
+  description: <p>Copy sophisticated commands to the clipboard with the click of a button</p>,
   codeExamples: [
     {
       title: 'Basic example',
-      description: <>CopyArea copies the command provided to it to the clipboard.</>,
-      code: '<div className="p-1"><CopyArea command="npm i maincode-ui"/></div>',
-      scope: { CopyArea },
+      description: <p>Description</p>,
+      code: '<div className="flex justify-center items-center"><CopyButton code="npm i maincode-ui" /></div>',
+      scope: { CopyButton },
     },
   ],
   props: [

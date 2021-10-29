@@ -12,10 +12,11 @@ type IProps = {
   formula: string;
   onChange?: (values: (string | undefined)[]) => void;
   answerValues?: IAnswerValue[];
+  keyboardMode?: 'auto' | 'manual' | 'onfocus' | 'off';
   className?: string;
 };
 
-const MathLive: React.FC<IProps> = ({ formula, onChange, answerValues = [], className = '' }) => {
+const MathLive: React.FC<IProps> = ({ formula, onChange, answerValues = [], keyboardMode = 'off', className = '' }) => {
   const ref = useRef<HTMLDivElement>(null);
   const ml = useMemo(() => new Mathlive.MathfieldElement(), []);
 
@@ -52,7 +53,7 @@ const MathLive: React.FC<IProps> = ({ formula, onChange, answerValues = [], clas
   useEffect(() => {
     if (!ref) return;
 
-    ml.setOptions({ virtualKeyboardMode: 'off' });
+    ml.setOptions({ virtualKeyboardMode: keyboardMode });
     ml.value = formula;
 
     // Attach the element to the DOM
