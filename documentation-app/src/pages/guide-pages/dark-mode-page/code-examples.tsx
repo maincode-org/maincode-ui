@@ -8,11 +8,20 @@ export const darkModeClassesExample = `body.dark,
 
 export const darkModeExample = `import { ThemeContext } from 'maincode-ui';
 
+//> stylesheets and other imports omitted for brievity..
+
 const App: React.FC = () => {
   const theme = useContext(ThemeContext);
 
   return <div className={theme?.themeName}>My app</div>;
 };`;
+
+export const contextWrapExample = `ReactDOM.render(
+  <ThemeProvider>
+    <App />
+  </ThemeProvider>,
+  document.getElementById('root')
+);`;
 
 export const themeContextExample = `import { ThemeContext } from 'maincode-ui';
 

@@ -32,14 +32,12 @@ export const guidePages: IDocumentationPage[] = prepareURLPrefixGuides([
     url: '/theming',
     title: 'Theming',
     icon: colorPaletteSharp,
-    description: <p>This is the theming intro description</p>,
     customContent: ThemingContent,
   },
   {
     url: '/dark-mode',
     title: 'Dark Mode',
     icon: contrastSharp,
-    description: <p>This is the dark mode intro description</p>,
     customContent: DarkModeContent,
   },
   {

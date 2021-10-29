@@ -145,15 +145,6 @@ const App: React.FC = () => {
 
 The look of the scrollbar can be modified as described in our [theming documentation](https://maincode-org.github.io/maincode-ui/theming).
 
-FOR WEBSITE----
-The look of the scrollbar can be modified in your `theme.css` file through the following set of CSS theme variables:
-
-> `--scroll-color` which modifies the default color of the scrollbar thumb.
->
-> `--scroll-color-hover` which modifies the color of the scrollbar thumb on hover.
->
-> `--scroll-color-active` which modifies the color of the scrollbar while pressed.
-
 ### Dark mode
 
 The library provides a context `ThemeContext` to manage and apply the dark and light mode themes.

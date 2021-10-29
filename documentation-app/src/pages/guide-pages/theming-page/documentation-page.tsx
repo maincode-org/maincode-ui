@@ -18,13 +18,14 @@ const DocumentationPage: JSX.Element = (
       with a few <b>Maincode UI</b> additions.
     </p>
     <p>
-      To do this, create a new <code>theme.css</code> file, and apply assign values to the CSS variables described in the Ionic documentation{' '}
+      To do this, create a new <code>theme.css</code> file, and apply assign values to the CSS variables described in the{' '}
       <a className='decoration-none' href='https://ionicframework.com/docs/theming/color-generator' target='_blank' rel='noreferrer'>
-        here.
+        Ionic Documentation.
       </a>
     </p>
-    <br />
-    <p>Besides the Ionic variables, we also provide the following Maincode UI specific variables:</p>
+    <p>
+      Besides the <b>Ionic</b> variables, we also provide the following <b>Maincode UI</b> specific variables:
+    </p>
     <Table
       title='Additional variables'
       properties={[
@@ -51,8 +52,8 @@ const DocumentationPage: JSX.Element = (
     <LiveCodeEditor code={scrollbarStyleExample} enablePreview={false} />
     <br />
     <InfoArea>
-      The styleScrollbar helper is called automatically dark mode context changes, allowing for separate dark mode scrollbar styling. If you use the dark mode context, you dont have to import the
-      script.
+      <b>Note</b> that this helper is called automatically when the <code>ThemeContext</code> changes, allowing for separate dark mode scrollbar styling. If you are using our <code>ThemeContext</code>
+      , you don&apos;t have to import the script.
     </InfoArea>
     <p>The look of the scrollbar can be modified in the theme.css file through the following set of CSS theme variables:</p>
     <Table

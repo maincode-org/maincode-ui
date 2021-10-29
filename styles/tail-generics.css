@@ -1123,11 +1123,12 @@
   box-sizing: border-box;
 }
 
-.rounded {
+.rounded-lg {
   border-radius: 12px;
 }
 
-.rounded-md {
+.rounded-md,
+.rounded {
   border-radius: 8px;
 }
 
