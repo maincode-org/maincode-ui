@@ -1,0 +1,11 @@
+.position {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: calc(100% - 100px);
+}
+
+.bgImgRedBlue {
+  background-image: url('./pop-bg.png');
+}

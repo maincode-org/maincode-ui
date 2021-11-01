@@ -1,8 +1,15 @@
+.backgroundParticles {
+  background-size: cover;
+}
+
+.backgroundParticles .animation {
+  position: absolute;
+  height: 100%;
+  width: 100%;
+}
+
 .backgroundParticles,
 .backgroundParticles .animation {
-  /* background: url('/pop-bg.png'); */
-  background-size: cover;
-
   animation: fadein 2s;
   -moz-animation: fadein 2s; /* Firefox */
   -webkit-animation: fadein 2s; /* Safari and Chrome */
