@@ -1,3 +1,6 @@
+import { version } from '../package.json';
+export { version };
+
 /** Types ------------------------------------------ */
 import { IDocumentationPage, IDocumentationPageContent, IPropertyDetail, IStyleDetail, IPreview, IComponentUsage, IEntityCategory } from './components/documentation-components/types';
 import { IFooterNav } from './components/page-components/pagination-footer/PaginationFooter';

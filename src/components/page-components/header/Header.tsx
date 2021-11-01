@@ -1,12 +1,13 @@
 import React, { useContext } from 'react';
 import { IonButtons, IonHeader, IonIcon, IonMenuButton, IonTitle, IonToolbar } from '@ionic/react';
 import { EThemeModes, ThemeContext } from 'contexts/theme';
-import { logoGithub, moonOutline, moonSharp, sunnyOutline, sunnySharp } from 'ionicons/icons';
+import { logoGithub, moonSharp, sunnySharp } from 'ionicons/icons';
 import styles from './header.module.css';
 
 type IProps = {
   title?: string;
   githubURL?: string;
+  versionLabel?: string;
   themeController?: {
     currentTheme: 'light' | 'dark';
     toggleTheme: () => void;
@@ -14,7 +15,7 @@ type IProps = {
   className?: string;
 };
 
-const Header: React.FC<IProps> = ({ title, githubURL, className }) => {
+const Header: React.FC<IProps> = ({ title, githubURL, versionLabel, className }) => {
   const theme = useContext(ThemeContext);
   return (
     <IonHeader className={`${className} ${styles.header}`}>
@@ -28,13 +29,18 @@ const Header: React.FC<IProps> = ({ title, githubURL, className }) => {
             <IonIcon
               className='mr-1 pointer'
               onClick={theme?.toggleTheme}
-              ios={theme?.themeName === EThemeModes.light ? moonOutline : sunnyOutline}
+              ios={theme?.themeName === EThemeModes.light ? moonSharp : sunnySharp}
               md={theme?.themeName === EThemeModes.light ? moonSharp : sunnySharp}
             />
             {githubURL && (
               <a href={githubURL} className='color-fg'>
                 <IonIcon className='pointer' ios={logoGithub} md={logoGithub} />
               </a>
+            )}
+            {versionLabel && (
+              <div className='h-full inline'>
+                <span className={`${styles.version} inline ml-1 `}>v. {versionLabel}</span>
+              </div>
             )}
           </div>
         </IonTitle>

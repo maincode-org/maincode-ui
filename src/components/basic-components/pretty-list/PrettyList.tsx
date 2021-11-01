@@ -34,7 +34,7 @@ const PrettyUL: React.FC<IProps> = ({ items, className = '' }) => {
 const PrettyOL: React.FC<IProps> = ({ items, ordering, className = '' }) => {
   const alphabet = 'abcdefghijklmnopqrstuvwxyz';
   const listItem = (index: number, item: React.ReactNode | string) => (
-    <li className='flex flex-row m-05'>
+    <li className='flex flex-row m-05' key={index}>
       <p className={`${styles.OLNumberLabel} flex justify-center items-center`}>{ordering === 'numeric' ? index + 1 : alphabet[index]}</p>
       <p className='ml-1'>{item}</p>
     </li>
