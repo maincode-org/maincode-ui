@@ -6,7 +6,7 @@ export const copyAreaPageDocumentation: IDocumentationPageContent = {
     {
       title: 'Basic example',
       description: <>CopyArea copies the command provided to it to the clipboard.</>,
-      code: '<CopyArea command="npm i maincode-ui"/>',
+      code: '<div className="p-1"><CopyArea command="npm i maincode-ui"/></div>',
       scope: { CopyArea },
     },
   ],

@@ -10,6 +10,8 @@ import ContributingContent from '../pages/guide-pages/contributing-page/contribu
 import { basicComponentPages } from './basic-components';
 import { codeComponentPages } from './code-components';
 import { simulationComponentPages } from './simulation-components';
+import { documentationComponentPages } from './documentation-components';
+import { layoutComponentPages } from './layout-components';
 
 export const guidePages: IDocumentationPage[] = prepareURLPrefixGuides([
   {
@@ -21,7 +23,13 @@ export const guidePages: IDocumentationPage[] = prepareURLPrefixGuides([
         <b>Maincode UI</b> strives to deliver quickly integratable components to supplement <b>Ionic</b> or other <b>React.js</b> applications. It is:
       </p>
     ),
-    customContent: makeOverviewContent([...basicComponentPages.pages, ...codeComponentPages.pages, ...simulationComponentPages.pages]),
+    customContent: makeOverviewContent([
+      ...basicComponentPages.pages,
+      ...codeComponentPages.pages,
+      ...documentationComponentPages.pages,
+      ...layoutComponentPages.pages,
+      ...simulationComponentPages.pages,
+    ]),
   },
   {
     url: '/quick-start',

@@ -7,19 +7,31 @@ export const prettyListPageDocumentation: IDocumentationPageContent = {
     {
       title: 'Unordered',
       description: <p>Unordered list</p>,
-      code: "<PrettyList ordering='unordered' items={['List item 1', 'List item 2', 'List item 3']} />",
+      code: `
+<PrettyList
+  ordering='unordered'
+  items={['List item 1', 'List item 2', 'List item 3']}
+/>`,
       scope: { PrettyList },
     },
     {
       title: 'Numeric ordering',
       description: <p>List with numeric ordering</p>,
-      code: "<PrettyList ordering='numeric' items={['List item 1', 'List item 2', 'List item 3']} />",
+      code: `
+<PrettyList
+  ordering='numeric'
+  items={['List item 1', 'List item 2', 'List item 3']}
+/>`,
       scope: { PrettyList },
     },
     {
       title: 'Alphabetic ordering',
       description: <p>List with alphabetic ordering</p>,
-      code: "<PrettyList ordering='alphabetic' items={['List item 1', 'List item 2', 'List item 3']} />",
+      code: `
+<PrettyList
+  ordering='alphabetic'
+  items={['List item 1', 'List item 2', 'List item 3']}
+/>`,
       scope: { PrettyList },
     },
   ],

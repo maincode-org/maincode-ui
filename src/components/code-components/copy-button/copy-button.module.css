@@ -4,9 +4,6 @@
   width: 2rem;
   height: 2rem;
 
-  position: absolute;
-  top: 0.5rem;
-  right: 0.5rem;
   z-index: 999999;
 
   cursor: pointer;

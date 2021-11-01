@@ -5,6 +5,7 @@
 .table {
   border-radius: 8px;
   border-collapse: separate;
+  color: var(--ion-text-color);
 }
 
 .table thead td:first-child {
