@@ -15,6 +15,10 @@ const ParticleContainer: React.FC<IProps> = ({ className = '' }) => {
     setTimeout(() => setParticleConfig(config), 100);
   }, []);
 
-  return <div>{particleConfig && <Particles className={className} canvasClassName={styles.backgroundParticles} params={particleConfig} />}</div>;
+  return (
+    <div className={`${className} ${styles.backgroundParticles}`}>
+      {particleConfig && <Particles className={styles.animation} canvasClassName={styles.backgroundParticles} params={particleConfig} />}
+    </div>
+  );
 };
 export default ParticleContainer;
