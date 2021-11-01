@@ -253,7 +253,7 @@ Please see the development details below to get started with the code base.
 
 #### Setting up
 
-The repository contains two things. The UI library's modules in the root, and the documentation react app in the `/documentation-app` folder
+The repository contains two things. The UI library's modules in the root, and the documentation react app in the `/documentation-app` folder.
 
 To get started, first run `npm install` in both folders.
 

@@ -10,7 +10,11 @@ type IProps = {
 };
 
 const PrettyList: React.FC<IProps> = ({ items, ordering = 'unordered', className = '' }) => {
-  return ordering === 'unordered' ? <PrettyUL items={items} className={className} /> : <PrettyOL items={items} ordering={ordering} className={className} />;
+  return ordering === 'unordered' ? (
+    <PrettyUL items={items} className={`${className} ${styles.container}`} />
+  ) : (
+    <PrettyOL items={items} ordering={ordering} className={`${className} ${styles.container}`} />
+  );
 };
 export default PrettyList;
 

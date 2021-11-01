@@ -6,6 +6,7 @@ import QuickStartContent from '../pages/guide-pages/quick-start-page/documentati
 import ThemingContent from '../pages/guide-pages/theming-page/documentation-page';
 import DarkModeContent from '../pages/guide-pages/dark-mode-page/documentation-page';
 import StylingSystemContent from '../pages/guide-pages/styling-system-page/documentation-page';
+import ContributingContent from '../pages/guide-pages/contributing-page/contributing-page';
 import { basicComponentPages } from './basic-components';
 import { codeComponentPages } from './code-components';
 import { simulationComponentPages } from './simulation-components';
@@ -44,14 +45,12 @@ export const guidePages: IDocumentationPage[] = prepareURLPrefixGuides([
     url: '/style-system',
     title: 'Style System',
     icon: diamondSharp,
-    description: <p>This is the style system intro description</p>,
     customContent: StylingSystemContent,
   },
   {
     url: '/contributing',
     title: 'Contributing',
     icon: gitMergeSharp,
-    description: <p>This is the contributions intro description</p>,
-    customContent: StylingSystemContent,
+    customContent: ContributingContent,
   },
 ]);
