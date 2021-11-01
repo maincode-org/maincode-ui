@@ -7,7 +7,7 @@ import { documentationSectionPageDocumentation } from '../pages/component-pages/
 import componentPreviewLight from 'assets/Component-preview-light.png';
 import componentPreviewDark from 'assets/Component-preview-dark.png';
 
-export const componentPreviewGalleryPreview: IPreview = {
+const componentPreviewGalleryPreview: IPreview = {
   picture: componentPreviewLight,
   darkModePicture: componentPreviewDark,
 };
