@@ -30,7 +30,7 @@ const ContributingPage: JSX.Element = (
       changes with live reloading.
     </p>
     <h4 className='mt-2'>Library structure</h4>
-    Please notice how the logic is grouped in the following folder structure:
+    <p>Please notice how the logic is grouped in the following folder structure:</p>
     <PrettyList
       ordering='unordered'
       items={[
@@ -49,6 +49,19 @@ const ContributingPage: JSX.Element = (
         </>,
       ]}
     />
+    <h4 className='mt-2'>Testing</h4>
+    <p>
+      To run tests, use <code>npm run test</code>.
+    </p>
+    <p>
+      The source for the tests are located in the <code>/tests</code> directory.
+    </p>
+    <p>The tests should cover at least all exposed methods in the toolkits.</p>
+    <h3 className='mt-2 mb-1'>License</h3>
+    BSD 3-Clause License{' '}
+    <a href='https://github.com/MarkKragerup' target='_blank' rel='noreferrer'>
+      ©MarkKragerup
+    </a>
   </>
 );
 export default ContributingPage;
