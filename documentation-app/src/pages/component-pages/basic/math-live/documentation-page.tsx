@@ -6,13 +6,13 @@ export const mathLivePageDocumentation: IDocumentationPageContent = {
     {
       title: 'Basic example',
       description: <p>Display mathematically correct formulas</p>,
-      code: '<MathLive formula={`f(x)=2x²+3+pi`} />',
+      code: '<MathLive className="p-1" formula={`f(x)=2x²+3+pi`} />',
       scope: { MathLive },
     },
     {
       title: 'Placeholders',
       description: <p>Use placeholders to indicate missing values</p>,
-      code: '<MathLive formula="f(x)=2x²+3x+\\placeholder{}" />',
+      code: '<MathLive className="p-1" formula="f(x)=2x²+3x+\\placeholder{}" />',
       scope: { MathLive },
     },
   ],

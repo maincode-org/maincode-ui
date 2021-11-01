@@ -6,17 +6,20 @@ export const copyButtonPageDocumentation: IDocumentationPageContent = {
     {
       title: 'Basic example',
       description: <p>Description</p>,
-      code: '<div className="flex justify-center items-center"><CopyButton code="npm i maincode-ui" /></div>',
+      code: `
+<div className="h-full flex justify-center mt-15">
+  <CopyButton code="npm i maincode-ui"/>
+</div>`,
       scope: { CopyButton },
     },
   ],
   props: [
-    { title: 'command', description: 'The command you want to be copied to the clipboard', required: true, type: 'string' },
-    { title: 'tooltip', description: 'The tooltip text you want to be shown on hover', required: false, type: 'string', defaultValue: 'Copy to clipboard' },
+    { title: 'code', description: 'The command you want to be copied to the clipboard', required: true, type: 'string' },
     { title: 'className', description: 'Classes for custom styling', required: false, type: 'string', defaultValue: '""' },
   ],
   styles: [
-    { propertyName: '--glass-bg', description: 'This is a glass effect on the background' },
-    { propertyName: '--theme-border', description: 'Border matching the theme' },
+    { propertyName: '--ion-text-color', description: 'Controls the text color of your application' },
+    { propertyName: '--border-color', description: 'Border matching the theme' },
+    { propertyName: '--card-shadow', description: 'A shadow matching the theme' },
   ],
 };

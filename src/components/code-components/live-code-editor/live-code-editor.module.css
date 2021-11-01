@@ -72,6 +72,12 @@
   font-size: 0.9em;
 }
 
+.copyButton {
+  position: absolute;
+  top: 0.5rem;
+  right: 0.5rem;
+}
+
 @media (max-width: 600px) {
   .liveWrapper {
     flex-direction: column;
