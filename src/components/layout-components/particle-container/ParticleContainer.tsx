@@ -8,13 +8,13 @@ type IProps = {
 };
 
 const ParticleContainer: React.FC<IProps> = ({ className = '' }) => {
-  const [particleConfig, setParticleConfig] = useState(config);
+  const [particleConfig, setParticleConfig] = useState<typeof config | undefined>(undefined);
 
-  // HACK: update the object after first rendering, to spread out the particles and prevent them raining down..
+  // HACK: update the object after first rendering, to spread out the particles and prevent them raining down. Cause of bug unknown.
   useEffect(() => {
-    setTimeout(() => setParticleConfig({ ...particleConfig, move: { ...particleConfig.move, speed: 0.3 } }), 200);
-  }, [particleConfig]);
+    setTimeout(() => setParticleConfig(config), 100);
+  }, []);
 
-  return <Particles className={className} canvasClassName={styles.backgroundParticles} params={particleConfig} />;
+  return <div>{particleConfig && <Particles className={className} canvasClassName={styles.backgroundParticles} params={particleConfig} />}</div>;
 };
 export default ParticleContainer;
