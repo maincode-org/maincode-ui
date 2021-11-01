@@ -6,10 +6,18 @@
   height: calc(100% - 100px);
 }
 
-.bgImgRedBlue {
+.bgRedBlue {
   background-image: url('./pop-bg.png');
 }
 
-.bgImGreen {
-  background-image: url('./coding_pirates.png');
+.bgGreen {
+  background-image: url('./green_bg.jpg');
+}
+
+.bgPink {
+  background-image: url('./pink_bg.jpg');
+}
+
+.bgIceBlue {
+  background-image: url('./iceblue_bg.jpg');
 }
