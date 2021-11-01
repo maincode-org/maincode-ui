@@ -10,7 +10,11 @@ type IProps = {
 };
 
 const PrettyList: React.FC<IProps> = ({ items, ordering = 'unordered', className = '' }) => {
-  return ordering === 'unordered' ? <PrettyUL items={items} className={className} /> : <PrettyOL items={items} ordering={ordering} className={className} />;
+  return ordering === 'unordered' ? (
+    <PrettyUL items={items} className={`${className} ${styles.container}`} />
+  ) : (
+    <PrettyOL items={items} ordering={ordering} className={`${className} ${styles.container}`} />
+  );
 };
 export default PrettyList;
 
@@ -30,7 +34,7 @@ const PrettyUL: React.FC<IProps> = ({ items, className = '' }) => {
 const PrettyOL: React.FC<IProps> = ({ items, ordering, className = '' }) => {
   const alphabet = 'abcdefghijklmnopqrstuvwxyz';
   const listItem = (index: number, item: React.ReactNode | string) => (
-    <li className='flex flex-row m-05'>
+    <li className='flex flex-row m-05' key={index}>
       <p className={`${styles.OLNumberLabel} flex justify-center items-center`}>{ordering === 'numeric' ? index + 1 : alphabet[index]}</p>
       <p className='ml-1'>{item}</p>
     </li>

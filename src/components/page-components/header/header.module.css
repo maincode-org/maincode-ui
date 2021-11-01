@@ -2,3 +2,7 @@
   position: fixed;
   top: 0;
 }
+.version {
+  font-size: 1rem;
+  vertical-align: top;
+}

@@ -1,6 +1,7 @@
 .container {
   background: rgba(var(--ion-color-primary-rgb), 0.2);
   border-left: 12px solid rgba(var(--ion-color-primary-rgb), 0.6);
+  color: var(--ion-text-color);
 }
 
 .container code {

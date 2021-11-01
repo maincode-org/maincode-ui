@@ -1,3 +1,7 @@
+.container code {
+  line-height: 1rem;
+}
+
 .ULWrapper {
   list-style: none;
 }

@@ -4,6 +4,7 @@ import { IDocumentationPage } from 'components/documentation-components/types';
 import Header from 'components/page-components/header/Header';
 import styles from './documentation-router-with-page-content.module.css';
 import { makeRoutes } from './helpers';
+import { version } from 'index';
 
 type IProps = {
   pages: IDocumentationPage[];
@@ -24,7 +25,7 @@ const DocumentationRouterWithPageContent: React.FC<IProps> = ({ githubUrl, pages
 
   return (
     <IonPage>
-      <Header className='select-none' title={pageTitle} githubURL={githubUrl} />
+      <Header className='select-none' title={pageTitle} githubURL={githubUrl} versionLabel={version} />
       <IonContent ref={ionContentRef} className={`${className} ${styles.ionContent}`} fullscreen>
         {routes}
         {children}
