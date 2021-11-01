@@ -16,10 +16,12 @@ const ParticleContainer: React.FC<IProps> = ({ className = '', children }) => {
   }, []);
 
   return (
-    <div className={`${className} ${styles.backgroundParticles}`}>
-      {particleConfig && <Particles className={styles.animation} canvasClassName={styles.backgroundParticles} params={particleConfig} />}
-      {children}
-    </div>
+    <section>
+      <div className={`${className} ${styles.backgroundParticles}`}>
+        {particleConfig && <Particles className={styles.animation} canvasClassName={styles.backgroundParticles} params={particleConfig} />}
+      </div>
+      <div className={styles.children}>{children}</div>
+    </section>
   );
 };
 export default ParticleContainer;
