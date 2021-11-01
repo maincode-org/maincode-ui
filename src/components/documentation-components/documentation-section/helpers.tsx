@@ -9,7 +9,7 @@ export const renderLiveCodeEditors = (codeExamples: IComponentUsage[]): JSX.Elem
   codeExamples.map((example, i) => (
     <div key={i} className='mb-2'>
       {example.title && (
-        <h3 className='mt-4'>
+        <h3 className='mt-3'>
           <IonIcon className='align-middle mr-05' src={codeSlashSharp} />
           <span className='align-middle'>{example.title}</span>
         </h3>

@@ -6,7 +6,7 @@ import QuickStartContent from '../pages/guide-pages/quick-start-page/documentati
 import ThemingContent from '../pages/guide-pages/theming-page/documentation-page';
 import DarkModeContent from '../pages/guide-pages/dark-mode-page/documentation-page';
 import StylingSystemContent from '../pages/guide-pages/styling-system-page/documentation-page';
-import ContributingContent from '../pages/guide-pages/contributing-page/contributing-page';
+import ContributingContent from '../pages/guide-pages/contributing-page/documentation-page';
 import { basicComponentPages } from './basic-components';
 import { codeComponentPages } from './code-components';
 import { simulationComponentPages } from './simulation-components';

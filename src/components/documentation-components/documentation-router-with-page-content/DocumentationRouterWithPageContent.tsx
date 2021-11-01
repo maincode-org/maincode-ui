@@ -4,7 +4,7 @@ import { IDocumentationPage } from 'components/documentation-components/types';
 import Header from 'components/page-components/header/Header';
 import styles from './documentation-router-with-page-content.module.css';
 import { makeRoutes } from './helpers';
-import { version } from 'index';
+import { version } from '../../../../package.json';
 
 type IProps = {
   pages: IDocumentationPage[];

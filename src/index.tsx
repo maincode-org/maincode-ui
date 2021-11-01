@@ -42,7 +42,8 @@ export { DocumentationSection, renderLiveCodeEditors, DocumentationRouterWithPag
 
 /** Layout Components ------------------------------- */
 import Table from './components/layout-components/table/Table';
-export { Table };
+import ParticleContainer from './components/layout-components/particle-container/ParticleContainer';
+export { Table, ParticleContainer };
 
 /** Page Components --------------------------------- */
 import PaginationFooter from './components/page-components/pagination-footer/PaginationFooter';

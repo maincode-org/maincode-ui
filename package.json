@@ -8,6 +8,7 @@
   "main": "dist/index.js",
   "module": "dist/index.modern.js",
   "source": "src/index.tsx",
+  "types": "dist/src/index.d.ts",
   "styles": [
     "styles/generics.css",
     "styles/theme.css"

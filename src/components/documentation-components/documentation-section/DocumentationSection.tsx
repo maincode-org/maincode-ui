@@ -28,7 +28,7 @@ const DocumentationSection: React.FC<IProps> = ({ onContentLoad, mainText, props
 
         {props?.[0] && (
           <div>
-            <h3 className='mt-4 align-middle'>
+            <h3 className='mt-3 align-middle'>
               <IonIcon className='align-middle mr-05' src={pushOutline} />
               Props
             </h3>
@@ -38,7 +38,7 @@ const DocumentationSection: React.FC<IProps> = ({ onContentLoad, mainText, props
 
         {styles?.[0] && (
           <div>
-            <h3 className='mt-4 align-middle'>
+            <h3 className='mt-3 align-middle'>
               <IonIcon className='align-middle mr-05 pb-025' src={brushSharp} />
               Customization
             </h3>
