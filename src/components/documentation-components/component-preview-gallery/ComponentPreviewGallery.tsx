@@ -26,8 +26,9 @@ const ComponentPreviewGallery: React.FC<IProps> = ({ componentPages, className =
   return (
     <IonGrid className={`${className} ${styles.grid}`}>
       {Array.from(componentPages.values()).map((c, i) => (
-        <div className='mb-4' key={i}>
-          <h2>{c.title}</h2>
+        <div className='mb-6' key={i}>
+          <h2>{`${c.title} components`}</h2>
+          <div className={styles.hr} />
           <IonRow>
             {c.pages.map((p, i) => (
               <IonCol key={i} size='12' size-md='6' size-lg='6' size-xl='4'>
