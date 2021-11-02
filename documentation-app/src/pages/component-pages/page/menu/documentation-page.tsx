@@ -1,8 +1,9 @@
-import { IDocumentationPageContent } from 'maincode-ui';
+import { IDocumentationPageContent, InfoArea } from 'maincode-ui';
 import { styles } from './styles';
 
 export const menuPageDocumentation: IDocumentationPageContent = {
   description: <p>Create simple menu for application navigation.</p>,
+  mainText: <InfoArea className='mt-3'>The DocumentationApp component uses the Menu component internally.</InfoArea>,
   codeExamples: [
     {
       title: 'Basic example',
@@ -10,7 +11,7 @@ export const menuPageDocumentation: IDocumentationPageContent = {
 <Menu
   entityPages={entityCollection}
   guidePages={guidePages}
-  headerText={menuHeaderText}
+  headerText="Maincode UI"
   subHeader={menuSubHeader}
   footerImage={menuFooterImage}
 />

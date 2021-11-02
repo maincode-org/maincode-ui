@@ -3,7 +3,7 @@ import { prepareURLPrefixComponents } from './url-prefix';
 import { tablePageDocumentation } from '../pages/component-pages/layout/table/documentation-page';
 
 export const layoutComponentPages: IEntityCategory = prepareURLPrefixComponents({
-  title: 'Layout components',
+  title: 'Layout Components',
   pages: [
     {
       url: '/table',

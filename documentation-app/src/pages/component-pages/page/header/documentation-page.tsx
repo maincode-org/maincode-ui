@@ -1,18 +1,12 @@
 import { IDocumentationPageContent } from 'maincode-ui';
+import { basicCodeExample } from './examples';
 
 export const headerPageDocumentation: IDocumentationPageContent = {
   description: <p>Customizable header bar.</p>,
   codeExamples: [
     {
       title: 'Basic example',
-      code: `
-<Header
-  className='select-none'
-  title="Title"
-  githubURL="github.com/orgs/maincode"
-  versionLabel="1.1.2"
-/>
-`,
+      code: basicCodeExample,
       enablePreview: false,
     },
   ],

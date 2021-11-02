@@ -1,4 +1,4 @@
-import { IEntityCategory, PaginationFooter, IPreview } from 'maincode-ui';
+import { IEntityCategory, PaginationFooter, IPreview, Header } from 'maincode-ui';
 import { prepareURLPrefixComponents } from './url-prefix';
 import { headerPageDocumentation } from '../pages/component-pages/page/header/documentation-page';
 import { menuPageDocumentation } from '../pages/component-pages/page/menu/documentation-page';
@@ -17,7 +17,7 @@ export const pageComponentPages: IEntityCategory = prepareURLPrefixComponents({
     {
       url: '/header',
       title: 'Header',
-      preview: { element: <p>Insert picture</p> },
+      preview: { element: <Header className='select-none relative' title='Header' githubURL='https://github.com/maincode-org/maincode-ui' /> },
       ...headerPageDocumentation,
     },
     {
