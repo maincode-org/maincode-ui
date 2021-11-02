@@ -1,4 +1,4 @@
-import { IDocumentationPageContent, ComponentPreviewGallery, InfoArea, CopyButton } from 'maincode-ui';
+import { IDocumentationPageContent, ComponentPreviewGallery, InfoArea, PrettyList, CopyButton } from 'maincode-ui';
 import { basicCodeExample } from './examples';
 
 export const componentPreviewGalleryDocumentation: IDocumentationPageContent = {
@@ -7,7 +7,7 @@ export const componentPreviewGalleryDocumentation: IDocumentationPageContent = {
     {
       title: 'Basic example',
       code: basicCodeExample,
-      scope: { ComponentPreviewGallery, InfoArea, CopyButton },
+      scope: { ComponentPreviewGallery, InfoArea, PrettyList, CopyButton },
     },
   ],
   props: [
