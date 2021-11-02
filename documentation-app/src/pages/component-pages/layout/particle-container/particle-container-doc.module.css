@@ -10,14 +10,54 @@
   background-image: url('./pop-bg.png');
 }
 
+.btnRedBlue {
+  --background: linear-gradient(to right, #d47b7e, #01294d);
+}
+
 .bgGreen {
   background-image: url('./green_bg.jpg');
+}
+
+.btnGreen {
+  --background: linear-gradient(to right, #45a29a, #14453a);
+}
+
+.bgIceBlue {
+  background-image: url('./iceblue_bg.jpg');
+}
+
+.btnIceBlue {
+  --background: linear-gradient(to right, #8fadb4, #224f70);
 }
 
 .bgPink {
   background-image: url('./pink_bg.jpg');
 }
 
-.bgIceBlue {
-  background-image: url('./iceblue_bg.jpg');
+.btnPink {
+  --background: linear-gradient(to right, #f1b385, #694575);
+}
+
+.btnGreen,
+.btnRedBlue,
+.btnIceBlue,
+.btnPink {
+  transition: 0.5s all ease;
+}
+
+.btnGreen:hover,
+.btnRedBlue:hover,
+.btnIceBlue:hover,
+.btnPink:hover {
+  opacity: 0.95;
+}
+
+/** This will pre-load all the images for a smooth switch */
+.position::after {
+  position: absolute;
+  width: 0;
+  height: 0;
+  overflow: hidden;
+  z-index: -1;
+  content: url('./pop-bg.png') url('./green_bg.jpg') url('./pink_bg.jpg') url('./iceblue_bg.jpg');
 }
