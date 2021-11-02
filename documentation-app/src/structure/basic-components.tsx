@@ -1,4 +1,3 @@
-import React from 'react';
 import { InfoArea, PrettyList, MathLive, IEntityCategory } from 'maincode-ui';
 import { prepareURLPrefixComponents } from './url-prefix';
 import { infoAreaPageDocumentation } from '../pages/component-pages/basic/info-area-page/documentation-page';

@@ -4,7 +4,7 @@ import { tablePageDocumentation } from '../pages/component-pages/layout/table/do
 import { particleContainerDocumentation } from '../pages/component-pages/layout/particle-container/documentation-page';
 
 export const layoutComponentPages: IEntityCategory = prepareURLPrefixComponents({
-  title: 'Layout components',
+  title: 'Layout Components',
   pages: [
     {
       url: '/table',

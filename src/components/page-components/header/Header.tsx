@@ -8,10 +8,6 @@ type IProps = {
   title?: string;
   githubURL?: string;
   versionLabel?: string;
-  themeController?: {
-    currentTheme: 'light' | 'dark';
-    toggleTheme: () => void;
-  };
   className?: string;
 };
 

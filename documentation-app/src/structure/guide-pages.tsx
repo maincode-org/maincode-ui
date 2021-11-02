@@ -12,6 +12,7 @@ import { codeComponentPages } from './code-components';
 import { simulationComponentPages } from './simulation-components';
 import { documentationComponentPages } from './documentation-components';
 import { layoutComponentPages } from './layout-components';
+import { pageComponentPages } from './page-components';
 
 export const guidePages: IDocumentationPage[] = prepareURLPrefixGuides([
   {
@@ -28,6 +29,7 @@ export const guidePages: IDocumentationPage[] = prepareURLPrefixGuides([
       ...codeComponentPages.pages,
       ...documentationComponentPages.pages,
       ...layoutComponentPages.pages,
+      ...pageComponentPages.pages,
       ...simulationComponentPages.pages,
     ]),
   },
