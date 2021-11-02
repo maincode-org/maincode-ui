@@ -1,6 +1,6 @@
 import { ComponentPreviewGallery, IDocumentationPage, PrettyList } from 'maincode-ui';
 
-export const makeOverviewContent = (previews: IDocumentationPage[]): JSX.Element => (
+export const makeOverviewContent = (previews: Map<string, { title: string; pages: IDocumentationPage[] }>): JSX.Element => (
   <>
     <PrettyList
       ordering='unordered'
