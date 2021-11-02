@@ -14,6 +14,15 @@ import { documentationComponentPages } from './documentation-components';
 import { layoutComponentPages } from './layout-components';
 import { pageComponentPages } from './page-components';
 
+const overviewContentMap = new Map<string, { title: string; pages: IDocumentationPage[] }>([
+  ['basic', { title: 'Basic', pages: basicComponentPages.pages }],
+  ['code', { title: 'Code', pages: codeComponentPages.pages }],
+  ['documentation', { title: 'Documentation', pages: documentationComponentPages.pages }],
+  ['layout', { title: 'Layout', pages: layoutComponentPages.pages }],
+  ['page', { title: 'Page', pages: pageComponentPages.pages }],
+  ['simulation', { title: 'Simulation', pages: simulationComponentPages.pages }],
+]);
+
 export const guidePages: IDocumentationPage[] = prepareURLPrefixGuides([
   {
     url: '/overview',
@@ -24,14 +33,7 @@ export const guidePages: IDocumentationPage[] = prepareURLPrefixGuides([
         <b>Maincode UI</b> strives to deliver quickly integratable components to supplement <b>Ionic</b> or other <b>React.js</b> applications. It is:
       </p>
     ),
-    customContent: makeOverviewContent([
-      ...basicComponentPages.pages,
-      ...codeComponentPages.pages,
-      ...documentationComponentPages.pages,
-      ...layoutComponentPages.pages,
-      ...pageComponentPages.pages,
-      ...simulationComponentPages.pages,
-    ]),
+    customContent: makeOverviewContent(overviewContentMap),
   },
   {
     url: '/quick-start',
