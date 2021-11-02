@@ -1,0 +1,23 @@
+.position {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: calc(100% - 100px);
+}
+
+.bgRedBlue {
+  background-image: url('./pop-bg.png');
+}
+
+.bgGreen {
+  background-image: url('./green_bg.jpg');
+}
+
+.bgPink {
+  background-image: url('./pink_bg.jpg');
+}
+
+.bgIceBlue {
+  background-image: url('./iceblue_bg.jpg');
+}

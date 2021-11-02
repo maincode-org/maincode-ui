@@ -1,6 +1,7 @@
 import { IEntityCategory, Table } from 'maincode-ui';
 import { prepareURLPrefixComponents } from './url-prefix';
 import { tablePageDocumentation } from '../pages/component-pages/layout/table/documentation-page';
+import { particleContainerDocumentation } from '../pages/component-pages/layout/particle-container/documentation-page';
 
 export const layoutComponentPages: IEntityCategory = prepareURLPrefixComponents({
   title: 'Layout Components',
@@ -20,6 +21,11 @@ export const layoutComponentPages: IEntityCategory = prepareURLPrefixComponents(
         ),
       },
       ...tablePageDocumentation,
+    },
+    {
+      url: '/particle-container',
+      title: 'Particle Container',
+      ...particleContainerDocumentation,
     },
   ],
 });
