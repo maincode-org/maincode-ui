@@ -20,16 +20,16 @@ export const basicCodeExample = `
                   <PrettyList
                     ordering='alphabetic'
                     items={['List item 1', 'List item 2', 'List item 3']}
-                    />
+                  />
               }
             }
-            ]
-        }
-      ],
-      ["code",
-        {
-          title: "Code",
-          pages: [
+          ]
+      }
+    ],
+    ["code",
+     {
+       title: "Code",
+         pages: [
             {
               url: "/copy-button",
               title: "Copy Button",
