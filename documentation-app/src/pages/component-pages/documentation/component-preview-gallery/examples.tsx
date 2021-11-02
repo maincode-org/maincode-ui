@@ -8,12 +8,12 @@ export const basicCodeExample = `
           title: "Basic",
           pages: [
             {
-              url: "/info-area",
+              url: "#",
               title: "Info Area",
               preview: { element: <InfoArea>Example of InfoArea</InfoArea> }
             },
             {
-              url: "/pretty-list",
+              url: "#",
               title: "Pretty List",
               preview: {
                 element:
@@ -31,7 +31,7 @@ export const basicCodeExample = `
        title: "Code",
          pages: [
             {
-              url: "/copy-button",
+              url: "#",
               title: "Copy Button",
               preview: { element: <CopyButton>Example of InfoArea</CopyButton> }
             }]
