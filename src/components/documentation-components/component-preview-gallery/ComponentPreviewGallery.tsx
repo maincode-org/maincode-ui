@@ -7,8 +7,13 @@ import { useContext } from 'react';
 import { ThemeContext, EThemeModes } from 'contexts/theme';
 import { IDocumentationPage } from '../types';
 
+type IComponentPage = {
+  title: string;
+  pages: IDocumentationPage[];
+};
+
 type IProps = {
-  componentPages: IDocumentationPage[];
+  componentPages: Map<string, IComponentPage>;
   className?: string;
 };
 
@@ -20,31 +25,36 @@ const ComponentPreviewGallery: React.FC<IProps> = ({ componentPages, className =
 
   return (
     <IonGrid className={`${className} ${styles.grid}`}>
-      <IonRow>
-        {[...componentPages].map((c, i) => (
-          <IonCol key={i} size='12' size-md='6' size-lg='6' size-xl='4'>
-            <IonCard key={i} className={`${styles.card} theme-border shadow-lg`}>
-              <IonCardHeader className={styles.cardHeader}>
-                {c.preview?.picture && !c.preview?.element && (
-                  <Link className='decoration-none h-full' to={c.url}>
-                    <div className={`${styles.image} ${styles.previewArea}`} style={{ backgroundImage: `url('${getPictureURL(c, isDarkMode)}')` }} />
+      {Array.from(componentPages.values()).map((c, i) => (
+        <div className='mb-4' key={i}>
+          <h2>{c.title}</h2>
+          <IonRow>
+            {c.pages.map((p, i) => (
+              <IonCol key={i} size='12' size-md='6' size-lg='6' size-xl='4'>
+                <IonCard key={i} className={`${styles.card} theme-border shadow-lg`}>
+                  <IonCardHeader className={styles.cardHeader}>
+                    {p.preview?.picture && !p.preview?.element && (
+                      <Link className='decoration-none h-full' to={p.url}>
+                        <div className={`${styles.image} ${styles.previewArea}`} style={{ backgroundImage: `url('${getPictureURL(p, isDarkMode)}')` }} />
+                      </Link>
+                    )}
+                    {p.preview?.element && <div className={`${styles.previewArea} ${styles.previewElement} p-1 theme-bg`}>{p.preview.element}</div>}
+                  </IonCardHeader>
+                  <Link className='decoration-none h-full' to={p.url}>
+                    <div className={styles.descriptionArea}>
+                      <IonCardTitle className={styles.title}>
+                        {p.title}
+                        <IonIcon className={styles.openIcon} ios={openOutline} md={openOutline} />
+                      </IonCardTitle>
+                      <IonCardContent className={styles.teaserText}>{p.description}</IonCardContent>
+                    </div>
                   </Link>
-                )}
-                {c.preview?.element && <div className={`${styles.previewArea} ${styles.previewElement} p-1 theme-bg`}>{c.preview.element}</div>}
-              </IonCardHeader>
-              <Link className='decoration-none h-full' to={c.url}>
-                <div className={styles.descriptionArea}>
-                  <IonCardTitle className={styles.title}>
-                    {c.title}
-                    <IonIcon className={styles.openIcon} ios={openOutline} md={openOutline} />
-                  </IonCardTitle>
-                  <IonCardContent className={styles.teaserText}>{c.description}</IonCardContent>
-                </div>
-              </Link>
-            </IonCard>
-          </IonCol>
-        ))}
-      </IonRow>
+                </IonCard>
+              </IonCol>
+            ))}
+          </IonRow>
+        </div>
+      ))}
     </IonGrid>
   );
 };
