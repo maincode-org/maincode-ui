@@ -1,25 +1,31 @@
-import { useMemo, useState } from 'react';
+import { useState } from 'react';
+import { IonFab, IonFabButton, IonFabList, IonIcon } from '@ionic/react';
+import { colorPaletteOutline } from 'ionicons/icons';
 import { IDocumentationPageContent, ParticleContainer } from 'maincode-ui';
 import styles from './particle-container-doc.module.css';
-import { IonButton } from '@ionic/react';
-const backgrounds = [styles.bgRedBlue, styles.bgGreen, styles.bgIceBlue, styles.bgPink];
 
 const ParticleChangeDemo: React.FC = () => {
-  const [bgIndex, setBGIndex] = useState(0);
-  const bgImg = useMemo(() => backgrounds[bgIndex % backgrounds.length], [bgIndex]);
-  const [isButtonDisabled, setIsButtonDisabled] = useState(false);
+  const [bgImg, setBgImg] = useState(styles.bgRedBlue);
+  const [paletteColor, setPaletteColor] = useState(styles.btnRedBlue);
 
-  const handleImgChange = () => {
-    setBGIndex(bgIndex + 1);
-    setIsButtonDisabled(true);
-    setTimeout(() => setIsButtonDisabled(false), 1500);
+  const handleImgChange = (bgImg: string, paletteColor: string) => {
+    setBgImg(bgImg);
+    setPaletteColor(paletteColor);
   };
 
   return (
     <>
-      <IonButton disabled={isButtonDisabled} onClick={handleImgChange}>
-        Click me! ☕
-      </IonButton>
+      <IonFab vertical='center' horizontal='start' slot='fixed'>
+        <IonFabButton className={paletteColor}>
+          <IonIcon icon={colorPaletteOutline} />
+        </IonFabButton>
+        <IonFabList side='top'>
+          <IonFabButton className={styles.btnRedBlue} onClick={() => handleImgChange(styles.bgRedBlue, styles.btnRedBlue)} />
+          <IonFabButton className={styles.btnGreen} onClick={() => handleImgChange(styles.bgGreen, styles.btnGreen)} />
+          <IonFabButton className={styles.btnIceBlue} onClick={() => handleImgChange(styles.bgIceBlue, styles.btnIceBlue)} />
+          <IonFabButton className={styles.btnPink} onClick={() => handleImgChange(styles.bgPink, styles.btnPink)} />
+        </IonFabList>
+      </IonFab>
       <ParticleContainer className={`${styles.position} ${bgImg}`} />
     </>
   );
