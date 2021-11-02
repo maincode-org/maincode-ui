@@ -60,3 +60,9 @@
 .teaserText {
   color: var(--ion-text-color);
 }
+
+.hr {
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+  border-top: 1px ridge var(--border-color);
+}
