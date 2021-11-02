@@ -35,7 +35,7 @@
 }
 
 .btnPink {
-  --background: linear-gradient(to right, #f1b385, #694575);
+  --background: linear-gradient(to right, #c1839b 15%, #7c4c85);
 }
 
 .btnGreen,
