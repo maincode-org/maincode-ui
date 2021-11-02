@@ -11,7 +11,7 @@
 }
 
 .btnRedBlue {
-  --background: linear-gradient(to right, #d47b7e, #01294d);
+  --background: linear-gradient(to right, #bd6460 15%, #01294d);
 }
 
 .bgGreen {
