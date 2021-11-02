@@ -15,7 +15,13 @@ export const basicCodeExample = `
             {
               url: "/pretty-list",
               title: "Pretty List",
-              preview: { element: <PrettyList ordering='alphabetic' items={['List item 1', 'List item 2', 'List item 3']} /> }
+              preview: {
+                element:
+                  <PrettyList
+                    ordering='alphabetic'
+                    items={['List item 1', 'List item 2', 'List item 3']}
+                    />
+              }
             }
             ]
         }
