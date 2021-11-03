@@ -42,9 +42,16 @@ export const throwParabolaFunction =
  * 4:  (x + (b / a) / 2)^2 = y/a - c/a + (b / a) / 2
  * 5:  x + (b / a) / 2 = sqrt(y/a - c/a + (b / a) / 2)
  * 6:  x = - (b / a) / 2 +- sqrt(y/a - c/a + (b / a) / 2)
+ * Final code is: return -(b / a / 2) - Math.sqrt(y / a - c / a + b / a / 2); with sqrt content >= 0.
  */
 export const solveQuadraticFn = (a: number, b: number, c: number, y: number): number => {
-  return -(b / a / 2) - Math.sqrt(y / a - c / a + b / a / 2);
+  const n1 = -(b / a) / 2;
+  const n2 = y / a - c / a + b / a / 2;
+
+  if (n2 <= 0) return 0;
+
+  return n1 - Math.sqrt(n2);
+  //
 };
 
 /* Numeric method to calculate f(x) = 0
