@@ -4,21 +4,22 @@ import config from './lean-particlesjs-config';
 import styles from './maincode-website.module.css';
 
 type IProps = {
+  particleConfig?: Record<string, any>;
   className?: string;
 };
 
-const ParticleContainer: React.FC<IProps> = ({ className = '', children }) => {
-  const [particleConfig, setParticleConfig] = useState<typeof config | undefined>(undefined);
+const ParticleContainer: React.FC<IProps> = ({ particleConfig = config, className = '', children }) => {
+  const [internalConfig, setInternalConfig] = useState<Record<string, any> | undefined>(undefined);
 
   // HACK: update the object after first rendering, to spread out the particles and prevent them raining down. Cause of bug unknown.
   useEffect(() => {
-    setTimeout(() => setParticleConfig(config), 300);
-  }, []);
+    setTimeout(() => setInternalConfig(particleConfig), 300);
+  }, [particleConfig]);
 
   return (
     <section>
       <div className={`${className} ${styles.backgroundParticles}`}>
-        {particleConfig && <Particles className={styles.animation} canvasClassName={styles.backgroundParticles} params={particleConfig} />}
+        {internalConfig && <Particles className={styles.animation} canvasClassName={styles.backgroundParticles} params={internalConfig} />}
       </div>
       <div className={styles.children}>{children}</div>
     </section>
