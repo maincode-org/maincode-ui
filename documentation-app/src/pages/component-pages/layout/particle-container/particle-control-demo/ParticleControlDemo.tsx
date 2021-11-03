@@ -15,8 +15,8 @@ const ParticleControlDemo: React.FC = () => {
   };
 
   return (
-    <>
-      <div className='flex flex-col justify-between'>
+    <div className='rounded pb-10 relative'>
+      <div className='flex flex-col justify-between ml-2'>
         <IonFab className='relative mt-5'>
           <IonFabButton className={paletteColor}>
             <IonIcon icon={colorPaletteOutline} />
@@ -42,8 +42,8 @@ const ParticleControlDemo: React.FC = () => {
       <div className={`${styles.card} thin-glass-bg flex rounded shadow-lg items-center justify-center`}>
         <h1>Maincode UI!</h1>
       </div>
-      <ParticleContainer isAnimationEnabled={isAnimationEnabled} className={`${styles.position} ${bgImg}`} />
-    </>
+      <ParticleContainer isAnimationEnabled={isAnimationEnabled} className={`${styles.position} ${bgImg} rounded shadow-2xl`} />
+    </div>
   );
 };
 export default ParticleControlDemo;
