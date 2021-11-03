@@ -15,7 +15,7 @@ const ParticleControlDemo: React.FC = () => {
   };
 
   return (
-    <div className='rounded pb-10 relative'>
+    <div className='rounded pb-10 relative shadow-lg'>
       <div className='flex flex-col justify-between ml-2'>
         <IonFab className='relative mt-4'>
           <IonFabButton className={paletteColor}>
