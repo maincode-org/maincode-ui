@@ -80,11 +80,14 @@
   width: 500px;
   height: 200px;
   max-width: 50%;
+  max-height: 20vh;
   margin: auto;
+  margin-top: 25px;
 }
 
 .card h1 {
   color: rgba(70, 70, 70, 1);
+  text-align: center;
   text-shadow: 2px 2px 20px white;
 }
 
