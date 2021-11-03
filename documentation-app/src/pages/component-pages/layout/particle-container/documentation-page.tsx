@@ -7,7 +7,8 @@ export const particleContainerDocumentation: IDocumentationPageContent = {
     <>
       <ParticleControlDemo />
       <InfoArea className='mt-1'>
-        The above example is constructed using a ParticleContainer with a background image controlled through an IonFab in the top left corner. The headers are just elements with the thin-glass-bg
+        The above example is constructed using a <code>ParticleContainer</code> with a background image controlled through an <code>IonFab</code> in the top left corner. The glass boxes are just
+        elements with the <code>thin-glass-bg</code>
         generic classname applied.
       </InfoArea>
     </>
