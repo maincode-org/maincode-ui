@@ -3,7 +3,7 @@ import styles from './functions-cannon.module.css';
 import Cannon from './Cannon';
 import SimulationContainer from '../../simulation-container/SimulationContainer';
 import { initCannon, applyCannonWheelStyle, initCannonBall, initTestSquare } from './style-helpers';
-import { solveQuadraticFn, throwParabolaFunction } from '../math-lib';
+import { MathToolkit } from '../../../../toolkits/math';
 import { EThemeModes, ThemeContext } from 'contexts/theme';
 import { IonButton, IonIcon } from '@ionic/react';
 import { playOutline } from 'ionicons/icons';
@@ -92,7 +92,7 @@ const FunctionsCannon: React.FC<IProps> = ({ id, axisOptions, parabolaValues, sh
         y: -(bottomToXAxis - initialBallPos.y) / (plot.stepWidth.y / plot.stepValue.y) + plot.axis.y.from,
       };
 
-      initialBallCoord.x = solveQuadraticFn(parabolaValues.a, 1, parabolaValues.c, initialBallCoord.y); // calculates x for initial y.
+      initialBallCoord.x = MathToolkit.parabola.solveFnGivenY({ a: parabolaValues.a, b: 1, c: parabolaValues.c }, initialBallCoord.y); // calculates x for initial y.
       initialBallPos.x = leftToYAxis + (initialBallCoord.x - plot.axis.x.from) * (plot.stepWidth.x / plot.stepValue.x);
 
       /* ----------- Visual test object for debugging ---------- */
@@ -110,7 +110,7 @@ const FunctionsCannon: React.FC<IProps> = ({ id, axisOptions, parabolaValues, sh
 
       drawFunction(
         plot,
-        throwParabolaFunction(parabolaValues.a, parabolaValues.c),
+        MathToolkit.parabola.throw.makeFn({ a: parabolaValues.a, c: parabolaValues.c }),
         context,
         !theme?.parabolaColor ? 'rgb(200,20,220)' : isDarkMode ? theme?.parabolaColor.dark : theme?.parabolaColor.light
       );
@@ -120,7 +120,15 @@ const FunctionsCannon: React.FC<IProps> = ({ id, axisOptions, parabolaValues, sh
       parabolaInputValues?.[0] &&
         parabolaInputValues?.[1] &&
         setCannonBallAnimation(
-          createFollowFnAnimation(cannonBall, plot, throwParabolaFunction(Number(parabolaInputValues[0]), Number(parabolaInputValues[1])), initialBallCoord, leftToYAxis, bottomToXAxis, 1.5)
+          createFollowFnAnimation(
+            cannonBall,
+            plot,
+            MathToolkit.parabola.throw.makeFn({ a: Number(parabolaInputValues[0]), c: Number(parabolaInputValues[1]) }),
+            initialBallCoord,
+            leftToYAxis,
+            bottomToXAxis,
+            1.5
+          )
         );
     }
   }, [sectionElement, hasPaintedSection, themeContext, cannonBall, cannonBodySelector, parabolaInputValues]);
