@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import Particles from 'react-particles-js';
 import config from './lean-particlesjs-config';
-import styles from './maincode-website.module.css';
+import styles from './particle-container.module.css';
 
 type IProps = {
   isAnimationEnabled?: boolean;
@@ -18,7 +18,7 @@ const ParticleContainer: React.FC<IProps> = ({ isAnimationEnabled = true, partic
   }, [particleConfig]);
 
   return (
-    <section>
+    <section className='h-full w-full'>
       <div className={`${className} ${styles.backgroundParticles}`}>
         {internalConfig && isAnimationEnabled && <Particles className={styles.animation} canvasClassName={styles.backgroundParticles} params={internalConfig} />}
       </div>

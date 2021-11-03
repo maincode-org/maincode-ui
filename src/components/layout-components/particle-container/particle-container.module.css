@@ -1,7 +1,7 @@
 .backgroundParticles {
   background-size: cover;
   transition: background-image 1s ease-in-out;
-  z-index: -100;
+  z-index: -1;
 }
 
 .backgroundParticles .animation {
@@ -12,8 +12,6 @@
 
 .backgroundParticles,
 .backgroundParticles .animation {
-  z-index: -100;
-
   animation: fadein 2s;
   -moz-animation: fadein 2s; /* Firefox */
   -webkit-animation: fadein 2s; /* Safari and Chrome */

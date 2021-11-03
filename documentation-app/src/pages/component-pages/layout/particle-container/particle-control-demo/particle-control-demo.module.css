@@ -87,3 +87,8 @@
   color: rgba(70, 70, 70, 1);
   text-shadow: 2px 2px 20px white;
 }
+
+.preview {
+  background-size: cover;
+  overflow: hidden;
+}
