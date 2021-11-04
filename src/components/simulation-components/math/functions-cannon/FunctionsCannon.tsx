@@ -153,7 +153,7 @@ const FunctionsCannon: React.FC<IProps> = ({ id, axisOptions, parabolaValues, sh
         <IonButton
           className={`${styles.playButton}`}
           color={isDarkMode ? theme?.playButtonColor?.dark : theme?.playButtonColor?.light}
-          onClick={() => AnimationToolkit.playAnimation(cannonBall, cannonAnimation, cannonBallAnimation)}
+          onClick={() => AnimationToolkit.playAnimation(cannonBall, [cannonAnimation, cannonBallAnimation])}
         >
           <IonIcon ios={playOutline} md={playOutline} />
         </IonButton>

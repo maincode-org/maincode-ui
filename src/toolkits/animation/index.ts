@@ -1,11 +1,10 @@
+import gsap from 'gsap';
 import { createCannonAnimation, createFollowFnAnimation } from './make-animations';
 
-import gsap from 'gsap';
-
-export const playAnimation = (element: HTMLElement | undefined, timeline1: gsap.core.Timeline | undefined, timeline2: gsap.core.Timeline | undefined): void => {
-  if (!timeline1 || !timeline2 || !element) return;
+export const playAnimation = (element: HTMLElement | undefined, timelines: (gsap.core.Timeline | undefined)[]): void => {
+  if (!timelines?.[0] || !element) return;
   const masterTimeline = gsap.timeline();
-  masterTimeline.add(timeline1.restart()).add(timeline2.restart(), '<');
+  timelines.forEach((t) => t && masterTimeline.add(t.restart(), '<'));
 };
 
 export const AnimationToolkit = {
