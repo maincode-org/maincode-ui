@@ -18,7 +18,7 @@ const DocumentationSection: React.FC<IProps> = ({ onContentLoad, mainText, props
   return (
     <div className={`${className} ${stylesheet.wrapper}`}>
       <section className={`${stylesheet.section} pb-2`}>
-        {description && <div className='mt-1 mb-1'>{description}</div>}
+        {description && <div className='mt-2 mb-2'>{description}</div>}
 
         {mainText && mainText}
 
@@ -28,7 +28,7 @@ const DocumentationSection: React.FC<IProps> = ({ onContentLoad, mainText, props
 
         {props?.[0] && (
           <div>
-            <h3 className='mt-3 align-middle'>
+            <h3 className='align-middle'>
               <IonIcon className='align-middle mr-05' src={pushOutline} />
               Props
             </h3>
@@ -38,7 +38,7 @@ const DocumentationSection: React.FC<IProps> = ({ onContentLoad, mainText, props
 
         {styles?.[0] && (
           <div>
-            <h3 className='mt-3 align-middle'>
+            <h3 className='align-middle'>
               <IonIcon className='align-middle mr-05 pb-025' src={brushSharp} />
               Customization
             </h3>

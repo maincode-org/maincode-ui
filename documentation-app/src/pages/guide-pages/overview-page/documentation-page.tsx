@@ -24,8 +24,8 @@ export const makeOverviewContent = (previews: Map<string, { title: string; pages
         </>,
       ]}
     />
-    <h3 className='mt-2 mb-1'>Component overview</h3>
+    <h3>Component overview</h3>
     Here you can play around with the Maincode UI components and receive instant feedback. Use the cards or the menu to see details and examples for each component or toolkit.
-    <ComponentPreviewGallery componentPages={previews} className='my-2' />
+    <ComponentPreviewGallery componentPages={previews} className='my-3' />
   </>
 );

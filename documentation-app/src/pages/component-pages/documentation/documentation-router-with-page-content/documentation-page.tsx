@@ -3,7 +3,7 @@ import { routeExample } from './examples';
 
 export const documentationRouterPageDocumentation: IDocumentationPageContent = {
   description: <p>Easily set up the routing of your application.</p>,
-  mainText: <InfoArea className='mt-3'>In most cases, you would want to use this component in collaboration with the DocumentationApp component.</InfoArea>,
+  mainText: <InfoArea>In most cases, you would want to use this component in collaboration with the DocumentationApp component.</InfoArea>,
   codeExamples: [
     {
       title: 'Basic example',

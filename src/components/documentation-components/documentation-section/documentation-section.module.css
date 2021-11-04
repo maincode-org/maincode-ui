@@ -1,3 +1,7 @@
 .section {
   min-height: calc(100vh - 180px);
 }
+
+.section h3 {
+  margin-top: 2.5rem;
+}
