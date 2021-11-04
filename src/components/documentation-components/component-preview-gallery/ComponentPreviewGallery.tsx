@@ -13,7 +13,7 @@ type IComponentPage = {
 };
 
 type IProps = {
-  componentPages: Map<string, IComponentPage>;
+  componentPages: IComponentPage[];
   className?: string;
 };
 
@@ -25,7 +25,7 @@ const ComponentPreviewGallery: React.FC<IProps> = ({ componentPages, className =
 
   return (
     <IonGrid className={`${className} ${styles.grid}`}>
-      {Array.from(componentPages.values()).map((c, i) => (
+      {componentPages.map((c, i) => (
         <div className='mb-6' key={i}>
           <h2>{`${c.title} components`}</h2>
           <div className={styles.hr} />
