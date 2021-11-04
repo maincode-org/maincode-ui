@@ -1,0 +1,97 @@
+.position {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.bgRedBlue {
+  background-image: url('../assets/pop-bg.png');
+}
+
+.btnRedBlue {
+  --background: linear-gradient(to right, #bd6460 15%, #01294d);
+}
+
+.bgGreen {
+  background-image: url('../assets/green_bg.jpg');
+}
+
+.btnGreen {
+  --background: linear-gradient(to right, #45a29a, #14453a);
+}
+
+.bgIceBlue {
+  background-image: url('../assets/iceblue_bg.jpg');
+}
+
+.btnIceBlue {
+  --background: linear-gradient(to right, #8fadb4, #224f70);
+}
+
+.bgPink {
+  background-image: url('../assets/pink_bg.jpg');
+}
+
+.btnPink {
+  --background: linear-gradient(to right, #c1839b 15%, #7c4c85);
+}
+
+.btnGreen,
+.btnRedBlue,
+.btnIceBlue,
+.btnPink {
+  transition: 0.5s all ease;
+}
+
+.btnGreen:hover,
+.btnRedBlue:hover,
+.btnIceBlue:hover,
+.btnPink:hover {
+  opacity: 0.95;
+}
+
+/** This will pre-load all the images for a smooth switch */
+.position::after {
+  position: absolute;
+  width: 0;
+  height: 0;
+  overflow: hidden;
+  z-index: -1;
+  content: url('../assets/pop-bg.png') url('../assets/green_bg.jpg') url('../assets/pink_bg.jpg') url('../assets/iceblue_bg.jpg');
+}
+
+.header {
+  top: 0;
+  left: 0;
+  width: 100%;
+
+  border-top-left-radius: 8px;
+  border-top-right-radius: 8px;
+
+  display: flex;
+  align-items: center;
+  flex-direction: row-reverse;
+  height: 50px;
+}
+
+.card {
+  width: 500px;
+  height: 200px;
+  max-width: 50%;
+  max-height: 20vh;
+  margin: auto;
+  margin-top: 25px;
+}
+
+.card h1 {
+  color: rgba(70, 70, 70, 1);
+  text-align: center;
+  text-shadow: 2px 2px 20px white;
+}
+
+.preview {
+  background-size: cover;
+  overflow: hidden;
+}
