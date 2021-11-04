@@ -1,16 +1,16 @@
 import React, { useEffect, useState } from 'react';
-import Particles from 'react-particles-js';
+import Particles, { ISourceOptions } from 'react-tsparticles';
 import config from './lean-particlesjs-config';
 import styles from './particle-container.module.css';
 
 type IProps = {
   isAnimationEnabled?: boolean;
-  particleConfig?: Record<string, any>;
+  particleConfig?: ISourceOptions;
   className?: string;
 };
 
 const ParticleContainer: React.FC<IProps> = ({ isAnimationEnabled = true, particleConfig = config, className = '', children }) => {
-  const [internalConfig, setInternalConfig] = useState<Record<string, any> | undefined>(undefined);
+  const [internalConfig, setInternalConfig] = useState<ISourceOptions | undefined>(undefined);
 
   // HACK: update the object after first rendering, to spread out the particles and prevent them raining down. Cause of bug unknown.
   useEffect(() => {

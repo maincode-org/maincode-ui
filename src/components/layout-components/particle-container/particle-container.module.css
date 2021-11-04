@@ -1,5 +1,6 @@
 .backgroundParticles {
   background-size: cover;
+  position: absolute !important;
   transition: background-image 1s ease-in-out;
   z-index: -1;
 }
