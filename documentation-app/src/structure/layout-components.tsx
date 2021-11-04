@@ -30,7 +30,7 @@ export const layoutComponentPages: IEntityCategory = prepareURLPrefixComponents(
       preview: {
         element: (
           <div className={`${styles.bgRedBlue} ${styles.preview} w-full h-full rounded relative`}>
-            <ParticleContainer className='h-full w-full' />
+            <ParticleContainer />
           </div>
         ),
       },
