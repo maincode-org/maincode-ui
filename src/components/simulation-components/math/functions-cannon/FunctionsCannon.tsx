@@ -10,7 +10,7 @@ import { playOutline } from 'ionicons/icons';
 import MathLive from '../../../basic-components/math-live/MathLive';
 import { drawPlot, drawFunction, enhanceCanvasQuality } from '../drawing-lib';
 import { IAxisOptions, ICoord, IPlotConfig } from '../types';
-import { createCannonAnimation, createFollowFnAnimation, playAnimation } from '../animation-lib';
+import { AnimationToolkit } from '../../../../toolkits/animation';
 
 type IPos = ICoord;
 
@@ -115,12 +115,12 @@ const FunctionsCannon: React.FC<IProps> = ({ id, axisOptions, parabolaValues, sh
         !theme?.parabolaColor ? 'rgb(200,20,220)' : isDarkMode ? theme?.parabolaColor.dark : theme?.parabolaColor.light
       );
 
-      setCannonAnimation(createCannonAnimation(cannonBodySelector));
+      setCannonAnimation(AnimationToolkit.cannon.makeCannonAnimation(cannonBodySelector));
 
       parabolaInputValues?.[0] &&
         parabolaInputValues?.[1] &&
         setCannonBallAnimation(
-          createFollowFnAnimation(
+          AnimationToolkit.functions.makeFnAnimation(
             cannonBall,
             plot,
             MathToolkit.parabola.throw.makeFn({ a: Number(parabolaInputValues[0]), c: Number(parabolaInputValues[1]) }),
@@ -153,7 +153,7 @@ const FunctionsCannon: React.FC<IProps> = ({ id, axisOptions, parabolaValues, sh
         <IonButton
           className={`${styles.playButton}`}
           color={isDarkMode ? theme?.playButtonColor?.dark : theme?.playButtonColor?.light}
-          onClick={() => playAnimation(cannonBall, cannonAnimation, cannonBallAnimation)}
+          onClick={() => AnimationToolkit.playAnimation(cannonBall, cannonAnimation, cannonBallAnimation)}
         >
           <IonIcon ios={playOutline} md={playOutline} />
         </IonButton>
