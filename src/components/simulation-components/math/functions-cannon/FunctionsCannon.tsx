@@ -8,7 +8,8 @@ import { EThemeModes, ThemeContext } from 'contexts/theme';
 import { IonButton, IonIcon } from '@ionic/react';
 import { playOutline } from 'ionicons/icons';
 import MathLive from '../../../basic-components/math-live/MathLive';
-import { drawPlot, drawFunction, enhanceCanvasQuality } from '../drawing-lib';
+import { DrawingToolkit } from '../../../../toolkits/drawing';
+import { enhanceCanvasQuality } from '../../../../toolkits/drawing/helpers';
 import { IAxisOptions, ICoord, IPlotConfig } from '../types';
 import { AnimationToolkit } from '../../../../toolkits/animation';
 
@@ -77,7 +78,7 @@ const FunctionsCannon: React.FC<IProps> = ({ id, axisOptions, parabolaValues, sh
         };
 
     if (context) {
-      const plot: IPlotConfig = drawPlot(context, axisOptionsValues, isDarkMode, theme?.axisColor);
+      const plot: IPlotConfig = DrawingToolkit.drawPlot(context, axisOptionsValues, isDarkMode, theme?.axisColor);
 
       const bottomToXAxis = sectionElement.clientHeight - (canvas.clientHeight - plot.offset.bottom);
       const leftToYAxis = sectionElement.clientWidth - (canvas.clientWidth - plot.offset.left);
@@ -108,7 +109,7 @@ const FunctionsCannon: React.FC<IProps> = ({ id, axisOptions, parabolaValues, sh
       initCannon(cannon, initialBallPos);
       applyCannonWheelStyle(cannonWheel);
 
-      drawFunction(
+      DrawingToolkit.drawFunction(
         plot,
         MathToolkit.parabola.throw.makeFn({ a: parabolaValues.a, c: parabolaValues.c }),
         context,
