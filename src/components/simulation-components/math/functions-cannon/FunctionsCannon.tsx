@@ -3,14 +3,15 @@ import styles from './functions-cannon.module.css';
 import Cannon from './Cannon';
 import SimulationContainer from '../../simulation-container/SimulationContainer';
 import { initCannon, applyCannonWheelStyle, initCannonBall, initTestSquare } from './style-helpers';
-import { solveQuadraticFn, throwParabolaFunction } from '../math-lib';
+import { MathToolkit } from '../../../../toolkits/math';
 import { EThemeModes, ThemeContext } from 'contexts/theme';
 import { IonButton, IonIcon } from '@ionic/react';
 import { playOutline } from 'ionicons/icons';
 import MathLive from '../../../basic-components/math-live/MathLive';
-import { drawPlot, drawFunction, enhanceCanvasQuality } from '../drawing-lib';
+import { DrawingToolkit } from '../../../../toolkits/drawing';
+import { enhanceCanvasQuality } from '../../../../toolkits/drawing/helpers';
 import { IAxisOptions, ICoord, IPlotConfig } from '../types';
-import { createCannonAnimation, createFollowFnAnimation, playAnimation } from '../animation-lib';
+import { AnimationToolkit } from '../../../../toolkits/animation';
 
 type IPos = ICoord;
 
@@ -77,7 +78,7 @@ const FunctionsCannon: React.FC<IProps> = ({ id, axisOptions, parabolaValues, sh
         };
 
     if (context) {
-      const plot: IPlotConfig = drawPlot(context, axisOptionsValues, isDarkMode, theme?.axisColor);
+      const plot: IPlotConfig = DrawingToolkit.drawPlot(context, axisOptionsValues, isDarkMode, theme?.axisColor);
 
       const bottomToXAxis = sectionElement.clientHeight - (canvas.clientHeight - plot.offset.bottom);
       const leftToYAxis = sectionElement.clientWidth - (canvas.clientWidth - plot.offset.left);
@@ -92,7 +93,7 @@ const FunctionsCannon: React.FC<IProps> = ({ id, axisOptions, parabolaValues, sh
         y: -(bottomToXAxis - initialBallPos.y) / (plot.stepWidth.y / plot.stepValue.y) + plot.axis.y.from,
       };
 
-      initialBallCoord.x = solveQuadraticFn(parabolaValues.a, 1, parabolaValues.c, initialBallCoord.y); // calculates x for initial y.
+      initialBallCoord.x = MathToolkit.parabola.solveFnGivenY({ a: parabolaValues.a, b: 1, c: parabolaValues.c }, initialBallCoord.y); // calculates x for initial y.
       initialBallPos.x = leftToYAxis + (initialBallCoord.x - plot.axis.x.from) * (plot.stepWidth.x / plot.stepValue.x);
 
       /* ----------- Visual test object for debugging ---------- */
@@ -108,19 +109,27 @@ const FunctionsCannon: React.FC<IProps> = ({ id, axisOptions, parabolaValues, sh
       initCannon(cannon, initialBallPos);
       applyCannonWheelStyle(cannonWheel);
 
-      drawFunction(
+      DrawingToolkit.drawFunction(
         plot,
-        throwParabolaFunction(parabolaValues.a, parabolaValues.c),
+        MathToolkit.parabola.throw.makeFn({ a: parabolaValues.a, c: parabolaValues.c }),
         context,
         !theme?.parabolaColor ? 'rgb(200,20,220)' : isDarkMode ? theme?.parabolaColor.dark : theme?.parabolaColor.light
       );
 
-      setCannonAnimation(createCannonAnimation(cannonBodySelector));
+      setCannonAnimation(AnimationToolkit.cannon.makeCannonAnimation(cannonBodySelector));
 
       parabolaInputValues?.[0] &&
         parabolaInputValues?.[1] &&
         setCannonBallAnimation(
-          createFollowFnAnimation(cannonBall, plot, throwParabolaFunction(Number(parabolaInputValues[0]), Number(parabolaInputValues[1])), initialBallCoord, leftToYAxis, bottomToXAxis, 1.5)
+          AnimationToolkit.functions.makeFnAnimation(
+            cannonBall,
+            plot,
+            MathToolkit.parabola.throw.makeFn({ a: Number(parabolaInputValues[0]), c: Number(parabolaInputValues[1]) }),
+            initialBallCoord,
+            leftToYAxis,
+            bottomToXAxis,
+            1.5
+          )
         );
     }
   }, [sectionElement, hasPaintedSection, themeContext, cannonBall, cannonBodySelector, parabolaInputValues]);
@@ -145,7 +154,7 @@ const FunctionsCannon: React.FC<IProps> = ({ id, axisOptions, parabolaValues, sh
         <IonButton
           className={`${styles.playButton}`}
           color={isDarkMode ? theme?.playButtonColor?.dark : theme?.playButtonColor?.light}
-          onClick={() => playAnimation(cannonBall, cannonAnimation, cannonBallAnimation)}
+          onClick={() => AnimationToolkit.playAnimation(cannonBall, [cannonAnimation, cannonBallAnimation])}
         >
           <IonIcon ios={playOutline} md={playOutline} />
         </IonButton>
