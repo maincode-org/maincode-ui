@@ -5,7 +5,7 @@ export const shouldRoundAxisValues = (numberOfDashes: number, fromValue: number,
   return values.every((num) => num % 1 === 0);
 };
 
-export const enhanceCanvasQuality = (canvas: HTMLCanvasElement, simulationSize: number, wPct: number, hPct: number): CanvasRenderingContext2D | null => {
+export const enhanceCanvasQuality = (canvas: HTMLCanvasElement, simulationSize: number, wPct: number, hPct: number): CanvasRenderingContext2D => {
   const ratio = window.devicePixelRatio;
   const wPx = (wPct / 100) * simulationSize + simulationSize * 0.01;
   const hPx = (hPct / 100) * simulationSize + simulationSize * 0.01;
@@ -14,7 +14,8 @@ export const enhanceCanvasQuality = (canvas: HTMLCanvasElement, simulationSize: 
   canvas.style.width = wPx + 'px';
   canvas.style.height = hPx + 'px';
   const context = canvas.getContext('2d');
-  context?.scale(ratio, ratio);
+  if (!context) throw 'Failed to getContext of canvas';
+  context.scale(ratio, ratio);
   return context;
 };
 
