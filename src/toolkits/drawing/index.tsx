@@ -1,73 +1,81 @@
-import React from 'react';
 import { drawFunction, drawPlot, drawPlotPoint, drawPlotPoints } from './drawing-functions';
-import SimulationContainer from '../../components/simulation-components/simulation-container/SimulationContainer';
 import { enhanceCanvasQuality } from './helpers';
-import { IPlotConfig } from '../../components/simulation-components/math/types';
+import { ICoord, IPlotConfig } from '../../components/simulation-components/math/types';
+import _ from 'lodash';
 
 export const DrawingToolkit = {
-  drawPlot: drawPlot,
-  drawPoint: drawPlotPoint,
-  drawPoints: drawPlotPoints,
-  drawFunction: drawFunction,
+  makeSimulation: (id: string): Simulation => new Simulation(id),
 };
 
-class Simulation {
-  private readonly simulationId: string;
-  private readonly simulationContainer: JSX.Element;
+export type ITheme = {
+  isDarkMode: boolean;
+  plot: {
+    axisColor: { light: string; dark: string };
+  };
+  canvas: {
+    backgroundColor: { light: string; dark: string };
+  };
+};
+
+export class Simulation {
+  private readonly simulationContainer!: HTMLElement;
   private canvas!: HTMLCanvasElement;
   private canvasContext!: CanvasRenderingContext2D;
   private plotConfig!: IPlotConfig;
 
   axisOptions = { x: { from: 0, to: 10 }, y: { from: 0, to: 10 } };
-  theme = { isDarkMode: false, axisColor: { light: '#000000', dark: '#ffffff' } };
 
-  constructor(id: string) {
-    this.simulationId = id;
-    this.simulationContainer = <SimulationContainer id={id} />;
+  private theme: ITheme = {
+    isDarkMode: false,
+    plot: { axisColor: { light: '#000000', dark: '#ffffff' } },
+    canvas: { backgroundColor: { light: '#ffffff', dark: '#000000' } },
+  };
+
+  constructor(containerId: string) {
+    const sim = document.getElementById(containerId);
+    if (!sim) throw `Container id="${containerId}" not found`;
+    this.simulationContainer = sim;
   }
 
-  getSimulation = () => this.simulationContainer;
+  getSimulation = (): HTMLElement => this.simulationContainer;
 
   getBottomToXAxis = (): number => {
-    const simulationWidth = document.getElementById(this.simulationId);
+    if (!this.plotConfig) throw 'Plot not found';
 
-    if (!this.plotConfig || !simulationWidth) return -1;
-
-    return simulationWidth.clientHeight - (this.canvas.clientHeight - this.plotConfig.offset.bottom);
+    return this.simulationContainer.clientHeight - (this.canvas.clientHeight - this.plotConfig.offset.bottom);
   };
 
   getLeftToYAxis = (): number => {
-    const simulationWidth = document.getElementById(this.simulationId);
+    if (!this.plotConfig) throw 'Plot not found';
 
-    if (!this.plotConfig || !simulationWidth) return -1;
-
-    return simulationWidth.clientWidth - (this.canvas.clientWidth - this.plotConfig.offset.left);
+    return this.simulationContainer.clientWidth - (this.canvas.clientWidth - this.plotConfig.offset.left);
   };
 
-  spawnCanvas = (wPct: number, hPct: number): void => {
-    const simulationRef = document.getElementById(this.simulationId);
+  getPlotConfig = (): IPlotConfig | undefined => this.plotConfig;
 
-    if (!simulationRef) return;
+  setTheme = (theme: Partial<ITheme>): void => {
+    if (!_.isEqual(this.theme.plot, theme.plot)) {
+      this.theme = { ...this.theme, ...theme };
+      this.drawPlot();
+    }
+  };
 
-    this.canvas = new HTMLCanvasElement();
-    this.canvasContext = enhanceCanvasQuality(this.canvas, simulationRef.clientWidth, wPct, hPct);
+  spawnCanvas = (wPct: number, hPct: number, className?: string): void => {
+    this.canvas = document.createElement('canvas');
+    if (className) this.canvas.classList.add(className);
+    this.canvasContext = enhanceCanvasQuality(this.canvas, this.simulationContainer.clientWidth, wPct, hPct);
 
-    if (this.canvas) simulationRef?.appendChild(this.canvas);
+    if (this.canvas) this.simulationContainer.appendChild(this.canvas);
   };
 
   drawPlot = (): IPlotConfig => {
-    this.plotConfig = drawPlot(this.canvasContext, this.axisOptions, this.theme.isDarkMode, this.theme.axisColor);
+    this.plotConfig = drawPlot(this.canvasContext, this.axisOptions, this.theme.isDarkMode, this.theme.plot.axisColor);
     return this.plotConfig;
   };
+
+  drawFunctionOnPlot = (fn: (x: number) => number, color?: string): void => drawFunction(this.plotConfig, fn, this.canvasContext, color);
+
+  drawPointOnPlot = (coord: ICoord): void => drawPlotPoint(this.plotConfig, coord, this.canvasContext);
+
+  drawPointsOnPlot = (coords: ICoord[]): void => drawPlotPoints(this.plotConfig, coords, this.canvasContext);
 }
-
-const sim = new Simulation('cannon');
-console.log(sim);
-
-// sim = new Simulation("cannon");
-// sim.spawnCanvas(200, 200);
-//
-//
-// return (
-//  {sim.getSimulation()}
-// )

@@ -40,7 +40,7 @@ export const drawPlot = (context: CanvasRenderingContext2D, axisOptions: IAxisOp
   const yStepWidth = (canvasHeight - offset.top - offset.bottom) / yNumberOfDashes;
 
   context.strokeStyle = !axisColor ? '#000000' : isDarkMode ? axisColor.dark : axisColor.light;
-  context.fillStyle = !axisColor ? '#000000' : isDarkMode ? axisColor.dark : axisColor.light;
+  context.fillStyle = isDarkMode ? '#ffffff' : '#000000';
   context.lineWidth = 2;
 
   // y-axis
@@ -122,5 +122,6 @@ export const drawFunction = (plot: IPlotConfig, fn: (x: number) => number, conte
   }
 
   context.strokeStyle = color ?? 'rgba(9,67,131,0.5)';
+
   context.stroke();
 };
