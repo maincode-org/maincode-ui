@@ -2,13 +2,13 @@ import React, { useContext, useEffect, useState } from 'react';
 import styles from './functions-cannon.module.css';
 import Cannon from './Cannon';
 import SimulationContainer from '../../simulation-container/SimulationContainer';
-import { initCannon, applyCannonWheelStyle, initCannonBall, initTestSquare } from './style-helpers';
+import { applyCannonWheelStyle, initCannon, initCannonBall, initTestSquare } from './style-helpers';
 import { EThemeModes, ThemeContext } from 'contexts/theme';
 import { IonButton, IonIcon } from '@ionic/react';
 import { playOutline } from 'ionicons/icons';
 import MathLive from '../../../basic-components/math-live/MathLive';
 import { MathToolkit } from '../../../../toolkits/math';
-import { DrawingToolkit, Simulation } from '../../../../toolkits/drawing';
+import { DrawingToolkit, EDrawing, ITheme, Simulation } from '../../../../toolkits/drawing';
 import { AnimationToolkit } from '../../../../toolkits/animation';
 import { ICoord } from '../types';
 
@@ -19,6 +19,7 @@ type ICannonTheme = {
   parabolaColor?: { light: string; dark: string };
   playButtonColor?: { light: 'primary' | 'secondary' | 'success'; dark: 'primary' | 'secondary' | 'success' };
   axisColor?: { light: string; dark: string };
+  textColor?: { light: string; dark: string };
 };
 
 type IProps = {
@@ -120,7 +121,14 @@ const FunctionsCannon: React.FC<IProps> = ({ id, axisOptions, parabolaValues, sh
   /** Redraw when theme changes */
   useEffect(() => {
     if (!simulation) return;
-    theme?.axisColor && simulation?.setTheme({ isDarkMode: isDarkMode, plot: { axisColor: theme.axisColor } });
+
+    const localTheme: ITheme = simulation.getTheme();
+    if (theme?.axisColor) localTheme.plot.axisColor = theme.axisColor;
+    if (theme?.textColor) localTheme.canvas.textColor = theme?.textColor;
+    localTheme.isDarkMode = isDarkMode;
+    simulation?.setTheme(localTheme);
+
+    simulation.clearDrawingType(EDrawing.FUNCTION);
     simulation.drawFunctionOnPlot(MathToolkit.parabola.throw.makeFn({ a: parabolaValues.a, c: parabolaValues.c }), isDarkMode ? theme?.parabolaColor?.dark : theme?.parabolaColor?.light);
   }, [simulation, theme, isDarkMode, parabolaValues]);
 
@@ -144,7 +152,10 @@ const FunctionsCannon: React.FC<IProps> = ({ id, axisOptions, parabolaValues, sh
         <IonButton
           className={`${styles.playButton}`}
           color={isDarkMode ? theme?.playButtonColor?.dark : theme?.playButtonColor?.light}
-          onClick={() => AnimationToolkit.playAnimation(cannonBall, [cannonAnimation, cannonBallAnimation])}
+          onClick={() => {
+            AnimationToolkit.playAnimation(cannonBall, [cannonAnimation, cannonBallAnimation]);
+            simulation?.redraw();
+          }}
         >
           <IonIcon ios={playOutline} md={playOutline} />
         </IonButton>

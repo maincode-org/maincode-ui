@@ -1,7 +1,19 @@
 import { ICoord, IPlotConfig, IAxisOptions } from '../../components/simulation-components/math/types';
 import { shouldRoundAxisValues, coordToPoint, translateYPoint } from './helpers';
 
-export const drawPlot = (context: CanvasRenderingContext2D, axisOptions: IAxisOptions, isDarkMode: boolean, axisColor?: { light: string; dark: string }): IPlotConfig => {
+export type IDrawPlotArgs = {
+  context: CanvasRenderingContext2D;
+  axisOptions: IAxisOptions;
+  isDarkMode: boolean;
+  axisColor?: { light: string; dark: string };
+  textColor?: { light: string; dark: string };
+};
+
+export const drawPlot = (args: IDrawPlotArgs): IPlotConfig => {
+  const { context, axisOptions, isDarkMode, axisColor, textColor } = args;
+
+  console.log('isDarkMode', isDarkMode, args);
+
   const ratio = window.devicePixelRatio;
   const canvasWidth = context.canvas.width / ratio;
   const canvasHeight = context.canvas.height / ratio;
@@ -40,7 +52,7 @@ export const drawPlot = (context: CanvasRenderingContext2D, axisOptions: IAxisOp
   const yStepWidth = (canvasHeight - offset.top - offset.bottom) / yNumberOfDashes;
 
   context.strokeStyle = !axisColor ? '#000000' : isDarkMode ? axisColor.dark : axisColor.light;
-  context.fillStyle = isDarkMode ? '#ffffff' : '#000000';
+  context.fillStyle = !textColor ? '#000000' : isDarkMode ? textColor.dark : textColor.light;
   context.lineWidth = 2;
 
   // y-axis
@@ -97,7 +109,15 @@ export const drawPlot = (context: CanvasRenderingContext2D, axisOptions: IAxisOp
   };
 };
 
-export const drawPlotPoint = (plot: IPlotConfig, coord: ICoord, context: CanvasRenderingContext2D): void => {
+export type IDrawPlotPointArgs = {
+  plot: IPlotConfig;
+  coord: ICoord;
+  context: CanvasRenderingContext2D;
+};
+
+export const drawPlotPoint = (args: IDrawPlotPointArgs): void => {
+  const { plot, coord, context } = args;
+
   const point = coordToPoint(coord, plot);
   if (!point.isInPlotView) return;
 
@@ -106,9 +126,25 @@ export const drawPlotPoint = (plot: IPlotConfig, coord: ICoord, context: CanvasR
   context.fill();
 };
 
-export const drawPlotPoints = (plot: IPlotConfig, coords: ICoord[], context: CanvasRenderingContext2D): void => coords.forEach((c) => drawPlotPoint(plot, c, context));
+export type IDrawPlotPointsArgs = {
+  plot: IPlotConfig;
+  coords: ICoord[];
+  context: CanvasRenderingContext2D;
+};
 
-export const drawFunction = (plot: IPlotConfig, fn: (x: number) => number, context: CanvasRenderingContext2D, color?: string): void => {
+export const drawPlotPoints = (args: IDrawPlotPointsArgs): void => {
+  const { plot, coords, context } = args;
+  coords.forEach((c) => drawPlotPoint({ plot: plot, coord: c, context: context }));
+};
+
+export type IDrawFunctionArgs = {
+  plot: IPlotConfig;
+  fn: (x: number) => number;
+  context: CanvasRenderingContext2D;
+  color?: string;
+};
+export const drawFunction = (args: IDrawFunctionArgs): void => {
+  const { plot, fn, context, color } = args;
   context.beginPath();
 
   const stepSize = 0.01;
