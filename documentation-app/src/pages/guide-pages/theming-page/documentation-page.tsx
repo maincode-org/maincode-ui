@@ -55,6 +55,7 @@ const DocumentationPage: JSX.Element = (
       <b>Note</b> that this helper is called automatically when the <code>ThemeContext</code> changes, allowing for separate dark mode scrollbar styling. If you are using our <code>ThemeContext</code>
       , you don&apos;t have to import the script.
     </InfoArea>
+    <br />
     <p>The look of the scrollbar can be modified in the theme.css file through the following set of CSS theme variables:</p>
     <Table
       title='Additional variables'

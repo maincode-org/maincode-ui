@@ -6,11 +6,13 @@ const DocumentationPage: JSX.Element = (
     <p>
       The library provides a context <code>ThemeContext</code> to manage and apply the dark and light mode themes.
     </p>
-    <p>Enable it by applying the context on the root element of your app as shown below.</p>
+    <p>Enable it by first applying the context on the root element of your app as shown below.</p>
 
     <LiveCodeEditor code={darkModeExample} enablePreview={false} />
 
-    <p>And wrap the app in the ThemeProvider for the context as shown below.</p>
+    <p>
+      And then wrapping the app in the <code>ThemeProvider</code> for the context as shown below.
+    </p>
 
     <LiveCodeEditor code={contextWrapExample} enablePreview={false} />
     <br />
@@ -28,7 +30,7 @@ const DocumentationPage: JSX.Element = (
     <p>
       This approach lets you use any variable, like <code>--ion-text-color</code> in your app, and have it automatically adapt to dark mode.
     </p>
-    <h3 className='mt-3'>Setting and reading dark mode manually</h3>
+    <h3>Setting and reading dark mode manually</h3>
     <p>
       The provided <code>ThemeContext</code> allows you to toggle and read the state of the app theme. This is useful when making toggle buttons for dark mode, or adapting components dynamically based
       on theme changes.
