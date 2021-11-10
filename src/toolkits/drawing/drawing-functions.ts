@@ -12,8 +12,6 @@ export type IDrawPlotArgs = {
 export const drawPlot = (args: IDrawPlotArgs): IPlotConfig => {
   const { context, axisOptions, isDarkMode, axisColor, textColor } = args;
 
-  console.log('isDarkMode', isDarkMode, args);
-
   const ratio = window.devicePixelRatio;
   const canvasWidth = context.canvas.width / ratio;
   const canvasHeight = context.canvas.height / ratio;
