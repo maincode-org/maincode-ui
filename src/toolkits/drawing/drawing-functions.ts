@@ -1,11 +1,17 @@
-import { IAxisOptions, ICoord, IPlotConfig, IPoint } from './types';
+import { ICoord, IPlotConfig, IAxisOptions } from '../../components/simulation-components/math/types';
+import { shouldRoundAxisValues, coordToPoint, translateYPoint } from './helpers';
 
-const shouldRoundAxisValues = (numberOfDashes: number, fromValue: number, stepValue: number): boolean => {
-  const values = Array.from(Array(numberOfDashes).keys()).map((i) => fromValue + i * stepValue);
-  return values.every((num) => num % 1 === 0);
+export type IDrawPlotArgs = {
+  context: CanvasRenderingContext2D;
+  axisOptions: IAxisOptions;
+  isDarkMode: boolean;
+  axisColor?: { light: string; dark: string };
+  textColor?: { light: string; dark: string };
 };
 
-export const drawPlot = (context: CanvasRenderingContext2D, axisOptions: IAxisOptions, isDarkMode: boolean, axisColor?: { light: string; dark: string }): IPlotConfig => {
+export const drawPlot = (args: IDrawPlotArgs): IPlotConfig => {
+  const { context, axisOptions, isDarkMode, axisColor, textColor } = args;
+
   const ratio = window.devicePixelRatio;
   const canvasWidth = context.canvas.width / ratio;
   const canvasHeight = context.canvas.height / ratio;
@@ -44,7 +50,7 @@ export const drawPlot = (context: CanvasRenderingContext2D, axisOptions: IAxisOp
   const yStepWidth = (canvasHeight - offset.top - offset.bottom) / yNumberOfDashes;
 
   context.strokeStyle = !axisColor ? '#000000' : isDarkMode ? axisColor.dark : axisColor.light;
-  context.fillStyle = !axisColor ? '#000000' : isDarkMode ? axisColor.dark : axisColor.light;
+  context.fillStyle = !textColor ? '#000000' : isDarkMode ? textColor.dark : textColor.light;
   context.lineWidth = 2;
 
   // y-axis
@@ -101,37 +107,15 @@ export const drawPlot = (context: CanvasRenderingContext2D, axisOptions: IAxisOp
   };
 };
 
-export const enhanceCanvasQuality = (canvas: HTMLCanvasElement, simulationSize: number, wPct: number, hPct: number): CanvasRenderingContext2D | null => {
-  const ratio = window.devicePixelRatio;
-  const wPx = (wPct / 100) * simulationSize + simulationSize * 0.01;
-  const hPx = (hPct / 100) * simulationSize + simulationSize * 0.01;
-  canvas.width = wPx * ratio;
-  canvas.height = hPx * ratio;
-  canvas.style.width = wPx + 'px';
-  canvas.style.height = hPx + 'px';
-  const context = canvas.getContext('2d');
-  context?.scale(ratio, ratio);
-  return context;
+export type IDrawPlotPointArgs = {
+  plot: IPlotConfig;
+  coord: ICoord;
+  context: CanvasRenderingContext2D;
 };
 
-export const coordToPoint = (coord: ICoord, plot: IPlotConfig): IPoint => {
-  const { axis, stepValue, stepWidth, offset, canvasHeight } = plot;
+export const drawPlotPoint = (args: IDrawPlotPointArgs): void => {
+  const { plot, coord, context } = args;
 
-  /** The reciprocal (1/..) indicates the number of steps between a full value. Eg. step value 0.5 => 2 steps between each value. */
-  const xSteps = coord.x * stepWidth.x * (1 / stepValue.x);
-  const xFromOffset = axis.x.from * (1 / stepValue.x) * stepWidth.x;
-  const x = offset.left + xSteps - xFromOffset;
-
-  const ySteps = coord.y * stepWidth.y * (1 / stepValue.y);
-  const yFromOffset = axis.y.from * (1 / stepValue.y) * stepWidth.y;
-  const y = canvasHeight - (offset.bottom + ySteps) + yFromOffset;
-
-  const isInPlotView = coord.x >= axis.x.from && coord.x <= axis.x.to && coord.y >= axis.y.from && coord.y <= axis.y.to;
-
-  return { x, y, isInPlotView };
-};
-
-export const drawPlotPoint = (plot: IPlotConfig, coord: ICoord, context: CanvasRenderingContext2D): void => {
   const point = coordToPoint(coord, plot);
   if (!point.isInPlotView) return;
 
@@ -140,14 +124,25 @@ export const drawPlotPoint = (plot: IPlotConfig, coord: ICoord, context: CanvasR
   context.fill();
 };
 
-export const drawPlotPoints = (plot: IPlotConfig, coords: ICoord[], context: CanvasRenderingContext2D): void => coords.forEach((c) => drawPlotPoint(plot, c, context));
-
-export const translateYPoint = (plot: IPlotConfig, y: number): number => {
-  const scaledStepWidth = plot.stepWidth.y / plot.stepValue.y;
-  return plot.canvasHeight - (plot.offset.bottom + (y - plot.axis.y.from) * scaledStepWidth);
+export type IDrawPlotPointsArgs = {
+  plot: IPlotConfig;
+  coords: ICoord[];
+  context: CanvasRenderingContext2D;
 };
 
-export const drawFunction = (plot: IPlotConfig, fn: (x: number) => number, context: CanvasRenderingContext2D, color?: string): void => {
+export const drawPlotPoints = (args: IDrawPlotPointsArgs): void => {
+  const { plot, coords, context } = args;
+  coords.forEach((c) => drawPlotPoint({ plot: plot, coord: c, context: context }));
+};
+
+export type IDrawFunctionArgs = {
+  plot: IPlotConfig;
+  fn: (x: number) => number;
+  context: CanvasRenderingContext2D;
+  color?: string;
+};
+export const drawFunction = (args: IDrawFunctionArgs): void => {
+  const { plot, fn, context, color } = args;
   context.beginPath();
 
   const stepSize = 0.01;
@@ -161,5 +156,6 @@ export const drawFunction = (plot: IPlotConfig, fn: (x: number) => number, conte
   }
 
   context.strokeStyle = color ?? 'rgba(9,67,131,0.5)';
+
   context.stroke();
 };

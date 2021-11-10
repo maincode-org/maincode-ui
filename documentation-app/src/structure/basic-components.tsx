@@ -1,6 +1,6 @@
 import { InfoArea, PrettyList, MathLive, IEntityCategory } from 'maincode-ui';
 import { prepareURLPrefixComponents } from './url-prefix';
-import { infoAreaPageDocumentation } from '../pages/component-pages/basic/info-area-page/documentation-page';
+import { infoAreaPageDocumentation } from '../pages/component-pages/basic/info-area/documentation-page';
 import { prettyListPageDocumentation } from '../pages/component-pages/basic/pretty-list/documentation-page';
 import { mathLivePageDocumentation } from '../pages/component-pages/basic/math-live/documentation-page';
 

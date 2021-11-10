@@ -6,6 +6,7 @@ import { simulationComponentPages } from './simulation-components';
 import { documentationComponentPages } from './documentation-components';
 import { layoutComponentPages } from './layout-components';
 import { pageComponentPages } from './page-components';
+import { toolkitPages } from './toolkit-pages';
 
 export const allPages: IDocumentationPage[] = [
   ...guidePages,
@@ -15,5 +16,15 @@ export const allPages: IDocumentationPage[] = [
   ...layoutComponentPages.pages,
   ...pageComponentPages.pages,
   ...simulationComponentPages.pages,
+  ...toolkitPages.pages,
 ];
-export const allComponentCategoryPages: IEntityCategory[] = [basicComponentPages, codeComponentPages, documentationComponentPages, layoutComponentPages, pageComponentPages, simulationComponentPages];
+
+export const allComponentCategoryPages: IEntityCategory[] = [
+  basicComponentPages,
+  codeComponentPages,
+  documentationComponentPages,
+  layoutComponentPages,
+  pageComponentPages,
+  simulationComponentPages,
+  toolkitPages,
+];
