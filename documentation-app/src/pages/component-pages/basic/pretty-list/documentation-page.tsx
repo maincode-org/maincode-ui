@@ -9,7 +9,7 @@ export const prettyListPageDocumentation: IDocumentationPageContent = {
       description: <p>Unordered list with a neutral indicator.</p>,
       code: `
 <PrettyList
-  ordering='unordered'
+  ordering='none'
   items={['List item 1', 'List item 2', 'List item 3']}
 />`,
       scope: { PrettyList },
@@ -37,7 +37,7 @@ export const prettyListPageDocumentation: IDocumentationPageContent = {
   ],
   props: [
     { title: 'items', description: 'The list items. Can be strings or elements', required: true, type: '(React.ReactNode | string)[]' },
-    { title: 'ordering', description: 'The ordering of the list items', required: false, type: 'unordered | numerical | alphabetical', defaultValue: 'unordered' },
+    { title: 'ordering', description: 'The ordering of the list items', required: false, type: 'none | numerical | alphabetical', defaultValue: 'none' },
   ],
   styles: [{ propertyName: '--ion-color-primary-rgb', description: 'Controls the primary color of your application' }],
 };
