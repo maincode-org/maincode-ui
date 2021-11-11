@@ -1,4 +1,4 @@
-import { IDocumentationPageContent, PrettyList, Table } from 'maincode-ui';
+import { IDocumentationPageContent, PrettyList, Table, LiveCodeEditor } from 'maincode-ui';
 import { formatObject } from '../helpers';
 
 const makeFnText = (prefix: string, params: string[]) => `${prefix}.makeFn(${formatObject(params)})`;
@@ -9,7 +9,7 @@ const makeSolveGivenYText = (prefix: string, params: string[]) => `${prefix}.sol
 
 const descMaker = {
   makeFn: (prefix: string, params: string[], formula: string) => ({
-    label: <code>{makeFnText(prefix, params)}</code>,
+    label: <LiveCodeEditor enablePreview={false} code={makeFnText(prefix, params)} />,
     value: `Creates a <code>function x => y</code> of the above equation type - <code>${formula}</code>`,
   }),
   solveFnGivenY: (prefix: string, params: string[]) => ({ label: <code>{makeSolveGivenYText(prefix, params)}</code>, value: 'Solves x for a given y' }),
