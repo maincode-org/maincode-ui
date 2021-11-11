@@ -23,6 +23,12 @@ export enum EDrawing {
   POINT = 'point',
 }
 
+type ISpawnCanvasArgs = {
+  wPct: number;
+  hPct: number;
+  className?: string;
+};
+
 export class Simulation {
   private readonly simulationContainer!: HTMLElement;
   private canvas!: HTMLCanvasElement;
@@ -70,7 +76,8 @@ export class Simulation {
     this.redraw();
   };
 
-  spawnCanvas = (wPct: number, hPct: number, className?: string): void => {
+  spawnCanvas = (args: ISpawnCanvasArgs): void => {
+    const { wPct, hPct, className } = args;
     this.canvas = document.createElement('canvas');
     if (className) this.canvas.classList.add(className);
     this.canvasContext = enhanceCanvasQuality(this.canvas, this.simulationContainer.clientWidth, wPct, hPct);
@@ -95,7 +102,8 @@ export class Simulation {
     return this.plotConfig;
   };
 
-  drawFunctionOnPlot = (fn: (x: number) => number, color?: string): void => {
+  drawFunctionOnPlot = (args: { fn: (x: number) => number; color?: string }): void => {
+    const { fn, color } = args;
     const makeArgs = (ctx: Simulation): IDrawFunctionArgs => ({ plot: ctx.plotConfig, fn: fn, context: ctx.canvasContext, color: color });
     const higherOrderFn = () => drawFunction(makeArgs(this));
     const currentFunctions = this.canvasContents.get(EDrawing.FUNCTION);

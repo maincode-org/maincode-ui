@@ -10,7 +10,7 @@ const DocumentationPage: JSX.Element = (
   <>
     <p>Maincode UI offers a lot of styling through pre-defined classnames.</p>
     <PrettyList
-      ordering='unordered'
+      ordering='none'
       items={[
         <>
           This is entirely inspired by <b>Tailwind CSS</b> and can be seen as a less advanced subset of Tailwind.

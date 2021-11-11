@@ -20,11 +20,11 @@ export const allPages: IDocumentationPage[] = [
 ];
 
 export const allComponentCategoryPages: IEntityCategory[] = [
+  toolkitPages,
   basicComponentPages,
   codeComponentPages,
   documentationComponentPages,
   layoutComponentPages,
   pageComponentPages,
   simulationComponentPages,
-  toolkitPages,
 ];
