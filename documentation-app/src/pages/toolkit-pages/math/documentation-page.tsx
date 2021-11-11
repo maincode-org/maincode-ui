@@ -1,4 +1,4 @@
-import { IDocumentationPageContent, PrettyList, Table } from 'maincode-ui';
+import { IDocumentationPageContent, PrettyList, Table, LiveCodeEditor } from 'maincode-ui';
 
 const makeFnText = (prefix: string, params: string[]) => `${prefix}.makeFn({
     ${params.reduce((a, p) => `${a},\n    ${p}`)}
@@ -6,7 +6,10 @@ const makeFnText = (prefix: string, params: string[]) => `${prefix}.makeFn({
 `;
 
 const descMaker = {
-  makeFn: (prefix: string, params: string[]) => ({ label: <code>{makeFnText(prefix, params)}</code>, value: 'Creates a <code>function x => y</code> of the above equation type' }),
+  makeFn: (prefix: string, params: string[]) => ({
+    label: <LiveCodeEditor enablePreview={false} code={makeFnText(prefix, params)} />,
+    value: 'Creates a <code>function x => y</code> of the above equation type',
+  }),
   solveFnGivenY: { label: '<code>solveFnGivenY</code>', value: 'Solves x for a given y' },
   throw: { label: '<code>throw</code>', value: 'Contains the <code>makeFn</code> function which creates a function x => y of a throw parabola' },
 };
