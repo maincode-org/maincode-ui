@@ -1,5 +1,5 @@
 import gsap from 'gsap';
-import { createCannonAnimation, createFollowFnAnimation } from './make-animations';
+import { createFollowFnAnimation } from './make-animations';
 
 export const playAnimation = (element: HTMLElement | undefined, timelines: (gsap.core.Timeline | undefined)[]): void => {
   if (!timelines?.[0] || !element) return;
@@ -11,8 +11,5 @@ export const AnimationToolkit = {
   playAnimation: playAnimation,
   functions: {
     makeFnAnimation: createFollowFnAnimation,
-  },
-  cannon: {
-    makeCannonAnimation: createCannonAnimation,
   },
 };

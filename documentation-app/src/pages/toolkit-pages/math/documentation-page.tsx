@@ -1,17 +1,18 @@
 import { IDocumentationPageContent, PrettyList, Table, LiveCodeEditor } from 'maincode-ui';
+import { formatObject } from '../helpers';
 
-const makeFnText = (prefix: string, params: string[]) => `${prefix}.makeFn({
+const makeFnText = (prefix: string, params: string[]) => `${prefix}.makeFn(${formatObject(params)})`;
+
+const makeSolveGivenYText = (prefix: string, params: string[]) => `${prefix}.solveFnGivenY(
     ${params.reduce((a, p) => `${a},\n    ${p}`)}
-})
-`;
+)`;
 
 const descMaker = {
-  makeFn: (prefix: string, params: string[]) => ({
+  makeFn: (prefix: string, params: string[], formula: string) => ({
     label: <LiveCodeEditor enablePreview={false} code={makeFnText(prefix, params)} />,
-    value: 'Creates a <code>function x => y</code> of the above equation type',
+    value: `Creates a <code>function x => y</code> of the above equation type - <code>${formula}</code>`,
   }),
-  solveFnGivenY: { label: '<code>solveFnGivenY</code>', value: 'Solves x for a given y' },
-  throw: { label: '<code>throw</code>', value: 'Contains the <code>makeFn</code> function which creates a function x => y of a throw parabola' },
+  solveFnGivenY: (prefix: string, params: string[]) => ({ label: <code>{makeSolveGivenYText(prefix, params)}</code>, value: 'Solves x for a given y' }),
 };
 
 export const mathToolkitPageDocumentation: IDocumentationPageContent = {
@@ -22,9 +23,24 @@ export const mathToolkitPageDocumentation: IDocumentationPageContent = {
       <PrettyList ordering='none' items={['linear', 'exponential', 'parabola']} />
       <br />
       <p>For each of these types you have access to different utilities:</p>
-      <Table className='mb-2' title='Linear function utility support' properties={[descMaker.makeFn('linear', ['a: number', 'b: number']), descMaker.solveFnGivenY]} />
-      <Table className='mb-2' title='Exponential function utility support' properties={[descMaker.makeFn('exponential', ['a: number', 'b: number']), descMaker.solveFnGivenY]} />
-      <Table title='Parabola function utility support' properties={[descMaker.makeFn('parabola', ['a: number', 'c: number']), descMaker.solveFnGivenY, descMaker.throw]} />
+      <Table
+        className='mb-2'
+        title='Linear function utility support'
+        properties={[descMaker.makeFn('linear', ['a: number', 'b: number'], 'f(x)=ax+b'), descMaker.solveFnGivenY('linear', [formatObject(['a: number', 'b: number'], 1), 'y: number'])]}
+      />
+      <Table
+        className='mb-2'
+        title='Exponential function utility support'
+        properties={[descMaker.makeFn('exponential', ['a: number', 'b: number'], 'f(x)=a^x+b'), descMaker.solveFnGivenY('exponential', [formatObject(['a: number', 'b: number'], 1), 'y: number'])]}
+      />
+      <Table
+        title='Parabola function utility support'
+        properties={[
+          descMaker.makeFn('parabola', ['a: number', 'b: number', 'c: number'], 'f(x)=ax^2+bx+c'),
+          descMaker.solveFnGivenY('parabola', [formatObject(['a: number', 'b: number', 'c: number'], 1), 'y: number']),
+          descMaker.makeFn('parabola.throw', ['a: number', 'c: number'], 'f(x)=ax^2+x+c'),
+        ]}
+      />
     </div>
   ),
   codeExamples: [
@@ -35,6 +51,8 @@ export const mathToolkitPageDocumentation: IDocumentationPageContent = {
 import { MathToolkit } from 'maincode-ui';
 
 const myLinearFn = MathToolkit.linear.makeFn({ a: 1, b: 4 });
+
+const calcYForMyLinearFn = myLinearFn(22);
 `,
       enablePreview: false,
     },

@@ -1,20 +1,48 @@
 import { IDocumentationPageContent, Table } from 'maincode-ui';
+import { formatObject } from '../helpers';
+
+const makeMultiArgsLabelText = (functionName: string, params: string[]) => `${functionName}(
+    ${params.reduce((a, p) => `${a},\n    ${p}`)}
+)`;
+
+const makeSingleArgLabelText = (functionName: string, param: string) => `${functionName}(${param})`;
 
 const simulationClassUtilities = [
-  { label: '<code>getSimulation</code>', value: 'Returns the simulation container HTML Element' },
-  { label: '<code>getBottomToXAxis</code>', value: 'Returns the distance, in px, from the bottom of the simulation container, to the x-axis of the plot' },
-  { label: '<code>getLeftToYAxis</code>', value: 'Returns the distance, in px, from the left of the simulation container, to the y-axis of the plot' },
-  { label: '<code>getPlotConfig</code>', value: 'Returns the plotConfig object which holds plot dataa' },
-  { label: '<code>getTheme</code>', value: 'Returns the theme object which holds theme data' },
-  { label: '<code>setTheme</code>', value: 'Sets the provided changes to the theme object' },
-  { label: '<code>spawnCanvas</code>', value: 'Spawns an HTML Canvas inside the simulation container' },
-  { label: '<code>drawPlot</code>', value: 'Draws a coordinate system inside the canvas element' },
-  { label: '<code>drawFunctionOnPlot</code>', value: 'Draws the provided function as a line in the plot' },
-  { label: '<code>drawPointOnPlot</code>', value: 'Draws a point at the provided canvas (x,y) coordinate in the plot' },
-  { label: '<code>drawPointsOnPlot</code>', value: 'Draws points at the provided canvas (x,y) coordinates in the plot' },
-  { label: '<code>redraw</code>', value: 'Redraws all contents of the canvas' },
+  { label: <code>getSimulation()</code>, value: 'Returns the simulation container HTML Element' },
+  { label: <code>getBottomToXAxis()</code>, value: 'Returns the distance, in px, from the bottom of the simulation container, to the x-axis of the plot' },
+  { label: <code>getLeftToYAxis()</code>, value: 'Returns the distance, in px, from the left of the simulation container, to the y-axis of the plot' },
+  { label: <code>getPlotConfig()</code>, value: 'Returns the plotConfig object which holds plot data' },
+  { label: <code>getTheme()</code>, value: 'Returns the theme object which holds theme data' },
   {
-    label: '<code>clearDrawingType</code>',
+    label: (
+      <code>
+        {makeMultiArgsLabelText('setTheme', [
+          `${formatObject(
+            [
+              'isDarkMode: boolean',
+              `plot: ${formatObject([`axisOptions: ${formatObject(['light: string', 'dark: string'], 3)}`], 2)}`,
+              `canvas: ${formatObject([`textColor: ${formatObject(['light: string', 'dark: string'], 3)}`], 2)}`,
+            ],
+            1
+          )}`,
+        ])}
+      </code>
+    ),
+    value: 'Sets the provided changes to the theme object',
+  },
+  {
+    label: <code>{makeMultiArgsLabelText('spawnCanvas', [`${formatObject(['wPct: number', 'hPct: number', 'className?: string'], 1)}`])}</code>,
+    value: 'Spawns an HTML canvas inside the simulation container',
+  },
+  {
+    label: <code>{makeMultiArgsLabelText('drawFunctionOnPlot', [`${formatObject(['fn: (x: number) => number', 'color?: string'], 1)}`])}</code>,
+    value: 'Draws the provided function, in the provided color, in the plot.',
+  },
+  { label: <code>{makeSingleArgLabelText('drawPointOnPlot', 'coord: ICoord')}</code>, value: 'Draws a point at the provided canvas (x,y)-coordinate in the plot' },
+  { label: <code>{makeSingleArgLabelText('drawPointsOnPlot', '\n coords: ICoord[] \n')}</code>, value: 'Draws points at the provided canvas (x,y)-coordinates in the plot' },
+  { label: <code>redraw()</code>, value: 'Redraws all contents of the canvas' },
+  {
+    label: <code>{makeSingleArgLabelText('clearDrawingType', '\n "plot" | "function" | "point" \n')}</code>,
     value: 'Removes the contents of the provided drawing type. For example the parameter <code>EDrawing.FUNCTION</code> removes all currently drawn functions from the canvas',
   },
 ];
@@ -32,9 +60,8 @@ export const drawingToolkitPageDocumentation: IDocumentationPageContent = {
         title='DrawingToolkit utilities'
         properties={[
           {
-            label: '<code>makeSimulation</code>',
-            value:
-              'Takes an <code>id</code> as parameter and creates a <code>Simulation</code> class which contains a simulation container. You can use the spawnCanvas function on the Simulation class to spawn a canvas.',
+            label: <code>{makeSingleArgLabelText('makeSimulation', 'id: string')}</code>,
+            value: 'Creates a <code>Simulation</code> class which contains your simulation container. You can use the <code>spawnCanvas()</code> function on the Simulation class to spawn a canvas.',
           },
         ]}
       />
@@ -50,6 +77,8 @@ export const drawingToolkitPageDocumentation: IDocumentationPageContent = {
         </p>
       ),
       code: `
+import { DrawingToolkit, MathToolkit } from 'maincode-ui';
+
 const simulation = DrawingToolkit.makeSimulation('mySim');
 
 simulation.spawnCanvas({ wPct: 90, hPct: 90 });

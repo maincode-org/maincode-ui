@@ -1,20 +1,49 @@
 import { IDocumentationPageContent, PrettyList, Table } from 'maincode-ui';
+import { formatObject } from '../helpers';
+
+const makePlayAnimationText = (prefix: string, params: string[]) => `${prefix}.playAnimation(${formatObject(params)})`;
+const makeMakeFnAnimationText = (prefix: string, params: string[]) => `${prefix}.makeFnAnimation(${formatObject(params)})`;
 
 export const animationToolkitPageDocumentation: IDocumentationPageContent = {
-  description: <p>Make cool animation - for example for educational purposes.</p>,
+  description: <p>Make cool animations - for example for educational purposes.</p>,
   mainText: (
     <>
       <p>
         In this toolkit you will be able to work with animations on any HTML element. The toolkit uses <a href='https://greensock.com/gsap/'>GSAP</a> - a fast and popular animation library. The
         toolkit is, in addition to general purpose utilities, divided into purposes for which you would want to use animations.
-        <PrettyList ordering='none' items={['functions', 'cannon']} />
-        <Table className='mb-2' title='General purpose utilities' properties={[{ label: '<code>playAnimation</code>', value: 'Executes the animations of the given array of GSAP timelines.' }]} />
+        <PrettyList ordering='none' items={['functions']} />
+        <Table
+          className='mb-2'
+          title='General purpose utilities'
+          properties={[
+            {
+              label: <code>{makePlayAnimationText('', ['element: HTMLElement', 'timelines: gsap.Timeline[]'])}</code>,
+              value: 'Executes the animations of the given array of GSAP timelines. The GSAP Timeline type is gsap.core.Timeline when imported from the library.',
+            },
+          ]}
+        />
         <Table
           className='mb-2'
           title='Function animations'
-          properties={[{ label: '<code>makeFnAnimation</code>', value: 'Creates a GSAP timeline which animates a trajectory given by a function on a given HTML element. ' }]}
+          properties={[
+            {
+              label: (
+                <code>
+                  {makeMakeFnAnimationText('functions', [
+                    'element: HTMLElement',
+                    'plot: IPlotConfig',
+                    'fn: (x: number) => number',
+                    'initialCoord: ICoord',
+                    'leftToYAxis: number',
+                    'bottomToXAxis: number',
+                    'duration: number',
+                  ])}
+                </code>
+              ),
+              value: 'Creates a GSAP timeline which animates a trajectory given by a function on a given HTML element.',
+            },
+          ]}
         />
-        <Table title='Cannon animations' properties={[{ label: '<code>makeCannonAnimation</code>', value: 'Creates a GSAP timeline which animates a recoil effect on a given HTML element.' }]} />
       </p>
     </>
   ),
@@ -22,7 +51,7 @@ export const animationToolkitPageDocumentation: IDocumentationPageContent = {
     {
       title: 'Create an animation',
       code: `
-import { AnimationToolkit } from 'maincode-ui';
+import { AnimationToolkit, DrawingToolkit } from 'maincode-ui';
 
 const myAnimation = AnimationToolkit.functions.makeFnAnimation(
   cannonBall,
