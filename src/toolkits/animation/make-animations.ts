@@ -1,15 +1,6 @@
 import gsap from 'gsap';
 import { ICoord, IPlotConfig } from '../../components/simulation-components/math/types';
 
-export const createCannonAnimation = (cannonBody: string): gsap.core.Timeline => {
-  const animationTimeline = gsap.timeline();
-  animationTimeline.to(cannonBody, { duration: 0.1, transform: 'rotateZ(-10deg)' });
-  animationTimeline.to(cannonBody, { duration: 0.2, transform: 'rotateZ(0deg)' });
-
-  animationTimeline.pause();
-  return animationTimeline;
-};
-
 export const createFollowFnAnimation = (
   element: HTMLElement,
   plot: IPlotConfig,

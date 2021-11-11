@@ -11,6 +11,7 @@ import { MathToolkit } from '../../../../toolkits/math';
 import { DrawingToolkit, EDrawing, ITheme, Simulation } from '../../../../toolkits/drawing';
 import { AnimationToolkit } from '../../../../toolkits/animation';
 import { ICoord } from '../types';
+import { createCannonAnimation } from './animations';
 
 type IPos = ICoord;
 
@@ -96,7 +97,7 @@ const FunctionsCannon: React.FC<IProps> = ({ id, axisOptions, parabolaValues, sh
     initCannon(cannon, initialBallPos);
     applyCannonWheelStyle(cannonWheel);
 
-    setCannonAnimation(AnimationToolkit.cannon.makeCannonAnimation(cannonBodySelector));
+    setCannonAnimation(createCannonAnimation(cannonBodySelector));
   }, [sectionElement, hasPaintedSection, themeContext]);
 
   /** Calibrate cannonBall path on math input change */
