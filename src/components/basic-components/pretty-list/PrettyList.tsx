@@ -5,12 +5,12 @@ import { chevronForwardOutline } from 'ionicons/icons';
 
 type IProps = {
   items: (React.ReactNode | string)[];
-  ordering?: 'unordered' | 'numeric' | 'alphabetic';
+  ordering?: 'none' | 'numerical' | 'alphabetical';
   className?: string;
 };
 
-const PrettyList: React.FC<IProps> = ({ items, ordering = 'unordered', className = '' }) => {
-  return ordering === 'unordered' ? (
+const PrettyList: React.FC<IProps> = ({ items, ordering = 'none', className = '' }) => {
+  return ordering === 'none' ? (
     <PrettyUL items={items} className={`${className} ${styles.container}`} />
   ) : (
     <PrettyOL items={items} ordering={ordering} className={`${className} ${styles.container}`} />
@@ -35,7 +35,7 @@ const PrettyOL: React.FC<IProps> = ({ items, ordering, className = '' }) => {
   const alphabet = 'abcdefghijklmnopqrstuvwxyz';
   const listItem = (index: number, item: React.ReactNode | string) => (
     <li className='flex flex-row m-05' key={index}>
-      <p className={`${styles.OLNumberLabel} flex justify-center items-center`}>{ordering === 'numeric' ? index + 1 : alphabet[index]}</p>
+      <p className={`${styles.OLNumberLabel} flex justify-center items-center`}>{ordering === 'numerical' ? index + 1 : alphabet[index]}</p>
       <p className='ml-1'>{item}</p>
     </li>
   );
