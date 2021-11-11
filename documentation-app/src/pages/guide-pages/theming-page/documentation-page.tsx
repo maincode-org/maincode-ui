@@ -33,7 +33,7 @@ const DocumentationPage: JSX.Element = (
         { label: '<code>--border-color</code>', value: 'Modifies the border color set on Maincode UI components' },
         { label: '<code>--color-glass</code>', value: 'Modifies the coloring of elements with the glassy background effects' },
         { label: '<code>--border-glass</code>', value: 'Modifies the supplementary border color for elements with the glassy background effect' },
-        { label: '<code>--shadow</code>', value: 'Modifies the theme-shadow. This is used on selective Maincode UI elements.' },
+        { label: '<code>--shadow</code>', value: 'Modifies the theme-shadow. This is used on selective Maincode UI elements' },
         { label: '<code>--card-shadow</code>', value: 'Modifies the custom card shadow - used on Maincode UI cards only' },
         { label: '<code>--code-background-color</code>', value: 'Modifies the background color of the code HTML element' },
       ]}
