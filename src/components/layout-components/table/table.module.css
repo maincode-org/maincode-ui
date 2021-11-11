@@ -6,15 +6,16 @@
   border-radius: 8px;
   border-collapse: separate;
   color: var(--ion-text-color);
+  white-space: pre-wrap;
+}
+.table h4 {
+  margin: 0;
+  text-align: left;
 }
 
-.table thead td:first-child {
+.table th {
   border-top-left-radius: 8px;
-  border-right: none;
-}
-.table thead td:last-child {
   border-top-right-radius: 8px;
-  border-left: none;
 }
 .table tbody tr:last-child td:first-child {
   border-bottom-left-radius: 8px;

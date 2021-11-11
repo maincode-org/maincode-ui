@@ -40,6 +40,7 @@ code {
   font-family: 'Tomorrow', sans-serif;
   letter-spacing: 0.06rem;
   line-height: 2rem;
+  display: inline-block;
   color: var(--ion-text-color);
   background-color: var(--code-background-color);
   padding: 3px 6px;
