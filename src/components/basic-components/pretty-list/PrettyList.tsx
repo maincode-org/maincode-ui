@@ -5,12 +5,12 @@ import { chevronForwardOutline } from 'ionicons/icons';
 
 type IProps = {
   items: (React.ReactNode | string)[];
-  ordering?: 'unordered' | 'numerical' | 'alphabetical';
+  ordering?: 'none' | 'numerical' | 'alphabetical';
   className?: string;
 };
 
-const PrettyList: React.FC<IProps> = ({ items, ordering = 'unordered', className = '' }) => {
-  return ordering === 'unordered' ? (
+const PrettyList: React.FC<IProps> = ({ items, ordering = 'none', className = '' }) => {
+  return ordering === 'none' ? (
     <PrettyUL items={items} className={`${className} ${styles.container}`} />
   ) : (
     <PrettyOL items={items} ordering={ordering} className={`${className} ${styles.container}`} />

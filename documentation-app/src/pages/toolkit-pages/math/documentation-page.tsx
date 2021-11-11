@@ -11,7 +11,7 @@ export const mathToolkitPageDocumentation: IDocumentationPageContent = {
   mainText: (
     <div className='mt-4'>
       <p>In this toolkit you will be able to work with the following equation types:</p>
-      <PrettyList ordering='unordered' items={['linear', 'exponential', 'parabola']} />
+      <PrettyList ordering='none' items={['linear', 'exponential', 'parabola']} />
       <p>For each of these types you have access to different utilities:</p>
       <Table className='mb-2' title='Linear function utility support' properties={[utilityDescriptions.makeFn, utilityDescriptions.solveFnGivenY]} />
       <Table className='mb-2' title='Exponential function utility support' properties={[utilityDescriptions.makeFn, utilityDescriptions.solveFnGivenY]} />

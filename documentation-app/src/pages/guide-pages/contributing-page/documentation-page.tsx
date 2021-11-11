@@ -32,7 +32,7 @@ const DocumentationPage: JSX.Element = (
     <h4>Library structure</h4>
     <p>Please notice how the logic is grouped in the following folder structure:</p>
     <PrettyList
-      ordering='unordered'
+      ordering='none'
       items={[
         <>
           <code>/styles</code> contain the different stylesheets with their own logical CSS overwrites. See the usage example for an explanation on the difference.

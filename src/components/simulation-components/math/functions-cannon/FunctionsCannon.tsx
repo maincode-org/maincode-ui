@@ -64,7 +64,7 @@ const FunctionsCannon: React.FC<IProps> = ({ id, axisOptions, parabolaValues, sh
     const localSimulation = DrawingToolkit.makeSimulation(id);
     setSimulation(localSimulation);
 
-    localSimulation.spawnCanvas(82, 82, styles.canvas);
+    localSimulation.spawnCanvas({ wPct: 82, hPct: 82, className: styles.canvas });
     if (axisOptions) localSimulation.axisOptions = axisOptions;
     const plot = localSimulation.drawPlot();
 
@@ -129,7 +129,10 @@ const FunctionsCannon: React.FC<IProps> = ({ id, axisOptions, parabolaValues, sh
     simulation?.setTheme(localTheme);
 
     simulation.clearDrawingType(EDrawing.FUNCTION);
-    simulation.drawFunctionOnPlot(MathToolkit.parabola.throw.makeFn({ a: parabolaValues.a, c: parabolaValues.c }), isDarkMode ? theme?.parabolaColor?.dark : theme?.parabolaColor?.light);
+    simulation.drawFunctionOnPlot({
+      fn: MathToolkit.parabola.throw.makeFn({ a: parabolaValues.a, c: parabolaValues.c }),
+      color: isDarkMode ? theme?.parabolaColor?.dark : theme?.parabolaColor?.light,
+    });
   }, [simulation, theme, isDarkMode, parabolaValues]);
 
   const onSectionPaint = (sectionElement: HTMLElement) => {

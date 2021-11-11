@@ -3,7 +3,7 @@ import { ComponentPreviewGallery, IDocumentationPage, PrettyList } from 'maincod
 export const makeOverviewContent = (previews: { title: string; pages: IDocumentationPage[] }[]): JSX.Element => (
   <>
     <PrettyList
-      ordering='unordered'
+      ordering='none'
       items={[
         <>
           <b>Simplistic but customizable.</b> The components are high level and include several sub-components. It trades some customization for less development time. We gradually expand our use-case
