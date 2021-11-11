@@ -1,7 +1,12 @@
 import { IDocumentationPageContent, PrettyList, Table } from 'maincode-ui';
 
-const utilityDescriptions = {
-  makeFn: { label: '<code>makeFn</code>', value: 'Creates a function x => y of the above equation type' },
+const makeFnText = (prefix: string, params: string[]) => `${prefix}.makeFn({
+    ${params.reduce((a, p) => `${a},\n    ${p}`)}
+})
+`;
+
+const descMaker = {
+  makeFn: (prefix: string, params: string[]) => ({ label: <code>{makeFnText(prefix, params)}</code>, value: 'Creates a <code>function x => y</code> of the above equation type' }),
   solveFnGivenY: { label: '<code>solveFnGivenY</code>', value: 'Solves x for a given y' },
   throw: { label: '<code>throw</code>', value: 'Contains the <code>makeFn</code> function which creates a function x => y of a throw parabola' },
 };
@@ -9,13 +14,14 @@ const utilityDescriptions = {
 export const mathToolkitPageDocumentation: IDocumentationPageContent = {
   description: <p>Everything you need to work with mathematical functions.</p>,
   mainText: (
-    <div className='mt-4'>
+    <div>
       <p>In this toolkit you will be able to work with the following equation types:</p>
       <PrettyList ordering='none' items={['linear', 'exponential', 'parabola']} />
+      <br />
       <p>For each of these types you have access to different utilities:</p>
-      <Table className='mb-2' title='Linear function utility support' properties={[utilityDescriptions.makeFn, utilityDescriptions.solveFnGivenY]} />
-      <Table className='mb-2' title='Exponential function utility support' properties={[utilityDescriptions.makeFn, utilityDescriptions.solveFnGivenY]} />
-      <Table title='Parabola function utility support' properties={[utilityDescriptions.makeFn, utilityDescriptions.solveFnGivenY, utilityDescriptions.throw]} />
+      <Table className='mb-2' title='Linear function utility support' properties={[descMaker.makeFn('linear', ['a: number', 'b: number']), descMaker.solveFnGivenY]} />
+      <Table className='mb-2' title='Exponential function utility support' properties={[descMaker.makeFn('exponential', ['a: number', 'b: number']), descMaker.solveFnGivenY]} />
+      <Table title='Parabola function utility support' properties={[descMaker.makeFn('parabola', ['a: number', 'c: number']), descMaker.solveFnGivenY, descMaker.throw]} />
     </div>
   ),
   codeExamples: [

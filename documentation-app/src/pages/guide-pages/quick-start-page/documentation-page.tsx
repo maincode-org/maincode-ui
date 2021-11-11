@@ -42,7 +42,7 @@ const DocumentationPage: JSX.Element = (
       </a>{' '}
       which can be monitored for updates.
     </InfoArea>
-    <h3 className='mt-3'>Usage</h3>
+    <h3>Usage</h3>
     <p>For documentation on each individual component, please visit the specific showcases or the overview page.</p>
     <p>
       The code below is the minimum needed to get started with a <b>Maincode UI</b> app, and spawning a <a href={`${urlPrefix}/copy-area`}>CopyArea</a> component identical to the first command on this

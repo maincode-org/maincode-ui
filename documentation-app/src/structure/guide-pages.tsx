@@ -33,7 +33,7 @@ export const guidePages: IDocumentationPage[] = prepareURLPrefixGuides([
         <b>Maincode UI</b> strives to deliver quickly integratable components to supplement <b>Ionic</b> or other <b>React.js</b> applications. It is:
       </p>
     ),
-    customContent: makeOverviewContent(overviewContent),
+    mainText: makeOverviewContent(overviewContent),
   },
   {
     url: '/quick-start',

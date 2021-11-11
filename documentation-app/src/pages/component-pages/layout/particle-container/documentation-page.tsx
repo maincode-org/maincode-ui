@@ -3,15 +3,9 @@ import ParticleControlDemo from './particle-control-demo/ParticleControlDemo';
 import { minimalExample } from './code-examples';
 
 export const particleContainerDocumentation: IDocumentationPageContent = {
-  description: (
+  customContent: (
     <>
-      <p>
-        Create engaging{' '}
-        <a href='https://github.com/matteobruni/tsparticles' target='_blank' rel='noreferrer'>
-          ts-particles
-        </a>{' '}
-        animated backgrounds!
-      </p>
+      <h3 className='mt-2 mb-2'>🚀 Landing page example</h3>
       <ParticleControlDemo />
       <InfoArea className='mt-1'>
         The above example is constructed using a <code>ParticleContainer</code> with a background image controlled through an <code>IonFab</code> in the top left corner. The glass boxes are just
@@ -22,9 +16,14 @@ export const particleContainerDocumentation: IDocumentationPageContent = {
       </InfoArea>
     </>
   ),
+  description: (
+    <p>
+      Create engaging <code>ts-particles</code> animated backgrounds!
+    </p>
+  ),
   codeExamples: [
     {
-      title: 'Minimal application',
+      title: 'Minimal example',
       code: minimalExample,
       description: (
         <>

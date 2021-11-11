@@ -1,36 +1,26 @@
 import { IDocumentationPageContent, InfoArea } from 'maincode-ui';
 
 export const infoAreaPageDocumentation: IDocumentationPageContent = {
-  description: <p>Emphasize texts, create tooltips etc. with a themed text information area.</p>,
+  description: <p>Emphasize texts, expose important details and more, with a themed text information area.</p>,
   codeExamples: [
     {
       title: 'Emphasize small paragraph',
       description: <>InfoArea can be used to emphasize a paragraph of text.</>,
       code: `
 <InfoArea className="m-2">
-  <p>
-    You can emphasize a paragraph by using the InfoArea component.
+    You can emphasize a paragraph by using the <code>InfoArea</code> component.
     It makes the text stand out, and it uses your theming variables.
-  </p>
-  </InfoArea>`,
-      scope: { InfoArea },
-    },
-    {
-      title: 'Tips',
-      description: <>InfoArea can be used to make a styled tip.</>,
-      code: `
-<InfoArea className="m-2">
-  <p>Tip: You can make pretty tips.</p>
 </InfoArea>`,
       scope: { InfoArea },
     },
+
     {
       title: 'Children can be anything',
       description: <>Get creative - you can provide any HTML element.</>,
       code: `
 <InfoArea className="m-2">
   <p>
-    InfoArea using a link
+    <code>InfoArea</code> with a link
     - <a href="https://maincode-org.github.io/maincode-ui/overview">
     See documentation page</a>
   </p>
@@ -48,7 +38,7 @@ export const infoAreaPageDocumentation: IDocumentationPageContent = {
     },
     {
       title: 'children',
-      description: 'The children of which the InfoArea is wrapped around.',
+      description: 'The children of which the InfoArea is wrapped around',
       type: 'React.ReactNode',
       required: false,
       defaultValue: 'none',
@@ -58,6 +48,10 @@ export const infoAreaPageDocumentation: IDocumentationPageContent = {
     {
       propertyName: '--ion-color-primary-rgb',
       description: 'Controls the primary color of your application',
+    },
+    {
+      propertyName: '--ion-text-color',
+      description: 'Controls the color of the text within the area',
     },
   ],
 };

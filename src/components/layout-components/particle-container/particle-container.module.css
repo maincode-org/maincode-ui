@@ -3,6 +3,8 @@
   position: absolute !important;
   transition: background-image 1s ease-in-out;
   z-index: -1;
+  width: 100%;
+  height: 100%;
 }
 
 .backgroundParticles .animation {
