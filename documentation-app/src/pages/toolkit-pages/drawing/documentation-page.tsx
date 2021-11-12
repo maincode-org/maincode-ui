@@ -108,7 +108,7 @@ simulation.drawFunctionOnPlot(
       enablePreview: false,
     },
     {
-      title: 'Actual example - Draw a function',
+      title: 'Actual example - Draw a quadratic function',
       description: <p>Spawning a canvas, a plot and a function within the plot, using the SimulationContainer component.</p>,
       code: `
 () => {
