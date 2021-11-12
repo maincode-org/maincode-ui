@@ -16,20 +16,20 @@ export const mathLivePageDocumentation: IDocumentationPageContent = {
       <h3>{'>'} Basic example</h3>
       <p>Display mathematically correct formulas. The following code:</p>
 
-      <LiveCodeEditor enablePreview={false} code={'<MathLive formula="f(x)=2x²+3+\\pi" />'} />
+      <LiveCodeEditor enablePreview={false} code={'<MathLive formula="f(x)=2x^2+3+\\pi" />'} />
 
       <p>Produces the below input field:</p>
 
-      <MathLive formula='f(x)=2x²+3+\pi' />
+      <MathLive formula='f(x)=2x^2+3+\pi' />
 
       <h3>{'>'} Placeholders</h3>
       <p>Use placeholders to indicate missing values. The following code:</p>
 
-      <LiveCodeEditor enablePreview={false} code={'<MathLive formula="f(x)=2x²+3x+\\placeholder{}" />'} />
+      <LiveCodeEditor enablePreview={false} code={'<MathLive formula="f(x)=2x^2+3x+\\placeholder{}" />'} />
 
       <p>Produces the below input field, with an editable placeholder. Editing the formula is currently disabled.</p>
 
-      <MathLive formula='f(x)=2x²+3x+\placeholder{}' />
+      <MathLive formula='f(x)=2x^2+3x+\placeholder{}' />
     </>
   ),
   props: [
