@@ -1,4 +1,4 @@
-import { IDocumentationPageContent, PrettyList, Table } from 'maincode-ui';
+import { IDocumentationPageContent, PrettyList, Table, LiveCodeEditor } from 'maincode-ui';
 import { formatObject } from '../helpers';
 
 const makePlayAnimationText = (prefix: string, params: string[]) => `${prefix}.playAnimation(${formatObject(params)})`;
@@ -17,7 +17,7 @@ export const animationToolkitPageDocumentation: IDocumentationPageContent = {
           title='General purpose utilities'
           properties={[
             {
-              label: <code>{makePlayAnimationText('', ['element: HTMLElement', 'timelines: gsap.Timeline[]'])}</code>,
+              label: <LiveCodeEditor enablePreview={false} code={makePlayAnimationText('', ['element: HTMLElement', 'timelines: gsap.Timeline[]'])} />,
               value: 'Executes the animations of the given array of GSAP timelines. The GSAP Timeline type is gsap.core.Timeline when imported from the library.',
             },
           ]}
@@ -28,8 +28,9 @@ export const animationToolkitPageDocumentation: IDocumentationPageContent = {
           properties={[
             {
               label: (
-                <code>
-                  {makeMakeFnAnimationText('functions', [
+                <LiveCodeEditor
+                  enablePreview={false}
+                  code={makeMakeFnAnimationText('functions', [
                     'element: HTMLElement',
                     'plot: IPlotConfig',
                     'fn: (x: number) => number',
@@ -38,7 +39,7 @@ export const animationToolkitPageDocumentation: IDocumentationPageContent = {
                     'bottomToXAxis: number',
                     'duration: number',
                   ])}
-                </code>
+                />
               ),
               value: 'Creates a GSAP timeline which animates a trajectory given by a function on a given HTML element.',
             },
@@ -68,12 +69,12 @@ const myAnimation = AnimationToolkit.functions.makeFnAnimation(
     {
       title: 'Plays an animation',
       code: `
-import { AnimationToolkit } from 'maincode-ui';
+import { AnimationToolkit, MathToolkit } from 'maincode-ui';
 
 const myAnimation = AnimationToolkit.functions.makeFnAnimation(
   cannonBall,
-  plot,
-  MathToolkit.parabola.throw.makeFn({ a: Number(parabolaInputValues[0]), c: Number(parabolaInputValues[1]) }),
+  DrawingToolkit.getPlotConfig(),
+  MathToolkit.parabola.throw.makeFn({ a: 0.2), c: 3 }),
   {x: 10, y: 10},
   20,
   20,

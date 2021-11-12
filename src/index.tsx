@@ -16,6 +16,12 @@ export { EThemeModes, ThemeContext, ThemeProvider };
 import { styleScrollbars } from './utilities/style-scrollbar';
 export { styleScrollbars };
 
+/** Toolkits */
+import { MathToolkit } from './toolkits/math';
+import { AnimationToolkit } from './toolkits/animation';
+import { DrawingToolkit } from './toolkits/drawing';
+export { MathToolkit, AnimationToolkit, DrawingToolkit };
+
 /** Basic Components -------------------------------- */
 import InfoArea from './components/basic-components/info-area/InfoArea';
 import PrettyList from './components/basic-components/pretty-list/PrettyList';
@@ -51,8 +57,9 @@ import Menu from './components/page-components/menu/Menu';
 import Header from './components/page-components/header/Header';
 
 /** Simulation Components --------------------------- */
+import SimulationContainer from './components/simulation-components/simulation-container/SimulationContainer';
 import FunctionsCannon, { IFunctionCannon } from './components/simulation-components/math/functions-cannon/FunctionsCannon';
-export { FunctionsCannon };
+export { SimulationContainer, FunctionsCannon };
 export type { IFunctionCannon };
 
 export { PaginationFooter, Menu, Header };
