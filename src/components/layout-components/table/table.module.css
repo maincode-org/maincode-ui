@@ -23,11 +23,3 @@
 .table tbody tr:last-child td:last-child {
   border-bottom-right-radius: 8px;
 }
-
-.left {
-  width: 20%;
-}
-
-.right {
-  width: 80%;
-}

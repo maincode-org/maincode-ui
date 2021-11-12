@@ -12,6 +12,13 @@ export const tablePageDocumentation: IDocumentationPageContent = {
   ],
   props: [
     { title: 'title', description: 'The title of the table', required: true, type: 'string | JSX.Element' },
+    {
+      title: 'leftWidthPct',
+      description: 'The width, in percentage, of the first column in the table. The second column width is automatically calculated.',
+      required: false,
+      type: 'number',
+      defaultValue: '20',
+    },
     { title: 'properties', description: 'A collection of label + value pairs used to render the contents of the table', required: true, type: '({ label: string; value: string } | undefined)[]' },
     { title: 'className', description: 'Classes for custom styling', required: false, type: 'string', defaultValue: '""' },
   ],
