@@ -15,6 +15,7 @@ export const animationToolkitPageDocumentation: IDocumentationPageContent = {
         <Table
           className='mb-2'
           title='General purpose utilities'
+          leftWidthPct={50}
           properties={[
             {
               label: <LiveCodeEditor enablePreview={false} code={makePlayAnimationText('', ['element: HTMLElement', 'timelines: gsap.Timeline[]'])} />,
@@ -25,6 +26,7 @@ export const animationToolkitPageDocumentation: IDocumentationPageContent = {
         <Table
           className='mb-2'
           title='Function animations'
+          leftWidthPct={50}
           properties={[
             {
               label: (

@@ -4,7 +4,7 @@ import { formatObject } from '../helpers';
 const makeFnText = (prefix: string, params: string[]) => `${prefix}.makeFn(${formatObject(params)})`;
 
 const makeSolveGivenYText = (prefix: string, params: string[]) => `${prefix}.solveFnGivenY(
-    ${params.reduce((a, p) => `${a},\n    ${p}`)}
+  ${params.reduce((a, p) => `${a},\n  ${p}`)}
 )`;
 
 const descMaker = {
@@ -26,15 +26,18 @@ export const mathToolkitPageDocumentation: IDocumentationPageContent = {
       <Table
         className='mb-2'
         title='Linear function utility support'
+        leftWidthPct={40}
         properties={[descMaker.makeFn('linear', ['a: number', 'b: number'], 'f(x)=ax+b'), descMaker.solveFnGivenY('linear', [formatObject(['a: number', 'b: number'], 1), 'y: number'])]}
       />
       <Table
         className='mb-2'
         title='Exponential function utility support'
+        leftWidthPct={40}
         properties={[descMaker.makeFn('exponential', ['a: number', 'b: number'], 'f(x)=a^x+b'), descMaker.solveFnGivenY('exponential', [formatObject(['a: number', 'b: number'], 1), 'y: number'])]}
       />
       <Table
         title='Parabola function utility support'
+        leftWidthPct={40}
         properties={[
           descMaker.makeFn('parabola', ['a: number', 'b: number', 'c: number'], 'f(x)=ax^2+bx+c'),
           descMaker.solveFnGivenY('parabola', [formatObject(['a: number', 'b: number', 'c: number'], 1), 'y: number']),

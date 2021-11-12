@@ -2,7 +2,7 @@ import { IDocumentationPageContent, DrawingToolkit, MathToolkit, SimulationConta
 import { formatObject } from '../helpers';
 
 const makeMultiArgsLabelText = (functionName: string, params: string[]) => `${functionName}(
-    ${params.reduce((a, p) => `${a},\n    ${p}`)}
+  ${params.reduce((a, p) => `${a},\n  ${p}`)}
 )`;
 
 const makeSingleArgLabelText = (functionName: string, param: string) => `${functionName}(${param})`;
@@ -48,14 +48,17 @@ const simulationClassUtilities = [
     label: <LiveCodeEditor enablePreview={false} code={makeMultiArgsLabelText('drawFunctionOnPlot', [`${formatObject(['fn: (x: number) => number', 'color?: string'], 1)}`])} />,
     value: 'Draws the provided function, in the provided color, in the plot.',
   },
-  { label: <LiveCodeEditor enablePreview={false} code={makeSingleArgLabelText('drawPointOnPlot', 'coord: ICoord')} />, value: 'Draws a point at the provided canvas (x,y)-coordinate in the plot' },
   {
-    label: <LiveCodeEditor enablePreview={false} code={makeSingleArgLabelText('drawPointsOnPlot', '\n coords: ICoord[] \n')} />,
+    label: <LiveCodeEditor enablePreview={false} code={makeMultiArgsLabelText('drawPointOnPlot', [`${formatObject(['x: number', 'y: number'], 1)}`])} />,
+    value: 'Draws a point at the provided canvas (x,y)-coordinate in the plot',
+  },
+  {
+    label: <LiveCodeEditor enablePreview={false} code={makeSingleArgLabelText('drawPointsOnPlot', `\n  ${formatObject(['x: number', 'y: number'], 1)}[]\n`)} />,
     value: 'Draws points at the provided canvas (x,y)-coordinates in the plot',
   },
   { label: <LiveCodeEditor enablePreview={false} code='redraw()' />, value: 'Redraws all contents of the canvas' },
   {
-    label: <LiveCodeEditor enablePreview={false} code={makeSingleArgLabelText('clearDrawingType', '\n "plot" | "function" | "point" \n')} />,
+    label: <LiveCodeEditor enablePreview={false} code={makeSingleArgLabelText('clearDrawingType', '\n  "plot" |\n  "function" | \n  "point"\n')} />,
     value: 'Removes the contents of the provided drawing type. For example the parameter <code>EDrawing.FUNCTION</code> removes all currently drawn functions from the canvas',
   },
 ];
@@ -71,6 +74,7 @@ export const drawingToolkitPageDocumentation: IDocumentationPageContent = {
       <Table
         className='mb-2'
         title='DrawingToolkit utilities'
+        leftWidthPct={50}
         properties={[
           {
             label: <LiveCodeEditor enablePreview={false} code={makeSingleArgLabelText('makeSimulation', 'id: string')} />,
@@ -78,7 +82,7 @@ export const drawingToolkitPageDocumentation: IDocumentationPageContent = {
           },
         ]}
       />
-      <Table title='Simulation class utilities' properties={simulationClassUtilities} />
+      <Table title='Simulation class utilities' leftWidthPct={50} properties={simulationClassUtilities} />
     </>
   ),
   codeExamples: [

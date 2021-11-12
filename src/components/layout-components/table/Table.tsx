@@ -4,11 +4,12 @@ import parse from 'html-react-parser';
 
 type IProps = {
   title: string | JSX.Element;
+  leftWidthPct?: number;
   properties: ({ label: string | JSX.Element; value: string | JSX.Element } | undefined)[];
   className?: string;
 };
 
-const Table: React.FC<IProps> = ({ title, properties, className = '' }) => {
+const Table: React.FC<IProps> = ({ title, leftWidthPct, properties, className = '' }) => {
   return (
     <table className={`w-full glass-bg shadow-md ${styles.table} ${className}`}>
       <thead className='theme-border w-full rounded-md'>
@@ -23,8 +24,12 @@ const Table: React.FC<IProps> = ({ title, properties, className = '' }) => {
           properties.map((p, i) =>
             p ? (
               <tr key={i} className={styles.row}>
-                <td className={`${styles.left} p-1 theme-border`}>{typeof p.label === 'string' ? parse(p.label) : p.label}</td>
-                <td className={`${styles.right} p-1 theme-border`}>{typeof p.value === 'string' ? parse(p.value) : p.value}</td>
+                <td style={{ width: `${leftWidthPct ?? 20}%` }} className='p-1 theme-border'>
+                  {typeof p.label === 'string' ? parse(p.label) : p.label}
+                </td>
+                <td style={{ width: `${leftWidthPct ? 100 - leftWidthPct : 80}%` }} className='p-1 theme-border'>
+                  {typeof p.value === 'string' ? parse(p.value) : p.value}
+                </td>
               </tr>
             ) : undefined
           )}
