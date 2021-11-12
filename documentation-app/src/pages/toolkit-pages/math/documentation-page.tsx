@@ -12,7 +12,7 @@ const descMaker = {
     label: <LiveCodeEditor enablePreview={false} code={makeFnText(prefix, params)} />,
     value: `Creates a <code>function x => y</code> of the above equation type - <code>${formula}</code>`,
   }),
-  solveFnGivenY: (prefix: string, params: string[]) => ({ label: <code>{makeSolveGivenYText(prefix, params)}</code>, value: 'Solves x for a given y' }),
+  solveFnGivenY: (prefix: string, params: string[]) => ({ label: <LiveCodeEditor enablePreview={false} code={makeSolveGivenYText(prefix, params)} />, value: 'Solves x for a given y' }),
 };
 
 export const mathToolkitPageDocumentation: IDocumentationPageContent = {

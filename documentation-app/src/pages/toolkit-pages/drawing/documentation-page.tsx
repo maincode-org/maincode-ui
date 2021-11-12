@@ -1,4 +1,4 @@
-import { IDocumentationPageContent, Table } from 'maincode-ui';
+import { IDocumentationPageContent, DrawingToolkit, MathToolkit, SimulationContainer, Table, LiveCodeEditor } from 'maincode-ui';
 import { formatObject } from '../helpers';
 
 const makeMultiArgsLabelText = (functionName: string, params: string[]) => `${functionName}(
@@ -8,41 +8,54 @@ const makeMultiArgsLabelText = (functionName: string, params: string[]) => `${fu
 const makeSingleArgLabelText = (functionName: string, param: string) => `${functionName}(${param})`;
 
 const simulationClassUtilities = [
-  { label: <code>getSimulation()</code>, value: 'Returns the simulation container HTML Element' },
-  { label: <code>getBottomToXAxis()</code>, value: 'Returns the distance, in px, from the bottom of the simulation container, to the x-axis of the plot' },
-  { label: <code>getLeftToYAxis()</code>, value: 'Returns the distance, in px, from the left of the simulation container, to the y-axis of the plot' },
-  { label: <code>getPlotConfig()</code>, value: 'Returns the plotConfig object which holds plot data' },
-  { label: <code>getTheme()</code>, value: 'Returns the theme object which holds theme data' },
   {
     label: (
-      <code>
-        {makeMultiArgsLabelText('setTheme', [
+      <LiveCodeEditor
+        enablePreview={false}
+        code={makeMultiArgsLabelText('axisOptions', [`${formatObject([`x: ${formatObject(['from: number', 'to: number'], 2)}`, `y: ${formatObject(['from: number', 'to: number'], 2)}`], 1)}`])}
+      />
+    ),
+    value: 'Getter/Setter for plot axisOptions',
+  },
+  { label: <LiveCodeEditor enablePreview={false} code='getSimulation()' />, value: 'Returns the simulation container HTML Element' },
+  { label: <LiveCodeEditor enablePreview={false} code='getBottomToXAxis()' />, value: 'Returns the distance, in px, from the bottom of the simulation container, to the x-axis of the plot' },
+  { label: <LiveCodeEditor enablePreview={false} code='getLeftToYAxis()' />, value: 'Returns the distance, in px, from the left of the simulation container, to the y-axis of the plot' },
+  { label: <LiveCodeEditor enablePreview={false} code='getPlotConfig()' />, value: 'Returns the plotConfig object which holds plot data' },
+  { label: <LiveCodeEditor enablePreview={false} code='getTheme()' />, value: 'Returns the theme object which holds theme data' },
+  {
+    label: (
+      <LiveCodeEditor
+        enablePreview={false}
+        code={makeMultiArgsLabelText('setTheme', [
           `${formatObject(
             [
               'isDarkMode: boolean',
-              `plot: ${formatObject([`axisOptions: ${formatObject(['light: string', 'dark: string'], 3)}`], 2)}`,
+              `plot: ${formatObject([`axisColor: ${formatObject(['light: string', 'dark: string'], 3)}`], 2)}`,
               `canvas: ${formatObject([`textColor: ${formatObject(['light: string', 'dark: string'], 3)}`], 2)}`,
             ],
             1
           )}`,
         ])}
-      </code>
+      />
     ),
     value: 'Sets the provided changes to the theme object',
   },
   {
-    label: <code>{makeMultiArgsLabelText('spawnCanvas', [`${formatObject(['wPct: number', 'hPct: number', 'className?: string'], 1)}`])}</code>,
+    label: <LiveCodeEditor enablePreview={false} code={makeMultiArgsLabelText('spawnCanvas', [`${formatObject(['wPct: number', 'hPct: number', 'className?: string'], 1)}`])} />,
     value: 'Spawns an HTML canvas inside the simulation container',
   },
   {
-    label: <code>{makeMultiArgsLabelText('drawFunctionOnPlot', [`${formatObject(['fn: (x: number) => number', 'color?: string'], 1)}`])}</code>,
+    label: <LiveCodeEditor enablePreview={false} code={makeMultiArgsLabelText('drawFunctionOnPlot', [`${formatObject(['fn: (x: number) => number', 'color?: string'], 1)}`])} />,
     value: 'Draws the provided function, in the provided color, in the plot.',
   },
-  { label: <code>{makeSingleArgLabelText('drawPointOnPlot', 'coord: ICoord')}</code>, value: 'Draws a point at the provided canvas (x,y)-coordinate in the plot' },
-  { label: <code>{makeSingleArgLabelText('drawPointsOnPlot', '\n coords: ICoord[] \n')}</code>, value: 'Draws points at the provided canvas (x,y)-coordinates in the plot' },
-  { label: <code>redraw()</code>, value: 'Redraws all contents of the canvas' },
+  { label: <LiveCodeEditor enablePreview={false} code={makeSingleArgLabelText('drawPointOnPlot', 'coord: ICoord')} />, value: 'Draws a point at the provided canvas (x,y)-coordinate in the plot' },
   {
-    label: <code>{makeSingleArgLabelText('clearDrawingType', '\n "plot" | "function" | "point" \n')}</code>,
+    label: <LiveCodeEditor enablePreview={false} code={makeSingleArgLabelText('drawPointsOnPlot', '\n coords: ICoord[] \n')} />,
+    value: 'Draws points at the provided canvas (x,y)-coordinates in the plot',
+  },
+  { label: <LiveCodeEditor enablePreview={false} code='redraw()' />, value: 'Redraws all contents of the canvas' },
+  {
+    label: <LiveCodeEditor enablePreview={false} code={makeSingleArgLabelText('clearDrawingType', '\n "plot" | "function" | "point" \n')} />,
     value: 'Removes the contents of the provided drawing type. For example the parameter <code>EDrawing.FUNCTION</code> removes all currently drawn functions from the canvas',
   },
 ];
@@ -60,7 +73,7 @@ export const drawingToolkitPageDocumentation: IDocumentationPageContent = {
         title='DrawingToolkit utilities'
         properties={[
           {
-            label: <code>{makeSingleArgLabelText('makeSimulation', 'id: string')}</code>,
+            label: <LiveCodeEditor enablePreview={false} code={makeSingleArgLabelText('makeSimulation', 'id: string')} />,
             value: 'Creates a <code>Simulation</code> class which contains your simulation container. You can use the <code>spawnCanvas()</code> function on the Simulation class to spawn a canvas.',
           },
         ]}
@@ -70,7 +83,7 @@ export const drawingToolkitPageDocumentation: IDocumentationPageContent = {
   ),
   codeExamples: [
     {
-      title: 'Draw a function',
+      title: 'Minimal example - Draw a function',
       description: (
         <p>
           Spawn a canvas. Then draw a plot, in which you want to draw a function. Note that the makeSimulation parameter <code>id</code> needs to be the id of your SimulationContainer.
@@ -93,6 +106,41 @@ simulation.drawFunctionOnPlot(
 );
       `,
       enablePreview: false,
+    },
+    {
+      title: 'Actual example - Draw a function',
+      description: <p>Spawning a canvas, a plot and a function within the plot, using the SimulationContainer component.</p>,
+      code: `
+() => {
+
+const paint = () => {
+  const simulation = DrawingToolkit.makeSimulation('mySim');
+
+  simulation.spawnCanvas({ wPct: 95, hPct: 95 });
+
+  simulation.drawPlot();
+
+  simulation.drawFunctionOnPlot(
+    {
+      fn: MathToolkit.parabola.throw.makeFn({ a: -0.2, c: 3 }),
+      color: '#3d3d'
+    }
+  );
+}
+
+return(
+  <SimulationContainer
+    id="mySim"
+    backgroundColor="#ffffff"
+    onLoad={() => paint()}
+  />
+);
+
+}
+      `,
+      noInline: false,
+      scope: { DrawingToolkit, MathToolkit, SimulationContainer },
+      enablePreview: true,
     },
   ],
 };
