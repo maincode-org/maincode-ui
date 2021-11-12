@@ -1,5 +1,7 @@
 .container math-field {
   background-color: var(--color-glass);
-  border: 1px solid var(--border-glass);
+  border: 1px solid var(--border-color);
   color: var(--ion-text-color);
+  padding-left: 8px;
+  border-radius: 8px;
 }
