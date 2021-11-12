@@ -15,7 +15,7 @@ export const simulationComponentPages: IEntityCategory = prepareURLPrefixCompone
     },
     {
       url: '/simulation-container',
-      title: 'SimulationContainer',
+      title: 'Simulation Container',
       preview: { element: 'I am out of ideas' },
       ...simulationContainerDocumentation,
     },
