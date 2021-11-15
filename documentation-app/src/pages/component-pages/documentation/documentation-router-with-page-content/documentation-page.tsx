@@ -2,7 +2,20 @@ import { IDocumentationPageContent, InfoArea } from 'maincode-ui';
 import { routeExample } from './examples';
 
 export const documentationRouterPageDocumentation: IDocumentationPageContent = {
-  description: <p>Easily set up the routing of your application.</p>,
+  description: (
+    <>
+      <p>
+        This components manages the routing of the <code>DocumentationApp</code> components.
+      </p>
+      <p>
+        It works by providing{' '}
+        <a href='https://github.com/maincode-org/maincode-ui/blob/main/src/components/documentation-components/types.ts' target='_blank' rel='noreferrer'>
+          IDocumentationPage&apos;s{' '}
+        </a>
+        as a prop and wrapping the rest of the apps route&apos;s inside. It auto generates all the routes necessary for the pages to be available.
+      </p>
+    </>
+  ),
   mainText: <InfoArea>In most cases, you would want to use this component in collaboration with the DocumentationApp component.</InfoArea>,
   codeExamples: [
     {
@@ -22,7 +35,7 @@ export const documentationRouterPageDocumentation: IDocumentationPageContent = {
     {
       title: 'pages',
       description: 'All pages in which you want routing for',
-      type: 'IDocumentationPage[]',
+      type: '<a href="https://github.com/maincode-org/maincode-ui/blob/main/src/components/documentation-components/types.ts" target="_blank" rel="noreferrer">IDocumentationPage[]</a>',
       required: true,
     },
     {
