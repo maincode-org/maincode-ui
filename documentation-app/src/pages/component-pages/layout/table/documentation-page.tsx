@@ -2,7 +2,7 @@ import { IDocumentationPageContent, Table } from 'maincode-ui';
 import { basicCodeExample } from './examples';
 
 export const tablePageDocumentation: IDocumentationPageContent = {
-  description: <p>A customizable and readable table. Currently only supports two columns of custom width ratio&apos;s. Its best suited for describing code or for dictionaries.</p>,
+  description: <p>A specialized, while customizable, table component. Currently only supports two columns of custom width ratio&apos;s. Its best suited for describing code or for dictionaries.</p>,
   codeExamples: [
     {
       title: 'Basic example',

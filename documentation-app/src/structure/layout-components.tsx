@@ -8,6 +8,18 @@ export const layoutComponentPages: IEntityCategory = prepareURLPrefixComponents(
   title: 'Layout Components',
   pages: [
     {
+      url: '/particle-container',
+      title: 'Particle Container',
+      ...particleContainerDocumentation,
+      preview: {
+        element: (
+          <div className={`${styles.bgRedBlue} ${styles.preview} w-full h-full rounded relative`}>
+            <ParticleContainer />
+          </div>
+        ),
+      },
+    },
+    {
       url: '/table',
       title: 'Table',
       preview: {
@@ -22,18 +34,6 @@ export const layoutComponentPages: IEntityCategory = prepareURLPrefixComponents(
         ),
       },
       ...tablePageDocumentation,
-    },
-    {
-      url: '/particle-container',
-      title: 'Particle Container',
-      ...particleContainerDocumentation,
-      preview: {
-        element: (
-          <div className={`${styles.bgRedBlue} ${styles.preview} w-full h-full rounded relative`}>
-            <ParticleContainer />
-          </div>
-        ),
-      },
     },
   ],
 });
