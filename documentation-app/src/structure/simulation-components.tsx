@@ -1,6 +1,5 @@
 import { prepareURLPrefixComponents } from './url-prefix';
 import { IEntityCategory } from 'maincode-ui';
-import { liveEditorPreview } from '../pages/component-pages/code/live-editor-page/documentation-page';
 import { functionsCannonDocumentation } from '../pages/component-pages/simulation/math/functions-cannon/documentation-page';
 import { simulationContainerDocumentation } from '../pages/component-pages/simulation/simulation-container/documentation-page';
 
@@ -10,13 +9,13 @@ export const simulationComponentPages: IEntityCategory = prepareURLPrefixCompone
     {
       url: '/functions-cannon',
       title: 'Functions Cannon',
-      preview: liveEditorPreview,
+      preview: { element: 'Lets put a picture of the cannon' },
       ...functionsCannonDocumentation,
     },
     {
       url: '/simulation-container',
       title: 'Simulation Container',
-      preview: { element: 'I am out of ideas' },
+      preview: { element: '(use pretty list as example) Contains quadratic size, uses ref and children to control loading, has no demo but is used in all sims' },
       ...simulationContainerDocumentation,
     },
   ],

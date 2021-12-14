@@ -26,6 +26,7 @@ export const layoutComponentPages: IEntityCategory = prepareURLPrefixComponents(
         element: (
           <Table
             title='Styles'
+            leftWidthPct={40}
             properties={[
               { label: 'Label 1', value: 'Value 1' },
               { label: 'Label 2', value: 'Value 2' },

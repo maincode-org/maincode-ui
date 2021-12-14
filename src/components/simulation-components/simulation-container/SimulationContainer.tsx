@@ -27,8 +27,6 @@ const SimulationContainer: React.FC<IProps> = ({ id, onLoad, backgroundColor = '
     onLoad?.(sectionRef.current);
   }, [hasPaintedSection, onLoad]);
 
-  console.log(backgroundColor);
-
   return (
     <section
       id={id}

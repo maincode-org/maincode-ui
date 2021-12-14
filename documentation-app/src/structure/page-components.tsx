@@ -30,7 +30,7 @@ export const pageComponentPages: IEntityCategory = prepareURLPrefixComponents({
       url: '/pagination-footer',
       title: 'Pagination Footer',
       preview: {
-        element: <PaginationFooter className='w-full' prev={{ title: 'prevItem', URL: '/copy-button' }} next={{ title: 'nextItem', URL: '/info-area' }} />,
+        element: <PaginationFooter className='w-full' prev={{ title: 'page title 1', URL: '/copy-button' }} next={{ title: 'page title 3', URL: '/info-area' }} />,
       },
       ...paginationFooterPageDocumentation,
     },

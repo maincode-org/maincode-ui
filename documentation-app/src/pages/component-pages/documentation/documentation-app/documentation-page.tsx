@@ -2,11 +2,9 @@ import { IDocumentationPageContent } from 'maincode-ui';
 import { urlPrefix } from '../../../../structure/url-prefix';
 
 export const documentationAppPageDocumentation: IDocumentationPageContent = {
-  description: (
+  description: <p>Spawn a whole documentation application with the exact same features as Maincode UI documentation application.</p>,
+  mainText: (
     <p>
-      Spawn a whole documentation application with the exact same features as Maincode UI documentation application.
-      <br />
-      <br />
       It will look just like this documentation application, but with <a href={`${urlPrefix}/theming`}>theming options</a>.
     </p>
   ),
