@@ -1,4 +1,6 @@
-import { IDocumentationPageContent, FunctionsCannon } from 'maincode-ui';
+import { IDocumentationPageContent, FunctionsCannon, IPreview } from 'maincode-ui';
+import mathFunctionsCannonLight from 'assets/previews/cannon_preview_light.png';
+import mathFunctionsCannonDark from 'assets/previews/cannon_preview_dark.png';
 
 const themePropType = `{
   backgroundColor?: {
@@ -54,4 +56,9 @@ export const functionsCannonDocumentation: IDocumentationPageContent = {
     { title: 'theme', description: 'Color theming of background color, axis color, parabola color and play button color', required: false, type: themePropType },
     { title: 'className', description: 'Classes for custom styling', required: false, type: 'string', defaultValue: '""' },
   ],
+};
+
+export const mathFunctionsCannonPreview: IPreview = {
+  picture: mathFunctionsCannonLight,
+  darkModePicture: mathFunctionsCannonDark,
 };

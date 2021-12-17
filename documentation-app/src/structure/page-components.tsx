@@ -3,8 +3,8 @@ import { prepareURLPrefixComponents } from './url-prefix';
 import { headerPageDocumentation } from '../pages/component-pages/page/header/documentation-page';
 import { menuPageDocumentation } from '../pages/component-pages/page/menu/documentation-page';
 import { paginationFooterPageDocumentation } from '../pages/component-pages/page/pagination-footer/documentation-page';
-import menuLight from 'assets/Menu-light.png';
-import menuDark from 'assets/Menu-dark.png';
+import menuLight from 'assets/previews/Menu-light.png';
+import menuDark from 'assets/previews/Menu-dark.png';
 
 const menuPreview: IPreview = {
   picture: menuLight,

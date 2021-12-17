@@ -4,8 +4,8 @@ import { componentPreviewGalleryDocumentation } from '../pages/component-pages/d
 import { documentationAppPageDocumentation } from '../pages/component-pages/documentation/documentation-app/documentation-page';
 import { documentationRouterPageDocumentation } from '../pages/component-pages/documentation/documentation-router-with-page-content/documentation-page';
 import { documentationSectionPageDocumentation } from '../pages/component-pages/documentation/documentation-section/documentation-page';
-import componentPreviewLight from 'assets/Component-preview-light.png';
-import componentPreviewDark from 'assets/Component-preview-dark.png';
+import componentPreviewLight from 'assets/previews/Component-preview-light.png';
+import componentPreviewDark from 'assets/previews/Component-preview-dark.png';
 
 const componentPreviewGalleryPreview: IPreview = {
   picture: componentPreviewLight,
@@ -24,19 +24,31 @@ export const documentationComponentPages: IEntityCategory = prepareURLPrefixComp
     {
       url: '/documentation-app',
       title: 'Documentation App',
-      preview: { element: <p>I do not have a good idea</p> },
+      preview: {
+        element: (
+          <p>
+            This entire page is just a <code>DocumentationApp</code> component.
+          </p>
+        ),
+      },
       ...documentationAppPageDocumentation,
     },
     {
       url: '/documentation-router',
       title: 'Documentation Router with Page Content',
-      preview: { element: <p>I do not have a good idea</p> },
+      preview: { element: <p>This component controls the routes for the menus of this site.</p> },
       ...documentationRouterPageDocumentation,
     },
     {
       url: '/documentation-section',
       title: 'Documentation Section',
-      preview: { element: <p>I do not have a good idea</p> },
+      preview: {
+        element: (
+          <p>
+            The content of each page on this site is layouted by separate <code>DocumentationSection</code> components.
+          </p>
+        ),
+      },
       ...documentationSectionPageDocumentation,
     },
   ],

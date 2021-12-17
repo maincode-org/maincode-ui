@@ -1,6 +1,6 @@
 import { IDocumentationPageContent, IPreview, InfoArea, jsxExample } from 'maincode-ui';
-import liveCodeEditorLight from 'assets/LiveCodeEdit-light.png';
-import liveCodeEditorDark from 'assets/LiveCodeEdit-dark.png';
+import liveCodeEditorLight from 'assets/previews/LiveCodeEdit-light.png';
+import liveCodeEditorDark from 'assets/previews/LiveCodeEdit-dark.png';
 import { IonButton } from '@ionic/react';
 import { basicCodeExample, advancedCodeExample } from './examples';
 import { liveEditorStyles } from './styles';

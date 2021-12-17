@@ -1,6 +1,6 @@
 import { prepareURLPrefixComponents } from './url-prefix';
 import { IEntityCategory } from 'maincode-ui';
-import { functionsCannonDocumentation } from '../pages/component-pages/simulation/math/functions-cannon/documentation-page';
+import { functionsCannonDocumentation, mathFunctionsCannonPreview } from '../pages/component-pages/simulation/math/functions-cannon/documentation-page';
 import { simulationContainerDocumentation } from '../pages/component-pages/simulation/simulation-container/documentation-page';
 
 export const simulationComponentPages: IEntityCategory = prepareURLPrefixComponents({
@@ -9,13 +9,13 @@ export const simulationComponentPages: IEntityCategory = prepareURLPrefixCompone
     {
       url: '/functions-cannon',
       title: 'Functions Cannon',
-      preview: { element: 'Lets put a picture of the cannon' },
+      preview: mathFunctionsCannonPreview,
       ...functionsCannonDocumentation,
     },
     {
       url: '/simulation-container',
       title: 'Simulation Container',
-      preview: { element: '(use pretty list as example) Contains quadratic size, uses ref and children to control loading, has no demo but is used in all sims' },
+      preview: { element: <p>This component makes all our simulations quadratic and controls their internal mounting.</p> },
       ...simulationContainerDocumentation,
     },
   ],
