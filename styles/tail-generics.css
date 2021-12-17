@@ -1006,6 +1006,15 @@
 .flex-nowrap {
   flex-wrap: nowrap;
 }
+.flex-wrap-reverse {
+  flex-wrap: wrap-reverse;
+}
+
+.truncate {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
 
 .flex-grow-1 {
   flex-grow: 1;

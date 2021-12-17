@@ -147,6 +147,9 @@ const FunctionsCannon: React.FC<IProps> = ({ id, axisOptions, parabolaValues, sh
     else setParabolaInputValues(inputs);
   };
 
+  console.log(isDarkMode);
+  console.log(isDarkMode ? theme?.backgroundColor?.dark : theme?.backgroundColor?.light);
+
   return (
     <SimulationContainer className={className} backgroundColor={isDarkMode ? theme?.backgroundColor?.dark : theme?.backgroundColor?.light} id={id} onLoad={onSectionPaint}>
       <Cannon isDarkMode={themeContext?.themeName === 'dark'} />

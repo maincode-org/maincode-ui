@@ -3,6 +3,24 @@ import ParticleControlDemo from './particle-control-demo/ParticleControlDemo';
 import { minimalExample } from './code-examples';
 
 export const particleContainerDocumentation: IDocumentationPageContent = {
+  description: (
+    <p>
+      Create engaging <code>ts-particles</code> animated backgrounds!
+    </p>
+  ),
+  codeExamples: [
+    {
+      title: 'Minimal example',
+      code: minimalExample,
+      description: (
+        <>
+          Place the <code>ParticleContainer</code> in a <code>div</code> and have its background cover all elements within the <code>div</code>.
+        </>
+      ),
+      enablePreview: false,
+      scope: { ParticleContainer },
+    },
+  ],
   customContent: (
     <>
       <h3 className='mt-2 mb-2'>🚀 Landing page example</h3>
@@ -16,26 +34,14 @@ export const particleContainerDocumentation: IDocumentationPageContent = {
       </InfoArea>
     </>
   ),
-  description: (
-    <p>
-      Create engaging <code>ts-particles</code> animated backgrounds!
-    </p>
-  ),
-  codeExamples: [
-    {
-      title: 'Minimal example',
-      code: minimalExample,
-      description: (
-        <>
-          Place the ParticleContainer in a <code>div</code> and have its background cover all elements within the <code>div</code>.
-        </>
-      ),
-      enablePreview: false,
-      scope: { ParticleContainer },
-    },
-  ],
   props: [
-    { title: 'isAnimationEnabled', description: 'Toggles the rendering of the animation', required: false, type: 'boolean', defaultValue: 'true' },
+    {
+      title: 'isAnimationEnabled',
+      description: 'Toggles the rendering of the animation',
+      required: false,
+      type: 'boolean',
+      defaultValue: 'true',
+    },
     {
       title: 'particleConfig',
       description: 'Classes for custom styling',
@@ -44,6 +50,12 @@ export const particleContainerDocumentation: IDocumentationPageContent = {
       defaultValue:
         '<a href="https://github.com/maincode-org/maincode-ui/blob/main/src/components/layout-components/particle-container/lean-particlesjs-config.tsx" target="_blank" rel="noreferrer">Maincode preset file</a>',
     },
-    { title: 'className', description: 'Classes for custom styling', required: false, type: 'string', defaultValue: '""' },
+    {
+      title: 'className',
+      description: 'Classes for custom styling',
+      required: false,
+      type: 'string',
+      defaultValue: '""',
+    },
   ],
 };

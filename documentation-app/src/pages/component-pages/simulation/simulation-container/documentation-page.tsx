@@ -1,11 +1,20 @@
 import { IDocumentationPageContent } from 'maincode-ui';
 
 export const simulationContainerDocumentation: IDocumentationPageContent = {
-  description: <p>A smart container for your simulations. The SimulationContainer provides utilities to make working with simulations more convenient.</p>,
+  description: (
+    <p>
+      A smart container for your simulations. The <code>SimulationContainer</code> component provides utilities to make working with simulations more convenient.
+    </p>
+  ),
   codeExamples: [
     {
       title: 'Minimal example',
-      description: <p>{`See DrawingToolkit's "Actual example - Draw a quadratic function" for an example of how to use in combination with the DrawingToolkit.`}</p>,
+      description: (
+        <p>
+          See <code>DrawingToolkit&lsquo;s</code> {`"Actual example - Draw a quadratic function" for an example of how to use in combination with the `}
+          <code>DrawingToolkit</code>.
+        </p>
+      ),
       code: `
 <SimulationContainer id="mySim"/>
       `,

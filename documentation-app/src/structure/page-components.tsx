@@ -3,8 +3,8 @@ import { prepareURLPrefixComponents } from './url-prefix';
 import { headerPageDocumentation } from '../pages/component-pages/page/header/documentation-page';
 import { menuPageDocumentation } from '../pages/component-pages/page/menu/documentation-page';
 import { paginationFooterPageDocumentation } from '../pages/component-pages/page/pagination-footer/documentation-page';
-import menuLight from 'assets/Menu-light.png';
-import menuDark from 'assets/Menu-dark.png';
+import menuLight from 'assets/previews/Menu-light.png';
+import menuDark from 'assets/previews/Menu-dark.png';
 
 const menuPreview: IPreview = {
   picture: menuLight,
@@ -30,7 +30,7 @@ export const pageComponentPages: IEntityCategory = prepareURLPrefixComponents({
       url: '/pagination-footer',
       title: 'Pagination Footer',
       preview: {
-        element: <PaginationFooter className='w-full' prev={{ title: 'prevItem', URL: '/copy-button' }} next={{ title: 'nextItem', URL: '/info-area' }} />,
+        element: <PaginationFooter className='w-full' prev={{ title: 'page title 1', URL: '/copy-button' }} next={{ title: 'page title 3', URL: '/info-area' }} />,
       },
       ...paginationFooterPageDocumentation,
     },

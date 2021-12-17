@@ -1,11 +1,15 @@
 import { IDocumentationPageContent, CopyButton } from 'maincode-ui';
 
 export const copyButtonPageDocumentation: IDocumentationPageContent = {
-  description: <p>Copy sophisticated commands to the clipboard with the click of a button</p>,
+  description: <p>Copy text or commands to the clipboard with the click of a button.</p>,
   codeExamples: [
     {
       title: 'Basic example',
-      description: <p>Description</p>,
+      description: (
+        <p>
+          This button will copy the text <code>npm i maincode-ui</code> to the users clipboard.
+        </p>
+      ),
       code: `
 <div className="h-full flex justify-center mt-15">
   <CopyButton code="npm i maincode-ui"/>
@@ -14,7 +18,7 @@ export const copyButtonPageDocumentation: IDocumentationPageContent = {
     },
   ],
   props: [
-    { title: 'code', description: 'The command you want to be copied to the clipboard', required: true, type: 'string' },
+    { title: 'code', description: 'The command copied to the clipboard', required: true, type: 'string' },
     { title: 'className', description: 'Classes for custom styling', required: false, type: 'string', defaultValue: '""' },
   ],
   styles: [

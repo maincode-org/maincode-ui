@@ -3,10 +3,22 @@ export const basicCodeExample = `
   <Table
     title="Styles"
     properties={[
-      { label: 'Description', value: "Some description" },
-      { label: 'Type', value: 'string' },
-      { label: 'Required', value: 'false' },
-      { label: 'Default value', value: 'default value' }
+      {
+        label: 'Description',
+        value: "Some description"
+      },
+      {
+        label: 'Type',
+        value: <code>string</code>
+      },
+      {
+        label: 'Required',
+        value: <code>false</code>
+      },
+      {
+        label: 'Default value',
+        value: <code>""</code>
+      }
     ]}
   />
 </div>
