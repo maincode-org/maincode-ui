@@ -6,3 +6,25 @@
   font-size: 1rem;
   vertical-align: top;
 }
+
+.title {
+  float: left;
+}
+
+.icons {
+  float: right;
+}
+@media only screen and (max-width: 600px) {
+  .title {
+    float: left;
+    text-align: center;
+    width: 100%;
+    max-width: 500px;
+  }
+
+  .icons {
+    width: 100%;
+    display: block;
+    text-align: center;
+  }
+}
