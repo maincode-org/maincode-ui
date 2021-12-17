@@ -5,6 +5,13 @@
   "private": true,
   "homepage": "https://maincode-org.github.io/maincode-ui/",
   "repository": "https://github.com/maincode-org/maincode-ui",
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build && shx cp build/index.html build/404.html",
+    "fix": "npx prettier --write . && npx eslint \"src/**/*.{ts,tsx}\" --fix",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject"
+  },
   "dependencies": {
     "maincode-ui": "file:..",
     "react": "file:../node-modules/react",
@@ -34,13 +41,6 @@
     "workbox-routing": "^5.1.4",
     "workbox-strategies": "^5.1.4",
     "workbox-streams": "^5.1.4"
-  },
-  "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build && shx cp build/index.html build/404.html",
-    "fix": "npx prettier --write . && npx eslint \"src/**/*.{ts,tsx}\" --fix",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject"
   },
   "browserslist": {
     "production": [
