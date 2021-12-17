@@ -117,29 +117,28 @@ simulation.drawFunctionOnPlot(
       code: `
 () => {
 
-const paint = () => {
-  const simulation = DrawingToolkit.makeSimulation('mySim');
+  const paint = () => {
+    const simulation = DrawingToolkit.makeSimulation('mySim');
 
-  simulation.spawnCanvas({ wPct: 95, hPct: 95 });
+    simulation.spawnCanvas({ wPct: 85, hPct: 85 });
 
-  simulation.drawPlot();
+    simulation.drawPlot();
 
-  simulation.drawFunctionOnPlot(
-    {
-      fn: MathToolkit.parabola.throw.makeFn({ a: -0.2, c: 3 }),
-      color: '#3d3d'
-    }
+    simulation.drawFunctionOnPlot(
+      {
+        fn: MathToolkit.parabola.throw.makeFn({ a: -0.2, c: 3 }),
+        color: '#3d3d'
+      }
+    );
+  }
+
+  return(
+    <SimulationContainer
+      id="mySim"
+      backgroundColor="#ffffff"
+      onLoad={() => paint()}
+    />
   );
-}
-
-return(
-  <SimulationContainer
-    id="mySim"
-    backgroundColor="#ffffff"
-    onLoad={() => paint()}
-  />
-);
-
 }
       `,
       noInline: false,

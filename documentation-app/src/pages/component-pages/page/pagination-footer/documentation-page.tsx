@@ -12,8 +12,18 @@ export const paginationFooterPageDocumentation: IDocumentationPageContent = {
     },
   ],
   props: [
-    { title: 'prev', description: 'Data used to render the left navigation element', required: false, type: 'IFooterNav' },
-    { title: 'next', description: 'Data used to render the right navigation element', required: false, type: 'IFooterNav' },
+    {
+      title: 'prev',
+      description: 'Data used to render the left navigation element',
+      required: false,
+      type: '<a href="https://github.com/maincode-org/maincode-ui/blob/main/src/components/page-components/pagination-footer/PaginationFooter.tsx" target="_blank" rel="noreferrer">IFooterNav',
+    },
+    {
+      title: 'next',
+      description: 'Data used to render the right navigation element',
+      required: false,
+      type: '<a href="https://github.com/maincode-org/maincode-ui/blob/main/src/components/page-components/pagination-footer/PaginationFooter.tsx" target="_blank" rel="noreferrer">IFooterNav',
+    },
     { title: 'className', description: 'Classes for custom styling', required: false, type: 'string', defaultValue: '""' },
   ],
   styles: styles,

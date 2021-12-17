@@ -12,7 +12,12 @@ export const componentPreviewGalleryDocumentation: IDocumentationPageContent = {
   ],
   props: [
     { title: 'className', description: 'Classes for custom styling', type: 'string', required: false, defaultValue: '""' },
-    { title: 'componentPages', description: 'Data for the components', type: 'IDocumentationPage[]', required: true },
+    {
+      title: 'componentPages',
+      description: 'Data for the components',
+      type: '<a href="https://github.com/maincode-org/maincode-ui/blob/main/src/components/documentation-components/types.ts" target="_blank" rel="noreferrer">IDocumentationPage[]</a>',
+      required: true,
+    },
   ],
   styles: [
     { propertyName: '--border-color', description: 'Border matching the theme' },

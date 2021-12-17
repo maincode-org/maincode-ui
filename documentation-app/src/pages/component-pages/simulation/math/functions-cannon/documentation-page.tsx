@@ -1,16 +1,28 @@
-import { IDocumentationPageContent, FunctionsCannon } from 'maincode-ui';
+import { IDocumentationPageContent, FunctionsCannon, IPreview } from 'maincode-ui';
+import mathFunctionsCannonLight from 'assets/previews/cannon_preview_light.png';
+import mathFunctionsCannonDark from 'assets/previews/cannon_preview_dark.png';
 
-const themePropType = `
-{
-  backgroundColor?: { light: string; dark: string };
-  parabolaColor?: { light: string; dark: string };
-  playButtonColor?: { light: "primary", "secondary", "success"; dark: "primary", "secondary", "success" };
-  axisColor?: { light: string; dark: string };
-}
-`;
+const themePropType = `{
+  backgroundColor?: {
+    light: string;
+    dark: string
+  };
+  parabolaColor?: {
+    light: string;
+    dark: string
+  };
+  playButtonColor?: {
+    light: "primary" | "secondary" | "success",
+    dark: "primary" | "secondary" | "success"
+  };
+  axisColor?: {
+    light: string;
+    dark: string
+  };
+}`;
 
 export const functionsCannonDocumentation: IDocumentationPageContent = {
-  description: <p>Use this math function simulation to create engaging educational content!</p>,
+  description: <p>Use our exercise in mathematical functions to create engaging educational content!</p>,
   codeExamples: [
     {
       title: 'Basic usage',
@@ -18,7 +30,12 @@ export const functionsCannonDocumentation: IDocumentationPageContent = {
 <FunctionsCannon
   id="cannon"
   parabolaValues={{a: -0.2, c: 3}}
-  axisOptions={{x: {from: 0, to: 15}, y: {from: 0, to: 10}}}
+  axisOptions={
+    {
+      x: {from: 0, to: 15},
+      y: {from: 0, to: 10}
+    }
+  }
   shouldRevealA={false}
   shouldRevealC={false}
 />`,
@@ -39,4 +56,9 @@ export const functionsCannonDocumentation: IDocumentationPageContent = {
     { title: 'theme', description: 'Color theming of background color, axis color, parabola color and play button color', required: false, type: themePropType },
     { title: 'className', description: 'Classes for custom styling', required: false, type: 'string', defaultValue: '""' },
   ],
+};
+
+export const mathFunctionsCannonPreview: IPreview = {
+  picture: mathFunctionsCannonLight,
+  darkModePicture: mathFunctionsCannonDark,
 };

@@ -8,7 +8,7 @@ import { ThemeProvider, DocumentationApp } from 'maincode-ui';
 import { guidePages } from './structure/guide-pages';
 import { allComponentCategoryPages } from './structure/assembly';
 import { urlPrefix } from './structure/url-prefix';
-import robot from './assets/maincode-robot.png';
+import robot from './assets/previews/maincode-robot.png';
 
 /* Core CSS required for Ionic components to work properly */
 import '@ionic/react/css/core.css';
