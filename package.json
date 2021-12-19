@@ -31,20 +31,22 @@
     "predeploy": "cd documentation-app && npm install && npm run build",
     "deploy": "gh-pages -d documentation-app/build"
   },
-  "peerDependencies": {
-    "@ionic/react": "^5.8.5",
-    "@ionic/react-router": "^5.7.0",
-    "@tippyjs/react": "^4.2.5",
-    "chart.js": "^3.5.1",
-    "gsap": "^3.8.0",
-    "html-react-parser": "^1.3.0",
+  "dependencies": {
     "lodash": "^4.17.21",
     "mathlive": "^0.69.7",
     "prism-react-renderer": "^1.2.1",
+    "html-react-parser": "^1.3.0",
+    "gsap": "^3.8.0",
+    "@tippyjs/react": "^4.2.5",
+    "react-live": "2.3.0",
+    "chart.js": "^3.5.1",
+    "react-tsparticles": "^1.37.2"
+  },
+  "peerDependencies": {
+    "@ionic/react": "^5.8.5",
+    "@ionic/react-router": "^5.7.0",
     "react": "^16.13.0",
     "react-dom": "^16.13.0",
-    "react-live": "2.3.0",
-    "react-tsparticles": "^1.37.2",
     "react-router-dom": "^5.3.0"
   },
   "devDependencies": {
