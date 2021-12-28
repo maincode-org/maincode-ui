@@ -1,25 +1,25 @@
 import { PrettyList, LiveCodeEditor } from 'maincode-ui';
 
 const codeExample = `
-<div className='m-2 p-1 glass-bg rounded shadow-lg'>
+<div className='glass-bg'>
   <p>Standardized <span className="bold">styled</span> paragraph.</p>
 </div>
 `;
 
 const DocumentationPage: JSX.Element = (
   <>
-    <p>Maincode UI offers a lot of styling through pre-defined classnames.</p>
+    <p>Maincode UI offers some additional styling through pre-defined classnames.</p>
     <PrettyList
       ordering='none'
       items={[
         <>
-          This is entirely inspired by <b>Tailwind CSS</b> and can be seen as a less advanced subset of Tailwind.
+          This is entirely inspired by <b>Tailwind CSS</b> and can be used to supplement a Tailwind project beautifully.
         </>,
         <>
-          It can be exchanged for <b>Tailwind CSS</b> if you want additional classnames or smart functionality such as purging.
+          We use <b>Tailwind CSS</b> as well in for this library, and leverage its functionalities such as purging to decrease package size.
         </>,
         <>
-          In case you use <b>Tailwind CSS</b>, you don&apos;t have to import our generics.
+          In case you use <b>Tailwind CSS</b>, you don&apos;t have to import our tailwind.css file.
         </>,
       ]}
     />

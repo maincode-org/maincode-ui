@@ -40,8 +40,8 @@ applications. It is:
 <a href="https://maincode-org.github.io/maincode-ui/quick-start" target="_blank">Read the Getting Started tutorial</a> or
 follow the steps below:
 
-> **!Note** that the library is currently not compatible with **React v. 17+**, due to the [React Live v. 2.3.0](https://github.com/FormidableLabs/react-live) library's incompatibility with **React v. > 16.14**.
-> We will upgrade the version as soon as possible and have opened an [issue](https://github.com/maincode-org/maincode-ui/issues/53) which can be monitored for updates.
+> **!Note** that the library is currently not fully compatible with **React v. 17+**, due to the [React Live v. 2.3.0](https://github.com/FormidableLabs/react-live) library's incompatibility with **React v. > 16.14**.
+> The means our `LiveCodeEditor` component cannot be used with React v. 17. For more information, follow this [issue](https://github.com/maincode-org/maincode-ui/issues/53) which can be monitored for updates.
 
 ### ⏳ Installation
 
@@ -67,8 +67,8 @@ import { CopyArea } from 'maincode-ui';
 /** Maincode UI stylesheets. */
 import 'maincode-ui/dist/index.css'; // All the component specific styles.
 import 'maincode-ui/styles/theme.css'; // The default theme variables. See the "themes" section for customization.
-import 'maincode-ui/styles/tail-generics.css'; // A subset of tailwind classes (eg. "text-white").
 import 'maincode-ui/styles/generics.css'; // A few common classes be Maincode (eg. "glass-bg").
+import 'maincode-ui/styles/tailwind.css'; // tailwind classes (eg. "p-4").
 
 const ExampleApp: React.FC = () => {
   return <CopyArea command={'npm install --save maincode-ui'} />;
@@ -104,23 +104,6 @@ To do this, create a new `theme.css` file, and assign values to the CSS variable
 documentation.](https://ionicframework.com/docs/theming/color-generator)
 
 Besides the Ionic variables, we also provide the Maincode UI specific variables described in our [theming documentation](https://maincode-org.github.io/maincode-ui/theming).
-
-FOR WEBSITE: -------------
-Besides the Ionic variables, we also provide the following Maincode UI specific variables:
-
-> `--text-color-alt` which modifies alternative texts such as sub-headers, which deviate from the --ion-text-color.
->
-> `--border-color` which modifies the border color set on Maincode UI components.
->
-> `--color-glass` which modifies the coloring of elements with the glassy background effects.
->
-> `--border-glass` which modifies the supplementary border color for elements with the glassy background effect.
->
-> `--shadow` which modifies the theme-shadow. This is used on selective Maincode UI elements.
->
-> `--card-shadow` which modifies the custom card shadow. This is used on Maincode UI cards only.
->
-> `--code-background-color` which modifies the background color of the `code` HTML element.
 
 #### Styling the scrollbar
 

@@ -12,7 +12,7 @@ import { CopyArea } from 'maincode-ui';
 /** Maincode UI stylesheets. */
 import 'maincode-ui/dist/index.css'; // All the component specific styles.
 import 'maincode-ui/styles/theme.css'; // The default theme variables. See the "themes" section for customization.
-import 'maincode-ui/styles/tail-generics.css'; // A subset of tailwind classes (eg. "text-white").
+import 'maincode-ui/styles/tailwind.css'; // A subset of tailwind classes (eg. "text-white").
 import 'maincode-ui/styles/generics.css'; // A few common classes be Maincode (eg. "glass-bg").
 
 const ExampleApp: React.FC = () => {
@@ -30,17 +30,17 @@ const DocumentationPage: JSX.Element = (
     <CopyArea command='yarn add maincode-ui' />
     <br />
     <InfoArea>
-      Note that the library is currently not compatible with <b>React v. 17+</b>, due to the{' '}
+      Note that the library is currently not fully compatible with <b>React v. 17+</b>, due to the{' '}
       <a href='https://github.com/FormidableLabs/react-live' target='_blank' rel='noreferrer'>
         React Live v. 2.3.0
       </a>{' '}
       library{"'"}s incompatibility with <b>React v. {'>'} 16.14</b>.
       <br />
-      We will upgrade the version as soon as possible and have opened an{' '}
+      This means that the <code>LiveCodeEditor</code> component cannot be used in <b>React v. 17+</b> projects. For more information, follow this{' '}
       <a href='https://github.com/maincode-org/maincode-ui/issues/53' target='_blank' rel='noreferrer'>
         issue
-      </a>{' '}
-      which can be monitored for updates.
+      </a>
+      .
     </InfoArea>
     <h3>Usage</h3>
     <p>For documentation on each individual component, please visit the specific showcases or the overview page.</p>
