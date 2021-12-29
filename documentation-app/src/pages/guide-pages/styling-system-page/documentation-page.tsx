@@ -16,7 +16,7 @@ const DocumentationPage: JSX.Element = (
           This is entirely inspired by <b>Tailwind CSS</b> and can be used to supplement a Tailwind project beautifully.
         </>,
         <>
-          We use <b>Tailwind CSS</b> as well in for this library, and leverage its functionalities such as purging to decrease package size.
+          We use <b>Tailwind CSS</b> as well in this library, and leverage its functionalities such as purging to decrease package size.
         </>,
         <>
           In case you use <b>Tailwind CSS</b>, you don&apos;t have to import our tailwind.css file.
