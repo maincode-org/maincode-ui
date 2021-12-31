@@ -1,6 +1,6 @@
 export const basicCodeExample = `
 <DocumentationSection
-  className='px-2'
+  className='px-8'
   onContentLoad={() => {
     setTitle("Page title");
     scrollToTop();
@@ -9,7 +9,7 @@ export const basicCodeExample = `
     <p>Create a consistent, readable template for your documentation page layout.</p>
   }
   mainText={
-    <InfoArea className='mt-3'>
+    <InfoArea className='mt-12'>
       DocumentationRouterWithPageContent uses this component internally to render all the pages provided to it.
     </InfoArea>
   }

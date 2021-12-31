@@ -26,6 +26,6 @@ export const makeOverviewContent = (previews: { title: string; pages: IDocumenta
     />
     <h3>Component overview</h3>
     Here you can play around with the Maincode UI components and receive instant feedback. Use the cards or the menu to see details and examples for each component or toolkit.
-    <ComponentPreviewGallery componentPages={previews} className='my-3' />
+    <ComponentPreviewGallery componentPages={previews} className='my-12' />
   </>
 );

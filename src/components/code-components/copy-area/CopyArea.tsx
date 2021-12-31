@@ -28,9 +28,9 @@ const CopyArea: React.FC<IProps> = ({ command, tooltip = 'Copy to clipboard', cl
 
   return (
     <Tippy className='tippy' hideOnClick={false} content={tooltipText} placement='top'>
-      <div className={`${className} ${styles.container} theme-border flex flex-row justify-between items-center glass-bg w-full rounded p-1 text-left pointer`} onClick={onClickHandler}>
+      <div className={`${className} ${styles.container} theme-border flex flex-row justify-between items-center glass-bg w-full rounded p-4 text-left pointer`} onClick={onClickHandler}>
         <code className='transparent'>
-          <span className={`${styles.dollarSign} mr-1 select-none`}>$</span>
+          <span className={`${styles.dollarSign} mr-4 select-none`}>$</span>
           {command}
         </code>
         <button className={`${styles.copyButton} rounded-sm transparent`}>

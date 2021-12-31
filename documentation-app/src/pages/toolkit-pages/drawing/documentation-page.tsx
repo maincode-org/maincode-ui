@@ -72,7 +72,7 @@ export const drawingToolkitPageDocumentation: IDocumentationPageContent = {
         of the functionality lives. This implementation detail frees you from having to control your own canvas element, which abstracts away a lot of complexity.
       </p>
       <Table
-        className='mb-2'
+        className='mb-8'
         title='DrawingToolkit utilities'
         leftWidthPct={50}
         properties={[

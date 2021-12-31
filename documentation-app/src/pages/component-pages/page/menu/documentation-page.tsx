@@ -6,7 +6,7 @@ export const menuPageDocumentation: IDocumentationPageContent = {
     <p>A full sidemenu for application navigation. It is specifically made for the format used with the documentation components in this library, but can be used for any case with similar layouts.</p>
   ),
   mainText: (
-    <InfoArea className='mt-3'>
+    <InfoArea className='mt-12'>
       The <code>DocumentationApp</code> component uses this <code>Menu</code> component internally.
     </InfoArea>
   ),

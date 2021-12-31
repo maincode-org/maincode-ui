@@ -1,5 +1,5 @@
 export const basicCodeExample = `
-<div className='p-1'>
+<div className='p-16'>
   <Table
     title="Styles"
     properties={[

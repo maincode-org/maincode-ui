@@ -6,6 +6,6 @@ type IProps = {
 };
 
 const InfoArea: React.FC<IProps> = ({ className = '', children }) => {
-  return <div className={`${className} ${styles.container} rounded-md p-1`}>{children}</div>;
+  return <div className={`${className} ${styles.container} rounded-md p-4`}>{children}</div>;
 };
 export default InfoArea;

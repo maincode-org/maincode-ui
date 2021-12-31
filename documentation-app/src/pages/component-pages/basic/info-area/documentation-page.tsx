@@ -7,7 +7,7 @@ export const infoAreaPageDocumentation: IDocumentationPageContent = {
       title: 'Emphasize small paragraph',
       description: <>InfoArea can be used to emphasize a paragraph of text.</>,
       code: `
-<InfoArea className="m-2">
+<InfoArea className="m-8">
     You can emphasize a paragraph by using the <code>InfoArea</code> component.
     It makes the text stand out, and it uses your theming variables.
 </InfoArea>`,
@@ -18,7 +18,7 @@ export const infoAreaPageDocumentation: IDocumentationPageContent = {
       title: 'Children can be anything',
       description: <>Get creative - you can provide any HTML element.</>,
       code: `
-<InfoArea className="m-2">
+<InfoArea className="m-8">
   <p>
     <code>InfoArea</code> with a link
     - <a href="https://maincode-org.github.io/maincode-ui/overview">

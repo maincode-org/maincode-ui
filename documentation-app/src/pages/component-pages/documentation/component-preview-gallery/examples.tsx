@@ -1,6 +1,6 @@
 export const basicCodeExample = `
 <ComponentPreviewGallery
-  className='my-2 m-1'
+  className='my-8 m-4'
   componentPages={[
     {
       title: "Basic",

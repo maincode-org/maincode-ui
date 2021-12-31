@@ -5,7 +5,7 @@ import { props } from './props';
 export const documentationSectionPageDocumentation: IDocumentationPageContent = {
   description: <p>Creates a consistent, readable template for your documentation page layout.</p>,
   mainText: (
-    <InfoArea className='mt-3'>
+    <InfoArea className='mt-12'>
       <code>DocumentationRouterWithPageContent</code> uses this component internally to render the pages provided to it. Using the router component is preferred in most cases to bake in routing and
       have the sections automatically generated.
     </InfoArea>

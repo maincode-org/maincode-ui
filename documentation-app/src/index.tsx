@@ -38,7 +38,7 @@ ReactDOM.render(
         entityCollection={allComponentCategoryPages}
         urlPrefix={urlPrefix}
         headerGithubURL='https://github.com/maincode-org/maincode-ui'
-        menuSubHeader="By <a href='https://maincode.dk'>maincode.dk</a>"
+        menuSubHeader='By <a className="theme-color underline" href="https://maincode.dk">maincode.dk</a>'
         menuHeaderText='Maincode UI Documentation'
         menuFooterImage={robot}
       />

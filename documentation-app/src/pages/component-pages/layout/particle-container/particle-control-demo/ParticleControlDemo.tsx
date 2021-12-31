@@ -16,8 +16,8 @@ const ParticleControlDemo: React.FC = () => {
 
   return (
     <div className='rounded pb-10 relative shadow-lg'>
-      <div className='flex flex-col justify-between ml-2'>
-        <IonFab className='relative mt-4'>
+      <div className='flex flex-col justify-between ml-8'>
+        <IonFab className='relative mt-16'>
           <IonFabButton className={paletteColor}>
             <IonIcon icon={colorPaletteOutline} />
           </IonFabButton>
@@ -29,18 +29,18 @@ const ParticleControlDemo: React.FC = () => {
           </IonFabList>
         </IonFab>
 
-        <IonFab className='relative mt-1'>
+        <IonFab className='relative mt-4'>
           <IonFabButton className={paletteColor} onClick={() => setIsAnimationEnabled(!isAnimationEnabled)}>
             <IonIcon icon={isAnimationEnabled ? stopCircleOutline : sparklesOutline} />
           </IonFabButton>
         </IonFab>
       </div>
       <div className={`${styles.header} w-full absolute shadow-md thin-glass-bg`}>
-        <IonButton className={`mr-1 ${paletteColor}`}>Login</IonButton>
+        <IonButton className={`mr-4 ${paletteColor}`}>Login</IonButton>
       </div>
 
       <div className={`${styles.card} thin-glass-bg flex rounded shadow-lg items-center justify-center`}>
-        <h1 className='p-2'>Maincode UI!</h1>
+        <h1 className='p-8'>Maincode UI!</h1>
       </div>
       <ParticleContainer isAnimationEnabled={isAnimationEnabled} className={`${styles.position} ${bgImg} rounded shadow-2xl`} />
     </div>

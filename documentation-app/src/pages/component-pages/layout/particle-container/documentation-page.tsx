@@ -23,9 +23,9 @@ export const particleContainerDocumentation: IDocumentationPageContent = {
   ],
   customContent: (
     <>
-      <h3 className='mt-2 mb-2'>🚀 Landing page example</h3>
+      <h3 className='mt-8 mb-8'>🚀 Landing page example</h3>
       <ParticleControlDemo />
-      <InfoArea className='mt-1'>
+      <InfoArea className='mt-4'>
         The above example is constructed using a <code>ParticleContainer</code> with a background image controlled through an <code>IonFab</code> in the top left corner. The glass boxes are just
         elements with the <code>thin-glass-bg</code> generic classname applied. Feel inspired? check out this demo&apos;s React component implementation and stylesheet{' '}
         <a href='https://github.com/maincode-org/maincode-ui/tree/main/documentation-app/src/pages/component-pages/layout/particle-container/particle-control-demo' target='_blank' rel='noreferrer'>

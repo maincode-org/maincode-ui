@@ -11,7 +11,7 @@ export const copyButtonPageDocumentation: IDocumentationPageContent = {
         </p>
       ),
       code: `
-<div className="h-full flex justify-center mt-15">
+<div className="h-full flex justify-center mt-6">
   <CopyButton code="npm i maincode-ui"/>
 </div>`,
       scope: { CopyButton },

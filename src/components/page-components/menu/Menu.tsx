@@ -28,13 +28,13 @@ const Menu: React.FC<IProps> = ({ entityPages, guidePages, headerText, subHeader
         <div className={styles.menuUpper}>
           <IonList className={`${styles.menuList} mb-4`}>
             <IonListHeader className='select-none'>{headerText}</IonListHeader>
-            {subHeader && <IonNote className='pb-4 pt-3 select-none'>{parse(subHeader)}</IonNote>}
+            {subHeader && <IonNote className='pb-4 pt-2 select-none'>{parse(subHeader)}</IonNote>}
             {guidePages.map((c, index) => makeMenuEntry(index, c.url, c.title, location.pathname, c.icon))}
           </IonList>
 
           {entityPages.map((p, index) => (
             <IonList key={index} className={styles.menuList}>
-              <IonListHeader className='pb-3 select-none'>{p.title}</IonListHeader>
+              <IonListHeader className='pb-2 select-none'>{p.title}</IonListHeader>
 
               {p.pages.map((c, index) => makeMenuEntry(index, c.url, c.title, location.pathname, chevronForwardSharp))}
             </IonList>
@@ -42,7 +42,7 @@ const Menu: React.FC<IProps> = ({ entityPages, guidePages, headerText, subHeader
         </div>
         {footerImage && (
           <div className={`${styles.menuLower} flex flex justify-center`}>
-            <img className='h-full select-none pt-6' src={footerImage} alt='Maincode Robot' />
+            <img className='h-full select-none pt-8' src={footerImage} alt='Maincode Robot' />
           </div>
         )}
       </IonContent>

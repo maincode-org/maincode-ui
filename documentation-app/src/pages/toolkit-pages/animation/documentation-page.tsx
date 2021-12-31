@@ -13,7 +13,7 @@ export const animationToolkitPageDocumentation: IDocumentationPageContent = {
         toolkit is, in addition to general purpose utilities, divided into purposes for which you would want to use animations.
         <PrettyList ordering='none' items={['functions']} />
         <Table
-          className='mb-2'
+          className='mb-8'
           title='General purpose utilities'
           leftWidthPct={50}
           properties={[
@@ -24,7 +24,7 @@ export const animationToolkitPageDocumentation: IDocumentationPageContent = {
           ]}
         />
         <Table
-          className='mb-2'
+          className='mb-8'
           title='Function animations'
           leftWidthPct={50}
           properties={[

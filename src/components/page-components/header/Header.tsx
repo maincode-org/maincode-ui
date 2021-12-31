@@ -19,11 +19,11 @@ const Header: React.FC<IProps> = ({ title, githubURL, versionLabel, className })
         <IonButtons slot='start'>
           <IonMenuButton />
         </IonButtons>
-        <IonTitle className='flex flex-col flex-wrap p-1 pl-05'>
-          {title && <span className={`${styles.title} mb-05 truncate`}>{title}</span>}
+        <IonTitle className='flex flex-col flex-wrap p-3 pl-2'>
+          {title && <span className={`${styles.title} mb-2 truncate`}>{title}</span>}
           <div className={`${styles.icons}`}>
             <IonIcon
-              className='mr-05 pointer'
+              className='mr-2 pointer'
               onClick={theme?.toggleTheme}
               ios={theme?.themeName === EThemeModes.light ? moonSharp : sunnySharp}
               md={theme?.themeName === EThemeModes.light ? moonSharp : sunnySharp}
@@ -35,7 +35,7 @@ const Header: React.FC<IProps> = ({ title, githubURL, versionLabel, className })
             )}
             {versionLabel && (
               <div className='h-full inline'>
-                <span className={`${styles.version} inline ml-05 `}>v. {versionLabel}</span>
+                <span className={`${styles.version} inline ml-2 `}>v. {versionLabel}</span>
               </div>
             )}
           </div>

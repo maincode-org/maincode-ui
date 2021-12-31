@@ -24,13 +24,13 @@ export const mathToolkitPageDocumentation: IDocumentationPageContent = {
       <br />
       <p>For each of these types you have access to different utilities:</p>
       <Table
-        className='mb-2'
+        className='mb-8'
         title='Linear function utility support'
         leftWidthPct={40}
         properties={[descMaker.makeFn('linear', ['a: number', 'b: number'], 'f(x)=ax+b'), descMaker.solveFnGivenY('linear', [formatObject(['a: number', 'b: number'], 1), 'y: number'])]}
       />
       <Table
-        className='mb-2'
+        className='mb-8'
         title='Exponential function utility support'
         leftWidthPct={40}
         properties={[descMaker.makeFn('exponential', ['a: number', 'b: number'], 'f(x)=a^x+b'), descMaker.solveFnGivenY('exponential', [formatObject(['a: number', 'b: number'], 1), 'y: number'])]}

@@ -6,7 +6,7 @@ import DocumentationSection from '../documentation-section/DocumentationSection'
 
 const makeContent = (c: IDocumentationPage, setTitle: (title: string) => void, scrollToTop: () => void, prevNav?: IFooterNav, nextNav?: IFooterNav): React.ReactNode => (
   <DocumentationSection
-    className='px-2'
+    className='px-8'
     onContentLoad={() => {
       setTitle(c.title);
       scrollToTop();
