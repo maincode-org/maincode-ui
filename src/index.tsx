@@ -2,6 +2,7 @@ import { version } from '../package.json';
 export { version };
 import '../styles/tailwind.css';
 import '../styles/ion-overrides.css';
+import '../styles/generics.css';
 
 /** Types ------------------------------------------ */
 import { IDocumentationPage, IDocumentationPageContent, IPropertyDetail, IStyleDetail, IPreview, IComponentUsage, IEntityCategory } from './components/documentation-components/types';

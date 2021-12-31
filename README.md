@@ -67,7 +67,6 @@ import { CopyArea } from 'maincode-ui';
 /** Maincode UI stylesheets. */
 import 'maincode-ui/dist/index.css'; // All the component specific styles.
 import 'maincode-ui/styles/theme.css'; // The default theme variables. See the "themes" section for customization.
-import 'maincode-ui/styles/generics.css'; // A few common classes be Maincode (eg. "glass-bg").
 
 const ExampleApp: React.FC = () => {
   return <CopyArea command={'npm install --save maincode-ui'} />;
