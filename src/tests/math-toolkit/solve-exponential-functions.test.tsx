@@ -1,4 +1,4 @@
-import { MathToolkit } from '../../src/toolkits/math';
+import { MathToolkit } from '../../toolkits/math';
 
 const { solveFnGivenY } = MathToolkit.exponential;
 
