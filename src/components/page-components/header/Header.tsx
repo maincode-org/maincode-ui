@@ -23,14 +23,14 @@ const Header: React.FC<IProps> = ({ title, githubURL, versionLabel, className })
           {title && <span className={`${styles.title} mb-2 truncate`}>{title}</span>}
           <div className={`${styles.icons}`}>
             <IonIcon
-              className='mr-2 pointer'
+              className='mr-2 cursor-pointer'
               onClick={theme?.toggleTheme}
               ios={theme?.themeName === EThemeModes.light ? moonSharp : sunnySharp}
               md={theme?.themeName === EThemeModes.light ? moonSharp : sunnySharp}
             />
             {githubURL && (
               <a href={githubURL} className='color-fg'>
-                <IonIcon className='pointer' ios={logoGithub} md={logoGithub} />
+                <IonIcon className='cursor-pointer' ios={logoGithub} md={logoGithub} />
               </a>
             )}
             {versionLabel && (

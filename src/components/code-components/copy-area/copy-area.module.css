@@ -1,6 +1,9 @@
 .container {
   transition: opacity 0.15s ease-in;
 }
+.container code {
+  background-color: transparent;
+}
 
 .dollarSign {
   color: var(--ion-color-primary);
