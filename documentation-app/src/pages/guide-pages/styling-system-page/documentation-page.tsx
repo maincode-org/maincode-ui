@@ -1,7 +1,7 @@
 import { PrettyList, LiveCodeEditor } from 'maincode-ui';
 
 const codeExample = `
-<div className='glass-bg'>
+<div className='glass-bg p-2 m-2 rounded-full'>
   <p>Standardized <span className="bold">styled</span> paragraph.</p>
 </div>
 `;
