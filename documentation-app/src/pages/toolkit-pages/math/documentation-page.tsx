@@ -21,7 +21,6 @@ export const mathToolkitPageDocumentation: IDocumentationPageContent = {
     <div>
       <p>In this toolkit you will be able to work with the following equation types:</p>
       <PrettyList ordering='none' items={['linear', 'exponential', 'parabola']} />
-      <br />
       <p>For each of these types you have access to different utilities:</p>
       <Table
         className='mb-8'

@@ -5,16 +5,17 @@ import { logoGithub, moonSharp, sunnySharp } from 'ionicons/icons';
 import styles from './header.module.css';
 
 type IProps = {
+  isFixed?: boolean;
   title?: string;
   githubURL?: string;
   versionLabel?: string;
   className?: string;
 };
 
-const Header: React.FC<IProps> = ({ title, githubURL, versionLabel, className }) => {
+const Header: React.FC<IProps> = ({ isFixed = true, title, githubURL, versionLabel, className }) => {
   const theme = useContext(ThemeContext);
   return (
-    <IonHeader className={`${className} ${styles.header}`}>
+    <IonHeader className={`${isFixed ? styles.fixed : ''} ${className}`}>
       <IonToolbar className='flex flex-col'>
         <IonButtons slot='start'>
           <IonMenuButton />

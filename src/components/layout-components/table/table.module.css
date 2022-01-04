@@ -1,5 +1,6 @@
 .table code {
   background-color: var(--ion-background-color);
+  filter: brightness(95%);
 }
 
 .table {
@@ -8,6 +9,7 @@
   color: var(--ion-text-color);
   white-space: pre-wrap;
 }
+
 .table h4 {
   margin: 0;
   text-align: left;
@@ -17,9 +19,11 @@
   border-top-left-radius: 8px;
   border-top-right-radius: 8px;
 }
+
 .table tbody tr:last-child td:first-child {
   border-bottom-left-radius: 8px;
 }
+
 .table tbody tr:last-child td:last-child {
   border-bottom-right-radius: 8px;
 }

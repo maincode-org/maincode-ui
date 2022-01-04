@@ -6,4 +6,6 @@
 
 .container code {
   background: rgba(var(--ion-color-primary-rgb), 0.4);
+  line-height: 1.3rem;
+  margin-bottom: 0.2rem;
 }

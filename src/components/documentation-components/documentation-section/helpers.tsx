@@ -15,7 +15,7 @@ export const renderLiveCodeEditors = (codeExamples: IComponentUsage[]): JSX.Elem
         </h3>
       )}
       {example.description && example.description}
-      <LiveCodeEditor className='my-82' code={example.code} enablePreview={example.enablePreview} noInline={example.noInline} scope={example.scope} />
+      <LiveCodeEditor className='my-6' code={example.code} enablePreview={example.enablePreview} noInline={example.noInline} scope={example.scope} />
       {example.outro && example.outro}
     </div>
   ));
