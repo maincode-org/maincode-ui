@@ -24,7 +24,7 @@ const PrettyUL: React.FC<IProps> = ({ items, className = '' }) => {
       {items.map((item, i) => (
         <li className='flex flex-row m-4' key={i}>
           <IonIcon className={styles.ULIcon} ios={chevronForwardOutline} md={chevronForwardOutline} />
-          <p className='p-0 m-0 ml-4'>{item}</p>
+          <p className='p-0 m-0 ml-4 text-base'>{item}</p>
         </li>
       ))}
     </ul>
@@ -34,9 +34,9 @@ const PrettyUL: React.FC<IProps> = ({ items, className = '' }) => {
 const PrettyOL: React.FC<IProps> = ({ items, ordering, className = '' }) => {
   const alphabet = 'abcdefghijklmnopqrstuvwxyz';
   const listItem = (index: number, item: React.ReactNode | string) => (
-    <li className='flex flex-row m-2' key={index}>
-      <p className={`${styles.OLNumberLabel} flex justify-center items-center`}>{ordering === 'numerical' ? index + 1 : alphabet[index]}</p>
-      <p className='ml-4'>{item}</p>
+    <li className='flex flex-row m-4' key={index}>
+      <p className={`${styles.OLNumberLabel} m-0 p-0 flex justify-center items-center`}>{ordering === 'numerical' ? index + 1 : alphabet[index]}</p>
+      <p className='m-0 p-0 ml-4 text-base'>{item}</p>
     </li>
   );
 

@@ -10,7 +10,7 @@ export const prettyListPageDocumentation: IDocumentationPageContent = {
       code: `
 <PrettyList
   ordering='none'
-  items={['List item 1', 'List item 2', 'List item 3']}
+  items={['List item 1', 'List item 2 is a multiline\\npoint. ', 'List item 3']}
 />`,
       scope: { PrettyList },
     },
@@ -20,7 +20,7 @@ export const prettyListPageDocumentation: IDocumentationPageContent = {
       code: `
 <PrettyList
   ordering='numerical'
-  items={['List item 1', 'List item 2', 'List item 3']}
+  items={['List item 1', 'This is a multiline\\nlist item.', 'List item 3']}
 />`,
       scope: { PrettyList },
     },
